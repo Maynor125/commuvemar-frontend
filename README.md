@@ -1,6 +1,10 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Aplicacion Frontend Cooperativa COOMUVEMAR.
+
+En el desarrollo de la aplicación web se usará TypeScript que es un lenguaje de programación fuertemente tipado que se basa en JavaScript, lo que le brinda mejores herramientas a cualquier escala. se hará uso de NextJS v13, un Framework de JavaScript hecho para construir aplicaciones React renderizadas del lado del servidor, este es de código abierto y facilita enormemente la creación de aplicaciones web, para la creación de las interfaces se utilizará Material UI que es una librería de componentes de ReactJS que brinda una serie de componentes visuales para que el desarrollo sea más rápido y sencillo.
+
+## Para empezar.
 
 First, run the development server:
 

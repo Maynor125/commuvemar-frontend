@@ -1,0 +1,210 @@
+nav
+{
+    width: 100%;
+    height: 5rem;
+    background: var(--color-primary);
+    display: grid;
+    place-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+.btn-nav-toogle
+{
+    display: none;
+}
+.nav-container
+{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.imagen
+{
+    width: 8rem;
+    display: block;
+
+} 
+.nav-list
+{
+    display: flex;
+    gap: 3.5rem;
+    align-items: center;
+    margin-left: 4.5rem;
+}
+.nav-link{
+    color: var( --color-text-1);
+    font-weight: var(--font-medium);
+    font-family: var(--fuente-opensang);
+    transition: var(--transition);
+}
+.nav-link:hover
+{
+    color: var(--color-title-1);
+}
+.active-Nav
+{
+    position: relative;
+    color: var(--firts-color-red);
+}
+.active-Nav:hover{
+    color: var(#4D140B);
+}
+
+.nav-part2{
+   
+   
+}
+.contenedor-nav{
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    justify-content: space-between;
+}
+.part-1{
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+.dark-mode{
+    display: flex;
+}
+.dark-mode p{
+    display: none;
+    color: var(--firts-color-white);
+    font-family: var(--fuente-opensang);
+}
+.icono-dark-mode{
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+.btn-login{
+    background: var( --firts-color-skybleu);
+    padding: .6rem 2.5rem;
+    border-radius: 2rem;
+}
+
+
+@media screen and (max-width:1024px) {
+    .btn-nav-toogle
+    {
+        display: flex;
+        background: transparent;
+        font-size: 1.5rem;
+        cursor: pointer;
+        background: none;
+        width: 2.3rem;
+        height: 2.3rem;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-text-1);
+        transition: var(--transition);
+        border-radius: 50%;
+    }
+    .btn-nav-toogle:hover{
+        background:rgb(201, 202, 203);
+    }
+    .nav-part2-desactive{
+        transform: scale(0);
+    }
+    .nav-part2-active{
+        transform: scale(1);
+    }
+    .fondo{
+        background: rgba(0, 0,0, .40);
+        position: absolute;
+        top: 5rem;
+        width: 100vw;
+        height: 100vh;
+        left: -10vw;
+        right: 0;
+        transition: var(--transition);
+        transition-delay: 2s;
+        z-index: 3;
+    }
+    .fondo-i{
+        display: none;
+    }
+    .fondo-a{
+        display: block;
+    }
+    .nav-part2{
+        position: absolute;
+        top: 5rem;
+        width: 100vw;
+        height: 100vh;
+        left: -10vw;
+        right: 0;
+        background: none;
+    }
+    .contenedor-nav
+    {
+        position: relative;
+        height: 100%;
+        width: 20rem;
+        flex-direction: column;
+        background: var(--color-text-1);
+        justify-content: space-around;
+        float: right;
+        align-items: center;
+        transition: transform 1s ease-in-out;
+        z-index: 5;
+    }
+    .contenedor-nav-active{
+        transform: translateX(0);
+        transition: transform 1s ease-in;
+    }
+    .contenedor-nav-inactive{
+        transform: translateX(22rem);
+        transition: transform 1s ease-out;
+    }
+    .nav-list
+    {
+        flex-direction: column;
+        margin-left: 0;
+        width: 100%;
+        align-items: baseline;
+        border-top: 1px solid var( --color-title-1);
+        padding-top: 2rem;
+    }
+    .nav-link
+    {
+        color: var( --firts-color-white);
+        text-align: left;
+        padding-left: 2rem;
+    }
+    .nav-link:hover
+    {
+        color: var( --firts-color-griss);
+    }
+    .part-1{
+        width: 100%;
+        border-top: 1px solid var( --color-title-1);
+        flex-direction: column;
+        margin-bottom: 3rem;
+        border-bottom: 1px solid var( --color-title-1);
+        padding-bottom: 2rem;
+    }
+    .dark-mode{
+        width: 100%;
+        padding: 2rem ;
+        justify-content: space-between;
+        border-bottom: 1px solid var( --color-title-1);
+    }
+    .dark-mode p{
+        display: block;
+        
+    }
+    .icono-dark-mode{
+       
+        color: var(--firts-color-white);
+    }
+    .btn-login{
+        padding: .6rem 6.7rem;
+    }
+    
+}
