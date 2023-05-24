@@ -60,4 +60,11 @@ function Navbar({ pathNames }: Props) {
   );
 }
 
+/* barra pegajosa */
+window.addEventListener("scroll",function(){
+
+  var header1=document.querySelector("hola");
+  header1.classList.toggle("sticky",window.screenY > 0)
+})
+
 export default Navbar;
