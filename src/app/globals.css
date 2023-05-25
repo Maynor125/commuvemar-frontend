@@ -14,6 +14,10 @@
     list-style: none;
     text-decoration: none;
 }
+body
+{
+  
+}
 
 /* Variables */
 :root
@@ -100,6 +104,10 @@ body {
   color: var(--color-text-1);
   transition: .3s; /* For animation dark mode */
 }
+p
+{
+  
+}
 
 /*================================= Clases CSS reusables =================================*/
 .container
@@ -107,6 +115,7 @@ body {
     width: var(--container-width-pantallaGrande);
     max-width: 1920px;
     margin-inline: auto;
+    
 }
 
 .grid {
