@@ -11,7 +11,7 @@ const Welcome = () => {
             <div className="welcome-hader-left">
             <h4>¡Bienvenido a Coomuvemar!</h4>
                <h1>Obten el mejor cacao   con sertificaciones <span>activas.</span> </h1>
-               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id quisquam, ad facere corrupti molestias repellat assumenda maiores magni natus perspiciatis illo!</p>
+               <p>Velamos por el bienestar económico y social de nuestros asociados, y brindamos servicios y productos de calidad para nuestros clientes!</p>
                <div className="botones-welcome-header">
                  <Link className='boton-base btn-welcome-header-1 boton-welcome-header' href="#contacto">Forma parte de nosostros</Link>
                  

@@ -40,6 +40,7 @@ body
    /* colores de texto */
     --color-title-1:#2C353E;
     --color-text-1:#242424;
+    --color-text-opaco:#64646D;
 
     /*========== fuentes ==========*/
     /*.5rem = 8px | 1rem = 16px ...*/

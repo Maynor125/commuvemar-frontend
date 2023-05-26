@@ -56,7 +56,6 @@
 }
 .btn-welcome-header-1:hover{
     background: var(--firts-color-green-1);
-    border:none;
     color: var(--firts-color-white);
 }
 
