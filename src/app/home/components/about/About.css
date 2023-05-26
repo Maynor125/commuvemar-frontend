@@ -33,6 +33,7 @@
     border-radius: 6px;
     padding: .150rem .4rem;
     margin: 1rem 0;
+    cursor: pointer;
 }
 
 .targeta-about p{

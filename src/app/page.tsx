@@ -2,7 +2,7 @@ import Image from 'next/image'
 import styles from './page.module.css'
 
 import { Links_home } from './home/data'
-import { About, Banner, Navbar, Welcome } from './home/components'
+import { About, Banner, Navbar, Service, Welcome } from './home/components'
 
 export default function Home() {
   return (
@@ -11,6 +11,7 @@ export default function Home() {
       <Welcome/>
       <Banner/>
       <About/>
+      <Service/>
     </>
   )
 }
