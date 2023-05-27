@@ -1,0 +1,73 @@
+.contact{
+
+}
+.contact-container{
+    margin-top: 5rem;
+    height: 100%;
+    margin-bottom: 3rem;
+}
+.contact-form{
+    width: 90%;
+    height: 90%;
+   position: relative;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   justify-content: space-between;
+   gap: 5rem;
+   box-shadow: 0 0 2px rgba(0,0,0, .20);
+   border-radius: 8px;
+   margin: 0 auto;
+   padding: 2.5rem;
+}
+.contact-form-part1{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+.contact-form-part1 form
+{
+   gap: 2rem;
+}
+.btn-enviar
+{
+    background: var( --firts-color-skybleu);
+    padding: .6rem 2.5rem;
+    border-radius: 2rem;
+    color: var(--firts-color-white);
+    margin-top: 1.5rem;
+    cursor: pointer;
+}
+.texto-c h3{
+   color: var(--firts-color-skybleu);
+}
+
+
+.item-info{
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+}
+.item-info .icon{
+    margin-right: 12px;
+    width: 35px;
+    height: 35px;
+    border: 2px solid var(--firts-color-skybleu);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon-c{
+    color: var(--firts-color-skybleu);
+    font-size: 1.1rem;
+}
+.icon-c::nth-child(2){
+    font-size: .9rem;
+}
+
+@media screen and (max-width: 1024px)
+{
+    .contact-form{
+        width: 100%;
+    }
+}
