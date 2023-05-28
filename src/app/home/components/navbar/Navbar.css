@@ -1,8 +1,8 @@
-nav
+.header
 {
     width: 100%;
     height: 5rem;
-    background: var(--color-primary);
+    background: var( --firts-color-white);
     display: grid;
     place-items: center;
     position: fixed;
@@ -11,7 +11,7 @@ nav
     z-index: 99;
     transition: var(--transition);
 }
-nav.stiky
+.header.stiky
 {
     height: 4rem;
     box-shadow: 0 1px 1px rgba(0, 0,0, .10);
@@ -47,6 +47,7 @@ nav.stiky
     font-weight: var(--font-medium);
     font-family: var(--fuente-opensang);
     transition: var(--transition);
+    font-size: var(--small-font-size);
 }
 .nav-link:hover
 {
@@ -92,10 +93,15 @@ nav.stiky
     background: var( --firts-color-skybleu);
     padding: .6rem 2.5rem;
     border-radius: 2rem;
+    color: var(--firts-color-white);
 }
 
 
 @media screen and (max-width:1024px) {
+    .header{
+        height: 4rem;
+    box-shadow: 0 1px 1px rgba(0, 0,0, .10);
+    }
     .btn-nav-toogle
     {
         display: flex;
@@ -123,14 +129,14 @@ nav.stiky
     .fondo{
         background: rgba(0, 0,0, .40);
         position: absolute;
-        top: 5rem;
+        top: 4rem;
         width: 100vw;
         height: 100vh;
         left: -10vw;
         right: 0;
         transition: var(--transition);
         transition-delay: 2s;
-        z-index: 3;
+        z-index: 2;
     }
     .fondo-i{
         display: none;
@@ -140,15 +146,17 @@ nav.stiky
     }
     .nav-part2{
         position: absolute;
-        top: 5rem;
+        top: 4rem;
         width: 100vw;
         height: 100vh;
         left: -10vw;
         right: 0;
         background: none;
+        z-index: 90;
     }
     .contenedor-nav
     {
+        margin-top: 2px;
         position: relative;
         height: 100%;
         width: 20rem;
@@ -158,7 +166,7 @@ nav.stiky
         float: right;
         align-items: center;
         transition: transform 1s ease-in-out;
-        z-index: 5;
+        z-index: 90;
     }
     .contenedor-nav-active{
         transform: translateX(0);
@@ -182,6 +190,7 @@ nav.stiky
         color: var( --firts-color-white);
         text-align: left;
         padding-left: 2rem;
+        font-size: var( --normal-font-size);
     }
     .nav-link:hover
     {

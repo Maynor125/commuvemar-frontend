@@ -1,7 +1,7 @@
 'use client'
 
 import  {useState}  from 'react'
-import Logo from "../../images/logo.png";
+import Logo from "../../../../../public/images/home/logo.png";
 import Image from "next/image";
 import { Link_home } from "../../data";
 import Link from "next/link";
@@ -22,7 +22,7 @@ function Navbar({ pathNames }: Props) {
   const [isNavShowing,setIsNavShowing] = useState<boolean>(false)
 
   return (
-    <nav>
+    <nav className='header'>
       <div className="container nav-container">
           <div className="imagen">
             <Image src={Logo} className="logo" alt="Logotipo" />
@@ -62,9 +62,9 @@ function Navbar({ pathNames }: Props) {
 
 /* barra pegajosa */
 window.addEventListener("scroll",function(){
-
-  var header1=document.querySelector("hola");
-  header1.classList.toggle("sticky",window.screenY > 0)
+   let header1:any;
+   header1=document.querySelector("header");
+  header1.classList.toggle("sticky",window.screenY > 10)
 })
 
 export default Navbar;

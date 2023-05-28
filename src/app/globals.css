@@ -14,6 +14,10 @@
     list-style: none;
     text-decoration: none;
 }
+body
+{
+  
+}
 
 /* Variables */
 :root
@@ -36,10 +40,11 @@
    /* colores de texto */
     --color-title-1:#2C353E;
     --color-text-1:#242424;
+    --color-text-opaco:#64646D;
 
     /*========== fuentes ==========*/
     /*.5rem = 8px | 1rem = 16px ...*/
-    --h1-font-size: 1.5rem;
+    --h1-font-size: 1.8rem;
     --h2-font-size: 1.25rem;
     --h3-font-size: 1rem;
     --normal-font-size: .938rem;
@@ -52,7 +57,7 @@
     --font-bold:700;
 
     /*transiciones*/
-    --transition:all 500ms ease;
+    --transition:all 500ms ease-in-out;
 
     /*========== z index ==========*/
     --z-tooltip: 10;
@@ -65,8 +70,8 @@
 /* Tipografia responsiva */
 @media screen and (min-width: 1024px) {
   :root {
-    --h1-font-size: 2.25rem;
-    --h2-font-size: 1.5rem;
+    --h1-font-size: 2.6rem;
+    --h2-font-size: 2rem;
     --h3-font-size: 1.25rem;
     --normal-font-size: 1rem;
     --small-font-size: .875rem;
@@ -80,6 +85,7 @@
 h1,h2,h3,h4,h5{
   line-height: 1.2;
   font-family: var(--fuente-monserrat);
+  color: var(--color-title-1);
 }
 
 a {
@@ -99,6 +105,10 @@ body {
   color: var(--color-text-1);
   transition: .3s; /* For animation dark mode */
 }
+p
+{
+  
+}
 
 /*================================= Clases CSS reusables =================================*/
 .container
@@ -106,6 +116,7 @@ body {
     width: var(--container-width-pantallaGrande);
     max-width: 1920px;
     margin-inline: auto;
+    
 }
 
 .grid {
@@ -118,11 +129,20 @@ body {
 
 .boton-base
   {
-     color: var(--firts-color-white);
+     font-weight: var(--font-semi-bold);
      font-family: var(--fuente-opensang);
      display: flex;
      align-items: center;
+     font-size: var(--small-font-size);
   }
 
 
-  
+  /* MEDIA QUERIES (medium screen) */
+
+@media screen and (max-width: 1024px)
+{
+   .container
+   {
+     width: var(--container-width-pantallaChica);
+   }
+}
