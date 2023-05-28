@@ -2,7 +2,7 @@ import Image from 'next/image'
 import styles from './page.module.css'
 
 import { Links_home } from './home/data'
-import { About, Banner, Contact, Navbar, Service, Welcome } from './home/components'
+import { About, Banner, Contact, Footer, Navbar, Service, Welcome } from './home/components'
 
 export default function Home() {
   return (
@@ -13,6 +13,7 @@ export default function Home() {
       <About/>
       <Service/>
       <Contact/>
+      <Footer/>
     </>
   )
 }
