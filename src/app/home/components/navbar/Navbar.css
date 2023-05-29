@@ -11,10 +11,11 @@
     z-index: 99;
     transition: var(--transition);
 }
-.header.stiky
+.stiky
 {
     height: 4rem;
     box-shadow: 0 1px 1px rgba(0, 0,0, .10);
+    background:#aaa;
 }
 .btn-nav-toogle
 {

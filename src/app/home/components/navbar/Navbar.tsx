@@ -22,7 +22,7 @@ function Navbar({ pathNames }: Props) {
   const [isNavShowing,setIsNavShowing] = useState<boolean>(false)
 
   return (
-    <nav className='header'>
+    <nav id='hea' className='header'>
       <div className="container nav-container">
           <div className="imagen">
             <Image src={Logo} className="logo" alt="Logotipo" />
@@ -62,9 +62,16 @@ function Navbar({ pathNames }: Props) {
 
 /* barra pegajosa */
 window.addEventListener("scroll",function(){
-   let header1:any;
-   header1=document.querySelector("header");
-  header1.classList.toggle("sticky",window.screenY > 10)
+  
+  var header1=document.getElementById('hea');
+  if(header1 != null)
+  {
+    header1.classList.toggle("sticky",window.screenY > 0)
+  }
+  else
+  {
+    this.alert("es nulo")
+  }
 })
 
 export default Navbar;
