@@ -1,0 +1,15 @@
+/* para 2K & 4K resolucion */
+@media screen and (min-width:2248px)
+{
+  body
+  {
+    zoom: 1.5;
+  }
+}
+@media screen and (min-width:3840px)
+{
+  body
+  {
+    zoom: 2;
+  }
+}

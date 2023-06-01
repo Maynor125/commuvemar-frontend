@@ -1,3 +1,4 @@
+
 import Image from 'next/image'
 import React from 'react'
 import './About.css'
@@ -13,7 +14,7 @@ const About = () => {
                <h4>¿Quienes somos?</h4>
                <h2>Como coomuvemar</h2>
 
-               <p>La certificación es un proceso de producir de manera sostenible con el Medio Ambiente, gestión de calidad, gestión ambiental además de que la certificación es una garantía para los consumidores y coomuvemar cuenta con dos.</p>
+               <p>Contamos con la certificación, que es un proceso de producir de manera sostenible con el Medio Ambiente, gestión de calidad, gestión ambiental además de que la certificación es una garantía para los consumidores y coomuvemar cuenta con dos.</p>
 
                <div className="targeta-about">
                       <div className="part-superior">
@@ -22,7 +23,7 @@ const About = () => {
                              <Image alt='icono-cacao' src={IconoCacao}/>
                           </div>
                       </div>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor iusto voluptate dolores aperiam corporis. Temporibus?</p>
+                      <p>Ayuda a los agricultores a producir mejores cultivos, adaptarse al cambio climático, aumentar su productividad y reducir costos.</p>
                </div>
                <div className="targeta-about">
                       <div className="part-superior">
@@ -31,9 +32,9 @@ const About = () => {
                           <Image alt='icono-cacao' src={IconoCacao}/>
                           </div>
                       </div>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor iusto voluptate dolores aperiam corporis. Temporibus?</p>
+                      <p>Una herramienta que garantiza confianza al consumidor de que lo que está comprando es realmente de origen orgánico.</p>
                </div>
-               <Link href='#contacto' className='boton-base boton-about'>
+               <Link href='#services' className='boton-base boton-about'>
                  Consulta...
                </Link>
            </div>

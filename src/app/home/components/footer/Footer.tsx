@@ -26,7 +26,7 @@ const Footer = () => {
               <div className="cont-logo">
                  <Image src={Logo} alt='Logotipo'/>
               </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam et iure doloremque Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+              <p>Velamos por el cumplimiento de normas, requisitos y estándares productivos, sociales y ambientales para la producción de cacao.</p>
           </div>
           <div className="columna2-footer">
              <h4>Siguenos aqui</h4>
@@ -54,13 +54,13 @@ const Footer = () => {
           <div className="pie-de-pagina">
               <p>Deasrrollada por Caridevs</p>
               <div className="creditos">
-                  <p>Privacy Policy</p>
+                  
                   <p>© 2023 - 2024 COOMUVEMAR.</p>
               </div>
           </div>
       </div>
   </footer>
-  )
+  ) 
 }
 
 export default Footer

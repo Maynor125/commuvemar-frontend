@@ -1,9 +1,10 @@
+
 import React from 'react'
 import './Banner.css'
 
 const Banner = () => {
   return (
-    <section className='banner'>
+    <section  className='banner'>
          <div className="container banner-container">
              <h2>Cooperativa Multisectorial Veintinueve De Marzo</h2>
              <h2>COOMU<span>VEMAR</span></h2>

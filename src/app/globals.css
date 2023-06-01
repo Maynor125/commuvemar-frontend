@@ -14,9 +14,10 @@
     list-style: none;
     text-decoration: none;
 }
-body
+section
 {
-  
+  overflow-x: hidden;
+  background: #FDFDFD;
 }
 
 /* Variables */
@@ -101,7 +102,7 @@ img {
 
 body {
   font-size: var(--normal-font-size);
-  background-color: var(--firts-color-griss);
+  background: #FDFDFD;
   color: var(--color-text-1);
   transition: .3s; /* For animation dark mode */
 }
@@ -116,7 +117,7 @@ p
     width: var(--container-width-pantallaGrande);
     max-width: 1920px;
     margin-inline: auto;
-    
+ 
 }
 
 .grid {

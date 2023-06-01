@@ -9,10 +9,35 @@ import { MdLocationPin } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { Box, TextField } from "@mui/material";
+import {useState} from 'react'
+import toast from 'react-hot-toast'
+
+
+
 
 const Contact = () => {
+  
+  const [nombre,setNombre] = useState<string>('')
+  const [email,setEmail] = useState<string>('')
+  const [mensaje,setMensaje] = useState<string>('')
+
+  function handleSubmit(event:any) {
+    event.preventDefault()
+
+    if (!nombre || !email || !mensaje) {
+      toast('Rellena todos los pinches campos',{
+        style:{
+          background:'#E83D21',
+          color:'#FFFF',
+        }
+      });
+      return;
+    }
+    console.log(nombre,email,mensaje)
+  }
+
   return (
-    <section id='contacto' className="contact">
+    <section id='contact' className="contact">
       <div className="container contact-container">
         <div className="contact-form">
           <div className="contact-form-part1">
@@ -20,7 +45,7 @@ const Contact = () => {
             <h3>Contactanos.</h3>
             <p>Y comunicate con nosotros.</p>
             </div>
-            <form>
+            <form id="formu"  onSubmit={handleSubmit}>
               <TextField
                 id="outlined-basic"
                 label="Escribe tu nombre"
@@ -28,8 +53,10 @@ const Contact = () => {
                 size="small"
                 sx={{
                   mt:5,
-                  width:'80%',
+                  width:'90%',
                 }}
+                onChange={({target})=>setNombre(target.value)}
+                value={nombre}
               />
               <TextField
                 type="email"
@@ -39,8 +66,10 @@ const Contact = () => {
                 size="small"
                 sx={{
                   mt:4,
-                  width:'80%',
+                  width:'90%',
                 }}
+                onChange={({target})=>setEmail(target.value)}
+                value={email}
               />
               <TextField
                 id="outlined-multiline-flexible"
@@ -50,8 +79,11 @@ const Contact = () => {
                 size="small"
                 sx={{
                   mt:4,
-                  width:'80%',
-                }}
+                  width:'90%',
+                }
+              }
+              onChange={({target})=>setMensaje(target.value)}
+                value={mensaje}
               />
               <input className="boton-base btn-enviar" type="submit" value="Enviar" />
             </form>
@@ -71,7 +103,7 @@ const Contact = () => {
                 <div className="icon">
                   <FaPhoneAlt className="icon-c"  />
                 </div>
-                <p>+ 505 8366-2224</p>
+                <p>+ 505 8366-2258</p>
               </div>
               <div className="item-info">
                 <div className="icon">
