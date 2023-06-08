@@ -12,28 +12,57 @@ import { Box, TextField } from "@mui/material";
 import {useState} from 'react'
 import toast from 'react-hot-toast'
 
-
+const initValues={name:"",
+email:"",
+mensaje:"",}
+const initState = {values:initValues} 
 
 
 const Contact = () => {
-  
-  const [nombre,setNombre] = useState<string>('')
-  const [email,setEmail] = useState<string>('')
-  const [mensaje,setMensaje] = useState<string>('')
 
-  function handleSubmit(event:any) {
-    event.preventDefault()
+  /*-----------------*/
+  const [loading,setLoading] = useState(false)
 
-    if (!nombre || !email || !mensaje) {
+  async function hadleSubmit1(event:any){
+    event.preventDefault();
+    setLoading(true);
+
+    const data ={
+      name:String(event.target.name.value),
+      email:String(event.target.email.value),
+      mensaje:String(event.target.mensaje.value),
+    } 
+
+    if (!data.name.length || !data.email.length || !data.mensaje.length) {
       toast('Rellena todos los pinches campos',{
-        style:{
+        style:{ 
           background:'#E83D21',
           color:'#FFFF',
         }
       });
       return;
     }
-    console.log(nombre,email,mensaje)
+    console.log(data);
+    const response= await fetch("/api/posts",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+      },
+      body:JSON.stringify(data),
+    })
+    
+    if(response.ok){
+      console.log("Mensaje enviado")
+      setLoading(false);
+      event.target.name.value = ""
+      event.target.email.value = ""
+      event.target.mensaje.value = "" 
+      event.target.reset()
+    }
+    if(!response.ok){
+      console.log("Mensaje no enviado llaga")
+      setLoading(false);
+    }
   }
 
   return (
@@ -45,9 +74,9 @@ const Contact = () => {
             <h3>Contactanos.</h3>
             <p>Y comunicate con nosotros.</p>
             </div>
-            <form id="formu"  onSubmit={handleSubmit}>
+            <form id="formu"  onSubmit={hadleSubmit1}>
               <TextField
-                id="outlined-basic"
+                id="outlined-basic name"
                 label="Escribe tu nombre"
                 variant="outlined"
                 size="small"
@@ -55,12 +84,11 @@ const Contact = () => {
                   mt:5,
                   width:'90%',
                 }}
-                onChange={({target})=>setNombre(target.value)}
-                value={nombre}
+                name="name"
               />
               <TextField
                 type="email"
-                id="outlined-basic"
+                id="outlined-basic email"
                 label="Escribe tu correo electronico"
                 variant="outlined"
                 size="small"
@@ -68,11 +96,10 @@ const Contact = () => {
                   mt:4,
                   width:'90%',
                 }}
-                onChange={({target})=>setEmail(target.value)}
-                value={email}
+                name="email"
               />
               <TextField
-                id="outlined-multiline-flexible"
+                id="outlined-multiline-flexible mensaje"
                 label="Escribe tu mensaje"
                 multiline
                 rows={4}
@@ -82,12 +109,14 @@ const Contact = () => {
                   width:'90%',
                 }
               }
-              onChange={({target})=>setMensaje(target.value)}
-                value={mensaje}
+                name="mensaje"
               />
-              <input className="boton-base btn-enviar" type="submit" value="Enviar" />
+              <input  className="boton-base btn-enviar" type="submit" value="Enviar" />
             </form>
           </div>
+
+
+          
           <div className="contact-form-part2">
             <div className="img-cont">
               <Image src={ImagenContacto} alt="imagen contato" />

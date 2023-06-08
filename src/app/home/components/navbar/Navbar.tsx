@@ -19,7 +19,7 @@ function Navbar({ pathNames }: Props) {
   const [isNavShowing, setIsNavShowing] = useState<boolean>(false);
 
   return (
-    <nav id="hea" className="header">
+    <nav id="hea"className="header">
       <div className="container nav-container">
         <div className="imagen">
           <Image src={Logo} className="logo" alt="Logotipo" />
@@ -76,8 +76,7 @@ function scrollHeader() {
       header.classList.add("sticky");
     } else {
       header.classList.remove("sticky");
-    }
-  
+    } 
 }
 window.addEventListener("scroll", scrollHeader);
 
