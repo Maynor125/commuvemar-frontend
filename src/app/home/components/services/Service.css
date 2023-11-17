@@ -21,16 +21,26 @@
     gap: 2.7rem;
 }
 .service-card{
-    box-shadow: 0 0 2px rgba(0,0,0, .20);
+    box-shadow: 0 0 3px rgba(0,0,0, .15);
     border-radius: 5px;
     padding: .8rem;
     cursor: pointer;
     transition: var(--transition);
 }
+.service-card:hover
+{
+    background: #F9FAFB;
+}
+.service-card:hover .card-image
+{
+    width: 3.5rem;
+    height: 3.5rem;
+}
 .card-image
 {
     width: 3.2rem;
     height: 3.2rem;
+    transition: var(--transition);
 }
 .service-card h4
 {

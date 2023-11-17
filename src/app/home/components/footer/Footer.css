@@ -1,11 +1,11 @@
 .footer-container{
-    margin-top: 8rem;
+    margin-top: 5rem;
     margin-bottom: 3rem;
 }
 .linia
 {
   width: 100%;
-  height: 2px;
+  height: 1px;
   background: #ccc;
   border-radius: 5px;
   margin-bottom: 2rem;
@@ -14,10 +14,10 @@
     margin-top: 4rem;
     display: grid;
     grid-template-columns: 1fr 8rem 30rem;
-    gap: 5rem;
+    gap: 4.5rem;
 }
 .cont-logo{
-    width: 65%;
+    width: 10rem;
 }
 .columna1-footer p
 {
@@ -29,10 +29,11 @@
     text-align: center;
 }
 .cont-media{
+    width: 8rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 2rem;
+    margin: 2rem auto 0;
 }
 .media{
     background: var(--firts-color-skybleu);
@@ -43,9 +44,20 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: var(--transition);
+}
+.media:hover
+{
+    background: none;
+    border: 2px solid var(--firts-color-skybleu);
+}
+.media:hover .icon
+{
+    color: var(--firts-color-skybleu);
 }
 .icon {
     color: #fff;
+    transition: var(--transition);
 }
 
 .columna3-footer{
@@ -60,6 +72,7 @@
 }
 .img-f
 {
+    cursor: pointer;
     height: 100%;
     border-radius: 8px;
     box-shadow: 0 0 2px 1px rgba(0,0,0, .30);
@@ -80,7 +93,75 @@
     display: flex;
     align-items: center;
 }
-.creditos p:nth-child(1)
+.creditos p{
+    text-align: right;
+}
+
+
+@media screen and (min-width: 1150px) {
+  .cont-footer-central
+  {
+    gap: 3rem;
+  }
+}
+
+@media screen and (max-width: 1000px)
 {
-    margin-right: 2rem;
+    .cont-footer-central
+    {
+        grid-template-areas: "foop1 foop2"
+                             "foop3 foop3";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+    .columna1-footer
+    {
+        grid-area: foop1;
+    }
+    .columna2-footer
+    {
+        grid-area: foop2;
+    }
+    .columna3-footer
+    {
+        grid-area: foop3;
+        gap: 2rem;
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 600px)
+{
+    .cont-footer-central
+    {
+        grid-template-areas: "foop1"
+                              "foop2"
+                              "foop3";
+       grid-template-columns:  1fr;
+       grid-template-rows:  1fr;
+    }
+    .columna1-footer
+    {
+        text-align: center;
+    }
+    .columna3-footer
+    {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .cont-media
+    {
+        width: 10rem;
+        margin: 2rem auto 0;
+    }
+    .cont-logo
+    {
+        margin: 0 auto;
+    }
+    .pie-de-pagina p{
+        font-size: var( --smaller-font-size);
+    }
+    .creditos
+    {
+        justify-content: space-between;
+    }
 }

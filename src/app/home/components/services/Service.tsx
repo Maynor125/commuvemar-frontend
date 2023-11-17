@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { Services } from '../../data'
 import Card from '@/components/Card'
@@ -10,7 +12,8 @@ const Service = () => {
     <section id='services' className='service'>
        <div className="container service-container">
            <h2>Nuestros servicios</h2>
-           <p>We provide to you the best choiches for you. Adjust it to your health needs and make sure your undergo treatment with our highly qualified doctors you can consult with us which type of service is suitable for your health</p>
+           <p>Somos una Cooperativa consolidada a nivel organizativo y empresarial, que pretende ser un ejemplo a nivel nacional por su nivel productivo, aporte social, económico y ambiental.
+</p>
            <div className="card-container">
            {
                 Services.map(({id,icon,title,text}) =>
