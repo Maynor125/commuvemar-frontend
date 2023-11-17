@@ -43,7 +43,7 @@ const Contact = () => {
       return;
     }
     console.log(data);
-    const response= await fetch("/api/posts",{
+    const response = await fetch("/api/posts",{
       method:"POST",
       headers:{
         "Content-Type":"application/json",

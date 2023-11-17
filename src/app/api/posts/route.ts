@@ -1,11 +1,14 @@
+import { NextResponse } from "next/server";
+
 let nodemailer= require('nodemailer');
 
 export const POST = async(req:any, res:any)=>{
-  const {name, email, mensaje} = req.body;
+  const {name, email, mensaje} = await req.json();
   const user = process.env.USER_E;
 
+  console.log(name, email, mensaje)
   const data={
-     name,
+      name,
       email,
       mensaje
   }
@@ -25,11 +28,11 @@ export const POST = async(req:any, res:any)=>{
         to: 'maynoldemar@gmail.com',
         replyTo: email, 
         subject: `Mensaje Coomuvemar de el crack ${name}`,
-        text: `Nombre: ${data.name}\nEmail: ${data.email}\nMensaje: ${data.mensaje}`
+        text: `Nombre: ${name}\nEmail: ${email}\nMensaje: ${mensaje}`
     })
 
     console.log("Sent mail:",mail.messageId)
-    return res.status(200).json({message:'Success'})
+    return new NextResponse("Mensaje enviado",{status: 200})
     
   } catch (error) {
      console.log(error)
