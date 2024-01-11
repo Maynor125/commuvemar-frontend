@@ -1,0 +1,8 @@
+.container-login{
+    display: flex;
+}
+.section-b{
+    width: 700px;
+    overflow: hidden;
+    height: 90vh;
+}
