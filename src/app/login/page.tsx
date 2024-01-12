@@ -24,6 +24,7 @@ import Link from "next/link";
 import Divider from "@mui/material/Divider";
 
 const Login = () => {
+  //Manejo del estado para mostrar la contraseña.
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -33,6 +34,7 @@ const Login = () => {
   ) => {
     event.preventDefault();
   };
+
   return (
     <main>
       <section className="container-login">
@@ -45,8 +47,10 @@ const Login = () => {
           <div className="auth-container">
             <div className="auth-credential">
               <div className="auth-credential-head">
-                <h4>Login</h4>
-                <Link href="/" className="link-head">Daftar</Link>
+                <h3>Login</h3>
+                <Link href="/" className="link-head">
+                  Daftar
+                </Link>
               </div>
               <form action="" className="form">
                 <TextField
@@ -82,8 +86,10 @@ const Login = () => {
               </form>
             </div>
             <div className="etiqueta">
-              <Divider sx={{ zIndex: -1 }} className="divider" />
               <p>Puedes registrarte con</p>
+              <div className="divider-container">
+                <hr className="divider" />
+              </div>
             </div>
             <div className="auth-more">
               <div className="cont-btns-more">

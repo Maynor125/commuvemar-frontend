@@ -65,19 +65,46 @@
     margin-bottom: 1.5rem;
     margin-top: 0.5rem;
     width: 100%;
+    position: relative;
+    text-align: center;
 }
 .etiqueta p{
-    width: 65%;
-    margin: 0 auto;
-    z-index: 200;
-    background: #ffffff;
-    text-align: center;
-    color: #aaaaaa;
+  font-size: 14px;
+  color: #515151;
+  z-index: 1;
 }
-.divider{
-    
-    transform: translateY(13px);
+
+.divider-container {
+  position: relative;
+  height: 1.5px;
+  width: 100%;
+  overflow: hidden;
+  transform: translateY(-9px);
 }
+
+.divider {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 25%;
+  background-color: #D0D0D0;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
 .cont-btns-more{
     display: flex;
     flex-direction: column;
