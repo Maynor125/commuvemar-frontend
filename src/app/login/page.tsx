@@ -49,7 +49,7 @@ const Login = () => {
               <div className="auth-credential-head">
                 <h3>Login</h3>
                 <Link href="/" className="link-head">
-                  Daftar
+                  Help
                 </Link>
               </div>
               <form action="" className="form">

@@ -33,8 +33,11 @@
 .link-head {
  color: var(--firts-color-green-1);
 }
-.auth-credential-head h4{
+.auth-credential-head h3{
     color: #515151;
+    font-weight: 500;
+    font-size: 1.5rem;
+
 }
 .form{
     display: flex;
@@ -180,6 +183,40 @@
 .imagen-productor{
   height: 100%;
 }
+@media(max-width: 1050px) {
+  .container-login{
+   gap: 1rem;
+  }
+  .section-b{
+    width: 450px;
+    margin-right: 1.5rem;
+  }
+  .logo{
+    margin: 0 1rem;
+  }
+}
 
+@media(max-width: 868px) {
+  .logo{
+    margin: 0 auto;
+  }
+  .container-login{
+    width: 100%;
+  }
+  .auth-container{
+    margin: 0 auto;
+  }
+  .section-b{
+    display: none;
+  }
+  .section-a{
+    width: 100%;
+  }
+}
 
-
+@media(max-width: 400px) {
+  .auth-container{
+    width: 100%;
+    margin-top: 3.7rem;
+  }
+}
