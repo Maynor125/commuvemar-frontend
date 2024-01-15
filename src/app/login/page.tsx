@@ -13,15 +13,19 @@ import Image from "next/image";
 import TextField from "@mui/material/TextField";
 import {
   FormControl,
+  FormHelperText,
   IconButton,
   InputAdornment,
   InputLabel,
   OutlinedInput,
+  Typography,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Link from "next/link";
-
-import Divider from "@mui/material/Divider";
+import { LoginSchema } from "@/validations/loginSchema";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginFormValues } from "@/types/login";
 
 const Login = () => {
   //Manejo del estado para mostrar la contraseña.
@@ -33,6 +37,30 @@ const Login = () => {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
+  };
+
+  // Inicializar el formulario con react-hook-form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormValues>({
+    resolver: async (data) => {
+      try {
+        // Validar los datos con zod
+        await LoginSchema.parseAsync(data);
+        return { values: data, errors: {} };
+      } catch (error) {
+        // Manejar errores de validación
+        return { values: {}, errors: error.errors };
+      }
+    },
+  });
+
+  // Manejar la lógica de envío del formulario
+  const onSubmit = (data: LoginFormValues) => {
+    console.log("Formulario de inicio de sesión enviado:", data);
+    // Aquí ira la lógica de inicio de sesión
   };
 
   return (
@@ -52,21 +80,26 @@ const Login = () => {
                   Help
                 </Link>
               </div>
-              <form action="" className="form">
+              <form onSubmit={handleSubmit(onSubmit)} className="form">
                 <TextField
-                  id="outlined-basic"
+                  id="email"
                   label="Digita tu email"
                   variant="outlined"
                   size="medium"
+                  {...register("email")}
                 />
+                {errors.email && errors.email.message && (
+                  <div style={{ color: "red" }}>{errors.email.message}</div>
+                )}
                 <FormControl sx={{ width: "100%" }} variant="outlined">
                   <InputLabel htmlFor="outlined-adornment-password">
                     Password
                   </InputLabel>
                   <OutlinedInput
-                    id="outlined-adornment-password"
+                    id="password"
                     type={showPassword ? "text" : "password"}
                     size="medium"
+                    {...register("password")}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
@@ -82,8 +115,10 @@ const Login = () => {
                     label="Password"
                   />
                 </FormControl>
-                <button className="boton btn-login">Login</button>
-              </form>
+                <button type="submit" className="boton btn-login">
+                  Login
+                </button>
+              </form> 
             </div>
             <div className="etiqueta">
               <p>Puedes registrarte con</p>
