@@ -9,7 +9,7 @@ import ImagenFooter2 from '../../../../../public/images/home/imagenFooter2.jpeg'
 import {FaFacebookF} from 'react-icons/fa'
 import {AiFillInstagram} from 'react-icons/ai'
 import {AiOutlineTwitter} from 'react-icons/ai'
-import Logo from '../../../../../public/images/home/logo.png'
+import Logo from '../../../../../public/images/logo.png'
 import Image from 'next/image'
 import Link from 'next/link'
 

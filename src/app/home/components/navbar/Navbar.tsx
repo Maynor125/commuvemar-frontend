@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Logo from "../../../../../public/images/home/logo.png";
+import Logo from "../../../../../public/images/logo.png";
 import Image from "next/image";
 import { Link_home } from "../../data";
 import Link from "next/link";
