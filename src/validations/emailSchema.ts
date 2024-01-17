@@ -12,7 +12,12 @@ export const EmailSchema = z.object({
     .refine((data) => !/^\s+$/.test(data), {
       message: "La cadena no debe contener solo espacios en blanco",
     }),
-  email: z.string().email(),
+  email: z
+    .string()
+    .email({ message: "Ingrese un correo electrónico válido." })
+    .refine((data) => data.includes("@"), {
+      message: "Ingrese un correo electrónico válido.",
+    }),
   message: z
     .string()
     .min(20, {
