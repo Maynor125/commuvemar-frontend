@@ -76,7 +76,7 @@ const Contact = () => {
             </div>
             <form id="formu"  onSubmit={hadleSubmit1}>
               <TextField
-                id="outlined-basic name"
+                id="name"
                 label="Escribe tu nombre"
                 variant="outlined"
                 size="small"
@@ -88,7 +88,7 @@ const Contact = () => {
               />
               <TextField
                 type="email"
-                id="outlined-basic email"
+                id="email"
                 label="Escribe tu correo electronico"
                 variant="outlined"
                 size="small"
@@ -99,7 +99,7 @@ const Contact = () => {
                 name="email"
               />
               <TextField
-                id="outlined-multiline-flexible mensaje"
+                id="messaje mensaje"
                 label="Escribe tu mensaje"
                 multiline
                 rows={4}
