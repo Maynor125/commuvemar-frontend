@@ -18,7 +18,6 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
-  Typography,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Link from "next/link";
@@ -26,12 +25,9 @@ import { LoginSchema } from "@/validations/loginSchema";
 import {
   useForm,
   Resolver,
-  SubmitHandler,
-  FieldValues,
   FieldErrors,
-  ResolverResult,
 } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+
 import { LoginFormValues } from "@/types/login";
 import { ZodError } from "zod";
 
@@ -47,24 +43,6 @@ const Login = () => {
     event.preventDefault();
   };
 
-  // Inicializar el formulario con react-hook-form
-  /*
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormValues>({
-    resolver: async (data) => {
-      try {
-        // Validar los datos con zod
-        await LoginSchema.parseAsync(data);
-        return { values: data, errors: {} };
-      } catch (error:any) {
-        // Manejar errores de validación
-        return { values: {}, errors: error.errors };
-      }
-    },
-  });*/
 
   const resolver: Resolver<
     LoginFormValues,
@@ -142,7 +120,7 @@ const Login = () => {
                 />
 
                 <FormControl sx={{ width: "100%" }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-password">
+                  <InputLabel htmlFor="outlined-adornment-password" error={!!errors.password}>
                     Password
                   </InputLabel>
                   <OutlinedInput
@@ -166,9 +144,12 @@ const Login = () => {
                     label="Password"
                   />
                   {errors.password && (
-                    <p className="msj-error">
+                    <FormHelperText sx={{color:'#D43333'}}>
                       {errors.password.message}
-                    </p>
+                    </FormHelperText>
+                    /*<p className="msj-error">
+                      {errors.password.message}
+                    </p>*/
                   )}
                 </FormControl>
                 <button type="submit" className="boton btn-login">
