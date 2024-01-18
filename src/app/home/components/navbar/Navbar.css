@@ -99,8 +99,11 @@
     padding: .6rem 2.5rem;
     border-radius: 5px;
     color: var(--firts-color-white);
+    transition: var(--transition);
 }
-
+.btn-login:hover{
+    color: #e9e7e7;
+}
 
 @media screen and (max-width:1024px) {
     .header{
