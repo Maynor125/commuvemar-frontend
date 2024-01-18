@@ -7,7 +7,7 @@ import { EmailFormValues } from "@/types/email";
 import { EmailSchema } from "@/validations/emailSchema";
 import { ZodError } from "zod";
 import { useForm, Resolver, FieldErrors } from "react-hook-form";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const initValues = { name: "", email: "", mensaje: "" };
 const initState = { values: initValues };
@@ -56,11 +56,18 @@ const {
   resolver: resolver,
 });
 
+const nameRef = useRef<HTMLInputElement>(null);
+const emailRef = useRef<HTMLInputElement>(null);
+const mensajeRef = useRef<HTMLInputElement>(null);
+
 // Manejar la lógica de envío del formulario
 const onSubmit = async(data: EmailFormValues) => {
   console.log("Formulario de email enviado:", data);
+  // Dejar en blanco los campos de texto utilizando referencias y useRef
+  nameRef.current && (nameRef.current.value = "");
+  emailRef.current && (emailRef.current.value = "");
+  mensajeRef.current && (mensajeRef.current.value = "");
   // Aquí ira la lógica de email
-  console.log(data);
   const response = await fetch("/api/posts", {
     method: "POST",
     headers: {
@@ -71,52 +78,14 @@ const onSubmit = async(data: EmailFormValues) => {
 
   if (response.ok) {
     console.log("Mensaje enviado");
-    setLoading(false);
-    /*event.target.name.value = "";
-    event.target.email.value = "";
-    event.target.mensaje.value = "";
-    event.target.reset();*/
+
   }
   if (!response.ok) {
     console.log("Mensaje no enviado llaga");
-    setLoading(false);
   }
 };
 
-const [loading, setLoading] = useState(false);
 
-async function hadleSubmit1(event: any) {
-  event.preventDefault();
-  setLoading(true);
-
-  const data = {
-    name: String(event.target.name.value),
-    email: String(event.target.email.value),
-    mensaje: String(event.target.mensaje.value),
-  };
-
-  console.log(data);
-  const response = await fetch("/api/posts", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  if (response.ok) {
-    console.log("Mensaje enviado");
-    setLoading(false);
-    event.target.name.value = "";
-    event.target.email.value = "";
-    event.target.mensaje.value = "";
-    event.target.reset();
-  }
-  if (!response.ok) {
-    console.log("Mensaje no enviado llaga");
-    setLoading(false);
-  }
-}
   return (
     <form id="formu" onSubmit={handleSubmit(onSubmit)}>
     <TextField
@@ -131,6 +100,7 @@ async function hadleSubmit1(event: any) {
       {...register("name")}
       error={!!errors.name}
       helperText={errors?.name?.message}
+      inputRef={nameRef}
     />
     <TextField
       type="email"
@@ -145,6 +115,7 @@ async function hadleSubmit1(event: any) {
       {...register("email")}
       error={!!errors.email}
       helperText={errors?.email?.message}
+      inputRef={emailRef}
     />
     <TextField
       id="mensaje"
@@ -159,6 +130,7 @@ async function hadleSubmit1(event: any) {
       {...register("mensaje")}
       error={!!errors.mensaje}
       helperText={errors?.mensaje?.message}
+      inputRef={mensajeRef}
     />
     <input
       className="boton-base btn-enviar"

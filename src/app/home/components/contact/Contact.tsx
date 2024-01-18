@@ -12,9 +12,6 @@ import { MdEmail } from "react-icons/md";
 
 import EmailForm from "@/components/forms/EmailForm";
 
-const initValues = { name: "", email: "", mensaje: "" };
-const initState = { values: initValues };
-
 const Contact = () => {
 
   return (
