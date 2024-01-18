@@ -30,12 +30,24 @@
 }
 .btn-enviar
 {
-    background: var( --firts-color-skybleu);
+    background: none;
     padding: .6rem 2.5rem;
-    border-radius: 2rem;
+    border-radius: 5px;
     color: var(--firts-color-white);
     margin-top: 1.5rem;
     cursor: pointer;
+    width: 90%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition);
+    color: var( --firts-color-skybleu);
+    border: 2px solid var( --firts-color-skybleu);;
+}
+.btn-enviar:hover{
+ background: var( --firts-color-skybleu);
+ color: #fff;
 }
 .texto-c h3{
    color: var(--firts-color-skybleu);

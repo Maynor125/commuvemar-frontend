@@ -44,7 +44,11 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all .2s;
+}
+.link-dev{
+    color: #001;
+    font-weight: bold;
 }
 .media:hover
 {

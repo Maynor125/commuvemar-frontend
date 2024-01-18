@@ -55,7 +55,7 @@
     color: var(--firts-color-skybleu);
     transition: var(--transition);
     padding: .6rem 2.5rem;
-    border-radius: 2rem;
+    border-radius: 5px;
     margin-top: 2rem;
     width: 10rem;
 }
