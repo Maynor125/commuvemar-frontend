@@ -57,9 +57,30 @@ const {
 });
 
 // Manejar la lógica de envío del formulario
-const onSubmit = (data: EmailFormValues) => {
+const onSubmit = async(data: EmailFormValues) => {
   console.log("Formulario de email enviado:", data);
   // Aquí ira la lógica de email
+  console.log(data);
+  const response = await fetch("/api/posts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (response.ok) {
+    console.log("Mensaje enviado");
+    setLoading(false);
+    /*event.target.name.value = "";
+    event.target.email.value = "";
+    event.target.mensaje.value = "";
+    event.target.reset();*/
+  }
+  if (!response.ok) {
+    console.log("Mensaje no enviado llaga");
+    setLoading(false);
+  }
 };
 
 const [loading, setLoading] = useState(false);
