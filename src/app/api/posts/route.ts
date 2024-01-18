@@ -27,8 +27,8 @@ export const POST = async(req:any, res:any)=>{
         from: user,
         to: 'maynoldemar@gmail.com',
         replyTo: email, 
-        subject: `Mensaje a Coomuvemar de ${name}`,
-        html: `
+        subject: `Mensaje Coomuvemar de ${name}`,
+        html:`
         <html>
           <head>
             <style>
@@ -45,6 +45,7 @@ export const POST = async(req:any, res:any)=>{
                 padding: 20px;
                 border-radius: 10px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border:2px solid #4FBD55;
               }
               .welcome {
                 font-size: 20px;
@@ -63,13 +64,13 @@ export const POST = async(req:any, res:any)=>{
           </head>
           <body>
             <div class="container">
-              <p class="welcome">Bienvenido ${name},</p>
+              <p class="welcome">Bienvenido ${name}</p>
               <p class="message-info">Gracias por contactarnos. Aquí está tu mensaje:</p>
               <p class="message-info"><strong>Nombre:</strong> ${name}</p>
               <p class="message-info"><strong>Email:</strong> ${email}</p>
               <p class="message-info"><strong>Mensaje:</strong> ${mensaje}</p>
               <!-- Puedes incluir el logo de tu aplicación aquí -->
-              <img class="logo" src="../../../../public/images/logo.png" alt="Logo de la aplicación">
+              <img class="logo" src="https://1drv.ms/i/s!AjP0HSmdrBx_jqMJCvT7dldWkHMFLw?e=pLDjaW" alt="Logo de la aplicación">
             </div>
           </body>
         </html>
