@@ -7,7 +7,10 @@ import { EmailFormValues } from "@/types/email";
 import { EmailSchema } from "@/validations/emailSchema";
 import { ZodError } from "zod";
 import { useForm, Resolver, FieldErrors } from "react-hook-form";
+import { useState } from "react";
 
+const initValues = { name: "", email: "", mensaje: "" };
+const initState = { values: initValues };
 
 const EmailForm = () => {
     //Validacion del formulario.
@@ -58,6 +61,41 @@ const onSubmit = (data: EmailFormValues) => {
   console.log("Formulario de email enviado:", data);
   // Aquí ira la lógica de email
 };
+
+const [loading, setLoading] = useState(false);
+
+async function hadleSubmit1(event: any) {
+  event.preventDefault();
+  setLoading(true);
+
+  const data = {
+    name: String(event.target.name.value),
+    email: String(event.target.email.value),
+    mensaje: String(event.target.mensaje.value),
+  };
+
+  console.log(data);
+  const response = await fetch("/api/posts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (response.ok) {
+    console.log("Mensaje enviado");
+    setLoading(false);
+    event.target.name.value = "";
+    event.target.email.value = "";
+    event.target.mensaje.value = "";
+    event.target.reset();
+  }
+  if (!response.ok) {
+    console.log("Mensaje no enviado llaga");
+    setLoading(false);
+  }
+}
   return (
     <form id="formu" onSubmit={handleSubmit(onSubmit)}>
     <TextField
