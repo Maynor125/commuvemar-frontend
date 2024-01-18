@@ -1,6 +1,6 @@
 "use client";
 
-import { TextField, Snackbar, Alert, SnackbarCloseReason } from "@mui/material";
+import { TextField, Snackbar, Alert } from "@mui/material";
 
 //Para validar el formulario.
 import { EmailFormValues } from "@/types/email";
@@ -8,9 +8,6 @@ import { EmailSchema } from "@/validations/emailSchema";
 import { ZodError } from "zod";
 import { useForm, Resolver, FieldErrors } from "react-hook-form";
 import { useRef, useState } from "react";
-
-const initValues = { name: "", email: "", mensaje: "" };
-const initState = { values: initValues };
 
 const EmailForm = () => {
   //Validacion del formulario.

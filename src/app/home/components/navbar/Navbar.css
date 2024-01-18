@@ -97,7 +97,7 @@
 .btn-login{
     background: var( --firts-color-skybleu);
     padding: .6rem 2.5rem;
-    border-radius: 2rem;
+    border-radius: 5px;
     color: var(--firts-color-white);
 }
 
