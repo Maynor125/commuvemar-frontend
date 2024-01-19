@@ -1,3 +1,4 @@
+'use client'
 // src/hooks/useLocalStorage.ts
 import { useState } from 'react';
 

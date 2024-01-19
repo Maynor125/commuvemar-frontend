@@ -30,8 +30,10 @@ export const colorTokens = {
       }
 }
 
+type PaletteMode = 'dark' | 'light';
+
 //creacion del tema.
-export const themeSettings =(mode:string)=> {
+export const themeSettings =(mode:PaletteMode)=> {
  return{
     palette:{
         mode:mode,
