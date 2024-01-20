@@ -3,11 +3,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Obtén el estado inicial del tema desde localStorage
 const loadDarkModeFromStorage = () => {
-  if (typeof window !== 'undefined') {
     const storedDarkMode = localStorage.getItem('darkMode');
     return storedDarkMode ? JSON.parse(storedDarkMode) : false;
-  }
-  return false;
   };
 
   interface ThemeState {

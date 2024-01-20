@@ -44,7 +44,7 @@ export const themeSettings =(mode:PaletteMode)=> {
            main:colorTokens.primary[600],
            light:colorTokens.primary[900]
            },
-           neutral: {
+           grey: {
             dark: colorTokens.grey[100],
             main: colorTokens.grey[200],
             mediumMain: colorTokens.grey[300],

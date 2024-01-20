@@ -32,7 +32,10 @@ const Login = () => {
           <div className="auth-container">
             <div className="auth-credential">
               <div className="auth-credential-head">
-                <Typography variant="h4">Login</Typography>
+                <Typography 
+                variant="h5"
+                color={theme.palette.grey.medium}
+                >Login</Typography>
                 <Link href="/" className="link-head">
                   Help
                 </Link>
@@ -42,12 +45,12 @@ const Login = () => {
             <div className="etiqueta">
               <p>Puedes registrarte con</p>
               <div className="divider-container">
-                <hr className="divider" />
+                <hr  className="divider" />
               </div>
             </div>
             <div className="auth-more">
               <div className="cont-btns-more">
-                <button className=" boton icon-btn face-btn">
+                <button className=" boton icon-btn face-btn" >
                   <Image className="icon" alt="face-icon" src={FacebookIcon} />
                   Facebook
                 </button>

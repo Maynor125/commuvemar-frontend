@@ -8,6 +8,7 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
+  useTheme
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
@@ -33,6 +34,8 @@ const LoginForm = () => {
   ) => {
     event.preventDefault();
   };
+
+  const theme = useTheme();
 
 
   const resolver: Resolver<
@@ -112,7 +115,7 @@ const LoginForm = () => {
               onMouseDown={handleMouseDownPassword}
               edge="end"
             >
-              {showPassword ? <VisibilityOff /> : <Visibility />}
+              {showPassword ? <VisibilityOff color={theme.palette.grey.dark} /> : <Visibility />}
             </IconButton>
           </InputAdornment>
         }
