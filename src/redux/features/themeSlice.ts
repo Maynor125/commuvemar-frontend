@@ -7,8 +7,12 @@ const loadDarkModeFromStorage = () => {
     return storedDarkMode ? JSON.parse(storedDarkMode) : false;
   };
 
-const initialState = {
-  darkMode: loadDarkModeFromStorage,
+  interface ThemeState {
+    darkMode: boolean;
+  }
+
+const initialState:ThemeState = {
+  darkMode: loadDarkModeFromStorage(),
 };
 
 export const themeSlice = createSlice({

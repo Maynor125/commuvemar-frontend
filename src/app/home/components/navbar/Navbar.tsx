@@ -10,7 +10,7 @@ import "./Navbar.css";
 /* Iconos a usar en el navbar */
 import { FiMoon } from "react-icons/fi";
 import { FaBars } from "react-icons/fa";
-import ToogleButton from "@/components/theme/toogleButton";
+import ToogleButton from "../../../../components/theme/ToogleButton";
 
 interface Props {
   pathNames: Link_home[];
