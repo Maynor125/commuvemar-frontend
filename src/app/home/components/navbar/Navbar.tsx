@@ -10,6 +10,7 @@ import "./Navbar.css";
 /* Iconos a usar en el navbar */
 import { FiMoon } from "react-icons/fi";
 import { FaBars } from "react-icons/fa";
+import ToogleButton from "../../../../components/theme/ToogleButton";
 
 interface Props {
   pathNames: Link_home[];
@@ -51,7 +52,7 @@ function Navbar({ pathNames }: Props) {
             <div className="part-1">
               <div className="dark-mode">
                 <p>Dark mode</p>
-                <FiMoon className="icono-dark-mode" />
+                <ToogleButton/>
               </div>
               <Link className="boton-base btn-login" href="/login">
                 Login

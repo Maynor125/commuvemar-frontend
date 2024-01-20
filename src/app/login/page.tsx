@@ -1,3 +1,4 @@
+"use client";
 
 import "./login.css";
 
@@ -7,16 +8,21 @@ import Decoration from "../../../public/images/auth/decoration.png";
 import FacebookIcon from "../../../public/images/auth/facebook.png";
 import GoogleIcon from "../../../public/images/auth/google.png";
 import Image from "next/image";
+import { useTheme, Box, Typography } from "@mui/material";
 
 import Link from "next/link";
 
 import LoginForm from "@/components/forms/LoginForm";
 
 const Login = () => {
-
+  const theme = useTheme();
   return (
     <main>
-      <section className="container-login">
+      <Box
+        component="section"
+        bgcolor={theme.palette.background.default}
+        className="container-login"
+      >
         <article className="section-a">
           <div className="logo-container">
             <Link href="/">
@@ -26,12 +32,12 @@ const Login = () => {
           <div className="auth-container">
             <div className="auth-credential">
               <div className="auth-credential-head">
-                <h3>Login</h3>
+                <Typography variant="h4">Login</Typography>
                 <Link href="/" className="link-head">
                   Help
                 </Link>
               </div>
-              <LoginForm/>
+              <LoginForm />
             </div>
             <div className="etiqueta">
               <p>Puedes registrarte con</p>
@@ -76,7 +82,7 @@ const Login = () => {
             </div>
           </div>
         </article>
-      </section>
+      </Box>
     </main>
   );
 };
