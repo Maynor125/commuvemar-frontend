@@ -3,6 +3,7 @@
 import { RootState, store } from "./store/store";
 import { Provider, useSelector } from "react-redux";
 
+import { useDispatch } from "react-redux";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { themeSettings } from "@/theme";
 import { useEffect, useState } from "react";
@@ -15,14 +16,19 @@ import useLocalStorage from "@/hooks/useLocalStorage";
 const theme = createTheme(themeSettings(extraccionTheme));*/
 
 const ReduxProvider = ({ children }: { children: React.ReactNode }) => {
-    const [darkMode, setDarkMode] = useLocalStorage<boolean>('darkMode', false);
+  const dispatch = useDispatch();
+  const [localdarkMode, setLocalDarkMode] = useLocalStorage("darkMode", false);
+
+  // Obtiene el estado del tema del store
+  const darkMode = useAppSelector(selectDarkMode);
+
   const [theme, setTheme] = useState(
-    createTheme(themeSettings(darkMode ? "dark" : "light"))
+    createTheme(themeSettings(localdarkMode ? "dark" : "light"))
   );
 
   useEffect(() => {
-    setTheme(createTheme(themeSettings(darkMode ? "dark" : "light")));
-  }, [darkMode]);
+    setTheme(createTheme(themeSettings(localdarkMode ? "dark" : "light")));
+  }, [localdarkMode]);
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
