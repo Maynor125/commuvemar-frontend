@@ -4,10 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import ImagenHome from '../../../../../public/images/home/imagen-welcome.png'
 import './Welcome.css'
+import { Box, useTheme } from '@mui/material';
 
 const Welcome = () => {
+   const theme = useTheme()
   return (
-     <section id='home' className='welcome-header'>
+     <Box component='section' bgcolor={theme.palette.background.default} id='home' className='welcome-header'>
         <div className="container welcome-header-container grid">
             <div className="welcome-hader-left">
             <h4>¡Bienvenido a Coomuvemar!</h4>
@@ -23,7 +25,7 @@ const Welcome = () => {
               </div> 
             </div>
         </div>
-     </section>
+     </Box>
   )
 }
 

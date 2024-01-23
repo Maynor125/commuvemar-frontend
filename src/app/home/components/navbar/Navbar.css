@@ -2,7 +2,6 @@
 {
     width: 100%;
     height: 5rem;
-    background: var( --firts-color-white);
     display: grid;
     place-items: center;
     position: fixed;
@@ -10,10 +9,15 @@
     left: 0;
     z-index: 99;
     transition: var(--transition);
-    background: #FDFDFD;
 }
 .nav-link.active-link{
     color: var(--firts-color-red);  
+}
+.nav-link.dark-mode{
+    display: block;
+    color: #e0341a;
+    height: auto;
+    width: auto;
 }
 .sticky
 {

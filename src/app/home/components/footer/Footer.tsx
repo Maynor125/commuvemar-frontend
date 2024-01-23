@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import "./Footer.css";
 
@@ -9,10 +11,13 @@ import { AiOutlineTwitter } from "react-icons/ai";
 import Logo from "../../../../../public/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
+import { Box, useTheme } from "@mui/material";
+
 
 const Footer = () => {
+  const theme = useTheme();
   return (
-    <footer>
+    <Box component='footer' sx={{bgcolor:theme.palette.background.default}}>
       <div className="container footer-container">
         <div className="linia"></div>
         <div className="cont-footer-central">
@@ -58,7 +63,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </Box>
   );
 };
 
