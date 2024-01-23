@@ -10,6 +10,7 @@ import {
   OutlinedInput,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useRouter } from "next/navigation";
 
 import { LoginSchema } from "@/validations/loginSchema";
 import {
@@ -25,6 +26,8 @@ import { useState } from "react";
 const LoginForm = () => {
     //Manejo del estado para mostrar la contraseña.
   const [showPassword, setShowPassword] = useState(false);
+
+  const router = useRouter();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -79,7 +82,9 @@ const LoginForm = () => {
   // Manejar la lógica de envío del formulario
   const onSubmit = (data: LoginFormValues) => {
     console.log("Formulario de inicio de sesión enviado:", data);
+    
     // Aquí ira la lógica de inicio de sesión
+    router?.push('/admin')
   };
 
   return (
