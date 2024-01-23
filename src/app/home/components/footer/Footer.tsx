@@ -17,7 +17,7 @@ import { Box, useTheme } from "@mui/material";
 const Footer = () => {
   const theme = useTheme();
   return (
-    <Box component='footer' sx={{backgroundColor:theme.palette.background.default}}>
+    <Box component='footer' sx={{bgcolor:theme.palette.background.default}}>
       <div className="container footer-container">
         <div className="linia"></div>
         <div className="cont-footer-central">

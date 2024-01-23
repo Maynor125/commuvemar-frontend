@@ -10,7 +10,7 @@ import "./Navbar.css";
 /* Iconos a usar en el navbar */
 import { FaBars } from "react-icons/fa";
 import ToogleButton from "../../../../components/theme/ToogleButton";
-import { Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import { useAppSelector } from "@/redux/store/store";
 import { selectDarkMode } from "@/redux/features/themeSlice";
@@ -29,7 +29,8 @@ function Navbar({ pathNames }: Props) {
   console.log("es", esOscuro);
 
   return (
-    <AppBar
+    <Box
+    component='nav'
       id="hea"
       className="header"
       sx={{ bgcolor: theme.palette.background.default,boxShadow:'none' }}
@@ -80,7 +81,7 @@ function Navbar({ pathNames }: Props) {
           <FaBars className="menu-icon" />
         </button>
       </div>
-    </AppBar>
+    </Box>
   );
 }
 
