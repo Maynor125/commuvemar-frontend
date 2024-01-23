@@ -1,50 +1,59 @@
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
+import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
+import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
+import QueryStatsOutlinedIcon from '@mui/icons-material/QueryStatsOutlined';
+import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
+
 export const PathsSideBar = [
     {
         id:1,
         name:'OverView',
         path:'/admin',
-        icon:'1'
+        icon:HomeOutlinedIcon,
     },
     {
         id:2,
         name:'Info fichas',
         path:'/admin/infoFichas',
-        icon:'1'
+        icon:BookOutlinedIcon,
     },
     {
         id:3,
         name:'History fichas',
         path:'/admin/historyFichas',
-        icon:'1'
+        icon:HistoryOutlinedIcon,
     },
     {
         id:4,
         name:'Analysis Fichas',
         path:'/admin/analysisFichas',
-        icon:'1'
+        icon:BarChartOutlinedIcon
     },
     {
         id:5,
         name:'Reports',
         path:'/admin/reports',
-        icon:'1'
+        icon:QueryStatsOutlinedIcon
     },
     {
         id:6,
         name:'Users',
         path:'/admin/users',
-        icon:'1'
+        icon:PermIdentityOutlinedIcon,
     },
     {
         id:7,
         name:'Settings',
         path:'/admin/settings',
-        icon:'1'
+        icon:SettingsOutlinedIcon,
     },
     {
         id:8,
         name:'Productors',
         path:'/admin/productors',
-        icon:'1'
+        icon:StarBorderRoundedIcon,
     },
 ]
