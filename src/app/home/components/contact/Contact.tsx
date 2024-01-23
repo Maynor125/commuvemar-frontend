@@ -1,4 +1,4 @@
-
+'use client'
 import Image from "next/image";
 import React from "react";
 import "./Contact.css";
@@ -10,11 +10,12 @@ import { MdEmail } from "react-icons/md";
 
 
 import EmailForm from "@/components/forms/EmailForm";
+import { Box, useTheme } from "@mui/material";
 
 const Contact = () => {
-
+  const theme = useTheme()
   return (
-    <section id="contact" className="contact">
+    <Box bgcolor={theme.palette.background.default} id="contact" className="contact">
       <div className="container contact-container">
         <div className="contact-form">
           <div className="contact-form-part1">
@@ -51,7 +52,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </section>
+    </Box>
   );
 };
 

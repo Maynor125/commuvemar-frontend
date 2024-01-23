@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Logo from "../../../../../public/images/logo.png";
 import Image from "next/image";
 import { Link_home } from "../../data";
@@ -8,9 +8,12 @@ import Link from "next/link";
 import "./Navbar.css";
 
 /* Iconos a usar en el navbar */
-import { FiMoon } from "react-icons/fi";
 import { FaBars } from "react-icons/fa";
 import ToogleButton from "../../../../components/theme/ToogleButton";
+import { Typography, useMediaQuery, useTheme } from "@mui/material";
+import AppBar from "@mui/material/AppBar";
+import { useAppSelector } from "@/redux/store/store";
+import { selectDarkMode } from "@/redux/features/themeSlice";
 
 interface Props {
   pathNames: Link_home[];
@@ -18,9 +21,19 @@ interface Props {
 
 function Navbar({ pathNames }: Props) {
   const [isNavShowing, setIsNavShowing] = useState<boolean>(false);
+  const theme = useTheme();
+
+  //Codigo para manejar los links activos.
+  const darkMode = useAppSelector(selectDarkMode);
+  const esOscuro = darkMode ? true : false;
+  console.log("es", esOscuro);
 
   return (
-    <nav id="hea" className="header">
+    <AppBar
+      id="hea"
+      className="header"
+      sx={{ bgcolor: theme.palette.background.default,boxShadow:'none' }}
+    >
       <div className="container nav-container">
         <div className="imagen">
           <Link href="/">
@@ -45,14 +58,14 @@ function Navbar({ pathNames }: Props) {
                   key={pathName.path}
                   href={pathName.path}
                 >
-                  {pathName.name}
+                  <Typography color={theme.palette.grey.main}>{pathName.name}</Typography>
                 </Link>
               ))}
             </ul>
             <div className="part-1">
               <div className="dark-mode">
                 <p>Dark mode</p>
-                <ToogleButton/>
+                <ToogleButton />
               </div>
               <Link className="boton-base btn-login" href="/login">
                 Login
@@ -67,7 +80,7 @@ function Navbar({ pathNames }: Props) {
           <FaBars className="menu-icon" />
         </button>
       </div>
-    </nav>
+    </AppBar>
   );
 }
 

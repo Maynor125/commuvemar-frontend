@@ -1,14 +1,16 @@
-
+'use client'
 import Image from 'next/image'
 import React from 'react'
 import './About.css'
 import ImagenAbout from '../../../../../public/images/home/imagen-about-2.jpeg'
 import Link from 'next/link'
 import IconoCacao from '../../../../../public/images/home/icono-cacao.png'
+import { Box, useTheme } from '@mui/material'
 
 const About = () => {
+  const theme= useTheme()
   return (
-    <section id='about' className="about">
+    <Box component='section' bgcolor={theme.palette.background.default} id='about' className="about">
        <div className="container about-container">
            <div className="about-container-left">
                <h4>¿Quienes somos?</h4>
@@ -49,7 +51,7 @@ const About = () => {
                 
            </div>
        </div>
-    </section>
+    </Box>
   )
 }
 
