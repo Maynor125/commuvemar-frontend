@@ -5,15 +5,18 @@ import { useState } from "react";
 import { IconButton, Tooltip } from "@mui/material";
 
 //Iconos a usar para el toogle mode
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 
 const ToogleButton = () => {
   // Obtén el estado inicial del tema desde localStorage
   const loadDarkModeFromStorage = () => {
-    const storedDarkMode = localStorage.getItem("darkMode");
-    return storedDarkMode ? JSON.parse(storedDarkMode) : false;
-  };
+    if (typeof window !== 'undefined') {
+      const storedDarkMode = localStorage.getItem('darkMode');
+      return storedDarkMode ? JSON.parse(storedDarkMode) : false;
+    }
+    return false;
+    };
 
   const stateMode = loadDarkModeFromStorage();
   const [darkMode, setDarkMode] = useState(false);
@@ -28,7 +31,7 @@ const ToogleButton = () => {
         title={`pasar al ${stateMode ? "modo claro" : "modo oscuro"}`}
       >
         <IconButton aria-label="tooglemode" onClick={handleToogle}>
-          {stateMode ? <LightModeIcon /> : <DarkModeIcon />}
+          {stateMode ? <LightModeOutlinedIcon /> : <DarkModeOutlinedIcon />}
         </IconButton>
       </Tooltip>
     </div>
