@@ -10,7 +10,7 @@ import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 export const PathsSideBar = [
     {
         id:1,
-        name:'OverView',
+        name:'Over view',
         path:'/admin',
         icon:HomeOutlinedIcon,
     },

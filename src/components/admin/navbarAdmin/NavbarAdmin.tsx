@@ -4,6 +4,8 @@ import SearchInput from "@/components/SearchInput";
 import { Box } from "@mui/material";
 import ToogleButton from "@/components/theme/ToogleButton";
 import Notification from "../notification/Notification";
+import imgPreview from '../../../../public/images/assets/userPicture.jpg'
+import ProfilePreview from "../profile/ProfilePreview";
 
 const NavbarAdmin: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -20,15 +22,16 @@ const NavbarAdmin: React.FC = () => {
     setHasNotifications(false); // Establece 'hasNotifications' a 'false' cuando se hace clic
   };
 
-  return <Box component='nav'>
+  return <Box component='nav' sx={{width:'100%',display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'.5rem'}}>
    <SearchInput onChange={handleSearchChange}/>
-   <div>
+   <Box sx={{display:'flex',alignItems:'center',gap:'.4rem'}}>
     <ToogleButton/>
     <Notification
     onClick={handleNotificationClick}
     hasNotifications={hasNotifications}
     />
-   </div>
+    <ProfilePreview avatarSrc='/images/assets/userPicture.jpg'/>
+   </Box>
   </Box>;
 };
 
