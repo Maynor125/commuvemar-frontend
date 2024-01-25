@@ -23,6 +23,8 @@ const SideBar: React.FC<SidebarProps> = ({ paths }) => {
         display: "flex",
         flexDirection: "column",
         height: "100%",
+        width:'200px',
+        position:'fixed',
       }}
     >
       <Box component="div" sx={{ mb: "2.5rem", paddingLeft: "15px" }}>

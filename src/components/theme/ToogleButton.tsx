@@ -2,7 +2,7 @@
 import { useDispatch } from "react-redux";
 import { toogleTheme } from "@/redux/features/themeSlice";
 import { useState } from "react";
-import { IconButton, Tooltip } from "@mui/material";
+import { IconButton, Tooltip, useTheme } from "@mui/material";
 
 //Iconos a usar para el toogle mode
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
@@ -25,12 +25,14 @@ const ToogleButton = () => {
     dispatch(toogleTheme());
     setDarkMode(!darkMode);
   };
+
+  const theme = useTheme();
   return (
     <div>
       <Tooltip
         title={`pasar al ${stateMode ? "modo claro" : "modo oscuro"}`}
       >
-        <IconButton aria-label="tooglemode" onClick={handleToogle}>
+        <IconButton sx={{color:theme.palette.grey.dark}} aria-label="tooglemode" onClick={handleToogle}>
           {stateMode ? <LightModeOutlinedIcon /> : <DarkModeOutlinedIcon />}
         </IconButton>
       </Tooltip>

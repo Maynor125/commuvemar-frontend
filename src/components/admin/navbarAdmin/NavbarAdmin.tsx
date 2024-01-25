@@ -1,11 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import SearchInput from "@/components/SearchInput";
-import { Box } from "@mui/material";
+import { Box, IconButton, useTheme } from "@mui/material";
 import ToogleButton from "@/components/theme/ToogleButton";
 import Notification from "../notification/Notification";
-import imgPreview from '../../../../public/images/assets/userPicture.jpg'
+import imgPreview from "../../../../public/images/assets/userPicture.jpg";
 import ProfilePreview from "../profile/ProfilePreview";
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 
 const NavbarAdmin: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -22,17 +23,38 @@ const NavbarAdmin: React.FC = () => {
     setHasNotifications(false); // Establece 'hasNotifications' a 'false' cuando se hace clic
   };
 
-  return <Box component='nav' sx={{width:'100%',display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'.5rem'}}>
-   <SearchInput onChange={handleSearchChange}/>
-   <Box sx={{display:'flex',alignItems:'center',gap:'.4rem'}}>
-    <ToogleButton/>
-    <Notification
-    onClick={handleNotificationClick}
-    hasNotifications={hasNotifications}
-    />
-    <ProfilePreview avatarSrc='/images/assets/userPicture.jpg'/>
-   </Box>
-  </Box>;
+  const theme = useTheme();
+
+  return (
+    <Box
+      component="nav"
+      sx={{
+        width: "100%",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: ".5rem",
+      }}
+    >
+      <IconButton
+        color={theme.palette.grey.dark}
+        edge="start"
+        
+        sx={{ mr: 2, display: { md: "none" } }}
+      >
+        <MenuRoundedIcon />
+      </IconButton>
+      <SearchInput onChange={handleSearchChange} />
+      <Box sx={{ display: "flex", alignItems: "center", gap: ".4rem" }}>
+        <ToogleButton />
+        <Notification
+          onClick={handleNotificationClick}
+          hasNotifications={hasNotifications}
+        />
+        <ProfilePreview avatarSrc="/images/assets/userPicture.jpg" />
+      </Box>
+    </Box>
+  );
 };
 
 export default NavbarAdmin;

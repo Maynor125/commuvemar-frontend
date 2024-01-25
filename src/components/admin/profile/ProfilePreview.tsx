@@ -5,6 +5,7 @@ import Popover from "@mui/material/Popover";
 import Box from "@mui/material/Box";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { useTheme } from "@mui/material";
 
 interface ProfileViewerProps {
   avatarSrc: string;
@@ -26,11 +27,12 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
 
   const open = Boolean(anchorEl);
   const id = open ? "profile-popover" : undefined;
+  const theme = useTheme()
   return (
     <Box sx={{ display: "flex" }}>
       {" "}
       <Avatar src={avatarSrc} alt="User Avatar" />
-      <IconButton onClick={handleOpenProfile} color="inherit">
+      <IconButton sx={{color:theme.palette.grey.dark}} onClick={handleOpenProfile}>
         {
             !openP ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />
         }
