@@ -8,9 +8,9 @@ import Link from "next/link";
 import "./Navbar.css";
 
 /* Iconos a usar en el navbar */
-import { FaBars } from "react-icons/fa";
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import ToogleButton from "../../../../components/theme/ToogleButton";
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import { useAppSelector } from "@/redux/store/store";
 import { selectDarkMode } from "@/redux/features/themeSlice";
@@ -26,7 +26,8 @@ function Navbar({ pathNames }: Props) {
   //Codigo para manejar los links activos.
   const darkMode = useAppSelector(selectDarkMode);
   const esOscuro = darkMode ? true : false;
-  console.log("es", esOscuro);
+
+  const isSmallerThan1025 = useMediaQuery("(max-width: 1024px)");
 
   return (
     <Box
@@ -74,12 +75,15 @@ function Navbar({ pathNames }: Props) {
             </div>
           </div>
         </div>
-        <button
+        {
+          isSmallerThan1025 &&  <IconButton
           className="btn-nav-toogle"
           onClick={() => setIsNavShowing((prev) => !prev)}
+          sx={{color:theme.palette.secondary.dark}}
         >
-          <FaBars className="menu-icon" />
-        </button>
+          <MenuRoundedIcon className="menu-icon" />
+        </IconButton>
+        }
       </div>
     </Box>
   );

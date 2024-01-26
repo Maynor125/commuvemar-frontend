@@ -11,7 +11,7 @@ import { AiOutlineTwitter } from "react-icons/ai";
 import Logo from "../../../../../public/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
-import { Box, useTheme } from "@mui/material";
+import { Box, Divider, Typography, useTheme } from "@mui/material";
 
 
 const Footer = () => {
@@ -19,7 +19,7 @@ const Footer = () => {
   return (
     <Box component='footer' sx={{bgcolor:theme.palette.background.default}}>
       <div className="container footer-container">
-        <div className="linia"></div>
+        <Divider/>
         <div className="cont-footer-central">
           <div className="columna1-footer">
             <div className="cont-logo">
@@ -34,7 +34,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="columna2-footer">
-            <h4>Siguenos aqui</h4>
+            <Typography sx={{fontWeight:700}} variant="subtitle1" color={theme.palette.secondary.light}>Siguenos aqui</Typography>
             <div className="cont-media">
               <Link href="https://es-la.facebook.com/" className="media">
                 <FaFacebookF className="icon" />
@@ -57,9 +57,9 @@ const Footer = () => {
           </div>
         </div>
         <div className="pie-de-pagina">
-          <p>Desarrollada por <Link className="link-dev" href='https://maynor-padilla.netlify.app/'>Caridevs</Link> </p>
+          <Typography color={theme.palette.secondary.contrastText}>Desarrollada por <Link className="a-active link-dev" href='https://maynor-padilla.netlify.app/'>Caridevs</Link> </Typography>
           <div className="creditos">
-            <p>© 2023 - 2024 COOMUVEMAR.</p>
+            <Typography color={theme.palette.secondary.contrastText}>© 2023 - 2024 COOMUVEMAR.</Typography>
           </div>
         </div>
       </div>
