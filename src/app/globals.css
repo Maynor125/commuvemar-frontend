@@ -138,6 +138,21 @@ p {
   display: block;
 }
 
+/* Estilos generales */
+.box-with-shadow {
+  box-shadow: 0 0 3px rgba(0,0,0, .20); /* Sombra predeterminada en ambos temas */
+}
+.a-active{
+  color: #242424;
+}
+
+/* Estilos para el tema oscuro */
+[data-theme="dark"] .box-with-shadow {
+  box-shadow: 0 0 3px rgba(82, 81, 81, 0.2); /* Sombra específica para el tema oscuro */
+}
+[data-theme="dark"] .a-active{
+  color: #fff;
+}
 /* MEDIA QUERIES (medium screen) */
 
 @media screen and (max-width: 1024px) {

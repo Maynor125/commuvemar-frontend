@@ -27,6 +27,9 @@
 }
 .columna2-footer{
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .cont-media{
     width: 8rem;
@@ -47,7 +50,7 @@
     transition: all .2s;
 }
 .link-dev{
-    color: #001;
+   
     font-weight: bold;
 }
 .media:hover
@@ -88,6 +91,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-bottom: 2rem;
 }
 .pie-de-pagina p{
     font-size: var(--small-font-size);

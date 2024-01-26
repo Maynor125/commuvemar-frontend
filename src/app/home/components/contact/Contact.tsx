@@ -1,4 +1,4 @@
-'use client'
+
 import Image from "next/image";
 import React from "react";
 import "./Contact.css";
@@ -10,18 +10,18 @@ import { MdEmail } from "react-icons/md";
 
 
 import EmailForm from "@/components/forms/EmailForm";
-import { Box, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
 const Contact = () => {
   const theme = useTheme()
   return (
     <Box bgcolor={theme.palette.background.default} id="contact" className="contact">
       <div className="container contact-container">
-        <div className="contact-form">
+        <div className="box-with-shadow  contact-form">
           <div className="contact-form-part1">
             <div className="texto-c">
               <h3>Contactanos.</h3>
-              <p>Y comunicate con nosotros.</p>
+              <Typography color={theme.palette.secondary.light}>Y comunicate con nosotros.</Typography>
             </div>
             <EmailForm />
           </div>
@@ -34,19 +34,19 @@ const Contact = () => {
                 <div className="icon">
                   <MdLocationPin className="icon-c" />
                 </div>
-                <p>Costa caribe, Siuna, el limon</p>
+                <Typography color={theme.palette.secondary.contrastText}>Costa caribe, Siuna, el limon</Typography>
               </div>
               <div className="item-info">
                 <div className="icon">
                   <FaPhoneAlt className="icon-c" />
                 </div>
-                <p>+ 505 8366-2258</p>
+                <Typography color={theme.palette.secondary.contrastText}>+ 505 8366-2258</Typography>
               </div>
               <div className="item-info">
                 <div className="icon">
                   <MdEmail className="icon-c" />
                 </div>
-                <p>coomuvermar@gmailcom</p>
+                <Typography color={theme.palette.secondary.contrastText}>coomuvermar@gmailcom</Typography>
               </div>
             </div>
           </div>

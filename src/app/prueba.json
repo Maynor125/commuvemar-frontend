@@ -1,0 +1,170 @@
+{
+    "id": 1,
+    "fecha": "2024-01-26T15:43:04.523Z",
+    "localizacion": "Cerca del guasimo",
+    "IDInspector": 1,
+    "InformacionDato": [
+      {
+        "id": 2,
+        "informacion": "Si",
+        "descripcion": "En la mayor parte",
+        "IDDato": 1,
+        "IDFicha": 1,
+        "dato": {
+          "id": 1,
+          "titulo": "¿El mapa de la Finca esta Actualizado?",
+          "descripcion": "",
+          "IDSeccionesFicha": 1,
+          "seccionesFicha": {
+            "id": 1,
+            "nombre": "Registros Administrativos",
+            "descripcion": ""
+          }
+        }
+      },
+      {
+        "id": 3,
+        "informacion": "Si",
+        "descripcion": "Solo posee algunas, las demas las perdio",
+        "IDDato": 2,
+        "IDFicha": 1,
+        "dato": {
+          "id": 2,
+          "titulo": "¿Conserva los recibos o facturas de Venta?",
+          "descripcion": "",
+          "IDSeccionesFicha": 1,
+          "seccionesFicha": {
+            "id": 1,
+            "nombre": "Registros Administrativos",
+            "descripcion": ""
+          }
+        }
+      },
+      {
+        "id": 4,
+        "informacion": "No",
+        "descripcion": "No lleva ese registro",
+        "IDDato": 3,
+        "IDFicha": 1,
+        "dato": {
+          "id": 3,
+          "titulo": "¿El registro de cosecha esta actualizado?",
+          "descripcion": "",
+          "IDSeccionesFicha": 1,
+          "seccionesFicha": {
+            "id": 1,
+            "nombre": "Registros Administrativos",
+            "descripcion": ""
+          }
+        }
+      },
+      {
+        "id": 5,
+        "informacion": "No",
+        "descripcion": "Tampoco lleva ese registro",
+        "IDDato": 4,
+        "IDFicha": 1,
+        "dato": {
+          "id": 4,
+          "titulo": "¿El registro de actividades mensuales esta al día?",
+          "descripcion": "",
+          "IDSeccionesFicha": 1,
+          "seccionesFicha": {
+            "id": 1,
+            "nombre": "Registros Administrativos",
+            "descripcion": ""
+          }
+        }
+      },
+      {
+        "id": 6,
+        "informacion": "Si",
+        "descripcion": "Si hace poco tiempo",
+        "IDDato": 5,
+        "IDFicha": 1,
+        "dato": {
+          "id": 5,
+          "titulo": "¿Se realizó el cronograma de actividades del ciclo?",
+          "descripcion": "",
+          "IDSeccionesFicha": 1,
+          "seccionesFicha": {
+            "id": 1,
+            "nombre": "Registros Administrativos",
+            "descripcion": ""
+          }
+        }
+      },
+      {
+        "id": 7,
+        "informacion": "La bendicion",
+        "descripcion": "Es una parcela bien bonita",
+        "IDDato": 6,
+        "IDFicha": 1,
+        "dato": {
+          "id": 6,
+          "titulo": "Nombre de parcelas",
+          "descripcion": "",
+          "IDSeccionesFicha": 2,
+          "seccionesFicha": {
+            "id": 2,
+            "nombre": "Información de las Parcelas",
+            "descripcion": ""
+          }
+        }
+      },
+      {
+        "id": 8,
+        "informacion": "10 mz",
+        "descripcion": "...",
+        "IDDato": 7,
+        "IDFicha": 1,
+        "dato": {
+          "id": 7,
+          "titulo": "Area en Mnzanas",
+          "descripcion": "",
+          "IDSeccionesFicha": 2,
+          "seccionesFicha": {
+            "id": 2,
+            "nombre": "Información de las Parcelas",
+            "descripcion": ""
+          }
+        }
+      },
+      {
+        "id": 9,
+        "informacion": "Cacao",
+        "descripcion": "De buena calidad",
+        "IDDato": 8,
+        "IDFicha": 1,
+        "dato": {
+          "id": 8,
+          "titulo": "Cultivo",
+          "descripcion": "",
+          "IDSeccionesFicha": 2,
+          "seccionesFicha": {
+            "id": 2,
+            "nombre": "Información de las Parcelas",
+            "descripcion": ""
+          }
+        }
+      },
+      {
+        "id": 10,
+        "informacion": "Fertilizante artificial",
+        "descripcion": "...",
+        "IDDato": 9,
+        "IDFicha": 1,
+        "dato": {
+          "id": 9,
+          "titulo": "Insumos utilizados",
+          "descripcion": "",
+          "IDSeccionesFicha": 2,
+          "seccionesFicha": {
+            "id": 2,
+            "nombre": "Información de las Parcelas",
+            "descripcion": ""
+          }
+        }
+      }
+    ]
+  }

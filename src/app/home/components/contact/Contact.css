@@ -14,7 +14,6 @@
    grid-template-columns: 1fr 1fr;
    justify-content: space-between;
    gap: 5rem;
-   box-shadow: 0 0 2px rgba(0,0,0, .20);
    border-radius: 8px;
    margin: 0 auto;
    padding: 2.5rem;
