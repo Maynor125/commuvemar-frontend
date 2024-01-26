@@ -11,10 +11,8 @@ export const metadata = {
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <AdminContainer>
-      <div>
-        <NavbarAdmin />
-        {children}
-      </div>
+      <NavbarAdmin />
+      {children}
     </AdminContainer>
   );
 };

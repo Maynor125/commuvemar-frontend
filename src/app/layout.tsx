@@ -25,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <ReduxProvider>
-      <html lang="en">
+      <html data-theme lang="en">
         <body className={open_Sans.className}>{children}</body>
       </html>
     </ReduxProvider>

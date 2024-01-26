@@ -7,6 +7,7 @@ import { IconButton, Tooltip, useTheme } from "@mui/material";
 //Iconos a usar para el toogle mode
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import { AppDispatch } from "@/redux/store/store";
 
 const ToogleButton = () => {
   // Obtén el estado inicial del tema desde localStorage
@@ -20,9 +21,9 @@ const ToogleButton = () => {
 
   const stateMode = loadDarkModeFromStorage();
   const [darkMode, setDarkMode] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const handleToogle = () => {
-    dispatch(toogleTheme());
+    dispatch(toogleTheme(!stateMode));
     setDarkMode(!darkMode);
   };
 
