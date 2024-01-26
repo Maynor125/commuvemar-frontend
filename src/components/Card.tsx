@@ -1,3 +1,4 @@
+import { Box, useTheme } from '@mui/material'
 import React from 'react'
 
 interface Props{
@@ -6,10 +7,16 @@ interface Props{
 }
 
 const Card: React.FC<Props> = ({className,children}) => {
+  const theme = useTheme();
   return (
-    <article className={`card ${className}`}>
+    <Box component='article'
+    sx={{
+      "&:hover": {
+        backgroundColor: theme.palette.background.paper, // Color de fondo al pasar el ratón sobre el box
+      },
+    }} className={`card ${className}`}>
        {children}
-    </article>
+    </Box>
   )
 }
 
