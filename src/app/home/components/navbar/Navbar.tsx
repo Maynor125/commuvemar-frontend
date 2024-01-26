@@ -59,7 +59,7 @@ function Navbar({ pathNames }: Props) {
                   key={pathName.path}
                   href={pathName.path}
                 >
-                  <Typography color={theme.palette.grey.main}>{pathName.name}</Typography>
+                  <Typography color={theme.palette.secondary.main}>{pathName.name}</Typography>
                 </Link>
               ))}
             </ul>

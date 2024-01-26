@@ -1,12 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import SearchInput from "@/components/SearchInput";
-import { Box, IconButton, useTheme } from "@mui/material";
+import { Box, Drawer, IconButton, useTheme } from "@mui/material";
 import ToogleButton from "@/components/theme/ToogleButton";
 import Notification from "../notification/Notification";
 import imgPreview from "../../../../public/images/assets/userPicture.jpg";
 import ProfilePreview from "../profile/ProfilePreview";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import SideBar from "../sidebar/SideBar";
+import { PathsSideBar } from "@/data/admin/sideInfo";
 
 const NavbarAdmin: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -25,6 +27,16 @@ const NavbarAdmin: React.FC = () => {
 
   const theme = useTheme();
 
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
+  };
+
   return (
     <Box
       component="nav"
@@ -38,6 +50,7 @@ const NavbarAdmin: React.FC = () => {
     >
       <IconButton
         edge="start"
+        onClick={handleDrawerOpen}
         sx={{
           mr: 2,
           display: { md: "none" },
@@ -46,6 +59,23 @@ const NavbarAdmin: React.FC = () => {
       >
         <MenuRoundedIcon />
       </IconButton>
+      <Drawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={handleDrawerClose}
+        sx={{
+          "& .MuiDrawer-paper": {
+            width: "220px",
+            paddingTop:'1rem'
+          },
+          display:"flex",
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <SideBar paths={PathsSideBar} />
+      </Drawer>
       <SearchInput onChange={handleSearchChange} />
       <Box sx={{ display: "flex", alignItems: "center", gap: ".4rem" }}>
         <ToogleButton />

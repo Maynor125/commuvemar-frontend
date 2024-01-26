@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { SidebarProps } from "@/types/sidebar";
 import Link from "next/link";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
@@ -15,6 +15,7 @@ import "./sidebar.css";
 const SideBar: React.FC<SidebarProps> = ({ paths }) => {
   const theme = useTheme();
   const pathname = usePathname();
+  const esPantallaMedianaOmasPequeña = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <Box
@@ -25,6 +26,7 @@ const SideBar: React.FC<SidebarProps> = ({ paths }) => {
         height: "100%",
         width:'200px',
         position:'fixed',
+        marginLeft:esPantallaMedianaOmasPequeña ? '0.9rem' : '0' 
       }}
     >
       <Box component="div" sx={{ mb: "2.5rem", paddingLeft: "15px" }}>
