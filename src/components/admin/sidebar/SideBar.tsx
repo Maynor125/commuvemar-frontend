@@ -41,13 +41,13 @@ const SideBar: React.FC<SidebarProps> = ({ paths }) => {
                 <Link
                   className={`link ${pathname === item.path && "link-active"}`}
                   href={item.path}
-                  color={theme.palette.grey.dark}
+                  color={theme.palette.secondary.dark}
                 >
                   <Typography
                     color={
                       pathname === item.path
                         ? theme.palette.grey[200]
-                        : theme.palette.grey.dark
+                        : theme.palette.secondary.dark
                     }
                   >
                     <item.icon />
@@ -58,7 +58,7 @@ const SideBar: React.FC<SidebarProps> = ({ paths }) => {
                     color={
                       pathname === item.path
                         ? theme.palette.grey[200]
-                        : theme.palette.grey.dark
+                        : theme.palette.secondary.dark
                     }
                   >
                     {item.name}
@@ -69,10 +69,10 @@ const SideBar: React.FC<SidebarProps> = ({ paths }) => {
           })}
         </Box>
         <a className="exit">
-          <Typography color={theme.palette.grey.dark}>
+          <Typography color={theme.palette.secondary.dark}>
             <LogoutOutlinedIcon />
           </Typography>
-          <Typography color={theme.palette.grey.dark}>LogOut</Typography>
+          <Typography color={theme.palette.secondary.dark}>LogOut</Typography>
         </a>
       </Box>
     </Box>

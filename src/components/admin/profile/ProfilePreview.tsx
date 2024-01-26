@@ -32,7 +32,7 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
     <Box sx={{ display: "flex" }}>
       {" "}
       <Avatar src={avatarSrc} alt="User Avatar" />
-      <IconButton sx={{color:theme.palette.grey.dark}} onClick={handleOpenProfile}>
+      <IconButton sx={{color:theme.palette.secondary.dark}} onClick={handleOpenProfile}>
         {
             !openP ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />
         }

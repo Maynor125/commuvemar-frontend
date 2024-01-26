@@ -6,7 +6,7 @@ import ToogleButton from "@/components/theme/ToogleButton";
 import Notification from "../notification/Notification";
 import imgPreview from "../../../../public/images/assets/userPicture.jpg";
 import ProfilePreview from "../profile/ProfilePreview";
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 
 const NavbarAdmin: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -37,10 +37,12 @@ const NavbarAdmin: React.FC = () => {
       }}
     >
       <IconButton
-        color={theme.palette.grey.dark}
         edge="start"
-        
-        sx={{ mr: 2, display: { md: "none" } }}
+        sx={{
+          mr: 2,
+          display: { md: "none" },
+          color: theme.palette.secondary.dark,
+        }}
       >
         <MenuRoundedIcon />
       </IconButton>

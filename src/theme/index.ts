@@ -59,7 +59,7 @@ export const themeSettings =(mode:PaletteMode)=> {
            main:colorTokens.primary[600],
            light:colorTokens.primary[900]
            },
-           grey: {
+           secondary: {
             dark: colorTokens.grey[100],
             main: colorTokens.grey[200],
             mediumMain: colorTokens.grey[300],
@@ -90,7 +90,7 @@ export const themeSettings =(mode:PaletteMode)=> {
             main: colorTokens.primary[600],
             light: colorTokens.primary[900],
           },
-          grey: {
+          secondary: {
             dark: colorTokens.grey[800],
             main: colorTokens.grey[500],
             mediumMain: colorTokens.grey[400],

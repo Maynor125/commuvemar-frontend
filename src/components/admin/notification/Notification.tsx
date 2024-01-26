@@ -19,7 +19,7 @@ const Notification: React.FC<NotificationIconButtonProps> = ({
     <Tooltip
       title={hasNotifications ? "tienes notificaciones" : "notificaciones"}
     >
-      <IconButton sx={{color:theme.palette.grey.dark}} onClick={onClick} color="inherit">
+      <IconButton sx={{color:theme.palette.secondary.dark}} onClick={onClick} color="inherit">
         <Badge
           variant="dot" // Utiliza un indicador circular sin número
           color="error"

@@ -32,7 +32,7 @@ const ToogleButton = () => {
       <Tooltip
         title={`pasar al ${stateMode ? "modo claro" : "modo oscuro"}`}
       >
-        <IconButton sx={{color:theme.palette.grey.dark}} aria-label="tooglemode" onClick={handleToogle}>
+        <IconButton sx={{color:theme.palette.secondary.dark}} aria-label="tooglemode" onClick={handleToogle}>
           {stateMode ? <LightModeOutlinedIcon /> : <DarkModeOutlinedIcon />}
         </IconButton>
       </Tooltip>
