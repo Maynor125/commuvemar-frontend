@@ -4,7 +4,7 @@ export const colorTokens = {
     grey: {
         0: "#FFFFFF",
         10: "#FDFDFD",
-        50: "#DBD8D8",
+        50: "##F9FAFB",
         100: "#D9D9D9",
         200: "#C2C2C2",
         300: "#909090",
@@ -14,7 +14,7 @@ export const colorTokens = {
         700: "#2C353E",
         800: "#23262F",
         900: "#0F0F15",
-        1000: "#000000",
+        1000: "#121219",
       },
       primary:{
         50: "#E6FBFF",
@@ -68,7 +68,7 @@ export const themeSettings =(mode:PaletteMode)=> {
           },
           background: {
             default: colorTokens.grey[900],
-            alt: colorTokens.grey[800],
+            paper: colorTokens.grey[1000],
           },
           error: {
             main: colorTokens.error.dark,
@@ -99,7 +99,7 @@ export const themeSettings =(mode:PaletteMode)=> {
           },
           background: {
             default: colorTokens.grey[10],
-            alt: colorTokens.grey[0],
+            paper: colorTokens.grey[50],
           },
           error: {
             main: colorTokens.error.main,

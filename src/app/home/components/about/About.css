@@ -30,13 +30,12 @@
 }
 .targeta-about{
     transition: var(--transition);
-    box-shadow: 0 0 3px rgba(0,0,0, .15);
     border-radius: 6px;
     padding: .2rem .6rem;
     margin: 1rem 0;
     cursor: pointer;
 }
-.targeta-about:hover{
+.targeta-abou:hover{
     background: #F9FAFB;
 }
 .targeta-about:hover .icono{
@@ -91,14 +90,13 @@
     transform: translateY(-3.7rem);
     margin-left: 16%;
     margin-right: 16%;
-    background: var(--firts-color-white);
     padding: 1rem;
     width: 17rem;
     text-align: center;
     border-radius: 8px;
-    box-shadow: 0 0 3px rgba(0,0,0, .20);
+  
 }
-.mensaje-flotante p
+.mensaje-flotante-text
 {
     margin-top: 8px;
     font-size: var(--small-font-size);
