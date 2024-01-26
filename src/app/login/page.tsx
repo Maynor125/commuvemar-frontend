@@ -34,7 +34,7 @@ const Login = () => {
               <div className="auth-credential-head">
                 <Typography 
                 variant="h5"
-                color={theme.palette.grey.medium}
+                color={theme.palette.secondary.main}
                 >Login</Typography>
                 <Link href="/" className="link-head">
                   Help

@@ -15,8 +15,10 @@ const SearchInput: React.FC<SearchInputProps> = ({ onChange }) => {
   
     return (
       <TextField
+      sx={{width:'55%',display: { xs: 'none', sm: 'inline-flex'}}}
         placeholder="Search here..."
         variant="outlined"
+        size='small'
         InputProps={{
           startAdornment: <SearchIcon sx={{ marginRight: 1 }}/>,
         }}

@@ -27,7 +27,22 @@ export const colorTokens = {
         700: "#BEF9C1",
         800: "#42C37D",
         900: "#4FBD55",
-      }
+      },
+      error: {
+        main: "#FF0000",
+        dark: "#CC0000",
+        light: "#FF6666",
+      },
+      warning: {
+        main: "#FFC107",
+        dark: "#FF8C00",
+        light: "#FFD700",
+      },
+      success: {
+        main: "#4CAF50",
+        dark: "#388E3C",
+        light: "#81C784",
+      },
 }
 
 type PaletteMode = 'dark' | 'light';
@@ -44,7 +59,7 @@ export const themeSettings =(mode:PaletteMode)=> {
            main:colorTokens.primary[600],
            light:colorTokens.primary[900]
            },
-           grey: {
+           secondary: {
             dark: colorTokens.grey[100],
             main: colorTokens.grey[200],
             mediumMain: colorTokens.grey[300],
@@ -55,6 +70,18 @@ export const themeSettings =(mode:PaletteMode)=> {
             default: colorTokens.grey[900],
             alt: colorTokens.grey[800],
           },
+          error: {
+            main: colorTokens.error.dark,
+            light: colorTokens.error.light,
+          },
+          warning: {
+            main: colorTokens.warning.dark,
+            light: colorTokens.warning.light,
+          },
+          success: {
+            main: colorTokens.success.dark,
+            light: colorTokens.success.light,
+          },
         }:
         {
           // palette values for light mode
@@ -63,8 +90,8 @@ export const themeSettings =(mode:PaletteMode)=> {
             main: colorTokens.primary[600],
             light: colorTokens.primary[900],
           },
-          neutral: {
-            dark: colorTokens.grey[700],
+          secondary: {
+            dark: colorTokens.grey[800],
             main: colorTokens.grey[500],
             mediumMain: colorTokens.grey[400],
             medium: colorTokens.grey[300],
@@ -73,6 +100,18 @@ export const themeSettings =(mode:PaletteMode)=> {
           background: {
             default: colorTokens.grey[10],
             alt: colorTokens.grey[0],
+          },
+          error: {
+            main: colorTokens.error.main,
+            light: colorTokens.error.light,
+          },
+          warning: {
+            main: colorTokens.warning.main,
+            light: colorTokens.warning.light,
+          },
+          success: {
+            main: colorTokens.success.main,
+            light: colorTokens.success.light,
           },
         })
     }
