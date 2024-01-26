@@ -5,7 +5,7 @@ import './About.css'
 import ImagenAbout from '../../../../../public/images/home/imagen-about-2.jpeg'
 import Link from 'next/link'
 import IconoCacao from '../../../../../public/images/home/icono-cacao.png'
-import { Box, useTheme } from '@mui/material'
+import { Box, Typography, useTheme } from '@mui/material'
 
 const About = () => {
   const theme= useTheme()
@@ -14,28 +14,28 @@ const About = () => {
        <div className="container about-container">
            <div className="about-container-left">
                <h4>¿Quienes somos?</h4>
-               <h2>Como coomuvemar</h2>
+               <Typography variant='h2' color={theme.palette.secondary.light}>Como coomuvemar</Typography>
 
-               <p>Contamos con la certificación, que es un proceso de producir de manera sostenible con el Medio Ambiente, gestión de calidad, gestión ambiental además de que la certificación es una garantía para los consumidores y coomuvemar cuenta con dos.</p>
+               <Typography  color={theme.palette.secondary.light}className='about-container-left-text'>Contamos con la certificación, que es un proceso de producir de manera sostenible con el Medio Ambiente, gestión de calidad, gestión ambiental además de que la certificación es una garantía para los consumidores y coomuvemar cuenta con dos.</Typography>
 
-               <div className="targeta-about">
+               <Box component='div' className="targeta-about">
                       <div className="part-superior">
-                          <h4>Certificado Rainforest Alliance</h4>
+                          <Typography variant='subtitle1' sx={{fontWeight:700}} color={theme.palette.secondary.light}>Certificado Rainforest Alliance</Typography>
                           <div className="icono">
                              <Image alt='icono-cacao' src={IconoCacao}/>
                           </div>
                       </div>
                       <p>Ayuda a los agricultores a producir mejores cultivos, adaptarse al cambio climático, aumentar su productividad y reducir costos.</p>
-               </div>
-               <div className="targeta-about">
+               </Box>
+               <Box component='div' className="targeta-about">
                       <div className="part-superior">
-                          <h4>Certificado organico</h4>
+                          <Typography variant='subtitle1' sx={{fontWeight:700}} color={theme.palette.secondary.light}>Certificado organico</Typography>
                           <div className="icono">
                           <Image alt='icono-cacao' src={IconoCacao}/>
                           </div>
                       </div>
                       <p>Una herramienta que garantiza confianza al consumidor de que lo que está comprando es realmente de origen orgánico.</p>
-               </div>
+               </Box>
                <Link href='#services' className='boton-base boton-about'>
                  Consulta...
                </Link>

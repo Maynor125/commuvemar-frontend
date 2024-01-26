@@ -23,10 +23,10 @@
     font-size: var(--h2-font-size);
     font-weight: var(--font-semi-bold);
 }
-.about-container-left>p{
-    margin: 1rem 0 2.5rem;
+.about-container-left-text{
+    margin: 1.5rem 0 2.5rem;
     font-size: var(--normal-font-size);
-    color: var(--color-title-1);
+    
 }
 .targeta-about{
     transition: var(--transition);
