@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import TextField from "@mui/material/TextField";
 import {
@@ -8,24 +8,23 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
-  useTheme
+  useTheme,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 
 import { LoginSchema } from "@/validations/loginSchema";
-import {
-  useForm,
-  Resolver,
-  FieldErrors,
-} from "react-hook-form";
+import { useForm, Resolver, FieldErrors } from "react-hook-form";
 
 import { LoginFormValues } from "@/types/login";
 import { ZodError } from "zod";
 import { useState } from "react";
 
+import { useDispatch } from "react-redux";
+import { login } from "@/utils/login";
+
 const LoginForm = () => {
-    //Manejo del estado para mostrar la contraseña.
+  //Manejo del estado para mostrar la contraseña.
   const [showPassword, setShowPassword] = useState(false);
 
   const router = useRouter();
@@ -39,7 +38,6 @@ const LoginForm = () => {
   };
 
   const theme = useTheme();
-
 
   const resolver: Resolver<
     LoginFormValues,
@@ -82,64 +80,80 @@ const LoginForm = () => {
     resolver: resolver,
   });
 
+  const dispatch = useDispatch();
+
+  const handleLogin = async (email: string, password: string) => {
+    try {
+      await login(dispatch, email, password); // Asegúrate de pasar dispatch como el primer argumento
+    } catch (error) {
+      console.error("Error en el manejo del login:", error);
+    }
+  };
+
+  //user:jhonosmanm@gmail.com  password:123456
+
   // Manejar la lógica de envío del formulario
   const onSubmit = (data: LoginFormValues) => {
     console.log("Formulario de inicio de sesión enviado:", data);
-    
+
     // Aquí ira la lógica de inicio de sesión
-    router?.push('/admin')
+    handleLogin(data.email, data.password);
+    //router?.push('/admin')
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">
-    <TextField
-      id="email"
-      label="Digita tu email"
-      variant="outlined"
-      size="medium"
-      {...register("email")}
-      error={!!errors.email}
-      helperText={errors?.email?.message}
-    />
-
-    <FormControl sx={{ width: "100%" }} variant="outlined">
-      <InputLabel htmlFor="outlined-adornment-password" error={!!errors.password}>
-        Password
-      </InputLabel>
-      <OutlinedInput
-        id="password"
-        type={showPassword ? "text" : "password"}
+      <TextField
+        id="email"
+        label="Digita tu email"
+        variant="outlined"
         size="medium"
-        error={!!errors.password}
-        {...register("password")}
-        endAdornment={
-          <InputAdornment position="end">
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-              edge="end"
-            >
-              {showPassword ? <VisibilityOff color={theme.palette.grey.dark} /> : <Visibility />}
-            </IconButton>
-          </InputAdornment>
-        }
-        label="Password"
+        {...register("email")}
+        error={!!errors.email}
+        helperText={errors?.email?.message}
       />
-      {errors.password && (
-        <FormHelperText sx={{color:'#D43333'}}>
-          {errors.password.message}
-        </FormHelperText>
-        /*<p className="msj-error">
+
+      <FormControl sx={{ width: "100%" }} variant="outlined">
+        <InputLabel
+          htmlFor="outlined-adornment-password"
+          error={!!errors.password}
+        >
+          Password
+        </InputLabel>
+        <OutlinedInput
+          id="password"
+          type={showPassword ? "text" : "password"}
+          size="medium"
+          error={!!errors.password}
+          {...register("password")}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                edge="end"
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          label="Password"
+        />
+        {errors.password && (
+          <FormHelperText sx={{ color: "#D43333" }}>
+            {errors.password.message}
+          </FormHelperText>
+          /*<p className="msj-error">
           {errors.password.message}
         </p>*/
-      )}
-    </FormControl>
-    <button type="submit" className="boton btn-login">
-      Login
-    </button>
-  </form>
-  )
-}
+        )}
+      </FormControl>
+      <button type="submit" className="boton btn-login">
+        Login
+      </button>
+    </form>
+  );
+};
 
-export default LoginForm
+export default LoginForm;
