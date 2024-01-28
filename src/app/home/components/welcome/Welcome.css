@@ -6,6 +6,7 @@
     place-items: center;
     margin: 0 auto;
     margin-top: 4rem;
+    transition: all .4s;
 }
 .welcome-header-container
 {

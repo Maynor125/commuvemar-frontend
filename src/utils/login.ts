@@ -12,9 +12,12 @@ export const login = async (
       email,
       password,
     });
-    console.log(response.data);
-    const token = response.data.token;
+    const token = response.data.access_token;
     console.log(token);
+
+    // Almacena el token en el localStorage
+    localStorage.setItem("token", token);
+
     dispatch(setCredentials(token));
     // Devolver una acción indicando éxito
     return { type: "LOGIN_SUCCESS" };

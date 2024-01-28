@@ -8,7 +8,7 @@
     top: 0;
     left: 0;
     z-index: 99;
-    transition: var(--transition);
+    transition: all .4s;
 }
 .nav-link.active-link{
     color: var(--firts-color-red);  
