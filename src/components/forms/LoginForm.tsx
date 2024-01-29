@@ -94,17 +94,19 @@ const LoginForm = () => {
 
   const handleLogin = async (email: string, password: string) => {
     try {
+      setLoading(true);
       const response = await login(dispatch, email, password); // Asegúrate de pasar dispatch como el primer argumento
-      if (response.error) {
-        setError(response.error);
-      } else {
-        setError(null);
-        setLoading(true);
-        setTimeout(() => {
+  
+      setTimeout(() => {
+        if (response.error) {
+          setError(response.error);
+          setLoading(false);
+        } else {
+          setError(null);
           setLoading(false);
           router?.push("/admin");
-        }, 3000);
-      }
+        }
+      }, 2000);
     } catch (error: any) {
       setLoading(false);
     }
@@ -172,8 +174,26 @@ const LoginForm = () => {
         Login
       </button>
       {error !== null && (
-        <Box sx={{width:'100%',textAlign:'center',display:'flex',justifyContent:'center'}}>
-          <Typography sx={{width:'100%', color: "red",display:'flex',alignItems:'center',gap:'.5rem',textAlign:'center',marginX:'auto',marginRight:'2rem' }}>
+        <Box
+          sx={{
+            width: "100%",
+            textAlign: "center",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Typography
+            sx={{
+              width: "100%",
+              color: "red",
+              display: "flex",
+              alignItems: "center",
+              gap: ".5rem",
+              textAlign: "center",
+              marginX: "auto",
+              marginRight: "2rem",
+            }}
+          >
             <ErrorOutlineIcon />
             {error}
           </Typography>
