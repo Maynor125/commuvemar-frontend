@@ -18,6 +18,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (tokenData && tokenData.exp) {
          const timesTamp = Math.floor(Date.now() / 1000);
+         console.log("la expiracion del token es",tokenData.exp)
 
          if (tokenData.exp < timesTamp) {
           // Token caducado, limpia el token del localStorage

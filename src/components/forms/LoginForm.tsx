@@ -2,12 +2,14 @@
 
 import TextField from "@mui/material/TextField";
 import {
+  Box,
   FormControl,
   FormHelperText,
   IconButton,
   InputAdornment,
   InputLabel,
   OutlinedInput,
+  Typography,
   useTheme,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -25,6 +27,8 @@ import { login } from "@/utils/login";
 
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
+
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
 const LoginForm = () => {
   //Manejo del estado para mostrar la contraseña.
@@ -75,6 +79,8 @@ const LoginForm = () => {
 
   // ...
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  console.log("el error es:", error);
 
   const {
     register,
@@ -88,16 +94,18 @@ const LoginForm = () => {
 
   const handleLogin = async (email: string, password: string) => {
     try {
-      setLoading(true);
       const response = await login(dispatch, email, password); // Asegúrate de pasar dispatch como el primer argumento
-      if (!response.error) {
+      if (response.error) {
+        setError(response.error);
+      } else {
+        setError(null);
+        setLoading(true);
         setTimeout(() => {
           setLoading(false);
           router?.push("/admin");
-        }, 2000);
+        }, 3000);
       }
-    } catch (error) {
-      console.error("Error en el manejo del login:", error);
+    } catch (error: any) {
       setLoading(false);
     }
   };
@@ -163,6 +171,14 @@ const LoginForm = () => {
       <button type="submit" className="boton btn-login">
         Login
       </button>
+      {error !== null && (
+        <Box sx={{width:'100%',textAlign:'center',display:'flex',justifyContent:'center'}}>
+          <Typography sx={{width:'100%', color: "red",display:'flex',alignItems:'center',gap:'.5rem',textAlign:'center',marginX:'auto',marginRight:'2rem' }}>
+            <ErrorOutlineIcon />
+            {error}
+          </Typography>
+        </Box>
+      )}
       {loading && (
         <Backdrop
           open={true}
