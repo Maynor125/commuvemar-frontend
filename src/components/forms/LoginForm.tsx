@@ -23,6 +23,9 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "@/utils/login";
 
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+
 const LoginForm = () => {
   //Manejo del estado para mostrar la contraseña.
   const [showPassword, setShowPassword] = useState(false);
@@ -71,6 +74,7 @@ const LoginForm = () => {
   };
 
   // ...
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -84,9 +88,17 @@ const LoginForm = () => {
 
   const handleLogin = async (email: string, password: string) => {
     try {
-      await login(dispatch, email, password); // Asegúrate de pasar dispatch como el primer argumento
+      setLoading(true);
+      const response = await login(dispatch, email, password); // Asegúrate de pasar dispatch como el primer argumento
+      if (!response.error) {
+        setTimeout(() => {
+          setLoading(false);
+          router?.push("/admin");
+        }, 2000);
+      }
     } catch (error) {
       console.error("Error en el manejo del login:", error);
+      setLoading(false);
     }
   };
 
@@ -98,7 +110,6 @@ const LoginForm = () => {
 
     // Aquí ira la lógica de inicio de sesión
     handleLogin(data.email, data.password);
-    //router?.push('/admin')
   };
 
   return (
@@ -152,6 +163,14 @@ const LoginForm = () => {
       <button type="submit" className="boton btn-login">
         Login
       </button>
+      {loading && (
+        <Backdrop
+          open={true}
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      )}
     </form>
   );
 };
