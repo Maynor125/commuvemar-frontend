@@ -1,14 +1,11 @@
-
-import ProtectedPage from '@/middleware/ProtectedPage'
-import React from 'react'
+import Welcome from "@/components/admin/overview/Welcome";
+import ProtectedPage from "@/middleware/ProtectedPage";
+import React from "react";
 
 const OverView = () => {
-  return (
-    <ProtectedPage>
-          <div>OverView</div>
-    </ProtectedPage>
-  )
-}
+  return <main>
+    <Welcome/>
+  </main>;
+};
 
-export default OverView
-
+export default OverView;
