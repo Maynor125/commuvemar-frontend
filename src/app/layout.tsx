@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Open_Sans } from "next/font/google";
 
 import ReduxProvider from "@/redux/Provider";
+import AuthProvider from "@/auth/authProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,9 +26,11 @@ export default function RootLayout({
 }) {
   return (
     <ReduxProvider>
-      <html data-theme lang="en">
+      <AuthProvider>
+        <html data-theme lang="en">
         <body className={open_Sans.className}>{children}</body>
       </html>
+      </AuthProvider>
     </ReduxProvider>
   );
 }

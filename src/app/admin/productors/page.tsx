@@ -1,8 +1,12 @@
+import ProtectedPage from '@/middleware/ProtectedPage'
 import React from 'react'
 
 const Productors = () => {
   return (
-    <div>Productors</div>
+    <ProtectedPage>
+          <div>Productors</div>
+    </ProtectedPage>
+
   )
 }
 

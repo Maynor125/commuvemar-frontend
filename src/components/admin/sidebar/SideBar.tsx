@@ -5,17 +5,31 @@ import { SidebarProps } from "@/types/sidebar";
 import Link from "next/link";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import Image from "next/image";
+import { logout } from "@/redux/features/authSlice";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import Logo from "@/components/Logo";
 
 import "./sidebar.css";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store/store";
 
 const SideBar: React.FC<SidebarProps> = ({ paths }) => {
+  const router = useRouter();
   const theme = useTheme();
   const pathname = usePathname();
-  const esPantallaMedianaOmasPequeña = useMediaQuery(theme.breakpoints.down("md"));
+  const esPantallaMedianaOmasPequeña = useMediaQuery(
+    theme.breakpoints.down("md")
+  );
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const logOut=()=>{
+    dispatch(logout());
+    localStorage.removeItem("token");
+    router?.push('/');
+  }
 
   return (
     <Box
@@ -24,9 +38,9 @@ const SideBar: React.FC<SidebarProps> = ({ paths }) => {
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        width:'200px',
-        position:'fixed',
-        marginLeft:esPantallaMedianaOmasPequeña ? '0.9rem' : '0' 
+        width: "200px",
+        position: "fixed",
+        marginLeft: esPantallaMedianaOmasPequeña ? "0.9rem" : "0",
       }}
     >
       <Box component="div" sx={{ mb: "2.5rem", paddingLeft: "15px" }}>
@@ -70,7 +84,7 @@ const SideBar: React.FC<SidebarProps> = ({ paths }) => {
             );
           })}
         </Box>
-        <a className="exit">
+        <a className="exit" onClick={logOut}>
           <Typography color={theme.palette.secondary.dark}>
             <LogoutOutlinedIcon />
           </Typography>

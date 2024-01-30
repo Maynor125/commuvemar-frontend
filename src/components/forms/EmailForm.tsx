@@ -157,6 +157,7 @@ const EmailForm = () => {
           onClose={handleClose}
           severity={hayError ? "error" : "success"}
           variant="filled"
+          sx={{color:'#fff'}}
         >
           {confirmationMessage}
         </Alert>
