@@ -1,8 +1,11 @@
+import ProtectedPage from '@/middleware/ProtectedPage'
 import React from 'react'
 
 const HistoryFichas = () => {
   return (
-    <div>HistoryFichas</div>
+    <ProtectedPage>
+          <div>HistoryFichas</div>
+    </ProtectedPage>
   )
 }
 

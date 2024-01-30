@@ -177,8 +177,8 @@ const LoginForm = () => {
         <Box
           sx={{
             width: "100%",
-            textAlign: "center",
             display: "flex",
+            textAlign: "center",
             justifyContent: "center",
           }}
         >

@@ -1,8 +1,12 @@
+import ProtectedPage from '@/middleware/ProtectedPage'
 import React from 'react'
 
 const Settings = () => {
   return (
-    <div>Settings</div>
+    <ProtectedPage>
+          <div>Settings</div>
+    </ProtectedPage>
+
   )
 }
 
