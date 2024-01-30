@@ -174,30 +174,24 @@ const LoginForm = () => {
         Login
       </button>
       {error !== null && (
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            textAlign: "center",
-            justifyContent: "center",
-          }}
-        >
+     
           <Typography
             sx={{
               width: "100%",
               color: "red",
               display: "flex",
               alignItems: "center",
-              gap: ".5rem",
+              justifyContent: "center",
+              gap: ".4rem",
               textAlign: "center",
-              marginX: "auto",
-              marginRight: "2rem",
+              margin:'0 auto',
+              fontSize:'14px'
             }}
           >
             <ErrorOutlineIcon />
             {error}
           </Typography>
-        </Box>
+      
       )}
       {loading && (
         <Backdrop
