@@ -26,7 +26,7 @@ const Welcome = () => {
   var saludoFinal = obtenerSaludo() + " " + nombre;
 
   const theme = useTheme();
-  return <Box sx={{marginBottom:'1rem'}}>
+  return <Box sx={{marginBottom:'.5rem'}}>
     <Typography sx={{
         fontWeight:500,
         color:theme.palette.secondary.light
