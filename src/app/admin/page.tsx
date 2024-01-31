@@ -7,6 +7,7 @@ import "./styles.css";
 import GeneralData from "@/components/admin/overview/sections/GeneralData";
 import InspectorsData from "@/components/admin/overview/sections/InspectorsData";
 import EfectivityData from "@/components/admin/overview/sections/EfectivityData";
+import FichasDetailData from "@/components/admin/overview/sections/FichasDetailData";
 
 
 const OverView = () => {
@@ -39,7 +40,9 @@ const OverView = () => {
 
             {/* Segunda columna */}
             <Grid item sm={8} xs={12}>
-              <div className="borde-card cont-target"></div>
+              <div className="borde-card cont-target">
+                <FichasDetailData/>
+              </div>
             </Grid>
           </Grid>
         </Grid>
