@@ -4,15 +4,19 @@ import { Box, Grid, Paper } from "@mui/material";
 import React from "react";
 
 import "./styles.css";
+import GeneralData from "@/components/admin/overview/sections/GeneralData";
+
 
 const OverView = () => {
   return (
     <main>
       <Welcome />
-      <Grid sx={{marginBottom:'1.5rem'}} container spacing={1.5} justifyContent="center">
+      <Grid sx={{marginBottom:'1rem'}} container spacing={1.5} justifyContent="center">
         {/* Primera fila */}
         <Grid item sm={8} xs={12}>
-          <div className="borde-card cont-target"></div>
+          <div className="borde-card cont-target">
+            <GeneralData/>
+          </div>
         </Grid>
         <Grid item sm={4} xs={12}>
           <div className="borde-card cont-target"></div>

@@ -1,4 +1,15 @@
 .cont-target{
     height: 40vh;
-    border-radius: 6px;
+    padding: 1.2rem .7rem;
+}
+.btn-fecha{
+    background: none;
+    cursor: pointer;
+}
+.fecha-activa{
+    color:#00A2DC;
+}
+.iconocard{
+    width: 2.5rem;
+    height: 2.5rem;
 }

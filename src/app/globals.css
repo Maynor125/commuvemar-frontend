@@ -147,6 +147,7 @@ p {
 }
 .borde-card{
   border: 1px solid #E6E8EC;
+  border-radius: 5px;
 }
 
 /* Estilos para el tema oscuro */
