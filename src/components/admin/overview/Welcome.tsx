@@ -22,7 +22,7 @@ const Welcome = () => {
     return saludo;
   };
 
-  var nombre = "Lana";
+  var nombre = "Lana R";
   var saludoFinal = obtenerSaludo() + " " + nombre;
 
   const theme = useTheme();

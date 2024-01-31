@@ -5,6 +5,7 @@ import React from "react";
 
 import "./styles.css";
 import GeneralData from "@/components/admin/overview/sections/GeneralData";
+import InspectorsData from "@/components/admin/overview/sections/InspectorsData";
 
 
 const OverView = () => {
@@ -19,7 +20,9 @@ const OverView = () => {
           </div>
         </Grid>
         <Grid item sm={4} xs={12}>
-          <div className="borde-card cont-target"></div>
+          <div className="borde-card cont-target">
+            <InspectorsData/>
+          </div>
         </Grid>
 
         {/* Segunda fila */}

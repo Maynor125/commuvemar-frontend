@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Card1 from "../Card1";
 import { Box, Typography, useTheme } from "@mui/material";
+import Card2 from "../Card2";
 
 const GeneralData = () => {
   const theme = useTheme();
@@ -57,6 +58,17 @@ const GeneralData = () => {
             </Typography>
           </button>
         </Box>
+      </Box>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Card2 customColor="#FFE6E6"/>
+        <Card2 customColor="#BEF9C1"/>
       </Box>
       <Box
         sx={{
