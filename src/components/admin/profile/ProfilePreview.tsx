@@ -13,7 +13,7 @@ interface ProfileViewerProps {
 
 const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const [openP,setOpenP] = useState(false)
+  const [openP, setOpenP] = useState(false);
 
   const handleOpenProfile = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -27,15 +27,16 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
 
   const open = Boolean(anchorEl);
   const id = open ? "profile-popover" : undefined;
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <Box sx={{ display: "flex" }}>
       {" "}
       <Avatar src={avatarSrc} alt="User Avatar" />
-      <IconButton sx={{color:theme.palette.secondary.dark}} onClick={handleOpenProfile}>
-        {
-            !openP ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />
-        }
+      <IconButton
+        sx={{ color: theme.palette.secondary.dark }}
+        onClick={handleOpenProfile}
+      >
+        {!openP ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
       </IconButton>
       <Popover
         id={id}
@@ -54,9 +55,7 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
         <Box p={2}>
           {/* Contenido del perfil (puedes personalizar esto según tus necesidades) */}
           <div>Perfil del Usuario</div>
-          <IconButton onClick={handleCloseProfile}>
-            
-          </IconButton>
+          <IconButton onClick={handleCloseProfile}></IconButton>
         </Box>
       </Popover>
     </Box>

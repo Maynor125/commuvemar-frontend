@@ -145,6 +145,10 @@ p {
 .a-active{
   color: #242424;
 }
+.borde-card{
+  border: 1px solid #E6E8EC;
+  border-radius: 5px;
+}
 
 /* Estilos para el tema oscuro */
 [data-theme="dark"] .box-with-shadow {
@@ -152,6 +156,12 @@ p {
 }
 [data-theme="dark"] .a-active{
   color: #fff;
+}
+[data-theme="dark"] .borde-card{
+  border:  1px solid #27272A;
+}
+[data-theme="dark"] body{
+  background: #0F0F15;
 }
 /* MEDIA QUERIES (medium screen) */
 
