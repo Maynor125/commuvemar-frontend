@@ -1,7 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { getSections } from "@/utils/sections";
+import {
+  createSection,
+  deleteSection,
+  getSections,
+  updateSection,
+} from "@/utils/sections";
 import {
   Box,
   IconButton,
@@ -35,6 +40,37 @@ const InformationFichas = () => {
         setSection(response.data);
       }
       return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const createSections = async (nombre: string, descripcion: string) => {
+    try {
+      const response = await createSection(nombre, descripcion);
+      getAllSection();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const updateSections = async (
+    id: number,
+    nombre: string,
+    descripcion: string
+  ) => {
+    try {
+      const response = await updateSection(id, nombre, descripcion);
+      getAllSection();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteSections = async (id: number) => {
+    try {
+      const response = await deleteSection(id);
+      getAllSection();
     } catch (error) {
       console.error(error);
     }
