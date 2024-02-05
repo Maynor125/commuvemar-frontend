@@ -23,6 +23,7 @@ import TourRoundedIcon from "@mui/icons-material/TourRounded";
 
 import BtnAction from "@/components/admin/section/btnAction";
 import Link from "next/link";
+import SectionsForm from "@/components/forms/SectionsForm";
 
 const InformationFichas = () => {
   const [section, setSection] = useState<Section[]>([]);
@@ -76,12 +77,28 @@ const InformationFichas = () => {
     }
   };
 
-  const handleEditarClick = () => {
+  const handleEliminarClick = (id: any) => {
     // Lógica para editar
-    console.log("Botón Editar clickeado");
+    setID(id);
+    deleteSections(id);
+    console.log("Botón Eliminar clickeado");
   };
 
-  const allData = getAllSection();
+  const handleEditarClick = (id: any, nombre: string, descripcion: string) => {
+    setEdit(true);
+    setID(id);
+    setNombreSeccion(nombre);
+    setDescSeccion(descripcion);
+  };
+  const handlePrueba = () => {
+    console.log("Esta es una prueba warro");
+  };
+
+  const [edit, setEdit] = useState(true);
+  const [id, setID] = useState();
+  const [nombreSeccion, setNombreSeccion] = useState("");
+  const [descSeccion, setDescSeccion] = useState("");
+
   return (
     <Box
       component="main"
@@ -91,11 +108,85 @@ const InformationFichas = () => {
     >
       <Box
         sx={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: "600",
+            color: theme.palette.secondary.light,
+          }}
+        >
+          Secciones
+        </Typography>
+      </Box>
+      <Box>
+        <SectionsForm
+          title="Guardar"
+          onClick={getAllSection}
+          isEdit={edit}
+          idSection={id}
+          nombreSection={nombreSeccion}
+          descripcionSection={descSeccion}
+        />
+      </Box>
+      <Box
+        sx={{
           display: "flex",
           flexDirection: "column",
           gap: ".5rem",
+          marginTop: "1rem",
         }}
       >
+        <Box
+          sx={{
+            width: "100%",
+            padding: ".7rem",
+          }}
+          className="borde-card card"
+        >
+          <Typography
+            variant="subtitle1"
+            sx={{
+              color: theme.palette.secondary.light,
+              fontWeight: 500,
+            }}
+          >
+            Seccion de prueba
+          </Typography>
+          <Typography
+            sx={{
+              color: theme.palette.secondary.contrastText,
+            }}
+          >
+            Esta es una targeta de prueba para poder darle estilos.
+          </Typography>
+          {/* Aquí puedes agregar más detalles según tus necesidades */}
+          <Box>
+            <Link href="/admin">
+              <BtnAction
+                tooltipTitle="Visitar"
+                icon={TourRoundedIcon}
+                onClick={handlePrueba}
+              />
+            </Link>
+
+            <BtnAction
+              tooltipTitle="Editar"
+              icon={EditRoundedIcon}
+              onClick={handlePrueba}
+            />
+            <BtnAction
+              tooltipTitle="Eliminar"
+              icon={DeleteRoundedIcon}
+              onClick={handlePrueba}
+            />
+          </Box>
+        </Box>
         {section.map((item) => (
           <Box
             sx={{
@@ -127,19 +218,21 @@ const InformationFichas = () => {
                 <BtnAction
                   tooltipTitle="Visitar"
                   icon={TourRoundedIcon}
-                  onClick={handleEditarClick}
+                  onClick={handleEliminarClick}
                 />
               </Link>
 
               <BtnAction
                 tooltipTitle="Editar"
                 icon={EditRoundedIcon}
-                onClick={handleEditarClick}
+                onClick={() =>
+                  handleEditarClick(item.id, item.nombre, item.descripcion)
+                }
               />
               <BtnAction
                 tooltipTitle="Eliminar"
                 icon={DeleteRoundedIcon}
-                onClick={handleEditarClick}
+                onClick={() => handleEliminarClick(item.id)}
               />
             </Box>
           </Box>

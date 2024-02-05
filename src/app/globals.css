@@ -163,6 +163,22 @@ p {
 [data-theme="dark"] body{
   background: #0F0F15;
 }
+
+.btn-save{
+  padding: .5rem .8rem;
+  background-color: #26a4da;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  border: 1px solid #26a4da;
+  transition: all .3s;
+}
+.btn-save:hover{
+  background: none;
+  border-color: #26a4da;
+  color: #26a4da;
+}
 /* MEDIA QUERIES (medium screen) */
 
 @media screen and (max-width: 1024px) {

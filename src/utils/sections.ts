@@ -29,12 +29,12 @@ export const getSectionsId = async (id: number): Promise<ApiResponse> => {
 
 export const createSection = async (
   nombre: string,
-  description: string
+  descripcion: string
 ): Promise<ApiResponse> => {
   try {
     const response = await apiManager.post("/seccionesFicha", {
       nombre,
-      description,
+      descripcion,
     });
     return response.data;
   } catch (error: any) {
