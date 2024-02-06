@@ -44,7 +44,7 @@ const InformationFichas = () => {
       console.log(response.data);
       if (response.data !== undefined) {
         setSection(response.data);
-        hayDatos(true);
+        setHayDatos(true);
       }
       return response;
     } catch (error) {
