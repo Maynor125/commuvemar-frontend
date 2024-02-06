@@ -24,15 +24,30 @@ import { Section } from "@/types/section";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import TourRoundedIcon from "@mui/icons-material/TourRounded";
+import ForwardRoundedIcon from "@mui/icons-material/ForwardRounded";
 
 import BtnAction from "@/components/admin/section/btnAction";
 import Link from "next/link";
 import SectionsForm from "@/components/forms/SectionsForm";
 import NoData from "@/components/error/NoData";
 
+import MessageGlobal from "@/components/message/MessageGlobal";
+
 const InformationFichas = () => {
   const [section, setSection] = useState<Section[]>([]);
   const theme = useTheme();
+
+  const [showMessage, setShowMessage] = React.useState(false);
+  const [message, setMessage] = React.useState("");
+
+  const handleSave = () => {
+    // Perform save action
+    setMessage("Data saved successfully!");
+    setShowMessage(true);
+    setTimeout(() => setShowMessage(false), 3000);
+    getAllSection();
+    //setTimeout(() => setShowMessage(false), 3000);
+  };
 
   useEffect(() => {
     getAllSection();
@@ -83,7 +98,7 @@ const InformationFichas = () => {
   const [nombreSeccion, setNombreSeccion] = useState("");
   const [descSeccion, setDescSeccion] = useState("");
   const [isAgregate, setIsAgregate] = useState(false);
-  const [hayDatos,setHayDatos] = useState(false);
+  const [hayDatos, setHayDatos] = useState(false);
 
   return (
     <Box
@@ -125,7 +140,7 @@ const InformationFichas = () => {
             Agregar Seccion
           </Typography>
           <Box>
-            <Tooltip title="Agregar Seccion">
+            <Tooltip title={isAgregate ? "cancelar" : "Agregar Seccion"}>
               <button
                 onClick={() => setIsAgregate(!isAgregate)}
                 className="box-with-shadow btn-addseccion"
@@ -147,10 +162,10 @@ const InformationFichas = () => {
         </Box>
       </Box>
       <Box>
-        {(isAgregate || edit) &&(
+        {(isAgregate || edit) && (
           <SectionsForm
             title="Guardar"
-            onClick={getAllSection}
+            onClick={handleSave}
             isEdit={edit}
             idSection={id}
             nombreSection={nombreSeccion}
@@ -158,6 +173,7 @@ const InformationFichas = () => {
           />
         )}
       </Box>
+      <MessageGlobal show={showMessage} message={message} type="success" />
       <Box
         sx={{
           display: "flex",
@@ -166,6 +182,50 @@ const InformationFichas = () => {
           marginTop: "1rem",
         }}
       >
+        <Fade in={true} timeout={500}>
+          <Box
+            sx={{
+              width: "100%",
+              padding: ".7rem",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+            className="borde-card card"
+          >
+            <Box>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  color: theme.palette.secondary.light,
+                  fontWeight: 600,
+                }}
+              >
+                Seccion de prueba
+              </Typography>
+              <Typography
+                sx={{
+                  color: theme.palette.secondary.contrastText,
+                }}
+              >
+                Esta es una targeta de prueba para poder darle los estilos
+                correctos
+              </Typography>
+            </Box>
+            {/* Aquí puedes agregar más detalles según tus necesidades */}
+            <Box sx={{}}>
+              <Link href="/admin">
+                <BtnAction
+                  tooltipTitle="Visitar seccion"
+                  icon={ForwardRoundedIcon}
+                  onClick={handleEliminarClick}
+                />
+              </Link>
+
+              <BtnAction tooltipTitle="Editar" icon={EditRoundedIcon} />
+              <BtnAction tooltipTitle="Eliminar" icon={DeleteRoundedIcon} />
+            </Box>
+          </Box>
+        </Fade>
         {hayDatos ? (
           section.map((item) => (
             <Fade in={true} key={item.id} timeout={500}>
@@ -173,26 +233,31 @@ const InformationFichas = () => {
                 sx={{
                   width: "100%",
                   padding: ".7rem",
+                  display: "flex",
+                  justifyContent: "space-between",
                 }}
                 key={item.id}
                 className="borde-card card"
               >
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    color: theme.palette.secondary.light,
-                    fontWeight: 500,
-                  }}
-                >
-                  {item.nombre}
-                </Typography>
-                <Typography
-                  sx={{
-                    color: theme.palette.secondary.contrastText,
-                  }}
-                >
-                  {item.descripcion}
-                </Typography>
+                <Box>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      color: theme.palette.secondary.light,
+                      fontWeight: 600,
+                    }}
+                  >
+                    {item.nombre}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      color: theme.palette.secondary.contrastText,
+                    }}
+                  >
+                    {item.descripcion}
+                  </Typography>
+                </Box>
+
                 {/* Aquí puedes agregar más detalles según tus necesidades */}
                 <Box>
                   <Link href="/admin">
@@ -202,7 +267,7 @@ const InformationFichas = () => {
                       onClick={handleEliminarClick}
                     />
                   </Link>
-  
+
                   <BtnAction
                     tooltipTitle="Editar"
                     icon={EditRoundedIcon}
@@ -219,7 +284,9 @@ const InformationFichas = () => {
               </Box>
             </Fade>
           ))
-        ):<NoData/>}
+        ) : (
+          <NoData />
+        )}
       </Box>
     </Box>
   );

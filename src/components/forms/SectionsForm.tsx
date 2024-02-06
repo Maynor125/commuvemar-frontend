@@ -60,6 +60,7 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<Section>({
     resolver: resolver,
@@ -83,6 +84,9 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
     } else {
       createSections(data.nombre, data.descripcion);
     }
+    // Limpiar los valores de los campos
+    setValue("nombre", "");
+    setValue("descripcion", "");
     onClick();
   };
 
@@ -133,7 +137,8 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
           {...register("nombre")}
           error={!!errors.nombre}
           helperText={errors?.nombre?.message}
-          value={isEdit ? nombreSection || "" : ""}
+          defaultValue={isEdit ? nombreSection || "" : ""}
+          InputLabelProps={{ shrink: !!nombreSection || undefined }}
         />
         <TextField
           sx={{ flex: 1 }}
@@ -143,7 +148,8 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
           {...register("descripcion")}
           error={!!errors.descripcion}
           helperText={errors?.descripcion?.message}
-          value={isEdit ? descripcionSection || "" : ""}
+          defaultValue={isEdit ? descripcionSection || "" : ""}
+          InputLabelProps={{ shrink: !!descripcionSection || undefined }}
         />
         <Tooltip title={title}>
           <button onClick={onClick} className="btn-save" type="submit">
