@@ -12,6 +12,7 @@ import {
 } from "@/utils/sections";
 import {
   Box,
+  Fade,
   IconButton,
   Tooltip,
   Typography,
@@ -27,6 +28,7 @@ import TourRoundedIcon from "@mui/icons-material/TourRounded";
 import BtnAction from "@/components/admin/section/btnAction";
 import Link from "next/link";
 import SectionsForm from "@/components/forms/SectionsForm";
+import NoData from "@/components/error/NoData";
 
 const InformationFichas = () => {
   const [section, setSection] = useState<Section[]>([]);
@@ -42,6 +44,7 @@ const InformationFichas = () => {
       console.log(response.data);
       if (response.data !== undefined) {
         setSection(response.data);
+        hayDatos(true);
       }
       return response;
     } catch (error) {
@@ -75,11 +78,12 @@ const InformationFichas = () => {
     console.log("Esta es una prueba warro");
   };
 
-  const [edit, setEdit] = useState(true);
+  const [edit, setEdit] = useState(false);
   const [id, setID] = useState();
   const [nombreSeccion, setNombreSeccion] = useState("");
   const [descSeccion, setDescSeccion] = useState("");
   const [isAgregate, setIsAgregate] = useState(false);
+  const [hayDatos,setHayDatos] = useState(false);
 
   return (
     <Box
@@ -132,7 +136,7 @@ const InformationFichas = () => {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    transition:'all .4s '
+                    transition: "all .4s ",
                   }}
                 >
                   {!isAgregate ? <AddRoundedIcon /> : <CloseRoundedIcon />}
@@ -143,7 +147,7 @@ const InformationFichas = () => {
         </Box>
       </Box>
       <Box>
-        {isAgregate && (
+        {(isAgregate || edit) &&(
           <SectionsForm
             title="Guardar"
             onClick={getAllSection}
@@ -162,101 +166,60 @@ const InformationFichas = () => {
           marginTop: "1rem",
         }}
       >
-        <Box
-          sx={{
-            width: "100%",
-            padding: ".7rem",
-          }}
-          className="borde-card card"
-        >
-          <Typography
-            variant="subtitle1"
-            sx={{
-              color: theme.palette.secondary.light,
-              fontWeight: 500,
-            }}
-          >
-            Seccion de prueba
-          </Typography>
-          <Typography
-            sx={{
-              color: theme.palette.secondary.contrastText,
-            }}
-          >
-            Esta es una targeta de prueba para poder darle estilos.
-          </Typography>
-          {/* Aquí puedes agregar más detalles según tus necesidades */}
-          <Box>
-            <Link href="/admin">
-              <BtnAction
-                tooltipTitle="Visitar"
-                icon={TourRoundedIcon}
-                onClick={handlePrueba}
-              />
-            </Link>
-
-            <BtnAction
-              tooltipTitle="Editar"
-              icon={EditRoundedIcon}
-              onClick={handlePrueba}
-            />
-            <BtnAction
-              tooltipTitle="Eliminar"
-              icon={DeleteRoundedIcon}
-              onClick={handlePrueba}
-            />
-          </Box>
-        </Box>
-        {section.map((item) => (
-          <Box
-            sx={{
-              width: "100%",
-              padding: ".7rem",
-            }}
-            key={item.id}
-            className="borde-card card"
-          >
-            <Typography
-              variant="subtitle1"
-              sx={{
-                color: theme.palette.secondary.light,
-                fontWeight: 500,
-              }}
-            >
-              {item.nombre}
-            </Typography>
-            <Typography
-              sx={{
-                color: theme.palette.secondary.contrastText,
-              }}
-            >
-              {item.descripcion}
-            </Typography>
-            {/* Aquí puedes agregar más detalles según tus necesidades */}
-            <Box>
-              <Link href="/admin">
-                <BtnAction
-                  tooltipTitle="Visitar"
-                  icon={TourRoundedIcon}
-                  onClick={handleEliminarClick}
-                />
-              </Link>
-
-              <BtnAction
-                tooltipTitle="Editar"
-                icon={EditRoundedIcon}
-                onClick={() =>
-                  handleEditarClick(item.id, item.nombre, item.descripcion)
-                }
-              />
-              <BtnAction
-                tooltipTitle="Eliminar"
-                icon={DeleteRoundedIcon}
-                onClick={() => handleEliminarClick(item.id)}
-              />
-            </Box>
-          </Box>
-        ))}
+        {hayDatos ? (
+          section.map((item) => (
+            <Fade in={true} key={item.id} timeout={500}>
+              <Box
+                sx={{
+                  width: "100%",
+                  padding: ".7rem",
+                }}
+                key={item.id}
+                className="borde-card card"
+              >
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    color: theme.palette.secondary.light,
+                    fontWeight: 500,
+                  }}
+                >
+                  {item.nombre}
+                </Typography>
+                <Typography
+                  sx={{
+                    color: theme.palette.secondary.contrastText,
+                  }}
+                >
+                  {item.descripcion}
+                </Typography>
+                {/* Aquí puedes agregar más detalles según tus necesidades */}
+                <Box>
+                  <Link href="/admin">
+                    <BtnAction
+                      tooltipTitle="Visitar"
+                      icon={TourRoundedIcon}
+                      onClick={handleEliminarClick}
+                    />
+                  </Link>
+  
+                  <BtnAction
+                    tooltipTitle="Editar"
+                    icon={EditRoundedIcon}
+                    onClick={() =>
+                      handleEditarClick(item.id, item.nombre, item.descripcion)
+                    }
+                  />
+                  <BtnAction
+                    tooltipTitle="Eliminar"
+                    icon={DeleteRoundedIcon}
+                    onClick={() => handleEliminarClick(item.id)}
+                  />
+                </Box>
+              </Box>
+            </Fade>
+          ))
+        ):<NoData/>}
       </Box>
     </Box>
   );
