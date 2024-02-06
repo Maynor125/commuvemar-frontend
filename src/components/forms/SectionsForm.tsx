@@ -113,12 +113,17 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
     <form className="borde-card" onSubmit={handleSubmit(onSubmit)}>
       <Box
         sx={{
-          padding:'1rem',
+          padding: "1rem",
           width: "100%",
           display: "flex",
           gap: "1rem",
-          alignItems:'center',
-          justifyContent:'space-between'
+          alignItems: "center",
+          justifyContent: "space-between",
+
+          "@media (max-width: 1100px)": {
+            flexDirection: "column",
+            alignItems: "stretch", // Alinear los elementos al principio y al final
+          },
         }}
       >
         <TextField
@@ -128,18 +133,21 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
           {...register("nombre")}
           error={!!errors.nombre}
           helperText={errors?.nombre?.message}
+          value={isEdit ? nombreSection || "" : ""}
         />
         <TextField
-          sx={{width:'1flex'}}
+          sx={{ flex: 1 }}
           id="descripcion"
           label="Escribe una descripcion"
           multiline
           {...register("descripcion")}
           error={!!errors.descripcion}
           helperText={errors?.descripcion?.message}
+          value={isEdit ? descripcionSection || "" : ""}
         />
         <Tooltip title={title}>
           <button onClick={onClick} className="btn-save" type="submit">
+            Guardar
             <SaveRoundedIcon />
           </button>
         </Tooltip>

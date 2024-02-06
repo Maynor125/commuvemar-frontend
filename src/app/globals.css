@@ -164,8 +164,9 @@ p {
   background: #0F0F15;
 }
 
+/*Estilos para el apartado de secciones*/
 .btn-save{
-  padding: .5rem .8rem;
+  padding: .9rem 1rem;
   background-color: #26a4da;
   color: #fff;
   cursor: pointer;
@@ -173,12 +174,28 @@ p {
   font-size: 1rem;
   border: 1px solid #26a4da;
   transition: all .3s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: center;
 }
 .btn-save:hover{
   background: none;
   border-color: #26a4da;
   color: #26a4da;
 }
+.btn-addseccion{
+  cursor: pointer;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*--------------------------------------------*/
+
 /* MEDIA QUERIES (medium screen) */
 
 @media screen and (max-width: 1024px) {

@@ -1,5 +1,8 @@
 "use client";
 
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+
 import React, { useEffect, useState } from "react";
 import {
   createSection,
@@ -46,28 +49,6 @@ const InformationFichas = () => {
     }
   };
 
-  const createSections = async (nombre: string, descripcion: string) => {
-    try {
-      const response = await createSection(nombre, descripcion);
-      getAllSection();
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const updateSections = async (
-    id: number,
-    nombre: string,
-    descripcion: string
-  ) => {
-    try {
-      const response = await updateSection(id, nombre, descripcion);
-      getAllSection();
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const deleteSections = async (id: number) => {
     try {
       const response = await deleteSection(id);
@@ -98,6 +79,7 @@ const InformationFichas = () => {
   const [id, setID] = useState();
   const [nombreSeccion, setNombreSeccion] = useState("");
   const [descSeccion, setDescSeccion] = useState("");
+  const [isAgregate, setIsAgregate] = useState(false);
 
   return (
     <Box
@@ -112,6 +94,7 @@ const InformationFichas = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          marginY: "1rem",
         }}
       >
         <Typography
@@ -123,16 +106,53 @@ const InformationFichas = () => {
         >
           Secciones
         </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: ".5rem",
+          }}
+        >
+          <Typography
+            sx={{
+              color: theme.palette.secondary.contrastText,
+            }}
+          >
+            Agregar Seccion
+          </Typography>
+          <Box>
+            <Tooltip title="Agregar Seccion">
+              <button
+                onClick={() => setIsAgregate(!isAgregate)}
+                className="box-with-shadow btn-addseccion"
+              >
+                <Typography
+                  sx={{
+                    color: theme.palette.secondary.contrastText,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    transition:'all .4s '
+                  }}
+                >
+                  {!isAgregate ? <AddRoundedIcon /> : <CloseRoundedIcon />}
+                </Typography>
+              </button>
+            </Tooltip>
+          </Box>
+        </Box>
       </Box>
       <Box>
-        <SectionsForm
-          title="Guardar"
-          onClick={getAllSection}
-          isEdit={edit}
-          idSection={id}
-          nombreSection={nombreSeccion}
-          descripcionSection={descSeccion}
-        />
+        {isAgregate && (
+          <SectionsForm
+            title="Guardar"
+            onClick={getAllSection}
+            isEdit={edit}
+            idSection={id}
+            nombreSection={nombreSeccion}
+            descripcionSection={descSeccion}
+          />
+        )}
       </Box>
       <Box
         sx={{
