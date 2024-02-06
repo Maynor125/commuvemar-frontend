@@ -260,7 +260,7 @@ const InformationFichas = () => {
 
                 {/* Aquí puedes agregar más detalles según tus necesidades */}
                 <Box>
-                  <Link href="/admin">
+                  <Link href={`/admin/infoFichas/${item.id}`}>
                     <BtnAction
                       tooltipTitle="Visitar"
                       icon={TourRoundedIcon}
