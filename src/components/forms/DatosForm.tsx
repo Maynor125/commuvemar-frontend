@@ -1,12 +1,27 @@
 import { Box, TextField, Tooltip } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 import { DatosSchema } from '@/validations/datoSchema';
 import { datoInterface } from '@/types/dato';
 import { ZodError } from "zod";
 import { useForm, Resolver, FieldErrors } from "react-hook-form";
 
-const DatosForm = () => {
+interface GeneralActionProps { 
+  onClick: () => void;
+  //title: string;
+  isEdit: boolean;
+  idDato?: number;
+  tituloDato?: string;
+  descripcionDato?: string;
+}
+
+const DatosForm : React.FC<GeneralActionProps>= ({
+  onClick,
+  isEdit,
+  descripcionDato,
+  idDato,
+  tituloDato
+}) => {
     const resolver: Resolver<datoInterface, FieldErrors<datoInterface>> = async (data) => {
         try {
           // Validar los datos con zod
@@ -42,8 +57,14 @@ const DatosForm = () => {
       } = useForm<datoInterface>({
         resolver: resolver,
       });
+
+      const [edit,setEdit] = useState(false);
+
+      const onSubmit = (data: datoInterface) => {
+        console.log("Formulario de secciones enviado:", data);
+      }
   return (
-    <form  className="borde-card" action="">
+    <form  className="borde-card" onSubmit={handleSubmit(onSubmit)}>
        <Box
         sx={{
           padding: "1rem",
@@ -60,15 +81,15 @@ const DatosForm = () => {
         }}
       >
         <TextField
-          id="nombre"
-          label="Nombre de Dato"
+          id="titulo"
+          label="Titulo de Dato"
           variant="outlined"
           
           {...register("titulo")}
           error={!!errors.titulo}
           helperText={errors?.titulo?.message}
-          /*defaultValue={isEdit ? nombreSection || "" : ""}*/
-          /*InputLabelProps={{ shrink: !!nombreSection || undefined }}*/
+          defaultValue={isEdit ? tituloDato || "" : ""}
+          InputLabelProps={{ shrink: !!tituloDato|| undefined }}
         />
         <TextField
           sx={{ flex: 1 }}
@@ -79,8 +100,8 @@ const DatosForm = () => {
           {...register("descripcion")}
           error={!!errors.descripcion}
           helperText={errors?.descripcion?.message}
-          /*defaultValue={isEdit ? descripcionSection || "" : ""}
-          InputLabelProps={{ shrink: !!descripcionSection || undefined }}*/
+          defaultValue={isEdit ? descripcionDato || "" : ""}
+          InputLabelProps={{ shrink: !!descripcionDato || undefined }}
         />
         <Tooltip title={/*title*/''}>
           <button /*onClick={onClick}*/ className="btn-save" type="submit">

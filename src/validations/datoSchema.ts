@@ -4,10 +4,10 @@ export const DatosSchema = z.object({
   titulo: z
     .string()
     .min(5, {
-      message: "El nombre debe tener al menos 5 caracteres",
+      message: "El titulo debe tener al menos 5 caracteres",
     })
     .max(50, {
-      message: "el nombre debe tener maximo 50 caracteres",
+      message: "El titulo debe tener maximo 50 caracteres",
     }),
   descripcion: z
     .string()
