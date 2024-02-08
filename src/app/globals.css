@@ -167,12 +167,12 @@ p {
 /*Estilos para el apartado de secciones*/
 .btn-save{
   padding: .9rem 1rem;
-  background-color: #26a4da;
+  background-color: #4FBD55;
   color: #fff;
   cursor: pointer;
   border-radius: 5px;
   font-size: 1rem;
-  border: 1px solid #26a4da;
+  border: 1px solid #4FBD55;
   transition: all .3s;
   display: flex;
   align-items: center;
@@ -181,8 +181,8 @@ p {
 }
 .btn-save:hover{
   background: none;
-  border-color: #26a4da;
-  color: #26a4da;
+  border-color: #4FBD55;
+  color: #4FBD55;
 }
 .btn-addseccion{
   cursor: pointer;

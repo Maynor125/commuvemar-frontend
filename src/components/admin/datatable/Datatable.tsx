@@ -40,7 +40,7 @@ const Datatable: React.FC<DataTableProps> = ({
   };
   return (
     <DataGrid
-    
+      sx={{width:'100%'}}
       rows={rows.filter((row) =>
         row.nombre.toLowerCase().includes(filterText.toLowerCase())
       )}

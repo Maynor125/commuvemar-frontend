@@ -8,6 +8,7 @@ import Datatable from "@/components/admin/datatable/Datatable";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import { GridActionsCellItem } from "@mui/x-data-grid";
+import DatosForm from "@/components/forms/DatosForm";
 /*
 export async function generateMetadata({ params }:any) {
   const post= await getData(params.id)
@@ -163,6 +164,13 @@ const page = () => {
           onChange={(e) => setFilterText(e.target.value)}
         />
         <Button>Agregar</Button>
+      </Box>
+      <Box
+        sx={{
+          marginTop: "1rem",
+        }}
+      >
+        <DatosForm />
       </Box>
       <Box
         sx={{
