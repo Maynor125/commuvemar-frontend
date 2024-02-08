@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FilterNoneIcon from "@mui/icons-material/FilterNone";
 import Datatable from "@/components/admin/datatable/Datatable";
 
@@ -15,11 +15,17 @@ import { getSectionsId } from "@/utils/sections";
 const allGetData = async (id: number) => {
   try {
     const response = await getDatosSection(id);
-    console.log(response.data);
+    console.log("datos de esta seccion", response.data);
 
-    return response.data;
+    // Verificar si response.data es undefined
+    if (response.data === undefined) {
+      return []; // Devolver un array vacío si no hay datos
+    } else {
+      return response.data;
+    }
   } catch (error) {
     console.error(error);
+    return []; // En caso de error, devolver un array vacío para evitar errores de tipo
   }
 };
 
@@ -27,7 +33,7 @@ export async function generateMetadata({ params }: any) {
   const dato = await allGetData(params.id);
   return {
     titulo: "esta es una seccion",
-    descripcion: "seccion prrona",
+    descripcion: "seccion perrona",
   };
 }
 
@@ -35,27 +41,51 @@ const page = ({ params }: any) => {
   const theme = useTheme();
   const [filterText, setFilterText] = useState("");
 
+
+  const dato = allGetData(params.id);
   const getOneSection = async () => {
     try {
       const response = await getSectionsId(params.id);
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error(error);
     }
   };
-  console.log(getOneSection());//Pueba
+
+  const [sectionData, setSectionData] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getOneSection();
+      setSectionData(data);
+    };
+    fetchData();
+  }, []);
+
+
+  const [dataRows, setDataRows] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await allGetData(params.id);
+      setDataRows(data);
+    };
+    fetchData();
+  }, [params.id]);
+
   //----------------------------------------------------------
   const rows = [
-    { id: 1, nombre: "John Doe", descripcion: "Description 1" },
-    { id: 2, nombre: "Maynor Padilla", descripcion: "Description 2" },
+    { id: 1, titulo: "John Doe", descripcion: "Description 1" },
+    { id: 2, titulo: "Maynor Padilla", descripcion: "Description 2" },
     // Agrega más filas si es necesario
   ];
 
   const columns = [
     { field: "id", headerName: "ID", headerClassName: "header-grid" },
     {
-      field: "nombre",
-      headerName: "Nombre",
+      field: "titulo",
+      headerName: "Titulo",
       width: 250,
       headerClassName: "header-grid",
     },
@@ -130,21 +160,21 @@ const page = ({ params }: any) => {
           marginTop: "2rem",
         }}
       >
+        
         <Typography
           sx={{
             color: theme.palette.secondary.light,
           }}
           variant="h4"
         >
-          Seccion de prueba
+         {sectionData?.nombre}
         </Typography>
         <Typography
           sx={{
             color: theme.palette.secondary.contrastText,
           }}
         >
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error rerum
-          esse assumenda modi mollitia cum tempore delectus quas totam ab!
+          {sectionData?.descripcion}
         </Typography>
       </Box>
       <Box
@@ -207,7 +237,7 @@ const page = ({ params }: any) => {
       >
         <Datatable
           columns={columns}
-          rows={rows}
+          rows={dataRows}
           filterText={filterText}
           onDelete={handleDelete}
           onEdit={handleEdit}

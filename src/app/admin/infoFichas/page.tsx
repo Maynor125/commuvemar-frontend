@@ -263,7 +263,7 @@ const InformationFichas = () => {
                   <Link href={`/admin/infoFichas/${item.id}`}>
                     <BtnAction
                       tooltipTitle="Visitar"
-                      icon={TourRoundedIcon}
+                      icon={ForwardRoundedIcon}
                       onClick={handleEliminarClick}
                     />
                   </Link>

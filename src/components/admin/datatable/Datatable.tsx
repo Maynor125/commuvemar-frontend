@@ -42,7 +42,7 @@ const Datatable: React.FC<DataTableProps> = ({
     <DataGrid
       sx={{width:'100%'}}
       rows={rows.filter((row) =>
-        row.nombre.toLowerCase().includes(filterText.toLowerCase())
+        row.titulo.toLowerCase().includes(filterText.toLowerCase())
       )}
       columns={columns.map((column) => {
         if (column.editable) {
