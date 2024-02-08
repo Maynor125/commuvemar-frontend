@@ -1,12 +1,11 @@
 import React from "react";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
-import { IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import { useDispatch } from "react-redux";
 
-import EditRoundedIcon from "@mui/icons-material/EditRounded";
-import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 
-import '../../components.css'
+import "../../components.css";
+
 
 interface ColumnDef {
   field: string;
@@ -21,8 +20,9 @@ interface DataTableProps {
   columns: ColumnDef[];
   onEdit: (id: any) => void;
   onDelete: (id: any) => void;
-  filterText: string; 
+  filterText: string;
 }
+
 
 const Datatable: React.FC<DataTableProps> = ({
   rows,
@@ -31,47 +31,38 @@ const Datatable: React.FC<DataTableProps> = ({
   onEdit,
   filterText,
 }) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    // Definir estilos personalizados para el DataGrid
+  // Definir estilos personalizados para el DataGrid
   const gridClasses = {
     root: "custom-datagrid-root", // Clase personalizada para el root del DataGrid
     header: "custom-datagrid-header", // Clase personalizada para el header del DataGrid
   };
-    return (
-        <DataGrid
-  rows={rows.filter((row) =>
-    row.nombre.toLowerCase().includes(filterText.toLowerCase())
-  )}
-  columns={columns.map(column => {
-    if (column.editable) {
-      return {
-        ...column,
-        renderCell: (params: any) => (
-          <>
-            <IconButton
-              color="primary"
-              size="small"
-              onClick={() => onEdit(params.id)}
-            >
-              <EditRoundedIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              color="secondary"
-              size="small"
-              onClick={() => onDelete(params.id)}
-            >
-              <DeleteRoundedIcon fontSize="small" />
-            </IconButton>
-          </>
-        ),
-      };
-    }
-    return column;
-  })}
-  classes={gridClasses}
-/>
-      );
+  return (
+    <DataGrid
+    
+      rows={rows.filter((row) =>
+        row.nombre.toLowerCase().includes(filterText.toLowerCase())
+      )}
+      columns={columns.map((column) => {
+        if (column.editable) {
+          return {
+            ...column,
+            flex: 1,
+            
+          };
+        } else if (column.field === "descripcion") {
+          return {
+            ...column,
+            flex: 2, // Ajustar el ancho de la columna de descripción
+          };
+        }
+        return column;
+      })}
+
+      autoHeight
+    />
+  );
 };
 
 export default Datatable;

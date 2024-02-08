@@ -196,6 +196,12 @@ p {
 }
 /*--------------------------------------------*/
 
+.header-grid{
+  font-weight: bold;
+  background-color: #26a4da;
+  color: #f8f7f7;
+}
+
 /* MEDIA QUERIES (medium screen) */
 
 @media screen and (max-width: 1024px) {
