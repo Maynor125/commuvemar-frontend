@@ -9,19 +9,41 @@ import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import DatosForm from "@/components/forms/DatosForm";
-/*
-export async function generateMetadata({ params }:any) {
-  const post= await getData(params.id)
-  return {
-    titulo: post.title,
-    descripcion:post.desc,
-  };
-}*/
+import { getDatosSection } from "@/utils/datoSection";
+import { getSectionsId } from "@/utils/sections";
 
-const page = () => {
+const allGetData = async (id: number) => {
+  try {
+    const response = await getDatosSection(id);
+    console.log(response.data);
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export async function generateMetadata({ params }: any) {
+  const dato = await allGetData(params.id);
+  return {
+    titulo: "esta es una seccion",
+    descripcion: "seccion prrona",
+  };
+}
+
+const page = ({ params }: any) => {
   const theme = useTheme();
   const [filterText, setFilterText] = useState("");
 
+  const getOneSection = async () => {
+    try {
+      const response = await getSectionsId(params.id);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  console.log(getOneSection());//Pueba
   //----------------------------------------------------------
   const rows = [
     { id: 1, nombre: "John Doe", descripcion: "Description 1" },
@@ -170,7 +192,13 @@ const page = () => {
           marginTop: "1rem",
         }}
       >
-        <DatosForm />
+        <DatosForm
+          isEdit={false}
+          idDato={2}
+          descripcionDato="jajaj"
+          tituloDato="hola"
+          onClick={() => handleEdit}
+        />
       </Box>
       <Box
         sx={{
