@@ -21,6 +21,7 @@ import { deleteDato, getDatosSection } from "@/utils/datoSection";
 import { getSectionsId } from "@/utils/sections";
 
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
+import MessageGlobal from "@/components/message/MessageGlobal";
 
 const page = ({ params }: any) => {
   const theme = useTheme();
@@ -47,9 +48,17 @@ const page = ({ params }: any) => {
     }
   };
 
+  const [isDelete, setIsDelete] = React.useState(false);
   const handleSave = () => {
-    // Perform save action
-    setMessage("Data saved successfully!");
+    if (edit) {
+      setMessage("El dato se edito!");
+    }
+    if (isDelete) {
+      setMessage("El dato se elimino!");
+    } else {
+      setMessage("El dato se creo!");
+    }
+
     setShowMessage(true);
     setTimeout(() => setShowMessage(false), 3000);
     updateTable();
@@ -96,11 +105,16 @@ const page = ({ params }: any) => {
   //----------------------------------------------------------
 
   const columns = [
-    { field: "id", headerName: "ID", headerClassName: "header-grid" },
+    {
+      field: "id",
+      headerName: "ID",
+      headerClassName: "header-grid",
+      width: 80,
+    },
     {
       field: "titulo",
       headerName: "Titulo",
-      width: 250,
+      width: 300,
       headerClassName: "header-grid",
     },
     {
@@ -172,11 +186,12 @@ const page = ({ params }: any) => {
   };
 
   const handleDelete = async (id: number) => {
-    console.log("Delete ID:", id);
+    setIsDelete(true);
     // Aquí puedes implementar la lógica para eliminar el elemento con el ID dado
     await deleteDato(id);
     //Aqui ira la funcion para recargar la tabla.
     updateTable();
+    handleSave();
   };
   //----------------------------------------------------------
   const [edit, setEdit] = useState(false);
@@ -260,9 +275,19 @@ const page = ({ params }: any) => {
           }}
           onChange={(e) => setFilterText(e.target.value)}
         />
-        <Button onClick={() => setIsAgregate(!isAgregate)}>
+        <Button
+          sx={{
+            color: "#fff",
+            backgroundColor: !isAgregate ? "#00A2DC" : "#D43333",
+            "&:hover": {
+              backgroundColor: !isAgregate ? "#0077b3" : "#a62a2a", // Cambia el color de fondo al pasar el cursor
+            },
+          }}
+          variant="contained"
+          onClick={() => setIsAgregate(!isAgregate)}
+        >
           {texto}
-          </Button>
+        </Button>
       </Box>
       {(isAgregate || edit) && (
         <Box
@@ -280,7 +305,11 @@ const page = ({ params }: any) => {
           />
         </Box>
       )}
-
+      <MessageGlobal
+        show={showMessage}
+        message={message}
+        type={edit ? "info" : isDelete ? "error" : "success"}
+      />
       <Box
         sx={{
           marginTop: "1rem",

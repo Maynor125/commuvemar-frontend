@@ -72,16 +72,17 @@ const DatosForm: React.FC<GeneralActionProps> = ({
         if (tituloDato) {
           if (descripcionDato) {
             updateDatos(idDato, data.titulo, data.descripcion);
+            onClick();
           }
         }
       }
     } else {
       createDatos(data.titulo, data.descripcion);
+      onClick();
     }
     // Limpiar los valores de los campos
     setValue("titulo", "");
     setValue("descripcion", "");
-    onClick();
   };
 
   const createDatos = async (titulo: string, descripcion: string) => {
