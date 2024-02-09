@@ -1,4 +1,5 @@
 import apiManager from "@/services/apiManager";
+import { datoInterface } from "@/types/dato";
 import { Section } from "@/types/section";
 
 interface ApiResponse {
@@ -26,6 +27,7 @@ export const getSectionsId = async (id: number): Promise<ApiResponse> => {
     return { error: error.response?.data.message || "Error desconocido" };
   }
 };
+
 
 export const createSection = async (
   nombre: string,

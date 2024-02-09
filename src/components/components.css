@@ -2,3 +2,10 @@
     width: 8rem;
     display: block;
 }
+
+/*Estilos para la tabla*/
+.custom-datagrid-header {
+    /* Estilos para el header del DataGrid */
+    /* Por ejemplo, puedes definir el color de fondo */
+    background: #da0303;
+  }

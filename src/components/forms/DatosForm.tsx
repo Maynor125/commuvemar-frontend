@@ -1,38 +1,35 @@
-"use client";
-
-import { Box, IconButton, TextField, Tooltip } from "@mui/material";
-import React from "react";
-import { Section } from "@/types/section";
-import { SectionsSchema } from "@/validations/sectionsSchema";
-import { useForm, Resolver, FieldErrors } from "react-hook-form";
-import { useRef, useState } from "react";
-import { ZodError } from "zod";
-import { createSection, updateSection } from "@/utils/sections";
-
-import TourRoundedIcon from "@mui/icons-material/TourRounded";
+import { Box, TextField, Tooltip } from "@mui/material";
+import React, { useState } from "react";
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
+import { DatosSchema } from "@/validations/datoSchema";
+import { datoInterface } from "@/types/dato";
+import { ZodError } from "zod";
+import { useForm, Resolver, FieldErrors } from "react-hook-form";
+import { createDato, updateDato } from "@/utils/datoSection";
 
 interface GeneralActionProps {
   onClick: () => void;
-  title: string;
   isEdit: boolean;
-  idSection?: number;
-  nombreSection?: string;
-  descripcionSection?: string;
+  idDato?: number;
+  tituloDato?: string;
+  descripcionDato?: string;
+  IDSeccionesFicha: number;
 }
 
-const SectionsForm: React.FC<GeneralActionProps> = ({
+const DatosForm: React.FC<GeneralActionProps> = ({
   onClick,
-  title,
   isEdit,
-  idSection,
-  nombreSection,
-  descripcionSection,
+  descripcionDato,
+  idDato,
+  tituloDato,
+  IDSeccionesFicha,
 }) => {
-  const resolver: Resolver<Section, FieldErrors<Section>> = async (data) => {
+  const resolver: Resolver<datoInterface, FieldErrors<datoInterface>> = async (
+    data
+  ) => {
     try {
       // Validar los datos con zod
-      await SectionsSchema.parseAsync(data);
+      await DatosSchema.parseAsync(data);
       // Devolver los valores correctamente
       return { values: data, errors: {} };
     } catch (error) {
@@ -40,11 +37,11 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
       const zodError = error as ZodError;
 
       // Construir el objeto de errores
-      const fieldErrors: FieldErrors<Section> = {};
+      const fieldErrors: FieldErrors<datoInterface> = {};
       zodError.errors.forEach((issue) => {
         if (issue.path) {
           // Asignar errores a los campos correspondientes
-          const fieldName = issue.path[0] as keyof Section;
+          const fieldName = issue.path[0] as keyof datoInterface;
           fieldErrors[fieldName] = {
             type: "validation", // Asegúrate de ajustar esto según tus necesidades
             message: issue.message ?? "Error de validación",
@@ -56,60 +53,62 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
       return { values: {}, errors: fieldErrors };
     }
   };
-
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<Section>({
+  } = useForm<datoInterface>({
     resolver: resolver,
   });
-  console.log("el id que me pasan es: ", idSection);
-  console.log("el nombre que me pasan es: ", nombreSection);
-  console.log("la  desc que me pasan es: ", descripcionSection);
 
-  const onSubmit = (data: Section) => {
+  const [edit, setEdit] = useState(false);
+
+  const onSubmit = (data: datoInterface) => {
     console.log("Formulario de secciones enviado:", data);
 
-    // Aquí ira la lógica del crud de secciones.
     if (isEdit) {
-      if (idSection && idSection !== -1) {
-        if (nombreSection /*&& nombreSection !== ""*/) {
-          if (descripcionSection /*&& descripcionSection !== ""*/) {
-            updateSections(idSection, data.nombre, data.descripcion);
+      if (idDato && idDato !== -1) {
+        if (tituloDato) {
+          if (descripcionDato) {
+            updateDatos(idDato, data.titulo, data.descripcion);
+            onClick();
           }
         }
       }
     } else {
-      createSections(data.nombre, data.descripcion);
+      createDatos(data.titulo, data.descripcion);
+      onClick();
     }
     // Limpiar los valores de los campos
-    setValue("nombre", "");
+    setValue("titulo", "");
     setValue("descripcion", "");
-    onClick();
   };
 
-  const createSections = async (nombre: string, descripcion: string) => {
+  const createDatos = async (titulo: string, descripcion: string) => {
     try {
-      const response = await createSection(nombre, descripcion);
+      const response = await createDato(titulo, descripcion, IDSeccionesFicha);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const updateSections = async (
+  const updateDatos = async (
     id: number,
-    nombre: string,
+    titulo: string,
     descripcion: string
   ) => {
     try {
-      const response = await updateSection(id, nombre, descripcion);
+      const response = await updateDato(
+        id,
+        titulo,
+        descripcion,
+        IDSeccionesFicha
+      );
     } catch (error) {
       console.error(error);
     }
   };
-
   return (
     <form className="borde-card" onSubmit={handleSubmit(onSubmit)}>
       <Box
@@ -128,14 +127,14 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
         }}
       >
         <TextField
-          id="nombre"
-          label="Nombre de seccion"
+          id="titulo"
+          label="Titulo de Dato"
           variant="outlined"
-          {...register("nombre")}
-          error={!!errors.nombre}
-          helperText={errors?.nombre?.message}
-          defaultValue={isEdit ? nombreSection || "" : ""}
-          InputLabelProps={{ shrink: !!nombreSection || undefined }}
+          {...register("titulo")}
+          error={!!errors.titulo}
+          helperText={errors?.titulo?.message}
+          defaultValue={isEdit ? tituloDato || "" : ""}
+          InputLabelProps={{ shrink: !!tituloDato || undefined }}
         />
         <TextField
           sx={{ flex: 1 }}
@@ -145,10 +144,10 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
           {...register("descripcion")}
           error={!!errors.descripcion}
           helperText={errors?.descripcion?.message}
-          defaultValue={isEdit ? descripcionSection || "" : ""}
-          InputLabelProps={{ shrink: !!descripcionSection || undefined }}
+          defaultValue={isEdit ? descripcionDato || "" : ""}
+          InputLabelProps={{ shrink: !!descripcionDato || undefined }}
         />
-        <Tooltip title={title}>
+        <Tooltip title={/*title*/ "Guardar Dato"}>
           <button onClick={onClick} className="btn-save" type="submit">
             Guardar
             <SaveRoundedIcon />
@@ -159,4 +158,4 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
   );
 };
 
-export default SectionsForm;
+export default DatosForm;
