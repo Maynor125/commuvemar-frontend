@@ -39,14 +39,22 @@ const InformationFichas = () => {
 
   const [showMessage, setShowMessage] = React.useState(false);
   const [message, setMessage] = React.useState("");
+  const [isDelete, setIsDelete] = React.useState(false);
 
   const handleSave = () => {
     // Perform save action
-    setMessage("Data saved successfully!");
+    if (edit) {
+      setMessage("la Seccion se edito!");
+    }
+    if (isDelete) {
+      setMessage("la Seccion se elimino!");
+    } else {
+      setMessage("la Seccion se creo!");
+    }
+
     setShowMessage(true);
-    setTimeout(() => setShowMessage(false), 3000);
+    setTimeout(() => setShowMessage(false), 4000);
     getAllSection();
-    //setTimeout(() => setShowMessage(false), 3000);
   };
 
   useEffect(() => {
@@ -78,9 +86,10 @@ const InformationFichas = () => {
 
   const handleEliminarClick = (id: any) => {
     // Lógica para editar
+    setIsDelete(true);
     setID(id);
     deleteSections(id);
-    console.log("Botón Eliminar clickeado");
+    handleSave();
   };
 
   const handleEditarClick = (id: any, nombre: string, descripcion: string) => {
@@ -173,7 +182,11 @@ const InformationFichas = () => {
           />
         )}
       </Box>
-      <MessageGlobal show={showMessage} message={message} type="success" />
+      <MessageGlobal
+        show={showMessage}
+        message={message}
+        type={edit ? "info" : isDelete ? "error" : "success"}
+      />
       <Box
         sx={{
           display: "flex",
@@ -264,7 +277,7 @@ const InformationFichas = () => {
                     <BtnAction
                       tooltipTitle="Visitar"
                       icon={ForwardRoundedIcon}
-                      onClick={handleEliminarClick}
+                     
                     />
                   </Link>
 

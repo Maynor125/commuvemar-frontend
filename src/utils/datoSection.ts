@@ -22,11 +22,12 @@ export const createDato = async (
     IDSeccionesFicha:number
   ): Promise<ApiResponse> => {
     try {
-      const response = await apiManager.post("/datos", {
+      const response = await apiManager.post("/dato", {
         titulo,
         descripcion,
         IDSeccionesFicha
       });
+      console.log(response);
       return response.data;
     } catch (error: any) {
       return { error: error.response?.data.message || "Error desconocido" };

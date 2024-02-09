@@ -110,9 +110,6 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
     }
   };
 
-  const [edit, setEdit] = useState(true);
-  const [is, setId] = useState("");
-
   return (
     <form className="borde-card" onSubmit={handleSubmit(onSubmit)}>
       <Box
