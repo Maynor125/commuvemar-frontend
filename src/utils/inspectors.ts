@@ -1,15 +1,15 @@
 import apiManager from "@/services/apiManager";
-import { Section } from "@/types/section";
+import { Inspectors } from "@/types/inspectors";
 
 interface ApiResponse {
-  data?: Section[] | undefined;
+  data?: Inspectors[] | undefined;
   error?: string;
 }
 
-export const getSections = async (): Promise<ApiResponse> => {
+export const getInspectors = async (): Promise<ApiResponse> => {
   try {
-    const response = await apiManager.get<Section[]>("/seccionesFicha");
-    console.log(response);
+    const response = await apiManager.get<Inspectors[]>("/inspector");
+
     return { data: response.data };
   } catch (error: any) {
     // Devolver una acción indicando fallo
@@ -17,9 +17,9 @@ export const getSections = async (): Promise<ApiResponse> => {
   }
 };
 
-export const getSectionsId = async (id: number): Promise<ApiResponse> => {
+export const getInspectorsId = async (id: number): Promise<ApiResponse> => {
   try {
-    const response = await apiManager.get<Section[]>(`/seccionesFicha/${id}`);
+    const response = await apiManager.get<Inspectors[]>(`/inspector/${id}`);
     return { data: response.data };
   } catch (error: any) {
     // Devolver una acción indicando fallo
@@ -27,15 +27,16 @@ export const getSectionsId = async (id: number): Promise<ApiResponse> => {
   }
 };
 
-
-export const createSection = async (
+export const createInspectors = async (
   nombre: string,
-  descripcion: string
+  apellido: string,
+  numeroTelefono: string
 ): Promise<ApiResponse> => {
   try {
-    const response = await apiManager.post("/seccionesFicha", {
+    const response = await apiManager.post("/inspector", {
       nombre,
-      descripcion,
+      apellido,
+      numeroTelefono,
     });
     return response.data;
   } catch (error: any) {
@@ -43,15 +44,17 @@ export const createSection = async (
   }
 };
 
-export const updateSection = async (
+export const updateInspectors = async (
   id: number,
   nombre: string,
-  descripcion: string
+  apellido: string,
+  numeroTelefono: string
 ): Promise<ApiResponse> => {
   try {
-    const response = await apiManager.patch(`/seccionesFicha/${id}`, {
+    const response = await apiManager.patch(`/inspector/${id}`, {
       nombre,
-      descripcion,
+      apellido,
+      numeroTelefono,
     });
     return response.data;
   } catch (error: any) {
@@ -59,11 +62,11 @@ export const updateSection = async (
   }
 };
 
-export const deleteSection = async (
+export const deleteInspertors = async (
   id: number
 ): Promise<ApiResponse | void> => {
   try {
-    await apiManager.delete(`/seccionesFicha/${id}`);
+    await apiManager.delete(`/inspector/${id}`);
   } catch (error: any) {
     return { error: error.response?.data.message || "Error desconocido" };
   }
