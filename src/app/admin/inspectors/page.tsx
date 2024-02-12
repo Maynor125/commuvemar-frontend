@@ -7,6 +7,11 @@ import React, { useState } from "react";
 
 const Inspectors = () => {
   const theme = useTheme();
+
+  const [edit, setEdit] = useState(false);
+  const [id, setID] = useState(0);
+  const [tituloDato, setTituloDato] = useState("");
+  const [descripcionDato, setDescripcionDato] = useState("");
   const [isAgregate, setIsAgregate] = useState(false);
   const texto = isAgregate ? "Cancelar" : "Agregar";
   return (
@@ -41,15 +46,21 @@ const Inspectors = () => {
           {texto}
         </Button>
       </Box>
-      <Box>
-        <InspectorsForm/>
-      </Box>
+      {(isAgregate || edit) && (
+        <Box
+          sx={{
+            marginTop: "1rem",
+          }}
+        >
+          <InspectorsForm />
+        </Box>
+      )}
       <Box
         sx={{
           display: "flex",
           gap: "1.5rem",
           flexWrap: "wrap",
-          marginTop:'1rem'
+          marginTop: "1rem",
         }}
       >
         <Box>

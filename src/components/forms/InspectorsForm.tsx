@@ -4,13 +4,15 @@ import { useForm, Resolver, FieldErrors } from "react-hook-form";
 import { Inspectors } from "@/types/inspectors";
 import { InspectorsSchema } from "@/validations/inspectorSchema";
 import { createInspectors, updateInspectors } from "@/utils/inspectors";
+import { Box, TextField, Tooltip } from "@mui/material";
+import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 
 interface GeneralActionProps {
   onClick: () => void;
   isEdit: boolean;
   idInspector?: number;
   nombreInspector?: string;
-  ApellidoInspector?: string;
+  apellidoInspector?: string;
   numeroTelefono: string;
 }
 
@@ -18,7 +20,7 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
   isEdit,
   numeroTelefono,
   onClick,
-  ApellidoInspector,
+  apellidoInspector,
   idInspector,
   nombreInspector,
 }) => {
@@ -118,7 +120,65 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
     }
   };
 
-  return <div>InspectorsForm</div>;
+  return (
+    <form className="borde-card" onSubmit={handleSubmit(onSubmit)}>
+      <Box
+        sx={{
+          padding: "1rem",
+          width: "100%",
+          display: "flex",
+          gap: "1rem",
+          alignItems: "center",
+          justifyContent: "space-between",
+
+          "@media (max-width: 1100px)": {
+            flexDirection: "column",
+            alignItems: "stretch", // Alinear los elementos al principio y al final
+          },
+        }}
+      >
+        <TextField
+          sx={{ flex: 2 }}
+          id="titulo"
+          label="Nombre Inspector"
+          variant="outlined"
+          {...register("nombre")}
+          error={!!errors.nombre}
+          helperText={errors?.nombre?.message}
+          defaultValue={isEdit ? nombreInspector || "" : ""}
+          InputLabelProps={{ shrink: !!nombreInspector || undefined }}
+        />
+        <TextField
+          sx={{ flex: 2 }}
+          id="apellido"
+          label="Apellido Inspector"
+          multiline
+          {...register("apellido")}
+          error={!!errors.apellido}
+          helperText={errors?.apellido?.message}
+          defaultValue={isEdit ? apellidoInspector || "" : ""}
+          InputLabelProps={{ shrink: !!apellidoInspector || undefined }}
+        />
+        <TextField
+          sx={{ flex: 2 }}
+          id="numeroTelefono"
+          label="Numero de telefono"
+          multiline
+          {...register("numeroTelefono")}
+          error={!!errors.numeroTelefono}
+          helperText={errors?.numeroTelefono?.message}
+          defaultValue={isEdit ? numeroTelefono || "" : ""}
+          InputLabelProps={{ shrink: !!numeroTelefono|| undefined }}
+        />
+        <Tooltip title={/*title*/ "Guardar inspector"}>
+          <button onClick={onClick} className="btn-save" type="submit">
+            Guardar
+            <SaveRoundedIcon />
+          </button>
+        </Tooltip>
+      </Box>
+    </form>
+  );
 };
 
 export default InspectorsForm;
