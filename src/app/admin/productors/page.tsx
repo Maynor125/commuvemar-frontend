@@ -3,9 +3,9 @@ import React from 'react'
 
 const Productors = () => {
   return (
-    <ProtectedPage>
+    
           <div>Productors</div>
-    </ProtectedPage>
+   
 
   )
 }
