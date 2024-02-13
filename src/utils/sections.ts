@@ -69,3 +69,4 @@ export const deleteSection = async (
     return { error: error.response?.data.message || "Error desconocido" };
   }
 };
+
