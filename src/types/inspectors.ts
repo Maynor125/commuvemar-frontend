@@ -3,4 +3,5 @@ export interface Inspectors {
     nombre:string,
     apellido:string,
     numeroTelefono:string,
+    urlImg:string,
 }

@@ -8,7 +8,7 @@ interface ApiResponse {
 
 export const getInspectors = async (): Promise<ApiResponse> => {
   try {
-    const response = await apiManager.get<Inspectors[]>("/inspector");
+    const response = await apiManager.get<Inspectors[]>("/trabajador");
 
     return { data: response.data };
   } catch (error: any) {
@@ -19,7 +19,7 @@ export const getInspectors = async (): Promise<ApiResponse> => {
 
 export const getInspectorsId = async (id: number): Promise<ApiResponse> => {
   try {
-    const response = await apiManager.get<Inspectors[]>(`/inspector/${id}`);
+    const response = await apiManager.get<Inspectors[]>(`/trabajador/${id}`);
     return { data: response.data };
   } catch (error: any) {
     // Devolver una acción indicando fallo
@@ -30,13 +30,15 @@ export const getInspectorsId = async (id: number): Promise<ApiResponse> => {
 export const createInspectors = async (
   nombre: string,
   apellido: string,
-  numeroTelefono: string
+  numeroTelefono: string,
+  urlImg: string
 ): Promise<ApiResponse> => {
   try {
-    const response = await apiManager.post("/inspector", {
+    const response = await apiManager.post("/trabajador", {
       nombre,
       apellido,
       numeroTelefono,
+      urlImg
     });
     return response.data;
   } catch (error: any) {
@@ -48,13 +50,15 @@ export const updateInspectors = async (
   id: number,
   nombre: string,
   apellido: string,
-  numeroTelefono: string
+  numeroTelefono: string,
+  urlImg:string
 ): Promise<ApiResponse> => {
   try {
-    const response = await apiManager.patch(`/inspector/${id}`, {
+    const response = await apiManager.patch(`/trabajador/${id}`, {
       nombre,
       apellido,
       numeroTelefono,
+      urlImg
     });
     return response.data;
   } catch (error: any) {
@@ -66,7 +70,7 @@ export const deleteInspertors = async (
   id: number
 ): Promise<ApiResponse | void> => {
   try {
-    await apiManager.delete(`/inspector/${id}`);
+    await apiManager.delete(`/trabajador/${id}`);
   } catch (error: any) {
     return { error: error.response?.data.message || "Error desconocido" };
   }

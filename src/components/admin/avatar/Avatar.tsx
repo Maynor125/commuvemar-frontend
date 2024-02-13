@@ -1,10 +1,13 @@
 'use client'
 
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
+
+
+import PruebaImg from '../../../../public/images/admin/pruebaPerfil.jpg'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -37,17 +40,21 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 
 export default function Avatars() {
+  const theme = useTheme();
   return (
     <Stack direction="row" spacing={2}>
       <StyledBadge
         overlap="circular"
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         variant="dot"
+  
       >
         <Avatar sx={{
             width:'6rem',
-            height:'6rem'
-        }} alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            height:'6rem',
+            border: '2px solid',
+          borderColor:'#E6E8EC',
+        }} alt="Remy Sharp" src='/public/images/admin/pruebaPerfil.jpg' />
       </StyledBadge>
     </Stack>
   );

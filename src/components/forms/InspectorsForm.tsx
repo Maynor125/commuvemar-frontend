@@ -14,6 +14,7 @@ interface GeneralActionProps {
   nombreInspector?: string;
   apellidoInspector?: string;
   numeroTelefono: string;
+  urlImg?: string;
 }
 
 const InspectorsForm: React.FC<GeneralActionProps> = ({
@@ -23,7 +24,31 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
   apellidoInspector,
   idInspector,
   nombreInspector,
+  urlImg,
 }) => {
+  //Logica para guardar la url de la img.
+
+  const [image, setImage] = React.useState<File | null>(null);
+  const [imageUrl, setImageUrl] = React.useState<string | undefined>(urlImg);
+
+  const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files?.[0]) {
+      const file = event.target.files[0];
+      console.log(file);
+      setImage(file);
+      setImageUrl(URL.createObjectURL(file));
+    }
+  };
+
+  React.useEffect(() => {
+    return () => {
+      if (image) {
+        URL.revokeObjectURL(imageUrl!);
+      }
+    };
+  }, [image]);
+
+  //--------------------------------------------------------------------
   const resolver: Resolver<Inspectors, FieldErrors<Inspectors>> = async (
     data
   ) => {
@@ -74,14 +99,20 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
               idInspector,
               data.nombre,
               data.apellido,
-              data.numeroTelefono
+              data.numeroTelefono,
+              data.urlImg
             );
             onClick();
           }
         }
       }
     } else {
-      createInspector(data.nombre, data.apellido, data.numeroTelefono);
+      createInspector(
+        data.nombre,
+        data.apellido,
+        data.numeroTelefono,
+        data.urlImg
+      );
       onClick();
     }
     // Limpiar los valores de los campos
@@ -93,10 +124,16 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
   const createInspector = async (
     nombre: string,
     apellido: string,
-    numeroTelefono: string
+    numeroTelefono: string,
+    urlImg: string
   ) => {
     try {
-      const response = await createInspectors(nombre, apellido, numeroTelefono);
+      const response = await createInspectors(
+        nombre,
+        apellido,
+        numeroTelefono,
+        urlImg
+      );
     } catch (error) {
       console.error(error);
     }
@@ -106,14 +143,16 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
     id: number,
     nombre: string,
     apellido: string,
-    numeroTelefono: string
+    numeroTelefono: string,
+    urlImg: string
   ) => {
     try {
       const response = await updateInspectors(
         id,
         nombre,
         apellido,
-        numeroTelefono
+        numeroTelefono,
+        urlImg
       );
     } catch (error) {
       console.error(error);
@@ -159,6 +198,22 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
           defaultValue={isEdit ? apellidoInspector || "" : ""}
           InputLabelProps={{ shrink: !!apellidoInspector || undefined }}
         />
+      </Box>
+      <Box
+        sx={{
+          padding: "1rem",
+          width: "100%",
+          display: "flex",
+          gap: "1rem",
+          alignItems: "center",
+          justifyContent: "space-between",
+
+          "@media (max-width: 1100px)": {
+            flexDirection: "column",
+            alignItems: "stretch", // Alinear los elementos al principio y al final
+          },
+        }}
+      >
         <TextField
           sx={{ flex: 2 }}
           id="numeroTelefono"
@@ -168,7 +223,14 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
           error={!!errors.numeroTelefono}
           helperText={errors?.numeroTelefono?.message}
           defaultValue={isEdit ? numeroTelefono || "" : ""}
-          InputLabelProps={{ shrink: !!numeroTelefono|| undefined }}
+          InputLabelProps={{ shrink: !!numeroTelefono || undefined }}
+        />
+        <input
+          style={{ flex: 2 }}
+          accept="image/*"
+          type="file"
+          onChange={onImageChange}
+          name="image"
         />
         <Tooltip title={/*title*/ "Guardar inspector"}>
           <button onClick={onClick} className="btn-save" type="submit">
