@@ -12,6 +12,7 @@ import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import UserCard from "@/components/admin/workers/UserCard";
 
 const Inspectors = () => {
   const theme = useTheme();
@@ -146,135 +147,12 @@ const Inspectors = () => {
         sx={{
           display: "flex",
           gap: "1.3rem",
-          flexWrap: "wrap",
           marginTop: "1rem",
         }}
       >
-        <div className="borde-card">
-          <Box
-            sx={{
-              padding: ".5rem 2rem",
-              backgroundColor: theme.palette.background.paper,
-              borderRadius: "4px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  fontWeight: "500",
-                  color: theme.palette.secondary.light,
-                  fontSize: "1.1rem",
-                }}
-              >
-                Anya Taylor
-              </Typography>
-            </Box>
 
-            <Box sx={{ marginY: ".3rem" }}>
-              <Avatars />
-            </Box>
-            <Typography
-              sx={{
-                color: theme.palette.secondary.contrastText,
-              }}
-            >
-              Anya Adriana
-            </Typography>
-            <Typography
-              sx={{
-                color: theme.palette.secondary.contrastText,
-              }}
-            >
-              Taylor Jarquin
-            </Typography>
-            <Typography
-              sx={{
-                color: theme.palette.secondary.contrastText,
-                fontSize: "13px",
-                marginTop: "4px",
-              }}
-            >
-              + 505 3456-2345
-            </Typography>
-          </Box>
-        </div>
-        <div className="borde-card">
-          <Box
-            sx={{
-              width: "11rem",
-              height: "13rem",
-              backgroundColor: theme.palette.background.paper,
-              borderRadius: "4px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Typography
-              variant="subtitle1"
-              sx={{
-                fontWeight: "500",
-                color: theme.palette.secondary.light,
-                fontSize: "1.1rem",
-              }}
-            >
-              Anya Taylor
-            </Typography>
-            <Box sx={{ marginY: ".3rem" }}>
-              <Avatars />
-            </Box>
-            <Typography
-              sx={{
-                color: theme.palette.secondary.contrastText,
-              }}
-            >
-              Anya Adriana
-            </Typography>
-            <Typography
-              sx={{
-                color: theme.palette.secondary.contrastText,
-              }}
-            >
-              Taylor Jarquin
-            </Typography>
-            <Typography
-              sx={{
-                color: theme.palette.secondary.contrastText,
-                fontSize: "13px",
-                marginTop: "4px",
-              }}
-            >
-              + 505 3456-2345
-            </Typography>
-            {/* <Box sx={{
-              display: "flex",
-            }}>
-            <IconButton>
-            <EditRoundedIcon
-                sx={{
-                  color: "#ffc",
-                  backgroundColor: "#FFCD43",
-                  width: "1.9rem",
-                  height: "1.9rem",
-                  padding: ".3rem",
-                  borderRadius: "4px",
-                }}
-              />
-            </IconButton>
-            </Box> */}
-          </Box>
-        </div>
       </Box>
+      <UserCard firstName="May" lastName="Gutierrez" fullName="May Ivar Gutierrez" phoneNumber="763553553" />
     </Box>
   );
 };
