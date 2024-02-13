@@ -1,7 +1,7 @@
 "use client";
 
 import Avatars from "@/components/admin/avatar/Avatar";
-import InspectorsForm from "@/components/forms/InspectorsForm";
+import InspectorsForm from "@/components/forms/workersForm";
 import MessageGlobal from "@/components/message/MessageGlobal";
 import { Inspectors } from "@/types/inspectors";
 import { deleteInspertors, getInspectors } from "@/utils/inspectors";

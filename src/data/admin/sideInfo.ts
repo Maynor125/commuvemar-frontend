@@ -40,8 +40,8 @@ export const PathsSideBar = [
     },
     {
         id:6,
-        name:'Users',
-        path:'/admin/inspectors',
+        name:'Workers',
+        path:'/admin/workers',
         icon:PermIdentityOutlinedIcon,
     },
     {
