@@ -271,7 +271,7 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               sx={{ flex: 3 }}
               value={fechaIngresoPrograma}
               onChange={(date:any) => setValue("fechaIngresoPrograma", date)}
-              TextFieldComponent={(props) => (
+              TextFieldComponent={(props:any) => (
                 <TextField {...props} variant="outlined" />
               )}
             />

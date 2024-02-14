@@ -72,7 +72,7 @@ export const updateProductors = async (
     }
   };
 
-  export const deleteSection = async (
+  export const deleteProductors = async (
     id: number
   ): Promise<ApiResponse | void> => {
     try {
