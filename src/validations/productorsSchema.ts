@@ -36,11 +36,11 @@ export const ProductorsSchema = z.object({
     })
     .refine((data) => /^[0-9+\s]+$/.test(data), {
       message:
-        "El número de teléfono solo puede contener números, espacios y el símbolo de más (+)",
+        "El número de teléfono solo puede contener números",
     }),
   numeroCedula:z.string().length(13, {
     message: "El número de cédula debe tener exactamente 13 caracteres",
   }),
-  fechaIngresoPrograma:z.string(),
+  fechaIngresoPrograma:z.date(),
   estado:z.number(),
 });

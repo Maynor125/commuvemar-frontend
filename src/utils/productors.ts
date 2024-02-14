@@ -30,7 +30,7 @@ export const createProductors = async (
   apellido: string,
   numeroCedula: string,
   numeroTelefono: string,
-  fechaIngresoPrograma: string,
+  fechaIngresoPrograma: Date,
   estado: number
 ): Promise<ApiResponse> => {
   try {
@@ -54,7 +54,7 @@ export const updateProductors = async (
     apellido: string,
     numeroCedula: string,
     numeroTelefono: string,
-    fechaIngresoPrograma: string,
+    fechaIngresoPrograma: Date,
     estado: number
   ): Promise<ApiResponse> => {
     try {
