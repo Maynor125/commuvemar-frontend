@@ -42,5 +42,5 @@ export const ProductorsSchema = z.object({
     message: "El número de cédula debe tener exactamente 13 caracteres",
   }),
   fechaIngresoPrograma:z.date(),
-  estado:z.number(),
+  estado: z.enum(['1', '2', '3']),
 });

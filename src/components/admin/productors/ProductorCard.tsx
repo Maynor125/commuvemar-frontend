@@ -72,20 +72,20 @@ const ProductorCard: React.FC<Props> = ({
             </Box>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="body1">Nombre: Juan</Typography>
+            <Typography variant="body1">Nombre: {nombre}</Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="body1">Apellido: Pérez</Typography>
+            <Typography variant="body1">Apellido: {apellido}</Typography>
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
             <Typography variant="body1">
-              Numero de cédula: 610-140902-1006F
+              Numero de cédula: {numeroCedula}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Typography variant="body1">
-              Numero de teléfono: 8366-2243
+              Numero de teléfono: {numeroTelefono}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 
 import { Box, IconButton, TextField, Tooltip } from "@mui/material";
@@ -14,6 +16,10 @@ import { Dayjs } from "dayjs";
 import { DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
+import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+
+import { SelectChangeEvent } from "@mui/material";
+
 interface GeneralActionProps {
   onClick: () => void;
   nombre: string;
@@ -21,7 +27,7 @@ interface GeneralActionProps {
   numeroCedula: string;
   numeroTelefono: string;
   fechaIngresoPrograma: Date | null;
-  estado: string;
+  estado: number;
   isEdit: boolean;
   idProductor: number;
 }
@@ -74,37 +80,51 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
     formState: { errors },
   } = useForm<Productors>({
     resolver: resolver,
+    defaultValues: {
+      nombre: isEdit ? nombre || "" : "",
+      apellido: isEdit ? apellido || "" : "",
+      numeroCedula: isEdit ? numeroCedula || "" : "",
+      numeroTelefono: isEdit ? numeroTelefono || "" : "",
+      estado: isEdit ? estado: 0,
+    },
   });
 
   const onSubmit = (data: Productors) => {
-    if (isEdit) {
-      if (idProductor && idProductor !== -1) {
-        updateProductor(
-          data.id,
+    console.log("Esto no sirve");
+    console.log("datos del formulario:", data);
+
+    try {
+      if (isEdit) {
+        if (idProductor && idProductor !== -1) {
+          updateProductor(
+            data.id,
+            data.nombre,
+            data.apellido,
+            data.numeroCedula,
+            data.numeroTelefono,
+            data.fechaIngresoPrograma,
+            estado
+          );
+        }
+      } else {
+        createProductor(
           data.nombre,
           data.apellido,
           data.numeroCedula,
           data.numeroTelefono,
           data.fechaIngresoPrograma,
-          data.estado
+          estado
         );
       }
-    } else {
-      createProductor(
-        data.nombre,
-        data.apellido,
-        data.numeroCedula,
-        data.numeroTelefono,
-        data.fechaIngresoPrograma,
-        data.estado
-      );
+    } catch (error) {
+      console.error(error);
     }
+
     // Limpiar los valores de los campos
     setValue("nombre", "");
     setValue("apellido", "");
     setValue("numeroCedula", "");
     setValue("numeroTelefono", "");
-    setValue("fechaIngresoPrograma", null);
     setValue("estado", 0);
   };
 
@@ -123,7 +143,7 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
         numeroCedula,
         numeroTelefono,
         fechaIngresoPrograma,
-        estado
+        Number(estado)
       );
       if (response.data) {
         onClick();
@@ -150,7 +170,7 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
         numeroCedula,
         numeroTelefono,
         fechaIngresoPrograma,
-        estado
+        Number(estado)
       );
       if (response.data) {
         onClick();
@@ -164,6 +184,11 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [valueDate, setValueDate] = React.useState<Dayjs | null>(null);
   console.log(valueDate);
+  const [valueEstado, setValueEstado] = useState(isEdit ? estado : '');
+
+  const handleChangeSelect = (event: SelectChangeEvent<string | number>) => {
+    setValueEstado(event.target.value as string | number);
+  };
 
   return (
     <LocalizationProviderWrapper>
@@ -199,7 +224,7 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               {...register("nombre")}
               error={!!errors.nombre}
               helperText={errors?.nombre?.message}
-              defaultValue={isEdit ? nombre || "" : ""}
+
               InputLabelProps={{ shrink: !!nombre || undefined }}
             />
             <TextField
@@ -210,7 +235,7 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               {...register("apellido")}
               error={!!errors.apellido}
               helperText={errors?.apellido?.message}
-              defaultValue={isEdit ? apellido || "" : ""}
+
               InputLabelProps={{ shrink: !!apellido || undefined }}
             />
           </Box>
@@ -236,7 +261,7 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               {...register("numeroCedula")}
               error={!!errors.numeroCedula}
               helperText={errors?.numeroCedula?.message}
-              defaultValue={isEdit ? numeroCedula || "" : ""}
+
               InputLabelProps={{ shrink: !!numeroCedula || undefined }}
             />
 
@@ -248,7 +273,7 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               {...register("numeroTelefono")}
               error={!!errors.numeroTelefono}
               helperText={errors?.numeroTelefono?.message}
-              defaultValue={isEdit ? numeroTelefono || "" : ""}
+
               InputLabelProps={{ shrink: !!numeroTelefono || undefined }}
             />
           </Box>
@@ -266,28 +291,48 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               },
             }}
           >
-            <DatePicker
-             label="Fecha de ingreso al programa"
+            {/*  <DatePicker
+              label="Fecha de ingreso al programa"
               sx={{ flex: 3 }}
               value={fechaIngresoPrograma}
-              onChange={(date:any) => setValue("fechaIngresoPrograma", date)}
-              TextFieldComponent={(props:any) => (
+              onChange={(date: Date | null) =>
+                setValue("fechaIngresoPrograma", date)
+              }
+
+              TextFieldComponent={(props: any) => (
                 <TextField {...props} variant="outlined" />
               )}
-            />
+            />*/}
             <TextField
-              sx={{ flex: 2 }}
-              id="estado"
-              label="Estado"
-              multiline
-              {...register("estado")}
-              error={!!errors.estado}
-              helperText={errors?.estado?.message}
-              defaultValue={isEdit ? estado || "" : ""}
-              InputLabelProps={{ shrink: !!estado || undefined }}
+              sx={{ flex: 3 }}
+              id="fechaIngresoPrograma"
+              label="Fecha de ingreso al programa"
+              type="date"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              variant="outlined"
+
+              {...register("fechaIngresoPrograma",{required:true})}
             />
-            <Tooltip title="Guardar">
-              <button onClick={onClick} className="btn-save" type="submit">
+            <FormControl sx={{ flex: 2 }}>
+              <InputLabel id="estado-label">Estado</InputLabel>
+              <Select
+                labelId="estado-label"
+                id="estado"
+                value={valueEstado}
+                onChange={handleChangeSelect}
+              
+                displayEmpty
+                label="Estado"
+              >
+                <MenuItem value={"1"}>1</MenuItem>
+                <MenuItem value={"2"}>2</MenuItem>
+                <MenuItem value={"3"}>3</MenuItem>
+              </Select>
+            </FormControl>
+            <Tooltip title="Guardarr">
+              <button className="btn-save" type="submit">
                 Guardar
                 <SaveRoundedIcon />
               </button>

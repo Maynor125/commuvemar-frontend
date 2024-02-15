@@ -20,7 +20,7 @@ const Productors = () => {
   const [numeroCedula, setNumeroCedula] = useState("");
   const [numeroTelefono, setNumeroTelefono] = useState("");
   const [fechaIngresoPrograma, setFechaIngresoPrograma] = useState<Date | null>(null);
-  const [estado,setEstado] = useState("");
+  const [estado,setEstado] = useState<number>(0);
   const [isAgregate, setIsAgregate] = useState(false);
   const texto = isAgregate ? "Cancelar" : "Agregar";
 
@@ -130,6 +130,9 @@ const Productors = () => {
         <Box
           sx={{
             marginTop: "1rem",
+            display: "flex",
+            flexDirection: "column",
+            gap:"1rem"
           }}
         >
           <ProductorCard />
