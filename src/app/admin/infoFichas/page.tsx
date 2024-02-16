@@ -85,7 +85,7 @@ const InformationFichas = () => {
   };
 
   const handleEliminarClick = (id: any) => {
-    // Lógica para editar
+  
     setIsDelete(true);
     setID(id);
     deleteSections(id);
@@ -97,9 +97,6 @@ const InformationFichas = () => {
     setID(id);
     setNombreSeccion(nombre);
     setDescSeccion(descripcion);
-  };
-  const handlePrueba = () => {
-    console.log("Esta es una prueba warro");
   };
 
   const [edit, setEdit] = useState(false);

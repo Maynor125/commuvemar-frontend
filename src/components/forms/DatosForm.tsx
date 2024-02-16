@@ -53,6 +53,7 @@ const DatosForm: React.FC<GeneralActionProps> = ({
       return { values: {}, errors: fieldErrors };
     }
   };
+
   const {
     register,
     handleSubmit,
@@ -62,7 +63,6 @@ const DatosForm: React.FC<GeneralActionProps> = ({
     resolver: resolver,
   });
 
-  const [edit, setEdit] = useState(false);
 
   const onSubmit = (data: datoInterface) => {
     console.log("Formulario de secciones enviado:", data);
