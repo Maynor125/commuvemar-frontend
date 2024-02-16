@@ -1,5 +1,5 @@
 export interface Section {
-  id:number,
+  id:number;
   nombre: string;
   descripcion: string;
 }
