@@ -13,8 +13,9 @@ interface Props {
     areaCacaoProduccion: string;
     areaCacaoDesarrollo: string;
     produccionUltimoSiclo: string;
-    IDProductor: number;
+    IDProductor?: number;
     idFinca?: number;
+    productor: string;
     onEdit?: (id: number) => void;
   onDelete?: (id: number) => void;
 }
@@ -26,7 +27,8 @@ const FincasCard:React.FC<Props>= ({
     areaCacaoProduccion,
     areaCacaoDesarrollo,
     produccionUltimoSiclo,
-    IDProductor
+    IDProductor,
+    productor
 }) => {
     const theme = useTheme();
   return (
@@ -46,9 +48,9 @@ const FincasCard:React.FC<Props>= ({
               variant="h6"
               component="h2"
             >
-              La mamalona
+              Finca {nombre}
             </Typography>
-            <Tooltip sx={{ cursor: "pointer" }} title="Productor">
+            <Tooltip sx={{ cursor: "pointer" }} title="Finca">
               <Box>
                 <Image
                   width={50}
@@ -62,30 +64,30 @@ const FincasCard:React.FC<Props>= ({
           </Box>
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
-          <Typography variant="body1">Nombre: Juan</Typography>
+          <Typography variant="body1">Nombre: {nombre}</Typography>
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
-          <Typography variant="body1">Comunidad: El limon</Typography>
+          <Typography variant="body1">Comunidad: {comunidad}</Typography>
         </Grid>
 
         <Grid item xs={12} sm={6} md={4}>
           <Typography variant="body1">
-          areaCacaoProduccion: 6 MZ
+          areaCacaoProduccion: {areaCacaoProduccion}
           </Typography>
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <Typography variant="body1">
-          areaCacaoDesarrollo: 2 MZ
+          areaCacaoDesarrollo: {areaCacaoDesarrollo}
           </Typography>
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <Typography variant="body1">
-          produccionUltimoSiclo: 50 KT{" "}
+          produccionUltimoSiclo: {produccionUltimoSiclo}
             {/*new Date(registrationDate).toLocaleDateString()*/}
           </Typography>
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
-          <Typography variant="body1">IDProductor: 4</Typography>
+          <Typography variant="body1">Productor: {productor}</Typography>
         </Grid>
 
         <Grid sx={{ gap: "1rem" }} item xs={12}>

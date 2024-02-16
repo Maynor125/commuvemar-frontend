@@ -6,4 +6,5 @@ export interface Fincas {
   areaCacaoDesarrollo: string;
   produccionUltimoSiclo: string;
   IDProductor: number;
+  productor:string;
 }
