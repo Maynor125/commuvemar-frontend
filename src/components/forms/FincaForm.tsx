@@ -6,9 +6,11 @@ import { useForm, Resolver, FieldErrors } from "react-hook-form";
 import { Fincas } from "@/types/fincas";
 import { FincaSchema } from "@/validations/fincaSchema";
 import { createFincas, updateFincas } from "@/utils/finca";
-import { Box, FormControl, InputLabel, MenuItem, Select, TextField, Tooltip } from "@mui/material";
+import { Box, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField, Tooltip } from "@mui/material";
 
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
+import { getProductors } from "@/utils/productors";
+import { Productors } from "@/types/productors";
 
 interface GeneralActionProps {
   onClick: () => void;
@@ -83,7 +85,7 @@ const FincaForm: React.FC<GeneralActionProps> = ({
           data.areaCacaoProduccion,
           data.areaCacaoDesarrollo,
           data.produccionUltimoSiclo,
-          data.IDProductor
+          idProductors
         );
       }
     } else {
@@ -93,7 +95,7 @@ const FincaForm: React.FC<GeneralActionProps> = ({
         data.areaCacaoProduccion,
         data.areaCacaoDesarrollo,
         data.produccionUltimoSiclo,
-        data.IDProductor
+        idProductors
       );
     }
     // Limpiar los valores de los campos
@@ -162,14 +164,16 @@ const FincaForm: React.FC<GeneralActionProps> = ({
         console.error(error);
     }
   }
+  
 
   useEffect(()=>{
     getAllProductors();
   },[]);
 
-  const [idProductors,setIdProductors] = useState();
+  const [idProductors,setIdProductors] = useState(0);
+
   return (
-    <form className="borde-card">
+    <form className="borde-card" onSubmit={handleSubmit(onSubmit)}>
       <Box
         sx={{
           padding: "1rem",
@@ -278,15 +282,12 @@ const FincaForm: React.FC<GeneralActionProps> = ({
             <Select
             labelId="demo-simple-select-label"
             id="idProductor"
-            displayEmpty
             label="Productor"
-            onChange={() => handleChange}
-            defaultValue={10}
-            {...register("IDProductor", { required: true })}
-            error={!!errors.IDProductor}
+            
+            {...register("productor", { required: true })}
+            error={!!errors.productor}
           >
-          {
-            productors.map((item)=>{
+          { productors.map((item)=>(
                 <MenuItem
                 onClick={() => setIdProductors(item.id)}
                 key={item.id}
@@ -294,9 +295,12 @@ const FincaForm: React.FC<GeneralActionProps> = ({
               >
                 {item.nombre}
               </MenuItem>
-            })
+          ))
           }
           </Select>
+          {errors?.productor && <FormHelperText sx={{
+            color:'red',
+          }}>{errors.productor.message}</FormHelperText>}
           </FormControl>
           <Tooltip title='Guardar'>
           <button onClick={onClick} className="btn-save" type="submit">
