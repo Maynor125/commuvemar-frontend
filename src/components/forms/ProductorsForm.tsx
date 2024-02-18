@@ -19,6 +19,9 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 
 import { SelectChangeEvent } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
+import { error } from "console";
 
 interface GeneralActionProps {
   onClick: () => void;
@@ -43,6 +46,9 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
   numeroTelefono,
   onClick,
 }) => {
+  const dispatch = useDispatch();
+  const productorState = useSelector((state: RootState) => state.productor);
+
   const resolver: Resolver<Productors, FieldErrors<Productors>> = async (
     data
   ) => {
@@ -80,13 +86,6 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
     formState: { errors },
   } = useForm<Productors>({
     resolver: resolver,
-    defaultValues: {
-      nombre: isEdit ? nombre || "" : "",
-      apellido: isEdit ? apellido || "" : "",
-      numeroCedula: isEdit ? numeroCedula || "" : "",
-      numeroTelefono: isEdit ? numeroTelefono || "" : "",
-      estado: isEdit ? estado: 0,
-    },
   });
 
   const onSubmit = (data: Productors) => {
@@ -184,7 +183,7 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [valueDate, setValueDate] = React.useState<Dayjs | null>(null);
   console.log(valueDate);
-  const [valueEstado, setValueEstado] = useState(isEdit ? estado : '');
+  const [valueEstado, setValueEstado] = useState(productorState.isEdit ? productorState.estado : "");
 
   const handleChangeSelect = (event: SelectChangeEvent<string | number>) => {
     setValueEstado(event.target.value as string | number);
@@ -224,8 +223,8 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               {...register("nombre")}
               error={!!errors.nombre}
               helperText={errors?.nombre?.message}
-
-              InputLabelProps={{ shrink: !!nombre || undefined }}
+              defaultValue={productorState.isEdit ? productorState.nombre : ""}
+              InputLabelProps={{ shrink: !!productorState.nombre|| undefined }}
             />
             <TextField
               sx={{ flex: 2 }}
@@ -235,8 +234,10 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               {...register("apellido")}
               error={!!errors.apellido}
               helperText={errors?.apellido?.message}
-
-              InputLabelProps={{ shrink: !!apellido || undefined }}
+              defaultValue={
+                productorState.isEdit ? productorState.apellido : ""
+              }
+              InputLabelProps={{ shrink: !!productorState.apellido || undefined }}
             />
           </Box>
           <Box
@@ -261,8 +262,10 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               {...register("numeroCedula")}
               error={!!errors.numeroCedula}
               helperText={errors?.numeroCedula?.message}
-
-              InputLabelProps={{ shrink: !!numeroCedula || undefined }}
+              defaultValue={
+                productorState.isEdit ? productorState.numeroCedula : ""
+              }
+              InputLabelProps={{ shrink: !!productorState.numeroCedula|| undefined }}
             />
 
             <TextField
@@ -273,8 +276,10 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               {...register("numeroTelefono")}
               error={!!errors.numeroTelefono}
               helperText={errors?.numeroTelefono?.message}
-
-              InputLabelProps={{ shrink: !!numeroTelefono || undefined }}
+              defaultValue={
+                productorState.isEdit ? productorState.numeroTelefono : ""
+              }
+              InputLabelProps={{ shrink: !!productorState.numeroTelefono || undefined }}
             />
           </Box>
           <Box
@@ -312,8 +317,7 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
                 shrink: true,
               }}
               variant="outlined"
-
-              {...register("fechaIngresoPrograma",{required:true})}
+              {...register("fechaIngresoPrograma", { required: true })}
             />
             <FormControl sx={{ flex: 2 }}>
               <InputLabel id="estado-label">Estado</InputLabel>
@@ -321,11 +325,16 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
                 labelId="estado-label"
                 id="estado"
                 value={valueEstado}
-                onChange={handleChangeSelect}
-              
-                displayEmpty
+
                 label="Estado"
+                defaultValue={10}
+                {...register("estado", { required: true })}
+                error={!!errors.estado}
+                onChange={handleChangeSelect}
               >
+                <MenuItem disabled value={10}>
+                  <em>{productorState.isEdit ? productorState.estado : ""}</em>
+                </MenuItem>
                 <MenuItem value={"1"}>1</MenuItem>
                 <MenuItem value={"2"}>2</MenuItem>
                 <MenuItem value={"3"}>3</MenuItem>

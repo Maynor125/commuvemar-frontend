@@ -3,6 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import themeReducer from '../features/themeSlice'
 import authReducer from '../features/authSlice'
 import fincaReducer from '../features/fincaSlice'
+import productorReducer from '../features/productorsSlice'
 
 import { TypedUseSelectorHook,useSelector } from "react-redux";
 
@@ -11,6 +12,7 @@ export const store = configureStore({
        theme:themeReducer,
        auth:authReducer,
        finca:fincaReducer,
+       productor:productorReducer,
     },
 })
 
