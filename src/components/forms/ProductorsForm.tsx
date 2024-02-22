@@ -1,8 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { Box, IconButton, TextField, Tooltip } from "@mui/material";
+import {
+  Box,
+  FormHelperText,
+  IconButton,
+  TextField,
+  Tooltip,
+} from "@mui/material";
 import { Productors } from "@/types/productors";
 import { ProductorsSchema } from "@/validations/productorsSchema";
 import { useForm, Resolver, FieldErrors } from "react-hook-form";
@@ -48,6 +54,14 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
 }) => {
   const dispatch = useDispatch();
   const productorState = useSelector((state: RootState) => state.productor);
+
+  useEffect(() => {
+    if (productorState.isEdit) {
+      setDatePickerDisabled(true);
+    } else {
+      setDatePickerDisabled(false);
+    }
+  }, [productorState]);
 
   const resolver: Resolver<Productors, FieldErrors<Productors>> = async (
     data
@@ -106,25 +120,31 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
           );
         }
       } else {
-        createProductor(
-          data.nombre,
-          data.apellido,
-          data.numeroCedula,
-          data.numeroTelefono,
-          data.fechaIngresoPrograma,
-          estado
-        );
+        if (!fechaIngresoPrograma) {
+          setError(true);
+        } else {
+          createProductor(
+            data.nombre,
+            data.apellido,
+            data.numeroCedula,
+            data.numeroTelefono,
+            data.fechaIngresoPrograma,
+            estado
+          );
+        }
       }
     } catch (error) {
       console.error(error);
     }
 
-    // Limpiar los valores de los campos
-    setValue("nombre", "");
-    setValue("apellido", "");
-    setValue("numeroCedula", "");
-    setValue("numeroTelefono", "");
-    setValue("estado", 0);
+    if (fechaIngresoPrograma) {
+      // Limpiar los valores de los campos
+      setValue("nombre", "");
+      setValue("apellido", "");
+      setValue("numeroCedula", "");
+      setValue("numeroTelefono", "");
+      setValue("estado", 0);
+    }
   };
 
   const createProductor = async (
@@ -183,11 +203,23 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [valueDate, setValueDate] = React.useState<Dayjs | null>(null);
   console.log(valueDate);
-  const [valueEstado, setValueEstado] = useState(productorState.isEdit ? productorState.estado : "");
+  const [valueEstado, setValueEstado] = useState(
+    productorState.isEdit ? productorState.estado : ""
+  );
 
   const handleChangeSelect = (event: SelectChangeEvent<string | number>) => {
     setValueEstado(event.target.value as string | number);
   };
+
+  const [fechaIngresoProgramaN, setFechaIngresoProgramaN] =
+    useState<Date | null>(new Date());
+
+  const handleFechaIngresoChange = (date:any) => {
+    setFechaIngresoProgramaN(date);
+    console.log("Fecha de ingreso al programa:", date);
+  };
+  const [error, setError] = useState(false);
+  const [datePickerDisabled, setDatePickerDisabled] = useState(false);
 
   return (
     <LocalizationProviderWrapper>
@@ -224,7 +256,7 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               error={!!errors.nombre}
               helperText={errors?.nombre?.message}
               defaultValue={productorState.isEdit ? productorState.nombre : ""}
-              InputLabelProps={{ shrink: !!productorState.nombre|| undefined }}
+              InputLabelProps={{ shrink: !!productorState.nombre || undefined }}
             />
             <TextField
               sx={{ flex: 2 }}
@@ -237,7 +269,9 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               defaultValue={
                 productorState.isEdit ? productorState.apellido : ""
               }
-              InputLabelProps={{ shrink: !!productorState.apellido || undefined }}
+              InputLabelProps={{
+                shrink: !!productorState.apellido || undefined,
+              }}
             />
           </Box>
           <Box
@@ -265,7 +299,9 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               defaultValue={
                 productorState.isEdit ? productorState.numeroCedula : ""
               }
-              InputLabelProps={{ shrink: !!productorState.numeroCedula|| undefined }}
+              InputLabelProps={{
+                shrink: !!productorState.numeroCedula || undefined,
+              }}
             />
 
             <TextField
@@ -279,7 +315,9 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               defaultValue={
                 productorState.isEdit ? productorState.numeroTelefono : ""
               }
-              InputLabelProps={{ shrink: !!productorState.numeroTelefono || undefined }}
+              InputLabelProps={{
+                shrink: !!productorState.numeroTelefono || undefined,
+              }}
             />
           </Box>
           <Box
@@ -296,19 +334,29 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               },
             }}
           >
-            {/*  <DatePicker
-              label="Fecha de ingreso al programa"
-              sx={{ flex: 3 }}
-              value={fechaIngresoPrograma}
-              onChange={(date: Date | null) =>
-                setValue("fechaIngresoPrograma", date)
-              }
-
-              TextFieldComponent={(props: any) => (
-                <TextField {...props} variant="outlined" />
+            <FormControl sx={{ flex: 3 }}>
+              <DatePicker
+                label="Fecha de ingreso al programa"
+                value={fechaIngresoPrograma}
+                onChange={handleFechaIngresoChange}
+                TextFieldComponent={(props: any) => (
+                  <TextField {...props} variant="outlined" />
+                )}
+                disabled={datePickerDisabled}
+              />
+              {error && (
+                <FormHelperText
+                  sx={{
+                    color: "red",
+                  }}
+                >
+                  Por favor, selecciona una fecha de ingreso al programa.
+                </FormHelperText>
               )}
-            />*/}
-            <TextField
+            </FormControl>
+
+            {/* 
+              <TextField
               sx={{ flex: 3 }}
               id="fechaIngresoPrograma"
               label="Fecha de ingreso al programa"
@@ -318,14 +366,13 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               }}
               variant="outlined"
               {...register("fechaIngresoPrograma", { required: true })}
-            />
+            />*/}
             <FormControl sx={{ flex: 2 }}>
               <InputLabel id="estado-label">Estado</InputLabel>
               <Select
                 labelId="estado-label"
                 id="estado"
                 value={valueEstado}
-
                 label="Estado"
                 defaultValue={10}
                 {...register("estado", { required: true })}
@@ -339,6 +386,15 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
                 <MenuItem value={"2"}>2</MenuItem>
                 <MenuItem value={"3"}>3</MenuItem>
               </Select>
+              {errors?.estado && (
+                <FormHelperText
+                  sx={{
+                    color: "red",
+                  }}
+                >
+                  {errors.estado.message}
+                </FormHelperText>
+              )}
             </FormControl>
             <Tooltip title="Guardarr">
               <button className="btn-save" type="submit">
