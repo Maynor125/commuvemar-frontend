@@ -17,6 +17,7 @@ import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { updateValueProductor } from "@/redux/features/productorsSlice";
+import { deleteProductors } from "@/utils/productors";
 
 interface Props {
   id: number;
@@ -26,7 +27,7 @@ interface Props {
   numeroTelefono: string;
   fechaEntradaPrograma: Date;
   estado: number;
-  onDelete?: (id: number) => void;
+  onClick: () => void;
 }
 
 const ProductorCard: React.FC<Props> = ({
@@ -37,14 +38,34 @@ const ProductorCard: React.FC<Props> = ({
   numeroTelefono,
   fechaEntradaPrograma,
   estado,
-  onDelete,
+  onClick,
 
 }) => {
   const theme = useTheme();
 
   const dispatch = useDispatch();
   const productorState = useSelector((state: RootState) => state.productor);
-  console.log("Updated objects array:",productorState);
+  //console.log("Updated objects array:",productorState);
+
+  
+  const deleteProductor = async (id: number) => {
+    try {
+      const response = await deleteProductors(id);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = (
+    id:number
+  )=>{
+    dispatch(updateValueProductor({
+      isDelete:true,
+      id:id,
+    }))
+    deleteProductors(id);
+    onClick();
+  }
 
   const handleEdit = (
   id: number,
@@ -52,7 +73,8 @@ const ProductorCard: React.FC<Props> = ({
   apellido: string,
   numeroCedula: string,
   numeroTelefono: string,
-  estado: number,
+  fechaIngresoPrograma:Date,
+  estado: number
   )=>{
    dispatch(
     updateValueProductor({
@@ -62,6 +84,7 @@ const ProductorCard: React.FC<Props> = ({
       apellido:apellido,
       numeroCedula:numeroCedula,
       numeroTelefono:numeroTelefono,
+      fechaIngresoPrograma:fechaIngresoPrograma,
       estado:estado,
     })
    )
@@ -136,6 +159,7 @@ const ProductorCard: React.FC<Props> = ({
                 apellido,
                 numeroCedula,
                 numeroTelefono,
+                fechaEntradaPrograma=fechaEntradaPrograma,
                 estado
               )}
             >
@@ -145,7 +169,7 @@ const ProductorCard: React.FC<Props> = ({
             <Button
               variant="contained"
               color="error"
-              onClick={() => id !== undefined && onDelete && onDelete(id)}
+              onClick={()=>handleDelete(id)}
             >
               <DeleteRoundedIcon
                 sx={{ fontSize: "20px", marginRight: "5px" }}

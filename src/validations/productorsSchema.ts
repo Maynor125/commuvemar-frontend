@@ -38,8 +38,8 @@ export const ProductorsSchema = z.object({
       message:
         "El número de teléfono solo puede contener números",
     }),
-  numeroCedula:z.string().length(13, {
-    message: "El número de cédula debe tener exactamente 13 caracteres",
+  numeroCedula:z.string().length(16, {
+    message: "El número de cédula debe tener exactamente 16 caracteres",
   }),
   estado: z.string().min(1, {
     message: "Debes elegir un estado",

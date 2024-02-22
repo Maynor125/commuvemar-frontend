@@ -8,6 +8,9 @@ import React, { useEffect, useState } from "react";
 import type { Productors } from "@/types/productors";
 import { getProductors } from "@/utils/productors";
 import MessageGlobal from "@/components/message/MessageGlobal";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
+import { clearValueProductor } from "@/redux/features/productorsSlice";
 
 const Productors = () => {
   const [productors, setProductors] = useState<Productors[]>([]);
@@ -28,12 +31,25 @@ const Productors = () => {
   const [message, setMessage] = React.useState("");
   const [isDelete, setIsDelete] = React.useState(false);
 
+
+  const dispatch = useDispatch();
+  const productorState = useSelector((state: RootState) => state.productor);
+  const [validadorDelete,setValidadorDelete]=useState(false);
+  console.log(validadorDelete);
+  const [validadorEdit,setValidadorEdit]=useState(false)
+  
+  useEffect(()=>{
+      setValidadorDelete(productorState.isDelete);
+      setValidadorEdit(productorState.isEdit);
+  },[productorState.isDelete,productorState.isEdit]);
+
   const handleSave = () => {
+
     // Perform save action
-    if (edit) {
+    if (validadorEdit) {
       setMessage("El productor se edito!");
     }
-    if (isDelete) {
+    if (validadorDelete) {
       setMessage("El productor se elimino!");
     } else {
       setMessage("el Productor se creo!");
@@ -42,6 +58,7 @@ const Productors = () => {
     setShowMessage(true);
     setTimeout(() => setShowMessage(false), 4000);
     getAllProductors();
+    
   };
 
   useEffect(()=>{
@@ -61,14 +78,6 @@ const Productors = () => {
     }
   };
 
-  const deleteProductors = async (id: number) => {
-    try {
-      const response = await deleteProductors(id);
-      getAllProductors();
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <Box component="main">
@@ -126,7 +135,7 @@ const Productors = () => {
         <MessageGlobal 
         show={showMessage}
         message={message}
-        type={edit ? "info" : isDelete ? "error" : "success"}/>
+        type={productorState.isEdit ? "info" : validadorDelete ? "error" : "success"}/>
         <Box
           sx={{
             marginTop: "1rem",
@@ -152,7 +161,8 @@ const Productors = () => {
             numeroTelefono={item.numeroTelefono}
             fechaEntradaPrograma={item.fechaIngresoPrograma}
             estado={item.estado} 
-            id={item.id}/>
+            id={item.id}
+            onClick={handleSave}/>
           ))}
         </Box>
       </Box>

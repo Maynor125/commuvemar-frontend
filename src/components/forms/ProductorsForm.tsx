@@ -28,6 +28,7 @@ import { SelectChangeEvent } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { error } from "console";
+import { clearValueProductor } from "@/redux/features/productorsSlice";
 
 interface GeneralActionProps {
   onClick: () => void;
@@ -54,14 +55,30 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
 }) => {
   const dispatch = useDispatch();
   const productorState = useSelector((state: RootState) => state.productor);
+  const [fechaIngresoProgramaN, setFechaIngresoProgramaN] =
+  useState<Date | null>(new Date());
+
+
+
+  // const fechaActual = new Date();
+  //   console.log('Fecha actual:', fechaActual);
 
   useEffect(() => {
     if (productorState.isEdit) {
       setDatePickerDisabled(true);
+      setValueEstado(productorState.estado);
     } else {
       setDatePickerDisabled(false);
     }
-  }, [productorState]);
+    
+    if(!fechaIngresoProgramaN)
+    {
+      setError(true);
+    }
+    else{
+      setError(false);
+    }
+  }, [productorState,fechaIngresoProgramaN]);
 
   const resolver: Resolver<Productors, FieldErrors<Productors>> = async (
     data
@@ -103,24 +120,23 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
   });
 
   const onSubmit = (data: Productors) => {
-    console.log("Esto no sirve");
     console.log("datos del formulario:", data);
 
     try {
-      if (isEdit) {
-        if (idProductor && idProductor !== -1) {
+      if (productorState.isEdit) {
+        if (productorState.id && productorState.id !== -1) {
           updateProductor(
-            data.id,
+            productorState.id,
             data.nombre,
             data.apellido,
             data.numeroCedula,
             data.numeroTelefono,
-            data.fechaIngresoPrograma,
-            estado
+            productorState.fechaIngresoPrograma,
+            Number(valueEstado)
           );
         }
       } else {
-        if (!fechaIngresoPrograma) {
+        if (!fechaIngresoProgramaN) {
           setError(true);
         } else {
           createProductor(
@@ -128,8 +144,8 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
             data.apellido,
             data.numeroCedula,
             data.numeroTelefono,
-            data.fechaIngresoPrograma,
-            estado
+            fechaIngresoProgramaN,
+            Number(valueEstado)
           );
         }
       }
@@ -144,6 +160,9 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
       setValue("numeroCedula", "");
       setValue("numeroTelefono", "");
       setValue("estado", 0);
+
+      // esto limpiara los campos del estado global.
+      dispatch(clearValueProductor());
     }
   };
 
@@ -164,7 +183,7 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
         fechaIngresoPrograma,
         Number(estado)
       );
-      if (response.data) {
+      if (response) {
         onClick();
       }
     } catch (error) {
@@ -191,7 +210,7 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
         fechaIngresoPrograma,
         Number(estado)
       );
-      if (response.data) {
+      if (response) {
         onClick();
       }
     } catch (error) {
@@ -211,10 +230,9 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
     setValueEstado(event.target.value as string | number);
   };
 
-  const [fechaIngresoProgramaN, setFechaIngresoProgramaN] =
-    useState<Date | null>(new Date());
 
-  const handleFechaIngresoChange = (date:any) => {
+
+  const handleFechaIngresoChange = (date: any) => {
     setFechaIngresoProgramaN(date);
     console.log("Fecha de ingreso al programa:", date);
   };
@@ -292,6 +310,7 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
               sx={{ flex: 2 }}
               id="numeroCedula"
               label="Numero de cedula"
+              placeholder="610-230409-1008M"
               variant="outlined"
               {...register("numeroCedula")}
               error={!!errors.numeroCedula}
@@ -339,9 +358,7 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
                 label="Fecha de ingreso al programa"
                 value={fechaIngresoPrograma}
                 onChange={handleFechaIngresoChange}
-                TextFieldComponent={(props: any) => (
-                  <TextField {...props} variant="outlined" />
-                )}
+               
                 disabled={datePickerDisabled}
               />
               {error && (
@@ -374,14 +391,10 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
                 id="estado"
                 value={valueEstado}
                 label="Estado"
-                defaultValue={10}
                 {...register("estado", { required: true })}
                 error={!!errors.estado}
                 onChange={handleChangeSelect}
               >
-                <MenuItem disabled value={10}>
-                  <em>{productorState.isEdit ? productorState.estado : ""}</em>
-                </MenuItem>
                 <MenuItem value={"1"}>1</MenuItem>
                 <MenuItem value={"2"}>2</MenuItem>
                 <MenuItem value={"3"}>3</MenuItem>

@@ -2,21 +2,25 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface ProductorInterface {
   isEdit: boolean;
+  isDelete: boolean;
   id: number;
   nombre: string;
   apellido: string;
   numeroCedula: string;
   numeroTelefono: string;
+  fechaIngresoPrograma:Date;
   estado: number;
 }
 
 const initialState: ProductorInterface = {
+  isDelete: false,
   isEdit: false,
   id: 0,
   nombre: "",
   apellido: "",
   numeroCedula: "",
   numeroTelefono: "",
+  fechaIngresoPrograma:new Date(),
   estado: 0,
 };
 
