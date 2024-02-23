@@ -1,14 +1,14 @@
 import apiManager from "@/services/apiManager";
-import { Inspectors } from "@/types/inspectors";
+import { Workers } from "@/types/inspectors";
 
 interface ApiResponse {
-  data?: Inspectors[] | undefined;
+  data?: Workers[] | undefined;
   error?: string;
 }
 
-export const getInspectors = async (): Promise<ApiResponse> => {
+export const getWorkers = async (): Promise<ApiResponse> => {
   try {
-    const response = await apiManager.get<Inspectors[]>("/trabajador");
+    const response = await apiManager.get<Workers[]>("/trabajador");
 
     return { data: response.data };
   } catch (error: any) {
@@ -17,9 +17,9 @@ export const getInspectors = async (): Promise<ApiResponse> => {
   }
 };
 
-export const getInspectorsId = async (id: number): Promise<ApiResponse> => {
+export const getWorkersId = async (id: number): Promise<ApiResponse> => {
   try {
-    const response = await apiManager.get<Inspectors[]>(`/trabajador/${id}`);
+    const response = await apiManager.get<Workers[]>(`/trabajador/${id}`);
     return { data: response.data };
   } catch (error: any) {
     // Devolver una acción indicando fallo
@@ -27,7 +27,7 @@ export const getInspectorsId = async (id: number): Promise<ApiResponse> => {
   }
 };
 
-export const createInspectors = async (
+export const createWorkers = async (
   nombre: string,
   apellido: string,
   numeroTelefono: string,
@@ -46,7 +46,7 @@ export const createInspectors = async (
   }
 };
 
-export const updateInspectors = async (
+export const updateWorkers = async (
   id: number,
   nombre: string,
   apellido: string,
@@ -66,7 +66,7 @@ export const updateInspectors = async (
   }
 };
 
-export const deleteInspertors = async (
+export const deleteWorkers = async (
   id: number
 ): Promise<ApiResponse | void> => {
   try {

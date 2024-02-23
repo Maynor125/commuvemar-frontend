@@ -1,10 +1,10 @@
 "use client";
 
 import Avatars from "@/components/admin/avatar/Avatar";
-import InspectorsForm from "@/components/forms/workersForm";
+import WorkersForm from "@/components/forms/workersForm";
 import MessageGlobal from "@/components/message/MessageGlobal";
-import { Inspectors } from "@/types/inspectors";
-import { deleteInspertors, getInspectors } from "@/utils/inspectors";
+import { Workers } from "@/types/inspectors";
+import { deleteWorkers, getWorkers } from "@/utils/inspectors";
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
@@ -16,7 +16,7 @@ import UserCard from "@/components/admin/workers/UserCard";
 
 const Inspectors = () => {
   const theme = useTheme();
-  const [productors, setProductors] = useState<Inspectors[]>([]);
+  const [productors, setProductors] = useState<Workers[]>([]);
 
   //Para el mensaje de guardado.
   const [showMessage, setShowMessage] = React.useState(false);
@@ -51,7 +51,7 @@ const Inspectors = () => {
 
   const getAllInspectors = async () => {
     try {
-      const response = await getInspectors();
+      const response = await getWorkers();
       if (response.data !== undefined) {
         setProductors(response.data);
       }
@@ -63,7 +63,7 @@ const Inspectors = () => {
 
   const deleteInspectores = async (id: number) => {
     try {
-      const response = await deleteInspertors(id);
+      const response = await deleteWorkers(id);
       getAllInspectors();
     } catch (error) {
       console.error(error);
@@ -128,7 +128,7 @@ const Inspectors = () => {
             marginTop: "1rem",
           }}
         >
-          <InspectorsForm
+          <WorkersForm
             isEdit={edit}
             numeroTelefono={numeroTelefono}
             apellidoInspector={apellido}

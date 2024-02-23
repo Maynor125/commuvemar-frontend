@@ -1,4 +1,4 @@
-export interface Inspectors {
+export interface Workers {
     id:number,
     nombre:string,
     apellido:string,
