@@ -6,6 +6,8 @@ import { WorkerSchema } from "@/validations/workerSchema";
 import { createWorkers, updateWorkers} from "@/utils/workers";
 import { Box, TextField, Tooltip } from "@mui/material";
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
 
 interface GeneralActionProps {
   onClick: () => void;
@@ -26,8 +28,9 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
   nombreInspector,
   urlImg,
 }) => {
+  const dispatch = useDispatch();
+  const workerState = useSelector((state: RootState) => state.worker);
   //Logica para guardar la url de la img.
-
   const [image, setImage] = React.useState<File | null>(null);
   const [imageUrl, setImageUrl] = React.useState<string | undefined>(urlImg);
 
@@ -100,9 +103,9 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
               data.nombre,
               data.apellido,
               data.numeroTelefono,
-              data.urlImg
+              urlImg="ImagenPerrona"
             );
-            onClick();
+          
           }
         }
       }
@@ -111,9 +114,9 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
         data.nombre,
         data.apellido,
         data.numeroTelefono,
-        data.urlImg
+        urlImg="ImagenPerrona.jpg"
       );
-      onClick();
+
     }
     // Limpiar los valores de los campos
     setValue("nombre", "");
@@ -134,6 +137,9 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
         numeroTelefono,
         urlImg
       );
+      if(response !== undefined){
+        onClick();
+      }
     } catch (error) {
       console.error(error);
     }
@@ -154,6 +160,9 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
         numeroTelefono,
         urlImg
       );
+      if(response){
+        onClick();
+      }
     } catch (error) {
       console.error(error);
     }
@@ -169,7 +178,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
           gap: "1rem",
           alignItems: "center",
           justifyContent: "space-between",
-
+           
           "@media (max-width: 1100px)": {
             flexDirection: "column",
             alignItems: "stretch", // Alinear los elementos al principio y al final
@@ -184,8 +193,8 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
           {...register("nombre")}
           error={!!errors.nombre}
           helperText={errors?.nombre?.message}
-          defaultValue={isEdit ? nombreInspector || "" : ""}
-          InputLabelProps={{ shrink: !!nombreInspector || undefined }}
+          defaultValue={workerState.isEdit ? workerState.nombre || "" : ""}
+          InputLabelProps={{ shrink: !!workerState.nombre || undefined }}
         />
         <TextField
           sx={{ flex: 2 }}
@@ -195,8 +204,8 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
           {...register("apellido")}
           error={!!errors.apellido}
           helperText={errors?.apellido?.message}
-          defaultValue={isEdit ? apellidoInspector || "" : ""}
-          InputLabelProps={{ shrink: !!apellidoInspector || undefined }}
+          defaultValue={workerState.isEdit ? workerState.apellido|| "" : ""}
+          InputLabelProps={{ shrink: !!workerState.apellido || undefined }}
         />
       </Box>
       <Box
@@ -222,16 +231,18 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
           {...register("numeroTelefono")}
           error={!!errors.numeroTelefono}
           helperText={errors?.numeroTelefono?.message}
-          defaultValue={isEdit ? numeroTelefono || "" : ""}
-          InputLabelProps={{ shrink: !!numeroTelefono || undefined }}
+          defaultValue={workerState.isEdit ? workerState.numeroTelefono || "" : ""}
+          InputLabelProps={{ shrink: !!workerState.numeroTelefono || undefined }}
         />
-        <input
-          style={{ flex: 2 }}
-          accept="image/*"
-          type="file"
-          onChange={onImageChange}
-          name="image"
-        />
+        <TextField
+         name="image"
+         label="Imagen" 
+         type="file"
+         onChange={onImageChange}
+         sx={{
+          flex: 2,
+         }}/>
+       
         <Tooltip title={/*title*/ "Guardar inspector"}>
           <button onClick={onClick} className="btn-save" type="submit">
             Guardar

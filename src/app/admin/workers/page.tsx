@@ -13,10 +13,12 @@ import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import UserCard from "@/components/admin/workers/UserCard";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
 
 const Inspectors = () => {
   const theme = useTheme();
-  const [productors, setProductors] = useState<Workers[]>([]);
+  const [workers, setWorkers] = useState<Workers[]>([]);
 
   //Para el mensaje de guardado.
   const [showMessage, setShowMessage] = React.useState(false);
@@ -31,11 +33,23 @@ const Inspectors = () => {
   const [isAgregate, setIsAgregate] = useState(false);
   const texto = isAgregate ? "Cancelar" : "Agregar";
 
+  const dispatch = useDispatch();
+  const workerState = useSelector((state: RootState) => state.worker);
+
+  const [validadorDelete, setValidadorDelete] = useState(false);
+
+  const [validadorEdit, setValidadorEdit] = useState(false);
+
+  useEffect(() => {
+    setValidadorDelete(workerState.isDelete);
+    setValidadorEdit(workerState.isEdit);
+  }, [workerState.isDelete, workerState.isEdit]);
+
   const handleSave = () => {
-    if (edit) {
+    if (validadorEdit) {
       setMessage("El dato se edito!");
     }
-    if (isDelete) {
+    if (validadorDelete) {
       setMessage("El dato se elimino!");
     } else {
       setMessage("El dato se creo!");
@@ -43,17 +57,18 @@ const Inspectors = () => {
 
     setShowMessage(true);
     setTimeout(() => setShowMessage(false), 3000);
+    getAllWorkers();
   };
 
   useEffect(() => {
-    getAllInspectors();
+    getAllWorkers();
   }, []);
 
-  const getAllInspectors = async () => {
+  const getAllWorkers = async () => {
     try {
       const response = await getWorkers();
       if (response.data !== undefined) {
-        setProductors(response.data);
+        setWorkers(response.data);
       }
       return response;
     } catch (error) {
@@ -64,7 +79,7 @@ const Inspectors = () => {
   const deleteInspectores = async (id: number) => {
     try {
       const response = await deleteWorkers(id);
-      getAllInspectors();
+      getAllWorkers();
     } catch (error) {
       console.error(error);
     }
@@ -146,13 +161,30 @@ const Inspectors = () => {
       <Box
         sx={{
           display: "flex",
-          gap: "1.3rem",
+          flexDirection: "column",
+          gap: "1rem",
           marginTop: "1rem",
+    
+          marginBottom: "1rem",
         }}
       >
-
+        <UserCard
+          firstName="May"
+          lastName="Gutierrez"
+          fullName="May Ivar Gutierrez"
+          phoneNumber="763553553"
+        />
+        {workers.map((item) => (
+          <UserCard
+            id={item.id}
+            firstName={item.nombre}
+            lastName={item.apellido}
+            phoneNumber={item.numeroTelefono}
+            avatarUrl={item.urlImg}
+            onClick={()=>handleSave()}
+          />
+        ))}
       </Box>
-      <UserCard firstName="May" lastName="Gutierrez" fullName="May Ivar Gutierrez" phoneNumber="763553553" />
     </Box>
   );
 };
