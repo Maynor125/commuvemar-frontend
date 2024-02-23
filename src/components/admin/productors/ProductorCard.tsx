@@ -63,7 +63,7 @@ const ProductorCard: React.FC<Props> = ({
       isDelete:true,
       id:id,
     }))
-    deleteProductors(id);
+    deleteProductor(id);
     onClick();
   }
 

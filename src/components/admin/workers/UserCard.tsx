@@ -17,28 +17,39 @@ import Avatars from "../avatar/Avatar";
 import AdminPanelSettingsRoundedIcon from "@mui/icons-material/AdminPanelSettingsRounded";
 import EngineeringRoundedIcon from "@mui/icons-material/EngineeringRounded";
 
+import Workerimg from '../../../../public/images/admin/workericon.png'
+import Adminimg from '../../../../public/images/admin/adminicon.png'
+import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
+
+
 interface UserCardProps {
+  id:number,
   firstName: string;
   lastName: string;
   fullName: string;
   phoneNumber: string;
   avatarUrl?: string;
   isAdmin?: boolean;
-  onEdit?: () => void;
-  onDelete?: () => void;
+  onClick: () => void;
 }
 
 const UserCard: React.FC<UserCardProps> = ({
+  id,
   firstName,
   lastName,
   fullName,
   phoneNumber,
   avatarUrl,
-  onEdit,
-  onDelete,
   isAdmin,
+  onClick
 }) => {
   const theme = useTheme();
+
+  const dispatch = useDispatch();
+  const workerState = useSelector((state: RootState) => state.worker);
+
   return (
     <Card variant="outlined">
       <CardContent>
@@ -62,11 +73,13 @@ const UserCard: React.FC<UserCardProps> = ({
             }}
           >
             <Tooltip title={isAdmin ? "Administrador" : "Inspector"}>
-              {isAdmin ? (
-                <AdminPanelSettingsRoundedIcon />
-              ) : (
-                <EngineeringRoundedIcon />
-              )}
+            <Image
+                    width={50}
+                    height={50}
+                    className="borde-card"
+                    alt="farmer icons"
+                    src={isAdmin ? Adminimg : Workerimg}
+                  />
             </Tooltip>
           </Box>
         </Box>
@@ -93,7 +106,7 @@ const UserCard: React.FC<UserCardProps> = ({
           </Grid>
           <Grid item xs={12} sm={2}>
             <Tooltip title="Editar Trabajador">
-              <IconButton aria-label="Editar" onClick={onEdit}>
+              <IconButton aria-label="Editar" >
                 <EditIcon
                   sx={{
                     color: "#ffc",
@@ -107,7 +120,7 @@ const UserCard: React.FC<UserCardProps> = ({
               </IconButton>
             </Tooltip>
             <Tooltip title="Eliminar Trabajador">
-              <IconButton aria-label="Eliminar" onClick={onDelete}>
+              <IconButton aria-label="Eliminar" >
                 <DeleteIcon
                   sx={{
                     color: "#ffc",

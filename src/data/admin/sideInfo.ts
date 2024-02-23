@@ -6,6 +6,7 @@ import QueryStatsOutlinedIcon from '@mui/icons-material/QueryStatsOutlined';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
+import AgricultureOutlinedIcon from '@mui/icons-material/AgricultureOutlined';
 
 export const PathsSideBar = [
     {
@@ -46,9 +47,9 @@ export const PathsSideBar = [
     },
     {
         id:7,
-        name:'Settings',
-        path:'/admin/settings',
-        icon:SettingsOutlinedIcon,
+        name:'Fincas',
+        path:'/admin/fincas',
+        icon:AgricultureOutlinedIcon,
     },
     {
         id:8,

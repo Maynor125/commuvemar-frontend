@@ -4,6 +4,7 @@ import themeReducer from '../features/themeSlice'
 import authReducer from '../features/authSlice'
 import fincaReducer from '../features/fincaSlice'
 import productorReducer from '../features/productorsSlice'
+import workerReducer from '../features/workerSlice'
 
 import { TypedUseSelectorHook,useSelector } from "react-redux";
 
@@ -13,6 +14,7 @@ export const store = configureStore({
        auth:authReducer,
        finca:fincaReducer,
        productor:productorReducer,
+       worker:workerReducer,
     },
 })
 
