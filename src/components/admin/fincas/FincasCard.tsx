@@ -18,6 +18,7 @@ import Farm from "../../../../public/images/admin/farmicon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { updateValueFincas,clearValueFincas } from "@/redux/features/fincaSlice";
+import { deleteFincas } from "@/utils/finca";
 
 interface Props {
   nombre: string;
@@ -25,11 +26,10 @@ interface Props {
   areaCacaoProduccion: string;
   areaCacaoDesarrollo: string;
   produccionUltimoSiclo: string;
-  IDProductor?: number;
-  idFinca?: number;
+  IDProductor: number;
+  idFinca: number;
   productor: string;
-  onEdit?: (finca: Props) => void;
-  onDelete: (id: number) => void;
+  onClick:()=>void;
 }
 
 const FincasCard: React.FC<Props> = ({
@@ -41,8 +41,7 @@ const FincasCard: React.FC<Props> = ({
   produccionUltimoSiclo,
   IDProductor,
   productor,
-  onDelete,
-  onEdit,
+  onClick
 }) => {
   const dispatch = useDispatch();
   const fincaState = useSelector((state: RootState) => state.finca);
@@ -73,6 +72,19 @@ const FincasCard: React.FC<Props> = ({
     );
 
   };
+
+  const handleDelete =(id:number)=>{
+    dispatch(updateValueFincas({
+      isDelete: true,
+      idFinca:id,
+    }))
+    Delete(id);
+  }
+
+  const Delete = async (id:number) =>{
+    await deleteFincas(id);
+    onClick();
+  }
 
   const theme = useTheme();
   const [isEdit, setIsEdit] = useState(false);
@@ -159,9 +171,7 @@ const FincasCard: React.FC<Props> = ({
             <Button
               variant="contained"
               color="error"
-              onClick={() =>
-                idFinca !== undefined && onDelete && onDelete(idFinca)
-              }
+              onClick={()=>handleDelete(idFinca)}
             >
               <DeleteRoundedIcon
                 sx={{ fontSize: "20px", marginRight: "5px" }}

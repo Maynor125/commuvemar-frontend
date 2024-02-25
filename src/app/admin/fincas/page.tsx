@@ -146,7 +146,8 @@ const Fincas = () => {
               nombre={item.nombre}
               produccionUltimoSiclo={item.produccionUltimoSiclo}
               idFinca={item.id}
-              onDelete={handleDelete}
+              onClick={handleSave}
+              IDProductor={item.IDProductor}
               />
             ))
           }

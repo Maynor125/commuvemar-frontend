@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface FincaInterface {
   isEdit: boolean;
+  isDelete: boolean;
   nombre: string;
   comunidad: string;
   areaCacaoProduccion: string;
@@ -14,6 +15,7 @@ interface FincaInterface {
 
 const initialState: FincaInterface = {
   isEdit: false,
+  isDelete: false,
   nombre: "",
   comunidad: "",
   areaCacaoProduccion: "",
