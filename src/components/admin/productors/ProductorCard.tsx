@@ -14,6 +14,10 @@ import Image from "next/image";
 
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
+import { updateValueProductor } from "@/redux/features/productorsSlice";
+import { deleteProductors } from "@/utils/productors";
 
 interface Props {
   id: number;
@@ -23,8 +27,7 @@ interface Props {
   numeroTelefono: string;
   fechaEntradaPrograma: Date;
   estado: number;
-  onEdit?: (id: number) => void;
-  onDelete?: (id: number) => void;
+  onClick: () => void;
 }
 
 const ProductorCard: React.FC<Props> = ({
@@ -35,10 +38,57 @@ const ProductorCard: React.FC<Props> = ({
   numeroTelefono,
   fechaEntradaPrograma,
   estado,
-  onDelete,
-  onEdit,
+  onClick,
+
 }) => {
   const theme = useTheme();
+
+  const dispatch = useDispatch();
+  const productorState = useSelector((state: RootState) => state.productor);
+  //console.log("Updated objects array:",productorState);
+
+  
+  const deleteProductor = async (id: number) => {
+    try {
+      const response = await deleteProductors(id);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = (
+    id:number
+  )=>{
+    dispatch(updateValueProductor({
+      isDelete:true,
+      id:id,
+    }))
+    deleteProductor(id);
+    onClick();
+  }
+
+  const handleEdit = (
+  id: number,
+  nombre: string,
+  apellido: string,
+  numeroCedula: string,
+  numeroTelefono: string,
+  fechaIngresoPrograma:Date,
+  estado: number
+  )=>{
+   dispatch(
+    updateValueProductor({
+      isEdit: true,
+      id:id,
+      nombre:nombre,
+      apellido:apellido,
+      numeroCedula:numeroCedula,
+      numeroTelefono:numeroTelefono,
+      fechaIngresoPrograma:fechaIngresoPrograma,
+      estado:estado,
+    })
+   )
+  }
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -90,12 +140,12 @@ const ProductorCard: React.FC<Props> = ({
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Typography variant="body1">
-              Ingreso al programa: 10-02-22{" "}
+              Ingreso al programa: {fechaEntradaPrograma}
               {/*new Date(registrationDate).toLocaleDateString()*/}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="body1">Estado del productor: 4</Typography>
+            <Typography variant="body1">Estado del productor: {estado}</Typography>
           </Grid>
 
           <Grid sx={{ gap: "1rem" }} item xs={12}>
@@ -103,7 +153,15 @@ const ProductorCard: React.FC<Props> = ({
               sx={{ marginRight: "1rem", color: "white" }}
               variant="contained"
               color="warning"
-              onClick={() => onEdit(id)}
+              onClick={() => handleEdit(
+                id,
+                nombre,
+                apellido,
+                numeroCedula,
+                numeroTelefono,
+                fechaEntradaPrograma=fechaEntradaPrograma,
+                estado
+              )}
             >
               <EditRoundedIcon sx={{ fontSize: "20px", marginRight: "5px" }} />
               Editar
@@ -111,7 +169,7 @@ const ProductorCard: React.FC<Props> = ({
             <Button
               variant="contained"
               color="error"
-              onClick={() => onDelete(id)}
+              onClick={()=>handleDelete(id)}
             >
               <DeleteRoundedIcon
                 sx={{ fontSize: "20px", marginRight: "5px" }}

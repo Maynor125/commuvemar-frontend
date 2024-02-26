@@ -6,9 +6,14 @@ import { useForm, Resolver, FieldErrors } from "react-hook-form";
 import { Fincas } from "@/types/fincas";
 import { FincaSchema } from "@/validations/fincaSchema";
 import { createFincas, updateFincas } from "@/utils/finca";
-import { Box, FormControl, InputLabel, MenuItem, Select, TextField, Tooltip } from "@mui/material";
+import { Box, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField, Tooltip } from "@mui/material";
 
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
+import { getProductors } from "@/utils/productors";
+import { Productors } from "@/types/productors";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
+import { clearValueFincas } from "@/redux/features/fincaSlice";
 
 interface GeneralActionProps {
   onClick: () => void;
@@ -17,7 +22,7 @@ interface GeneralActionProps {
   areaCacaoProduccion: string;
   areaCacaoDesarrollo: string;
   produccionUltimoSiclo: string;
-  IDProductor: number;
+  IDProductor?: number;
   isEdit: boolean;
   idFinca?: number;
 }
@@ -33,6 +38,10 @@ const FincaForm: React.FC<GeneralActionProps> = ({
   produccionUltimoSiclo,
   idFinca,
 }) => {
+
+  const dispatch = useDispatch();
+  const fincaState = useSelector((state: RootState) => state.finca);
+
   const resolver: Resolver<Fincas, FieldErrors<Fincas>> = async (data) => {
     try {
       // Validar los datos con zod
@@ -70,6 +79,14 @@ const FincaForm: React.FC<GeneralActionProps> = ({
     resolver: resolver,
   });
 
+  const [valorIdActivo,setValorIdActivo] = useState(false);
+   //validar el cambio del imput.
+   const [age, setAge] = useState();
+   const handleChange = (event:any) => {
+     setAge(event.target.value);
+     setValorIdActivo(true);
+   };
+
   const onSubmit = (data: Fincas) => {
     console.log("Formulario de fincas enviado:", data);
 
@@ -83,7 +100,7 @@ const FincaForm: React.FC<GeneralActionProps> = ({
           data.areaCacaoProduccion,
           data.areaCacaoDesarrollo,
           data.produccionUltimoSiclo,
-          data.IDProductor
+          valorIdActivo ? idProductors : fincaState.IDProductor,
         );
       }
     } else {
@@ -93,7 +110,7 @@ const FincaForm: React.FC<GeneralActionProps> = ({
         data.areaCacaoProduccion,
         data.areaCacaoDesarrollo,
         data.produccionUltimoSiclo,
-        data.IDProductor
+        idProductors
       );
     }
     // Limpiar los valores de los campos
@@ -102,6 +119,10 @@ const FincaForm: React.FC<GeneralActionProps> = ({
     setValue("areaCacaoProduccion", "");
     setValue("areaCacaoDesarrollo", "");
     setValue("produccionUltimoSiclo", "");
+    setValue("productor","");
+
+    // esto limpiara los campos del estado global.
+    dispatch(clearValueFincas());
   };
 
   const createFinca = async (
@@ -110,7 +131,7 @@ const FincaForm: React.FC<GeneralActionProps> = ({
     areaCacaoProduccion: string,
     areaCacaoDesarrollo: string,
     produccionUltimoSiclo: string,
-    IDProductor: number
+    IDProductor: number,
   ) => {
     try {
       const response = await createFincas(
@@ -162,14 +183,16 @@ const FincaForm: React.FC<GeneralActionProps> = ({
         console.error(error);
     }
   }
+  
 
   useEffect(()=>{
     getAllProductors();
   },[]);
 
-  const [idProductors,setIdProductors] = useState();
+  const [idProductors,setIdProductors] = useState(0);
+
   return (
-    <form className="borde-card">
+    <form className="borde-card" onSubmit={handleSubmit(onSubmit)}>
       <Box
         sx={{
           padding: "1rem",
@@ -201,7 +224,8 @@ const FincaForm: React.FC<GeneralActionProps> = ({
             {...register("nombre")}
             error={!!errors.nombre}
             helperText={errors?.nombre?.message}
-            InputLabelProps={{ shrink: !!nombre || undefined }}
+            defaultValue={fincaState.isEdit ? fincaState.nombre:""}
+            InputLabelProps={{ shrink: !!fincaState.nombre || undefined }}
           />
           <TextField
             sx={{ flex: 2 }}
@@ -211,7 +235,8 @@ const FincaForm: React.FC<GeneralActionProps> = ({
             {...register("comunidad")}
             error={!!errors.comunidad}
             helperText={errors?.comunidad?.message}
-            InputLabelProps={{ shrink: !!comunidad || undefined }}
+            defaultValue={fincaState.isEdit ? fincaState.comunidad:""}
+            InputLabelProps={{ shrink: !!fincaState.comunidad || undefined }}
           />
         </Box>
         <Box
@@ -236,7 +261,8 @@ const FincaForm: React.FC<GeneralActionProps> = ({
             {...register("areaCacaoProduccion")}
             error={!!errors.areaCacaoProduccion}
             helperText={errors?.areaCacaoProduccion?.message}
-            InputLabelProps={{ shrink: !!areaCacaoProduccion || undefined }}
+            defaultValue={fincaState.isEdit ? fincaState.areaCacaoProduccion:""}
+            InputLabelProps={{ shrink: !!fincaState.areaCacaoProduccion || undefined }}
           />
           <TextField
             sx={{ flex: 2 }}
@@ -246,7 +272,8 @@ const FincaForm: React.FC<GeneralActionProps> = ({
             {...register("areaCacaoDesarrollo")}
             error={!!errors.areaCacaoDesarrollo}
             helperText={errors?.areaCacaoDesarrollo?.message}
-            InputLabelProps={{ shrink: !!areaCacaoDesarrollo || undefined }}
+            defaultValue={fincaState.isEdit ? fincaState.areaCacaoDesarrollo:""}
+            InputLabelProps={{ shrink: !!fincaState.areaCacaoDesarrollo|| undefined }}
           />
         </Box>
         <Box
@@ -271,22 +298,24 @@ const FincaForm: React.FC<GeneralActionProps> = ({
             {...register("produccionUltimoSiclo")}
             error={!!errors.produccionUltimoSiclo}
             helperText={errors?.produccionUltimoSiclo?.message}
-            InputLabelProps={{ shrink: !!produccionUltimoSiclo || undefined }}
+            defaultValue={fincaState.isEdit ? fincaState.produccionUltimoSiclo:""}
+            InputLabelProps={{ shrink: !!fincaState.produccionUltimoSiclo || undefined }}
           />
           <FormControl           sx={{ flex: 2 }}>
             <InputLabel id="demo-simple-select-label">Productor</InputLabel>
             <Select
             labelId="demo-simple-select-label"
             id="idProductor"
-            displayEmpty
             label="Productor"
-            onChange={() => handleChange}
             defaultValue={10}
-            {...register("IDProductor", { required: true })}
-            error={!!errors.IDProductor}
+            {...register("productor", { required: true })}
+            error={!!errors.productor}
+            onChange={handleChange}
           >
-          {
-            productors.map((item)=>{
+            <MenuItem disabled value={10}>
+              <em> {fincaState.isEdit ? fincaState.productor: ""}</em>
+            </MenuItem>
+          { productors.map((item)=>(
                 <MenuItem
                 onClick={() => setIdProductors(item.id)}
                 key={item.id}
@@ -294,9 +323,12 @@ const FincaForm: React.FC<GeneralActionProps> = ({
               >
                 {item.nombre}
               </MenuItem>
-            })
+          ))
           }
           </Select>
+          {errors?.productor && <FormHelperText sx={{
+            color:'red',
+          }}>{errors.productor.message}</FormHelperText>}
           </FormControl>
           <Tooltip title='Guardar'>
           <button onClick={onClick} className="btn-save" type="submit">

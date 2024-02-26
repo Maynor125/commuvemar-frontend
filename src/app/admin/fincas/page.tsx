@@ -3,7 +3,7 @@
 import FincasCard from "@/components/admin/fincas/FincasCard";
 import FincaForm from "@/components/forms/FincaForm";
 import { Fincas} from "@/types/fincas";
-import { getFincas } from "@/utils/finca";
+import { deleteFincas, getFincas } from "@/utils/finca";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
@@ -48,12 +48,12 @@ const Fincas = () => {
   
   const handleSave = () => {
     if (edit) {
-      setMessage("El dato se edito!");
+      setMessage("La finca se edito!");
     }
     if (isDelete) {
-      setMessage("El dato se elimino!");
+      setMessage("La finca se elimino!");
     } else {
-      setMessage("El dato se creo!");
+      setMessage("La finca se creo!");
     }
 
     setShowMessage(true);
@@ -61,6 +61,13 @@ const Fincas = () => {
     getAllFincas();
     //setTimeout(() => setShowMessage(false), 3000);
   };
+
+  const handleDelete = async (id:number) =>{
+    setIsDelete(true);
+    await deleteFincas(id);
+    getAllFincas();
+    handleSave();
+  }
 
   return (
     <Box component="main">
@@ -103,7 +110,16 @@ const Fincas = () => {
             marginTop: "1rem",
           }}
         >
-          <FincaForm />
+          <FincaForm 
+          onClick={handleSave}
+          idFinca={id}
+          areaCacaoDesarrollo={areaCacaoDesarrollo}
+          areaCacaoProduccion={areaCacaoProduccion}
+          comunidad={comunidad}
+          nombre={nombre}
+          produccionUltimoSiclo={produccionUltimoSiclo}
+          isEdit={edit}
+          />
         </Box>
         <Box sx={{
           display: "flex",
@@ -111,7 +127,15 @@ const Fincas = () => {
           gap:'.5rem',
           marginTop: "1rem",
         }}>
-          <FincasCard/>
+          <FincasCard 
+          productor="Juan Perez"
+          areaCacaoDesarrollo="20 mz"
+          areaCacaoProduccion="10 mz"
+          comunidad="El limon"
+          nombre="La perrona"
+          produccionUltimoSiclo="200 qq"
+          IDProductor={2}
+          idFinca={8}/>
           {
             fincas.map((item)=>(
               <FincasCard 
@@ -122,6 +146,8 @@ const Fincas = () => {
               nombre={item.nombre}
               produccionUltimoSiclo={item.produccionUltimoSiclo}
               idFinca={item.id}
+              onClick={handleSave}
+              IDProductor={item.IDProductor}
               />
             ))
           }

@@ -1,11 +1,13 @@
 import React from "react";
 import { ZodError } from "zod";
 import { useForm, Resolver, FieldErrors } from "react-hook-form";
-import { Inspectors } from "@/types/inspectors";
-import { InspectorsSchema } from "@/validations/inspectorSchema";
-import { createInspectors, updateInspectors } from "@/utils/inspectors";
+import { Workers} from "@/types/inspectors";
+import { WorkerSchema } from "@/validations/workerSchema";
+import { createWorkers, updateWorkers} from "@/utils/workers";
 import { Box, TextField, Tooltip } from "@mui/material";
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
 
 interface GeneralActionProps {
   onClick: () => void;
@@ -17,7 +19,7 @@ interface GeneralActionProps {
   urlImg?: string;
 }
 
-const InspectorsForm: React.FC<GeneralActionProps> = ({
+const WorkersForm: React.FC<GeneralActionProps> = ({
   isEdit,
   numeroTelefono,
   onClick,
@@ -26,8 +28,9 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
   nombreInspector,
   urlImg,
 }) => {
+  const dispatch = useDispatch();
+  const workerState = useSelector((state: RootState) => state.worker);
   //Logica para guardar la url de la img.
-
   const [image, setImage] = React.useState<File | null>(null);
   const [imageUrl, setImageUrl] = React.useState<string | undefined>(urlImg);
 
@@ -49,12 +52,12 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
   }, [image]);
 
   //--------------------------------------------------------------------
-  const resolver: Resolver<Inspectors, FieldErrors<Inspectors>> = async (
+  const resolver: Resolver<Workers, FieldErrors<Workers>> = async (
     data
   ) => {
     try {
       // Validar los datos con zod
-      await InspectorsSchema.parseAsync(data);
+      await WorkerSchema.parseAsync(data);
       // Devolver los valores correctamente
       return { values: data, errors: {} };
     } catch (error) {
@@ -62,11 +65,11 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
       const zodError = error as ZodError;
 
       // Construir el objeto de errores
-      const fieldErrors: FieldErrors<Inspectors> = {};
+      const fieldErrors: FieldErrors<Workers> = {};
       zodError.errors.forEach((issue) => {
         if (issue.path) {
           // Asignar errores a los campos correspondientes
-          const fieldName = issue.path[0] as keyof Inspectors;
+          const fieldName = issue.path[0] as keyof Workers;
           fieldErrors[fieldName] = {
             type: "validation", // Asegúrate de ajustar esto según tus necesidades
             message: issue.message ?? "Error de validación",
@@ -84,11 +87,11 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<Inspectors>({
+  } = useForm<Workers>({
     resolver: resolver,
   });
 
-  const onSubmit = (data: Inspectors) => {
+  const onSubmit = (data: Workers) => {
     console.log("Formulario de secciones enviado:", data);
 
     if (isEdit) {
@@ -100,9 +103,9 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
               data.nombre,
               data.apellido,
               data.numeroTelefono,
-              data.urlImg
+              urlImg="ImagenPerrona"
             );
-            onClick();
+          
           }
         }
       }
@@ -111,9 +114,9 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
         data.nombre,
         data.apellido,
         data.numeroTelefono,
-        data.urlImg
+        urlImg="ImagenPerrona.jpg"
       );
-      onClick();
+
     }
     // Limpiar los valores de los campos
     setValue("nombre", "");
@@ -128,12 +131,15 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
     urlImg: string
   ) => {
     try {
-      const response = await createInspectors(
+      const response = await createWorkers(
         nombre,
         apellido,
         numeroTelefono,
         urlImg
       );
+      if(response !== undefined){
+        onClick();
+      }
     } catch (error) {
       console.error(error);
     }
@@ -147,13 +153,16 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
     urlImg: string
   ) => {
     try {
-      const response = await updateInspectors(
+      const response = await updateWorkers(
         id,
         nombre,
         apellido,
         numeroTelefono,
         urlImg
       );
+      if(response){
+        onClick();
+      }
     } catch (error) {
       console.error(error);
     }
@@ -169,7 +178,7 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
           gap: "1rem",
           alignItems: "center",
           justifyContent: "space-between",
-
+           
           "@media (max-width: 1100px)": {
             flexDirection: "column",
             alignItems: "stretch", // Alinear los elementos al principio y al final
@@ -184,8 +193,8 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
           {...register("nombre")}
           error={!!errors.nombre}
           helperText={errors?.nombre?.message}
-          defaultValue={isEdit ? nombreInspector || "" : ""}
-          InputLabelProps={{ shrink: !!nombreInspector || undefined }}
+          defaultValue={workerState.isEdit ? workerState.nombre || "" : ""}
+          InputLabelProps={{ shrink: !!workerState.nombre || undefined }}
         />
         <TextField
           sx={{ flex: 2 }}
@@ -195,8 +204,8 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
           {...register("apellido")}
           error={!!errors.apellido}
           helperText={errors?.apellido?.message}
-          defaultValue={isEdit ? apellidoInspector || "" : ""}
-          InputLabelProps={{ shrink: !!apellidoInspector || undefined }}
+          defaultValue={workerState.isEdit ? workerState.apellido|| "" : ""}
+          InputLabelProps={{ shrink: !!workerState.apellido || undefined }}
         />
       </Box>
       <Box
@@ -222,16 +231,18 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
           {...register("numeroTelefono")}
           error={!!errors.numeroTelefono}
           helperText={errors?.numeroTelefono?.message}
-          defaultValue={isEdit ? numeroTelefono || "" : ""}
-          InputLabelProps={{ shrink: !!numeroTelefono || undefined }}
+          defaultValue={workerState.isEdit ? workerState.numeroTelefono || "" : ""}
+          InputLabelProps={{ shrink: !!workerState.numeroTelefono || undefined }}
         />
-        <input
-          style={{ flex: 2 }}
-          accept="image/*"
-          type="file"
-          onChange={onImageChange}
-          name="image"
-        />
+        <TextField
+         name="image"
+         label="Imagen" 
+         type="file"
+         onChange={onImageChange}
+         sx={{
+          flex: 2,
+         }}/>
+       
         <Tooltip title={/*title*/ "Guardar inspector"}>
           <button onClick={onClick} className="btn-save" type="submit">
             Guardar
@@ -243,4 +254,4 @@ const InspectorsForm: React.FC<GeneralActionProps> = ({
   );
 };
 
-export default InspectorsForm;
+export default WorkersForm;

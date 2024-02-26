@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const InspectorsSchema = z.object({
+export const WorkerSchema = z.object({
   nombre: z
     .string()
     .min(5, {

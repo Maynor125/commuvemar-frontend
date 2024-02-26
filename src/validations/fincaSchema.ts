@@ -41,5 +41,10 @@ export const FincaSchema = z.object({
     .max(50, {
       message: "El dato debe tener maximo 50 caracteres",
     }),
-    IDProductor:z.string()
+    productor:z.string().min(1, {
+      message: "Debes elegir un productor",
+    })
+    .refine((data) => !/^\s+$/.test(data), {
+      message: "La cadena no debe contener solo espacios en blanco",
+    })
 });
