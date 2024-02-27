@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Popover from "@mui/material/Popover";
 import Box from "@mui/material/Box";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { List, ListItem, ListItemButton, ListItemText, Typography, useTheme } from "@mui/material";
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import Image from "next/image";
 import PerfilImg from "../../../../public/images/admin/pruebaPerfil.jpg";
 
 import Divider from "@mui/material/Divider";
+
+import AttachFileRoundedIcon from "@mui/icons-material/AttachFileRounded";
+import AutorenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 interface ProfileViewerProps {
   avatarSrc: string;
@@ -19,28 +30,52 @@ interface ProfileViewerProps {
 }
 
 const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [openP, setOpenP] = useState(false);
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setOpenP(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const handleOpenProfile = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
     setOpenP(!openP);
-    setVisible(!visible);
   };
 
-  const handleCloseProfile = () => {
-    setAnchorEl(null);
-    setOpenP(false);
-  };
-
-  const open = Boolean(anchorEl);
-  const id = open ? "profile-popover" : undefined;
   const theme = useTheme();
 
   const containerStyles = {
     display: "flex",
     position: "relative",
-    zIndex: 1, // Ensure the parent container has a higher z-index than the scrollbar
+    zIndex: 1,
+  };
+
+  const badgeStyles = {
+    position: "absolute",
+    bottom: "0.2rem",
+    right: "0.2rem",
+    backgroundColor: "#4FBD55",
+    borderRadius: "50%",
+    padding: "0.2rem",
+    zIndex: 2,
+    border: `2px solid ${theme.palette.background.paper}`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "1.4rem",
+    height: "1.4rem",
   };
 
   const [visible, setVisible] = useState(false);
@@ -56,71 +91,130 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
         {!openP ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
       </IconButton>
       <Box
+        ref={containerRef}
         sx={{
           width: "20rem",
-          height: "10rem",
-          display: visible ? "block" : "none",
+
+          display: openP ? "block" : "none",
           position: "absolute",
           top: "2.9rem",
           right: "2rem",
           backgroundColor: theme.palette.background.paper,
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            width: "100%",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: "1rem",
-            padding: ".8rem 1.5rem",
-          }}
-        >
-          <Avatar
+        <div className="borde-card">
+          <Box
             sx={{
-              width: "4.5rem",
-              height: "4.5rem",
-              border: "2px solid",
-              borderColor: theme.palette.background.default,
-              color: theme.palette.secondary.light,
+              display: "flex",
+              width: "100%",
+              justifyContent: "start",
+              alignItems: "center",
+              gap: "1rem",
+              padding: ".8rem 1.5rem",
+              position: "relative",
             }}
-            alt={"foto de perfil"}
-            src={avatarSrc}
-          />
-          <Box>
-            <Typography
+          >
+            <Box
               sx={{
-                color: theme.palette.secondary.light,
-                fontWeight: "500",
-                fontSize: "1.1rem",
+                position: "relative",
               }}
             >
-              Maynor Padilla
-            </Typography>
-            <Typography
-              sx={{
-                color: theme.palette.secondary.contrastText,
-                fontSize: ".9rem",
-              }}
-            >
-              maynoldemar@gmail.com
-            </Typography>
+              <Avatar
+                sx={{
+                  width: "4.5rem",
+                  height: "4.5rem",
+                  border: "2px solid",
+                  borderColor: theme.palette.background.default,
+                  color: theme.palette.secondary.light,
+                  position: "relative",
+                }}
+                alt={"foto de perfil"}
+                src={avatarSrc}
+              />
+              <Box sx={badgeStyles}>
+                <CheckCircleIcon
+                  style={{ color: "white", fontSize: ".9rem" }}
+                />
+              </Box>
+            </Box>
+            <Box>
+              <Typography
+                sx={{
+                  color: theme.palette.secondary.light,
+                  fontWeight: "500",
+                  fontSize: "1.1rem",
+                }}
+              >
+                Maynor Padilla
+              </Typography>
+              <Typography
+                sx={{
+                  color: theme.palette.secondary.contrastText,
+                  fontSize: ".9rem",
+                }}
+              >
+                maynoldemar@gmail.com
+              </Typography>
+            </Box>
           </Box>
-        </Box>
-        <Box sx={{
-          width: "100%",
-        }}>
-          <Divider />
-          <Box>
-            <List>
-              <ListItem>
-                <ListItemButton sx={{ textAlign: "center" }}>
+          <Box
+            sx={{
+              width: "100%",
+            }}
+          >
+            <Divider />
+            <Box
+              sx={{
+                width: "100%",
+              }}
+            >
+              <List>
+                <ListItemButton
+                  sx={{
+                    textAlign: "inherit",
+                    height: "2.2rem",
+                    color: theme.palette.secondary.contrastText,
+                  }}
+                >
+                  <AttachFileRoundedIcon
+                    sx={{ marginRight: "0.5rem", fontSize: "19px" }}
+                  />
                   <ListItemText>que que</ListItemText>
                 </ListItemButton>
-              </ListItem>
-            </List>
+                <ListItemButton
+                  sx={{
+                    textAlign: "inherit",
+                    height: "2.2rem",
+                    color: theme.palette.secondary.contrastText,
+                  }}
+                >
+                  <AutorenewRoundedIcon
+                    sx={{ marginRight: "0.5rem", fontSize: "19px" }}
+                  />
+                  <ListItemText>Options</ListItemText>
+                </ListItemButton>
+              </List>
+            </Box>
+            <Divider />
+            <Box
+              sx={{
+                width: "100%",
+              }}
+            >
+              <List>
+                <ListItemButton sx={{ textAlign: "inherit", height: "2.2rem" }}>
+                  <ListItemText
+                    sx={{
+                      color: theme.palette.secondary.contrastText,
+                    }}
+                  >
+                    Cerrar sesion
+                  </ListItemText>
+                </ListItemButton>
+              </List>
+            </Box>
           </Box>
-        </Box>
+        </div>
       </Box>
     </Box>
   );
