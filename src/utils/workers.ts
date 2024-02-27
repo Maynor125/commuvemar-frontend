@@ -31,7 +31,7 @@ export const createWorkers = async (
   nombre: string,
   apellido: string,
   numeroTelefono: string,
-  urlImg: string
+  urlImg: File
 ): Promise<ApiResponse> => {
   try {
     const response = await apiManager.post("/trabajador", {
