@@ -97,7 +97,7 @@ const UserForm = () => {
   };
 
   return (
-    <form>
+    <form className="borde-card" >
       <Box
         sx={{
           padding: "1rem",
