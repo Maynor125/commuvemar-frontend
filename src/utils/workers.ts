@@ -34,6 +34,7 @@ export const createWorkers = async (
   urlImg: File
 ): Promise<ApiResponse> => {
   try {
+    console.log("la imagen",File)
     const response = await apiManager.post("/trabajador", {
       nombre,
       apellido,

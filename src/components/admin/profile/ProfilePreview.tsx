@@ -67,13 +67,13 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
     try {
       const response = await getUser(id);
       if (response.data !== undefined) {
-        setUserInfo(response.data[0]);
+        setUserInfo(response.data);
       }
     } catch (error) {
       console.error(error);
     }
   };
-  console.log(userInfo);
+
 
   const handleOpenProfile = (event: React.MouseEvent<HTMLElement>) => {
     setOpenP(!openP);
