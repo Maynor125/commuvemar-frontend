@@ -4,4 +4,5 @@ export interface User {
     rol:string;
     hash:string;
     IDTrabajador:number;
+    trabajador:string;
 }
