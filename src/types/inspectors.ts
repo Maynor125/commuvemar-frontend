@@ -3,5 +3,5 @@ export interface Workers {
     nombre:string,
     apellido:string,
     numeroTelefono:string,
-    urlImg:File,
+    urlImg:string,
 }

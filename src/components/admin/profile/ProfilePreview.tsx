@@ -21,6 +21,10 @@ import Divider from "@mui/material/Divider";
 import AttachFileRoundedIcon from "@mui/icons-material/AttachFileRounded";
 import AutorenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
+import { getUser } from "@/utils/user";
+import { Workers } from "@/types/inspectors";
 
 interface ProfileViewerProps {
   avatarSrc: string;
@@ -30,6 +34,8 @@ interface ProfileViewerProps {
 }
 
 const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
+  const dispatch = useDispatch();
+  const userState = useSelector((state: RootState) => state.auth);
   const [openP, setOpenP] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -49,6 +55,25 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    if (userState.logueado) {
+      getInfoUser(userState.idUser);
+    }
+  }, [userState]);
+
+  const [userInfo, setUserInfo] = useState<Workers | null>(null);
+  const getInfoUser = async (id: number) => {
+    try {
+      const response = await getUser(id);
+      if (response.data !== undefined) {
+        setUserInfo(response.data[0]);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  console.log(userInfo);
 
   const handleOpenProfile = (event: React.MouseEvent<HTMLElement>) => {
     setOpenP(!openP);
@@ -145,7 +170,7 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
                   fontSize: "1.1rem",
                 }}
               >
-                Maynor Padilla
+                {userInfo?.nombre} {userInfo?.apellido}
               </Typography>
               <Typography
                 sx={{
@@ -153,7 +178,7 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
                   fontSize: ".9rem",
                 }}
               >
-                maynoldemar@gmail.com
+                {userState.email}
               </Typography>
             </Box>
           </Box>
