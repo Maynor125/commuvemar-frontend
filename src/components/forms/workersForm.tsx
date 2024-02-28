@@ -124,7 +124,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
     nombre: string,
     apellido: string,
     numeroTelefono: string,
-    urlImg: File
+    urlImg: any
   ) => {
     try {
       const response = await createWorkers(
