@@ -137,7 +137,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
         onClick();
       }
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
     }
   };
 
