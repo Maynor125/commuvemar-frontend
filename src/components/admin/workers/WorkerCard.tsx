@@ -14,9 +14,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Avatars from "../avatar/Avatar";
 
-import AdminPanelSettingsRoundedIcon from "@mui/icons-material/AdminPanelSettingsRounded";
-import EngineeringRoundedIcon from "@mui/icons-material/EngineeringRounded";
-
 import Workerimg from "../../../../public/images/admin/workericon.png";
 import Adminimg from "../../../../public/images/admin/adminicon.png";
 import Image from "next/image";

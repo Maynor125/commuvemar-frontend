@@ -1,22 +1,23 @@
-'use client'
+"use client";
 
-import UserForm from '@/components/forms/UserForm'
-import { Box, Button, Typography, useTheme } from '@mui/material'
-import React, { useState } from 'react'
+import UserCard from "@/components/admin/user/UserCard";
+import UserForm from "@/components/forms/UserForm";
+import { Box, Button, Typography, useTheme } from "@mui/material";
+import React, { useState } from "react";
 
 const page = () => {
-    const theme = useTheme();
+  const theme = useTheme();
 
-    const [isAgregate, setIsAgregate] = useState(false);
+  const [isAgregate, setIsAgregate] = useState(false);
   const texto = isAgregate ? "Cancelar" : "Agregar";
   return (
-    <Box component='main'>
-        <Box
+    <Box component="main">
+      <Box
         sx={{
           paddingY: "1.5rem",
         }}
       >
-          <Box
+        <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -29,7 +30,7 @@ const page = () => {
             }}
             variant="h5"
           >
-            Productores
+            Usuarios
           </Typography>
           <Button
             sx={{
@@ -43,13 +44,36 @@ const page = () => {
             onClick={() => setIsAgregate(!isAgregate)}
           >
             {texto}
-          </Button>  
+          </Button>
         </Box>
-        <UserForm/>
-      </Box>
- 
-    </Box>
-  )
-}
+        <Box
+          sx={{
+            marginTop: "1rem",
+          }}
+        >
+          <UserForm />
+        </Box>
 
-export default page
+        <Box
+          sx={{
+            marginTop: "1rem",
+            display: "flex",
+            flexDirection: "column",
+            gap:"1rem"
+          }}
+        >
+          <UserCard 
+          id={20}
+          email="maynoldemar@gmail.com"
+          rol="Usuario"
+          hash="5454677447"
+          IDTrabajador={5}
+          trabajador="Maynor"
+           />
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+export default page;

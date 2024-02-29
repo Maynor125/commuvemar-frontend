@@ -12,7 +12,7 @@ import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import UserCard from "@/components/admin/workers/UserCard";
+import UserCard from "@/components/admin/workers/WorkerCard";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 
