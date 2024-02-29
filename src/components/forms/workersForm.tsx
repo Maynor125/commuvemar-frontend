@@ -1,9 +1,9 @@
 import React from "react";
 import { ZodError } from "zod";
 import { useForm, Resolver, FieldErrors } from "react-hook-form";
-import { Workers} from "@/types/inspectors";
+import { Workers } from "@/types/inspectors";
 import { WorkerSchema } from "@/validations/workerSchema";
-import { createWorkers, updateWorkers} from "@/utils/workers";
+import { createWorkers, updateWorkers } from "@/utils/workers";
 import { Box, TextField, Tooltip } from "@mui/material";
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,9 +52,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
   }, [image]);
 
   //--------------------------------------------------------------------
-  const resolver: Resolver<Workers, FieldErrors<Workers>> = async (
-    data
-  ) => {
+  const resolver: Resolver<Workers, FieldErrors<Workers>> = async (data) => {
     try {
       // Validar los datos con zod
       await WorkerSchema.parseAsync(data);
@@ -103,9 +101,8 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
               data.nombre,
               data.apellido,
               data.numeroTelefono,
-              urlImg="ImagenPerrona"
+              (urlImg = "ImagenPerrona")
             );
-          
           }
         }
       }
@@ -114,9 +111,8 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
         data.nombre,
         data.apellido,
         data.numeroTelefono,
-        urlImg="ImagenPerrona.jpg"
+        image,
       );
-
     }
     // Limpiar los valores de los campos
     setValue("nombre", "");
@@ -128,7 +124,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
     nombre: string,
     apellido: string,
     numeroTelefono: string,
-    urlImg: string
+    urlImg: any
   ) => {
     try {
       const response = await createWorkers(
@@ -137,7 +133,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
         numeroTelefono,
         urlImg
       );
-      if(response !== undefined){
+      if (response !== undefined) {
         onClick();
       }
     } catch (error) {
@@ -160,7 +156,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
         numeroTelefono,
         urlImg
       );
-      if(response){
+      if (response) {
         onClick();
       }
     } catch (error) {
@@ -178,7 +174,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
           gap: "1rem",
           alignItems: "center",
           justifyContent: "space-between",
-           
+
           "@media (max-width: 1100px)": {
             flexDirection: "column",
             alignItems: "stretch", // Alinear los elementos al principio y al final
@@ -204,7 +200,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
           {...register("apellido")}
           error={!!errors.apellido}
           helperText={errors?.apellido?.message}
-          defaultValue={workerState.isEdit ? workerState.apellido|| "" : ""}
+          defaultValue={workerState.isEdit ? workerState.apellido || "" : ""}
           InputLabelProps={{ shrink: !!workerState.apellido || undefined }}
         />
       </Box>
@@ -231,18 +227,23 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
           {...register("numeroTelefono")}
           error={!!errors.numeroTelefono}
           helperText={errors?.numeroTelefono?.message}
-          defaultValue={workerState.isEdit ? workerState.numeroTelefono || "" : ""}
-          InputLabelProps={{ shrink: !!workerState.numeroTelefono || undefined }}
+          defaultValue={
+            workerState.isEdit ? workerState.numeroTelefono || "" : ""
+          }
+          InputLabelProps={{
+            shrink: !!workerState.numeroTelefono || undefined,
+          }}
         />
         <TextField
-         name="image"
-         label="Imagen" 
-         type="file"
-         onChange={onImageChange}
-         sx={{
-          flex: 2,
-         }}/>
-       
+          name="image"
+          label="Imagen"
+          type="file"
+          onChange={onImageChange}
+          sx={{
+            flex: 2,
+          }}
+        />
+
         <Tooltip title={/*title*/ "Guardar inspector"}>
           <button onClick={onClick} className="btn-save" type="submit">
             Guardar

@@ -31,15 +31,18 @@ export const createWorkers = async (
   nombre: string,
   apellido: string,
   numeroTelefono: string,
-  urlImg: string
-): Promise<ApiResponse> => {
+  urlImg: any
+) => {
   try {
+    console.log(nombre);
+    console.log("la imagen", urlImg);
     const response = await apiManager.post("/trabajador", {
       nombre,
       apellido,
       numeroTelefono,
-      urlImg
+      urlImg,
     });
+    console.log("1");
     return response.data;
   } catch (error: any) {
     return { error: error.response?.data.message || "Error desconocido" };
@@ -51,14 +54,14 @@ export const updateWorkers = async (
   nombre: string,
   apellido: string,
   numeroTelefono: string,
-  urlImg:string
+  urlImg: string
 ): Promise<ApiResponse> => {
   try {
     const response = await apiManager.patch(`/trabajador/${id}`, {
       nombre,
       apellido,
       numeroTelefono,
-      urlImg
+      urlImg,
     });
     return response.data;
   } catch (error: any) {
