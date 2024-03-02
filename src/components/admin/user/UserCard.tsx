@@ -39,6 +39,7 @@ const UserCard: React.FC<UserCardProps> = ({
   hash,
   IDTrabajador,
   trabajador,
+  onClick,
 }) => {
   const theme = useTheme();
 
@@ -48,6 +49,7 @@ const UserCard: React.FC<UserCardProps> = ({
   const deleteUser = async (id: number) => {
     try {
       const response = await deleteUsers(id);
+      onClick();
     } catch (error) {
       console.error(error);
     }
@@ -60,6 +62,7 @@ const UserCard: React.FC<UserCardProps> = ({
         id: id,
       })
     );
+    deleteUser(id);
   };
 
   const handleEdit = (
@@ -82,6 +85,7 @@ const UserCard: React.FC<UserCardProps> = ({
       })
     );
   };
+
 
   return (
     <Card variant="outlined">

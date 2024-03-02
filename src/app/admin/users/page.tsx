@@ -10,6 +10,7 @@ const page = () => {
 
   const [isAgregate, setIsAgregate] = useState(false);
   const texto = isAgregate ? "Cancelar" : "Agregar";
+  
   return (
     <Box component="main">
       <Box
