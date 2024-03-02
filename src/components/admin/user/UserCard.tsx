@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 
 import Userimg from "../../../../public/images/admin/usericon.png";
+import AdminImg from "../../../../public/images/admin/useradminicon.png"
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 
@@ -21,6 +22,7 @@ import {
   useTheme,
 } from "@mui/material";
 import Image from "next/image";
+import { getWorkersId } from "@/utils/workers";
 
 interface UserCardProps {
   id: number;
@@ -54,6 +56,35 @@ const UserCard: React.FC<UserCardProps> = ({
       console.error(error);
     }
   };
+
+  const getUserName = async (id: number) => {
+   try {
+    const response = await getWorkersId(id);
+    return response.data;
+   } catch (error) {
+    
+   }
+  }
+  
+  const [workerName, setWorkerName] = useState<string>("");
+  const [workerApellido, setWorkerApellido] = useState<string>("");
+
+  useEffect(() => {
+    const fetchWorkerName = async () => {
+      try {
+        const response = await getUserName(IDTrabajador);
+        if (response) {
+          
+          setWorkerName(response.nombre); 
+          setWorkerApellido(response.apellido);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchWorkerName(); // Llama a la función para obtener el nombre del trabajador al montar el componente
+  }, [IDTrabajador]);
 
   const handleDelete = (id: number) => {
     dispatch(
@@ -102,20 +133,20 @@ const UserCard: React.FC<UserCardProps> = ({
             variant="h6"
             gutterBottom
           >
-            Usuario
+            {rol === "ADMIN" ? 'Administrador' : 'Usuario'}
           </Typography>
           <Box
             sx={{
               cursor: "pointer",
             }}
           >
-            <Tooltip title={"Usuario"}>
+            <Tooltip title={rol === "ADMIN"?"Admin" :"Usuario"}>
               <Image
                 width={50}
                 height={50}
                 className="borde-card"
                 alt="farmer icons"
-                src={Userimg}
+                src={rol === "ADMIN" ? AdminImg: Userimg}
               />
             </Tooltip>
           </Box>
@@ -126,7 +157,7 @@ const UserCard: React.FC<UserCardProps> = ({
               color={theme.palette.secondary.contrastText}
               variant="subtitle1"
             >
-              Trabajador: {trabajador}
+              Trabajador: {workerName} {workerApellido}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3}>

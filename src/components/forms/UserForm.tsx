@@ -26,10 +26,10 @@ import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 import { SelectChangeEvent } from "@mui/material";
 
 interface GeneralActionProps {
-  onClick:()=>void;
+  onClick: () => void;
 }
 
-const UserForm: React.FC<GeneralActionProps> = ({onClick}) => {
+const UserForm: React.FC<GeneralActionProps> = ({ onClick }) => {
   const dispatch = useDispatch();
   const userState = useSelector((state: RootState) => state.user);
 
@@ -93,72 +93,77 @@ const UserForm: React.FC<GeneralActionProps> = ({onClick}) => {
   }, []);
 
   useEffect(() => {
-  if(userState.isEdit){
-    console.log("el rol es",userState.rol);
-   setRolDisabled(true);
-   setValueRol(userState.rol);
-  }
-  else{
-    setRolDisabled(false);
-  }
-  },[userState]);
+    if (userState.isEdit) {
+      console.log("el rol es", userState.rol);
+      setRolDisabled(true);
+      setValueRol(userState.rol);
+    } else {
+      setRolDisabled(false);
+    }
+  }, [userState]);
 
-  const [rolDisabled,setRolDisabled] = useState(false);
-  const [IDTrabajador,setIDTrabajador]=useState(0)
+  const [rolDisabled, setRolDisabled] = useState(false);
+  const [IDTrabajador, setIDTrabajador] = useState(0);
 
   const [valueRol, setValueRol] = useState(
     userState.isEdit ? userState.rol : ""
   );
-
+  console.log("El trabajador es", IDTrabajador);
   const handleChangeSelectRol = (event: SelectChangeEvent<string>) => {
     setValueRol(event.target.value as string);
   };
 
-  const createUser = async(
-    email: string,
-    rol:string,
-    hash:string,
-  )=>{
+  const createUser = async (email: string, hash: string, role: string ) => {
     try {
-      const response = await createUsers(
-        email,
-        rol,
-        hash,
-        IDTrabajador
-      );
-      if(response!==undefined){
+      const response = await createUsers(email, hash, role, IDTrabajador);
+      if (response !== undefined) {
         onClick();
       }
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-  const updateUser = async(
-    id:number,
+  const updateUser = async (
+    id: number,
     email: string,
-    rol:string,
-    hash:string,
-  )=>
-  {
+    hash: string,
+    role: string,
+  ) => {
     try {
       const response = await updateUsers(
         id,
         email,
-        rol,
         hash,
+        role,
         userState.IDTrabajador
-      )
-      if(response!==undefined){
+      );
+      if (response !== undefined) {
         onClick();
       }
+    } catch (error) {}
+  };
+
+  const onSubmit = (data: User) => {
+    console.log("Datos del formulario", data);
+    try {
+      if (userState.isEdit) {
+        if (userState.id && userState.id > 0) {
+          updateUser(userState.id, data.email, data.hash, data.role);
+        }
+      } else {
+        createUser(data.email, data.hash, data.role);
+      }
     } catch (error) {
-      
+      console.error(error);
     }
-  }
+    setValue("email", "");
+    setValue("hash", "");
+    setValue("role", "");
+  };
 
   return (
-    <form className="borde-card" >
+    <form onSubmit={handleSubmit(onSubmit)} className="borde-card">
       <Box
         sx={{
           padding: "1rem",
@@ -186,8 +191,8 @@ const UserForm: React.FC<GeneralActionProps> = ({onClick}) => {
             <InputLabel id="demo-simple-select-label">Productor</InputLabel>
             <Select
               labelId="demo-simple-select-label"
-              id="idProductor"
-              label="Productor"
+              id="idTrabajador"
+              label="Trabajador"
               defaultValue={10}
               {...register("IDTrabajador", { required: true })}
               error={!!errors.IDTrabajador}
@@ -206,13 +211,13 @@ const UserForm: React.FC<GeneralActionProps> = ({onClick}) => {
                 </MenuItem>
               ))}
             </Select>
-            {errors?.trabajador && (
+            {errors?.IDTrabajador && (
               <FormHelperText
                 sx={{
                   color: "red",
                 }}
               >
-                {errors.trabajador.message}
+                {errors.IDTrabajador.message}
               </FormHelperText>
             )}
           </FormControl>
@@ -254,38 +259,37 @@ const UserForm: React.FC<GeneralActionProps> = ({onClick}) => {
             defaultValue={userState.isEdit ? userState.hash : ""}
             InputLabelProps={{ shrink: !!userState.hash || undefined }}
           />
-            <FormControl sx={{ flex: 2 }}>
-              <InputLabel id="rol-label">Estado</InputLabel>
-              <Select
-                labelId="rol-label"
-                id="Rol"
-                value={valueRol}
-                label="Rol"
-                {...register("rol", { required: true })}
-                error={!!errors.rol}
-                onChange={handleChangeSelectRol}
-                disabled={rolDisabled}
+          <FormControl sx={{ flex: 2 }}>
+            <InputLabel id="rol-label">Rol</InputLabel>
+            <Select
+              labelId="rol-label"
+              id="Rol"
+              value={valueRol}
+              label="Rol"
+              {...register("role", { required: true })}
+              error={!!errors.role}
+              onChange={handleChangeSelectRol}
+              disabled={rolDisabled}
+            >
+              <MenuItem value={"ADMIN"}>Administrador</MenuItem>
+              <MenuItem value={"USER"}>usuario</MenuItem>
+            </Select>
+            {errors?.role && (
+              <FormHelperText
+                sx={{
+                  color: "red",
+                }}
               >
-               
-                <MenuItem value={"admin"}>Administrador</MenuItem>
-                <MenuItem value={"user"}>usuario</MenuItem>
-              </Select>
-              {errors?.rol && (
-                <FormHelperText
-                  sx={{
-                    color: "red",
-                  }}
-                >
-                  {errors.rol.message}
-                </FormHelperText>
-              )}
-            </FormControl>
-            <Tooltip title='Guardar'>
-          <button onClick={onClick} className="btn-save" type="submit">
-            Guardar
-            <SaveRoundedIcon />
-          </button>
-        </Tooltip>
+                {errors.role.message}
+              </FormHelperText>
+            )}
+          </FormControl>
+          <Tooltip title="Guardar">
+            <button onClick={onClick} className="btn-save" type="submit">
+              Guardar
+              <SaveRoundedIcon />
+            </button>
+          </Tooltip>
         </Box>
       </Box>
     </form>
