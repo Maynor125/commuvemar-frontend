@@ -2,22 +2,45 @@
 
 import UserCard from "@/components/admin/user/UserCard";
 import UserForm from "@/components/forms/UserForm";
+import MessageGlobal from "@/components/message/MessageGlobal";
+import { RootState } from "@/redux/store/store";
 import { User } from "@/types/user";
 import { getAllUsers } from "@/utils/userW";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const page = () => {
   const theme = useTheme();
 
   const [isAgregate, setIsAgregate] = useState(false);
   const texto = isAgregate ? "Cancelar" : "Agregar";
+  const dispatch = useDispatch();
+  const userState = useSelector((state: RootState) => state.user);
+  const [validadorEdit,setValidadorEdit] = useState(false);
+  const [validadorDelete,setValidadorDelete] = useState(false);
 
   const [users,setUsers] = useState<User[]>([]);
 
   useEffect(()=>{
     getAllUser();
   },[]);
+
+  useEffect(()=>{
+    if(userState.isEdit){
+      setValidadorEdit(true);
+    }
+    else{
+      setValidadorEdit(false);
+    }
+
+    if(userState.isDelete){
+      setValidadorDelete(true);
+    }
+    else{
+      setValidadorDelete(false);
+    }
+  },[userState.isEdit,userState.isDelete])
 
   const getAllUser = async ()=>{
     try {
@@ -32,8 +55,21 @@ const page = () => {
     }
   }
 
+  const [showMessage, setShowMessage] = React.useState(false);
+  const [message, setMessage] = React.useState("");
   const handleSave =()=>{
-    console.log("holi")
+    if(validadorEdit){
+      setMessage("El usuario se edito");
+    }
+    if(validadorDelete){
+      setMessage("El usuario se elimino");
+    }
+    if(!validadorDelete && !validadorEdit){
+      setMessage("El usuario se creo");
+    }
+    setShowMessage(true);
+    setTimeout(() => setShowMessage(false), 4000);
+    getAllUser();
   }
   
   return (
@@ -77,9 +113,12 @@ const page = () => {
             marginTop: "1rem",
           }}
         >
-          <UserForm />
+          <UserForm onClick={handleSave}/>
         </Box>
-
+        <MessageGlobal 
+        show={showMessage}
+        message={message}
+        type={userState.isEdit ? "info" : validadorDelete ? "error" : "success"}/>
         <Box
           sx={{
             marginTop: "1rem",

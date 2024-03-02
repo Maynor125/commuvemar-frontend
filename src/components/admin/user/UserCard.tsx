@@ -109,7 +109,7 @@ const UserCard: React.FC<UserCardProps> = ({
         isEdit: true,
         id: id,
         email: email,
-        rol: rol,
+        role: rol,
         hash: hash,
         IDTrabajador: IDTrabajador,
         trabajador: trabajador,
@@ -172,6 +172,9 @@ const UserCard: React.FC<UserCardProps> = ({
             <Typography
               color={theme.palette.secondary.contrastText}
               variant="subtitle1"
+              sx={{
+                textAlign:'right'
+              }}
             >
               Rol: {rol}
             </Typography>
@@ -187,7 +190,7 @@ const UserCard: React.FC<UserCardProps> = ({
                 rol,
                 hash,
                 IDTrabajador,
-                trabajador
+                trabajador=`${workerName} ${workerApellido}`
               )}
             >
               <EditRoundedIcon sx={{ fontSize: "20px", marginRight: "5px" }} />

@@ -41,20 +41,21 @@ export const createUsers = async (
 export const updateUsers = async (
   id: number,
   email: string,
-  role: string,
   hash: string,
+  role: string,
   IDTrabajador: number
 ): Promise<ApiResponse> => {
   try {
-    const response = await apiManager.post(`/users/${id}`, {
+    const response = await apiManager.patch(`/users/${id}`, {
       id,
       email,
-      role,
       hash,
+      role,
       IDTrabajador,
     });
     return response.data;
   } catch (error: any) {
+    console.error(error.response?.data.message);
     return { error: error.response?.data.message || "Error desconocido" };
   }
 };

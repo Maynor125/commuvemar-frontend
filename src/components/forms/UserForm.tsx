@@ -94,19 +94,30 @@ const UserForm: React.FC<GeneralActionProps> = ({ onClick }) => {
 
   useEffect(() => {
     if (userState.isEdit) {
-      console.log("el rol es", userState.rol);
       setRolDisabled(true);
-      setValueRol(userState.rol);
+      setWorkerDisabled(true);
+      setValueRol(userState.role);
     } else {
       setRolDisabled(false);
+      setWorkerDisabled(false);
     }
   }, [userState]);
 
+  useEffect(() => {
+    if (userState.isEdit) {
+      setValue("email", userState.email); // Asignar valor inicial de email
+      setValue("hash", userState.hash); 
+      setValue("role",userState.role)// Asignar valor inicial de hash
+      setValueRol(userState.role); // Asignar valor inicial de role
+    }
+  }, [userState.isEdit]);
+
   const [rolDisabled, setRolDisabled] = useState(false);
+  const [workerDisabled,setWorkerDisabled] = useState(false);
   const [IDTrabajador, setIDTrabajador] = useState(0);
 
   const [valueRol, setValueRol] = useState(
-    userState.isEdit ? userState.rol : ""
+    userState.isEdit ? userState.role : ""
   );
   console.log("El trabajador es", IDTrabajador);
   const handleChangeSelectRol = (event: SelectChangeEvent<string>) => {
@@ -128,14 +139,13 @@ const UserForm: React.FC<GeneralActionProps> = ({ onClick }) => {
     id: number,
     email: string,
     hash: string,
-    role: string,
   ) => {
     try {
       const response = await updateUsers(
         id,
         email,
         hash,
-        role,
+        userState.role,
         userState.IDTrabajador
       );
       if (response !== undefined) {
@@ -149,7 +159,7 @@ const UserForm: React.FC<GeneralActionProps> = ({ onClick }) => {
     try {
       if (userState.isEdit) {
         if (userState.id && userState.id > 0) {
-          updateUser(userState.id, data.email, data.hash, data.role);
+          updateUser(userState.id, data.email, data.hash);
         }
       } else {
         createUser(data.email, data.hash, data.role);
@@ -197,6 +207,7 @@ const UserForm: React.FC<GeneralActionProps> = ({ onClick }) => {
               {...register("IDTrabajador", { required: true })}
               error={!!errors.IDTrabajador}
               onChange={handleChange}
+              disabled={workerDisabled}
             >
               <MenuItem disabled value={10}>
                 <em> {userState.isEdit ? userState.trabajador : ""}</em>

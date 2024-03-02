@@ -5,7 +5,7 @@ interface UserInterface {
   isDelete: boolean;
   id: number;
   email: string;
-  rol: string;
+  role: string;
   hash: string;
   IDTrabajador: number;
   trabajador:string;
@@ -16,7 +16,7 @@ const initialState: UserInterface = {
     isDelete: false,
     id: 0,
     email:'',
-    rol: '',
+    role: '',
     hash: '',
     IDTrabajador:0,
     trabajador: '',
