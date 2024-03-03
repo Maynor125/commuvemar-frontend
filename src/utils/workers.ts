@@ -34,17 +34,15 @@ export const createWorkers = async (
   urlImg: any
 ) => {
   try {
-    console.log(nombre);
-    console.log("la imagen", urlImg);
     const response = await apiManager.post("/trabajador", {
       nombre,
       apellido,
       numeroTelefono,
       urlImg,
     });
-    console.log("1");
     return response.data;
   } catch (error: any) {
+    console.error(error.response?.data.message);
     return { error: error.response?.data.message || "Error desconocido" };
   }
 };

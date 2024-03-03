@@ -96,7 +96,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
       if (idInspector && idInspector !== -1) {
         if (nombreInspector) {
           if (numeroTelefono) {
-            updateInspector(
+            updateWorker(
               idInspector,
               data.nombre,
               data.apellido,
@@ -107,11 +107,11 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
         }
       }
     } else {
-      createInspector(
+      createWorker(
         data.nombre,
         data.apellido,
         data.numeroTelefono,
-        image,
+        urlImg=image,
       );
     }
     // Limpiar los valores de los campos
@@ -120,7 +120,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
     setValue("numeroTelefono", "");
   };
 
-  const createInspector = async (
+  const createWorker = async (
     nombre: string,
     apellido: string,
     numeroTelefono: string,
@@ -137,11 +137,11 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
         onClick();
       }
     } catch (error) {
-      console.error(error.message);
+      console.error(error);
     }
   };
 
-  const updateInspector = async (
+  const updateWorker = async (
     id: number,
     nombre: string,
     apellido: string,
