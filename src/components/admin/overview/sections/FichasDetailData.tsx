@@ -1,7 +1,7 @@
 "use client";
 import { Box, Typography, useTheme } from "@mui/material";
 import React from "react";
-import ChartLines from "../../charts/ChartLines";
+import LineChartComponent from "../../charts/LinesChart";
 
 const FichasDetailData = () => {
   const theme = useTheme();
@@ -71,7 +71,7 @@ const FichasDetailData = () => {
         </Box>
       </Box>
       <Box>
-        <ChartLines/>
+        <LineChartComponent/>
       </Box>
     </Box>
   );

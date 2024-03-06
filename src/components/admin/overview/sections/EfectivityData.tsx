@@ -4,12 +4,19 @@ import { Box, Typography, useTheme } from '@mui/material'
 import Image from 'next/image';
 import React from 'react'
 import CircleG from '../../../../../public/images/admin/imgCircleG.png'
+import CircleEfectivityChart from '../../charts/CircleChart';
 
 const EfectivityData = () => {
     const theme = useTheme();
   return (
     <Box>
-         <Typography
+      <Box sx={{
+        display: 'flex',
+        justifyContent:'space-between',
+        alignItems: 'center',
+      }}>
+        <Box>
+                   <Typography
           sx={{
             fontWeight: 600,
             color: theme.palette.secondary.light,
@@ -24,20 +31,17 @@ const EfectivityData = () => {
         }}>
         Total Fichas analizadas
         </Typography>
+        </Box>
+        
         <Typography variant='h5' sx={{
             color:'#00A2DC',
             fontWeight: 600
         }}>
             + 20
         </Typography>
-        <Typography sx={{
-            color: theme.palette.secondary.contrastText,
-            fontSize:'14px'
-        }}>
-          El beneficio es un 48% más que el año pasado
-        </Typography>
+      </Box>
         <Box sx={{width:'100%',display:'flex',justifyContent:'center',marginTop:'1rem'}}>
-            <Image src={CircleG} alt='img temporal'/>
+            <CircleEfectivityChart percentage={80}/>
         </Box>
     </Box>
   )
