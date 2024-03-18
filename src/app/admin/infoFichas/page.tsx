@@ -49,7 +49,7 @@ const InformationFichas = () => {
     if (isDelete) {
       setMessage("la Seccion se elimino!");
     } else {
-      setMessage("la Seccion se creo!");
+      setMessage("la Seccion se ");
     }
 
     setShowMessage(true);
@@ -183,6 +183,7 @@ const InformationFichas = () => {
         show={showMessage}
         message={message}
         type={edit ? "info" : isDelete ? "error" : "success"}
+        action="Creo"
       />
       <Box
         sx={{
