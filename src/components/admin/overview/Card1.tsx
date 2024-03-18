@@ -22,7 +22,7 @@ const Card1: React.FC<Card1Props> = ({
   return (
     <Box
       sx={{
-        width: "8.2rem",
+        width: "9.5rem",
         height: "8.2rem",
         padding: ".4rem",
       }}
