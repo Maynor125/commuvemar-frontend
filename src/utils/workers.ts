@@ -1,5 +1,6 @@
 import apiManager from "@/services/apiManager";
 import { Workers } from "@/types/inspectors";
+import { MemoryStoredFile } from "nestjs-form-data";
 
 interface ApiResponse {
   data?: Workers[] | undefined;
@@ -31,9 +32,10 @@ export const createWorkers = async (
   nombre: string,
   apellido: string,
   numeroTelefono: string,
-  urlImg: any
+  urlImg: File
 ) => {
   try {
+    console.log("La imagen es: ", urlImg);
     const response = await apiManager.post("/trabajador", {
       nombre,
       apellido,

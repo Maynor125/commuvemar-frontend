@@ -8,6 +8,7 @@ import { Box, TextField, Tooltip } from "@mui/material";
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
+import { MemoryStoredFile } from "nestjs-form-data";
 
 interface GeneralActionProps {
   onClick: () => void;
@@ -31,7 +32,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
   const dispatch = useDispatch();
   const workerState = useSelector((state: RootState) => state.worker);
   //Logica para guardar la url de la img.
-  const [image, setImage] = React.useState<File | null>(null);
+  const [image, setImage] = React.useState<File| null>(null);
   const [imageUrl, setImageUrl] = React.useState<string | undefined>(urlImg);
 
   const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +40,14 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
       const file = event.target.files[0];
       console.log(file);
       setImage(file);
-      setImageUrl(URL.createObjectURL(file));
+
+      let reader = new FileReader();
+      reader.onload = function(event){
+        let arrayBuffer = event.target?.result;
+        console.log("El buffer es:",arrayBuffer);
+      }
+
+      reader.readAsArrayBuffer(file);
     }
   };
 
@@ -111,7 +119,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
         data.nombre,
         data.apellido,
         data.numeroTelefono,
-        urlImg=image,
+        image,
       );
     }
     // Limpiar los valores de los campos
@@ -133,7 +141,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
         numeroTelefono,
         urlImg
       );
-      if (response !== undefined) {
+      if (!response.error) {
         onClick();
       }
     } catch (error) {
@@ -156,7 +164,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
         numeroTelefono,
         urlImg
       );
-      if (response) {
+      if (!response.error) {
         onClick();
       }
     } catch (error) {
@@ -245,7 +253,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
         />
 
         <Tooltip title={/*title*/ "Guardar inspector"}>
-          <button onClick={onClick} className="btn-save" type="submit">
+          <button className="btn-save" type="submit">
             Guardar
             <SaveRoundedIcon />
           </button>
