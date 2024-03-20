@@ -12,6 +12,7 @@ import {
 } from "@/utils/sections";
 import {
   Box,
+  Button,
   Fade,
   IconButton,
   Tooltip,
@@ -41,6 +42,14 @@ const InformationFichas = () => {
   const [message, setMessage] = React.useState("");
   const [isDelete, setIsDelete] = React.useState(false);
 
+  const [edit, setEdit] = useState(false);
+  const [id, setID] = useState();
+  const [nombreSeccion, setNombreSeccion] = useState("");
+  const [descSeccion, setDescSeccion] = useState("");
+  const [isAgregate, setIsAgregate] = useState(false);
+  const [hayDatos, setHayDatos] = useState(false);
+  const texto = isAgregate ? "Cancelar" : "Agregar";
+
   const handleSave = () => {
     // Perform save action
     if (edit) {
@@ -55,6 +64,8 @@ const InformationFichas = () => {
     setShowMessage(true);
     setTimeout(() => setShowMessage(false), 4000);
     getAllSection();
+    setNombreSeccion('');
+    setDescSeccion('');
   };
 
   useEffect(() => {
@@ -85,7 +96,6 @@ const InformationFichas = () => {
   };
 
   const handleEliminarClick = (id: any) => {
-  
     setIsDelete(true);
     setID(id);
     deleteSections(id);
@@ -99,12 +109,7 @@ const InformationFichas = () => {
     setDescSeccion(descripcion);
   };
 
-  const [edit, setEdit] = useState(false);
-  const [id, setID] = useState();
-  const [nombreSeccion, setNombreSeccion] = useState("");
-  const [descSeccion, setDescSeccion] = useState("");
-  const [isAgregate, setIsAgregate] = useState(false);
-  const [hayDatos, setHayDatos] = useState(false);
+
 
   return (
     <Box
@@ -123,9 +128,9 @@ const InformationFichas = () => {
         }}
       >
         <Typography
-          variant="h6"
+          variant="h5"
           sx={{
-            fontWeight: "600",
+            
             color: theme.palette.secondary.light,
           }}
         >
@@ -138,33 +143,19 @@ const InformationFichas = () => {
             gap: ".5rem",
           }}
         >
-          <Typography
+          <Button
             sx={{
-              color: theme.palette.secondary.contrastText,
+              color: "#fff",
+              backgroundColor: !isAgregate ? "#00A2DC" : "#D43333",
+              "&:hover": {
+                backgroundColor: !isAgregate ? "#0077b3" : "#a62a2a", // Cambia el color de fondo al pasar el cursor
+              },
             }}
+            variant="contained"
+            onClick={() => setIsAgregate(!isAgregate)}
           >
-            Agregar Seccion
-          </Typography>
-          <Box>
-            <Tooltip title={isAgregate ? "cancelar" : "Agregar Seccion"}>
-              <button
-                onClick={() => setIsAgregate(!isAgregate)}
-                className="box-with-shadow btn-addseccion"
-              >
-                <Typography
-                  sx={{
-                    color: theme.palette.secondary.contrastText,
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    transition: "all .4s ",
-                  }}
-                >
-                  {!isAgregate ? <AddRoundedIcon /> : <CloseRoundedIcon />}
-                </Typography>
-              </button>
-            </Tooltip>
-          </Box>
+            {texto}
+          </Button>
         </Box>
       </Box>
       <Box>
@@ -182,8 +173,8 @@ const InformationFichas = () => {
       <MessageGlobal
         show={showMessage}
         message={message}
-        type={edit ? "info" : isDelete ? "error" : "success"}
-        action="Creo"
+        type={edit ? "warning" : isDelete ? "error" : "success"}
+        action={edit ? "Edito" : isDelete ? "Elimino": "Creo"}
       />
       <Box
         sx={{
@@ -226,14 +217,15 @@ const InformationFichas = () => {
             <Box sx={{}}>
               <Link href="/admin">
                 <BtnAction
+                bgColor="#168CC8"
                   tooltipTitle="Visitar seccion"
                   icon={ForwardRoundedIcon}
                   onClick={handleEliminarClick}
                 />
               </Link>
 
-              <BtnAction tooltipTitle="Editar" icon={EditRoundedIcon} />
-              <BtnAction tooltipTitle="Eliminar" icon={DeleteRoundedIcon} />
+              <BtnAction bgColor="#FFCD43" tooltipTitle="Editar" icon={EditRoundedIcon} />
+              <BtnAction bgColor="#D43333" tooltipTitle="Eliminar" icon={DeleteRoundedIcon} />
             </Box>
           </Box>
         </Fade>
@@ -273,6 +265,7 @@ const InformationFichas = () => {
                 <Box>
                   <Link href={`/admin/infoFichas/${item.id}`}>
                     <BtnAction
+                    bgColor="#168CC8"
                       tooltipTitle="Visitar"
                       icon={ForwardRoundedIcon}
                      
@@ -280,6 +273,7 @@ const InformationFichas = () => {
                   </Link>
 
                   <BtnAction
+                  bgColor="#FFCD43"
                     tooltipTitle="Editar"
                     icon={EditRoundedIcon}
                     onClick={() =>
@@ -287,6 +281,7 @@ const InformationFichas = () => {
                     }
                   />
                   <BtnAction
+                  bgColor="#D43333" 
                     tooltipTitle="Eliminar"
                     icon={DeleteRoundedIcon}
                     onClick={() => handleEliminarClick(item.id)}

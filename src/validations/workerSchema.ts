@@ -29,7 +29,7 @@ export const WorkerSchema = z.object({
       message: "El numero de telefono debe tener al menos 15 caracteres",
     })
     .max(10, {
-      message: "El numero de telefono debe tener maximo 50 caracteres",
+      message: "El numero de telefono debe tener maximo 10 caracteres",
     })
     .refine((data) => !/^\s+$/.test(data), {
       message: "La cadena no debe contener solo espacios en blanco",

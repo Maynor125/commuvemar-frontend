@@ -62,6 +62,7 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
     register,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm<Section>({
     resolver: resolver,
@@ -83,8 +84,9 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
       createSections(data.nombre, data.descripcion);
     }
     // Limpiar los valores de los campos
+    reset();
     setValue("nombre", "");
-    setValue("descripcion", "");
+    setValue("descripcion", "");    
   };
 
   const createSections = async (nombre: string, descripcion: string) => {
@@ -106,6 +108,9 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
   ) => {
     try {
       const response = await updateSection(id, nombre, descripcion);
+      if(!response.error){
+        onClick();
+      }
     } catch (error) {
       console.error(error);
     }
