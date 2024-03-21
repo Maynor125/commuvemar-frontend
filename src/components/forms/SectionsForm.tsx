@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, IconButton, TextField, Tooltip } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { Section } from "@/types/section";
 import { SectionsSchema } from "@/validations/sectionsSchema";
 import { useForm, Resolver, FieldErrors } from "react-hook-form";
@@ -67,6 +67,13 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
   } = useForm<Section>({
     resolver: resolver,
   });
+
+  useEffect(() => {
+    if (!isEdit) {
+      // Restablecer los valores de los campos al estado inicial al cargar el formulario
+      reset();
+    }
+  }, [isEdit, reset]);
  
   const onSubmit = (data: Section) => {
     console.log("Formulario de secciones enviado:", data);

@@ -8,6 +8,7 @@ import GeneralData from "@/components/admin/overview/sections/GeneralData";
 import InspectorsData from "@/components/admin/overview/sections/InspectorsData";
 import EfectivityData from "@/components/admin/overview/sections/EfectivityData";
 import FichasDetailData from "@/components/admin/overview/sections/FichasDetailData";
+import BotonFlotante from "@/components/BotonFlotante";
 
 
 const OverView = () => {
@@ -47,6 +48,7 @@ const OverView = () => {
           </Grid>
         </Grid>
       </Grid>
+      <BotonFlotante/>
     </main>
   );
 };

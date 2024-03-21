@@ -33,6 +33,7 @@ import SectionsForm from "@/components/forms/SectionsForm";
 import NoData from "@/components/error/NoData";
 
 import MessageGlobal from "@/components/message/MessageGlobal";
+import BotonFlotante from "@/components/BotonFlotante";
 
 const InformationFichas = () => {
   const [section, setSection] = useState<Section[]>([]);
@@ -100,6 +101,7 @@ const InformationFichas = () => {
     setID(id);
     deleteSections(id);
     handleSave();
+    setIsDelete(false);
   };
 
   const handleEditarClick = (id: any, nombre: string, descripcion: string) => {
@@ -107,6 +109,7 @@ const InformationFichas = () => {
     setID(id);
     setNombreSeccion(nombre);
     setDescSeccion(descripcion);
+    setEdit(false);
   };
 
 
@@ -294,6 +297,7 @@ const InformationFichas = () => {
           <NoData />
         )}
       </Box>
+      <BotonFlotante/>
     </Box>
   );
 };

@@ -1,6 +1,7 @@
 "use client";
 
 import FincasCard from "@/components/admin/fincas/FincasCard";
+import BotonFlotante from "@/components/BotonFlotante";
 import FincaForm from "@/components/forms/FincaForm";
 import { Fincas} from "@/types/fincas";
 import { deleteFincas, getFincas } from "@/utils/finca";
@@ -153,6 +154,7 @@ const Fincas = () => {
           }
         </Box>
       </Box>
+      <BotonFlotante/>
     </Box>
   );
 };
