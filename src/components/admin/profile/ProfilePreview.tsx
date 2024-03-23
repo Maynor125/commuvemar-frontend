@@ -25,6 +25,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { getUser } from "@/utils/user";
 import { Workers } from "@/types/inspectors";
+import { useRouter } from "next/navigation";
+import { logout } from "@/redux/features/authSlice";
 
 interface ProfileViewerProps {
   avatarSrc: string;
@@ -39,6 +41,8 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
   const [openP, setOpenP] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const router = useRouter();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -62,10 +66,17 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
     }
   }, [userState]);
 
+  const logOut=()=>{
+    dispatch(logout());
+    localStorage.removeItem("token");
+    router?.push('/');
+  }
+
   const [userInfo, setUserInfo] = useState<Workers | null>(null);
   const getInfoUser = async (id: number) => {
     try {
       const response = await getUser(id);
+      console.log("Info del usuario",response);
       if (response.data !== undefined) {
         setUserInfo(response.data);
       }
@@ -110,7 +121,7 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
       {" "}
       <Avatar src={avatarSrc} alt="User Avatar" />
       <IconButton
-        sx={{ color: theme.palette.secondary.dark }}
+        sx={{ color: theme.palette.secondary.dark,transition:'ease-in', transitionDuration:'.3s' }}
         onClick={handleOpenProfile}
       >
         {!openP ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}

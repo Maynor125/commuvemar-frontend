@@ -34,7 +34,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           // Token válido, continúa con la aplicación.
           if (tokenData.sub) {
             const tokenIdUser = tokenData?.sub;
-            console.log("Este es el token", tokenIdUser);
+            console.log("Este es el id de usuario", tokenIdUser);
             dispatch(
               setInfoUser({
                 token: String(tokenData),
@@ -43,6 +43,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 email: String(tokenData.email),
               })
             );
+            console.log("Estoy obteniedo bien el user")
           }
         }
       }

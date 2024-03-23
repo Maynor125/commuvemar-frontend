@@ -4,16 +4,12 @@ import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { SidebarProps } from "@/types/sidebar";
 import Link from "next/link";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import Image from "next/image";
-import { logout } from "@/redux/features/authSlice";
 
 import { usePathname, useRouter } from "next/navigation";
 
 import Logo from "@/components/Logo";
 
 import "./sidebar.css";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store/store";
 
 const SideBar: React.FC<SidebarProps> = ({ paths }) => {
   const router = useRouter();
@@ -22,14 +18,6 @@ const SideBar: React.FC<SidebarProps> = ({ paths }) => {
   const esPantallaMedianaOmasPequeña = useMediaQuery(
     theme.breakpoints.down("md")
   );
-
-  const dispatch = useDispatch<AppDispatch>();
-
-  const logOut=()=>{
-    dispatch(logout());
-    localStorage.removeItem("token");
-    router?.push('/');
-  }
 
   return (
     <Box
@@ -84,12 +72,6 @@ const SideBar: React.FC<SidebarProps> = ({ paths }) => {
             );
           })}
         </Box>
-        <a className="exit" onClick={logOut}>
-          <Typography color={theme.palette.secondary.dark}>
-            <LogoutOutlinedIcon />
-          </Typography>
-          <Typography color={theme.palette.secondary.dark}>LogOut</Typography>
-        </a>
       </Box>
     </Box>
   );

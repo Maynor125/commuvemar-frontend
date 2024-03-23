@@ -140,7 +140,7 @@ const ProductorCard: React.FC<Props> = ({
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Typography variant="body1">
-              Ingreso al programa: {fechaEntradaPrograma}
+              Ingreso al programa: {new Date(fechaEntradaPrograma).toLocaleDateString('es-ES',{year:'numeric',month:'long',day:'numeric'}) }
               {/*new Date(registrationDate).toLocaleDateString()*/}
             </Typography>
           </Grid>

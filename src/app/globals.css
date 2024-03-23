@@ -184,6 +184,21 @@ p {
   border-color: #4FBD55;
   color: #4FBD55;
 }
+.btn-save-contrast{
+  background-color: #168CC8;
+  border: 1px solid #168CC8;
+}
+.btn-save-contrast:hover{
+  border-color: #168CC8;
+  background: #168CC8;
+  color: #168CC8;
+  color: #fff;
+}
+.btn-save-contrast-2{
+  background: none;
+  border: 1px solid #168CC8;
+  color: #168CC8;
+}
 .btn-addseccion{
   cursor: pointer;
   width: 2.5rem;

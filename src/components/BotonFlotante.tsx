@@ -3,10 +3,15 @@
 import React, { useEffect, useState } from "react";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import { IconButton, useScrollTrigger } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
 
 const BotonFlotante = () => {
   const [visible, setVisible] = useState(false);
   const trigger = useScrollTrigger();
+
+  const dispatch = useDispatch();
+  const authState = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,7 +40,7 @@ const BotonFlotante = () => {
         background: "#168CC8",
         position: "fixed",
         bottom: "20px",
-        right: "20px",
+        right: authState.logueado? "20px": "130px",
         borderRadius: "5px",
         opacity: trigger ? 1 : 0,
         transition: "opacity 0.3s ease",
