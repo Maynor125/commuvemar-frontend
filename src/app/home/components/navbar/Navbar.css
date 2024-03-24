@@ -10,8 +10,8 @@
     z-index: 99;
     transition: all .4s;
 }
-.nav-link.active-link{
-    color: var(--firts-color-red);  
+.active-link{
+    color: red;   
 }
 .nav-link.dark-mode{
     display: block;
@@ -52,7 +52,7 @@
     margin-left: 4.5rem;
 }
 .nav-link{
-    color: var( --color-text-1);
+    
     font-weight: var(--font-medium);
     font-family: var(--fuente-opensang);
     transition: var(--transition);

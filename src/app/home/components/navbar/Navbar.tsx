@@ -1,27 +1,36 @@
 "use client";
 
-import { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../../../../public/images/logo.png";
 import Image from "next/image";
 import { Link_home } from "../../data";
-import Link from "next/link";
+
 import "./Navbar.css";
 
 /* Iconos a usar en el navbar */
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import ToogleButton from "../../../../components/theme/ToogleButton";
-import { Box, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import { useAppSelector } from "@/redux/store/store";
 import { selectDarkMode } from "@/redux/features/themeSlice";
+import Link from "next/link";
+
 
 interface Props {
-  pathNames: Link_home[];
+  pathNames: Link_home[]; 
 }
 
 function Navbar({ pathNames }: Props) {
   const [isNavShowing, setIsNavShowing] = useState<boolean>(false);
   const theme = useTheme();
+  const [isSticky, setIsSticky] = useState<boolean>(false);
 
   //Codigo para manejar los links activos.
   const darkMode = useAppSelector(selectDarkMode);
@@ -29,12 +38,35 @@ function Navbar({ pathNames }: Props) {
 
   const isSmallerThan1025 = useMediaQuery("(max-width: 1024px)");
 
+   // Manejar el cambio de scroll
+   useEffect(() => {
+    const scrollHeader = () => {
+      if (window.scrollY >= 50) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+    window.addEventListener('scroll', scrollHeader);
+    return () => {
+      window.removeEventListener('scroll', scrollHeader);
+    };
+  }, []);
+
+  const [activeLink, setActiveLink] = useState<string>('');
+  // Manejar la activación de enlaces
+  const scrollActive = () => {
+ 
+};
+
+
+
   return (
     <Box
-    component='nav'
+      component="nav"
       id="hea"
       className="header"
-      sx={{ bgcolor: theme.palette.background.default,boxShadow:'none' }}
+      sx={{ bgcolor: theme.palette.background.default, boxShadow: "none" }}
     >
       <div className="container nav-container">
         <div className="imagen">
@@ -60,7 +92,9 @@ function Navbar({ pathNames }: Props) {
                   key={pathName.path}
                   href={pathName.path}
                 >
-                  <Typography color={theme.palette.secondary.main}>{pathName.name}</Typography>
+                  <Typography color={theme.palette.secondary.main}>
+                    {pathName.name}
+                  </Typography>
                 </Link>
               ))}
             </ul>
@@ -75,53 +109,41 @@ function Navbar({ pathNames }: Props) {
             </div>
           </div>
         </div>
-        {
-          isSmallerThan1025 &&  <IconButton
-          className="btn-nav-toogle"
-          onClick={() => setIsNavShowing((prev) => !prev)}
-          sx={{color:theme.palette.secondary.dark}}
-        >
-          <MenuRoundedIcon className="menu-icon" />
-        </IconButton>
-        }
+        {isSmallerThan1025 && (
+          <IconButton
+            className="btn-nav-toogle"
+            onClick={() => setIsNavShowing((prev) => !prev)}
+            sx={{ color: theme.palette.secondary.dark }}
+          >
+            <MenuRoundedIcon className="menu-icon" />
+          </IconButton>
+        )}
       </div>
     </Box>
   );
 }
 
-/* barra pegajosa */
-function scrollHeader() {
-  const header = document.getElementById("hea")!;
-
-  if (scrollY >= 50) {
-    header.classList.add("sticky");
-  } else {
-    header.classList.remove("sticky");
-  }
-}
-window.addEventListener("scroll", scrollHeader);
-
 //=============== Activar enlaces ===============
 
-var sections = document.querySelectorAll<HTMLDivElement>("section[id]");
+var sections = document.querySelectorAll<HTMLDivElement>('section[id]');
 
-const scrollActive = () => {
-  const scrollY = window.pageYOffset;
+const scrollActive = () =>{
+  	const scrollY = window.pageYOffset
 
-  sections.forEach((current) => {
-    const sectionHeight = current.offsetHeight,
-      sectionTop = current.offsetTop - 58,
-      sectionId = current.getAttribute("id"),
-      sectionsClass = document.querySelector(
-        ".nav-list .nav-link[href*=" + sectionId + "]"
-      )!;
-    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      sectionsClass.classList.add("active-link");
-    } else {
-      sectionsClass.classList.remove("active-link");
-    }
-  });
-};
-window.addEventListener("scroll", scrollActive);
+	sections.forEach(current =>{
+		const sectionHeight = current.offsetHeight,
+			  sectionTop = current.offsetTop - 58, 
+			  sectionId = current.getAttribute('id'),
+			  sectionsClass = document.querySelector('.nav-list .nav-link[href*=' + sectionId + ']')!; 
+		if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
+          
+          sectionsClass.classList.add('active-link') 
+		}else{
+      
+			sectionsClass.classList.remove('active-link')    
+		}                                                    
+	})
+}
+window.addEventListener("scroll", scrollActive)
 
 export default Navbar;
