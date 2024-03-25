@@ -169,17 +169,20 @@
 .container-morf:hover {
   transform: scale(1.02);
 }
-.slider-object h2{
+.slider-object-text{
  color: #fff;
  width: 90%;
+ font-weight: 700;
+ text-align: center;
 }
 .img-container{
-  margin-top: 2.6rem;
+  margin-top: 4rem;
   height: 320px;
   position: relative;
 }
 .imagen-productor{
   height: 100%;
+  mask-image: linear-gradient(#55C978 95%,transparent);
 }
 
 @media(max-width: 1050px) {

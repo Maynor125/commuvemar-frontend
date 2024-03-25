@@ -12,6 +12,7 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import ToogleButton from "../../../../components/theme/ToogleButton";
 import {
   Box,
+  Divider,
   IconButton,
   Typography,
   useMediaQuery,
@@ -80,9 +81,9 @@ function Navbar({ pathNames }: Props) {
             isNavShowing ? "nav-part2-active" : "nav-part2-desactive"
           }`}
         >
-          <div
+          <Box component='div' sx={{ bgcolor: isSmallerThan1025 ? theme.palette.background.paper:''}}
             className={`contenedor-nav ${
-              isNavShowing ? "contenedor-nav-active" : "contenedor-nav-inactive"
+              isNavShowing ? "contenedor-nav-active" : "contenedor-nav-inactive"  
             }`}
           >
             <ul className="nav-list">
@@ -98,16 +99,16 @@ function Navbar({ pathNames }: Props) {
                 </Link>
               ))}
             </ul>
-            <div className="part-1">
-              <div className="dark-mode">
-                <p>Dark mode</p>
+            <div className={`part-1 ${isSmallerThan1025 ? 'bordes':''}`}>
+              <div className={`dark-mode ${isSmallerThan1025 ? 'bordesb':''}` }>
+                <Typography sx={{color:theme.palette.secondary.contrastText}}>Dark mode</Typography>
                 <ToogleButton />
               </div>
               <Link className="boton-base btn-login" href="/login">
                 Login
               </Link>
             </div>
-          </div>
+          </Box>
         </div>
         {isSmallerThan1025 && (
           <IconButton
