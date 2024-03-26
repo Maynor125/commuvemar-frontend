@@ -115,6 +115,7 @@ p {
   width: var(--container-width-pantallaGrande);
   max-width: 1920px;
   margin-inline: auto;
+  transition: all .4s;
 }
 
 .grid {
