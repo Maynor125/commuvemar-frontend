@@ -1,0 +1,39 @@
+.cardFicha{
+    height: 25rem;
+    width: 17.5rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all .2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.1rem;
+}
+.cardFicha:hover{
+   border-color: #4cb9d4;
+}
+.cabecera{
+    display: flex;
+    justify-content: space-between;
+}
+.titleHeader{
+    
+}
+.descContainer{
+   
+}
+.emailContainer{
+   
+}
+.infoContainer{
+    
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.footerCard{
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
