@@ -12,7 +12,7 @@ const CardFicha2 = ({ficha}:{ficha: Ficha}) => {
       <div className="cabecera">
         <Avatar
           sx={{ width: "4.5rem", height: "4.5rem",bgcolor:'#4cb9d4' }}
-          alt="Remy Sharp"
+          alt={ficha.nombre}
           src="/static/images/avatar/1.jpg"
         />
         <IconButton sx={{width:'2.6rem',height:'2.6rem'}}>
