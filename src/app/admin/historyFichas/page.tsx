@@ -10,6 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 import './Style.css'
 import NoResult from "@/components/noResult";
+import Map from "@/components/map/Map";
 
 
 const HistoryFichas = () => {
@@ -38,6 +39,8 @@ const HistoryFichas = () => {
     setCurrentPage(1);
   }, [searchQuery]);
 
+  const latitude = 13.7177027;
+  const longitude = -84.7721508;
 
   return (
     <Box component="main">
@@ -46,10 +49,10 @@ const HistoryFichas = () => {
          <Typography sx={{color:theme.palette.secondary.light}} variant="h5">Historial de fichas</Typography>
          <Paper
       component="form"
-      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400, marginRight:'2.5rem' }}
     >
        <InputBase
-        sx={{ ml: 1, flex: 1 }}
+        sx={{ ml: 1, flex: 1,mr:2 }}
         placeholder="Busca fichas por inspector"
         inputProps={{ 'aria-label': 'search google maps' }}
         onChange={handleSearch}
@@ -70,6 +73,10 @@ const HistoryFichas = () => {
         </Box>
         <Box sx={{ mt: '1rem', textAlign: 'center' }}>
         <Pagination fichasPerPage={fichasPerPage} totalFichas={Fichas.length} paginate={paginate} />
+      </Box>
+      <Box>
+      <h1>Mapa de Ejemplo</h1>
+      <Map latitude={latitude} longitude={longitude} />
       </Box>
       </Box>
     </Box>
