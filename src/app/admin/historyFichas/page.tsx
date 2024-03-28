@@ -9,8 +9,11 @@ import { Fichas } from "@/data/admin/fichas";
 import SearchIcon from '@mui/icons-material/Search';
 
 import './Style.css'
-import NoResult from "@/components/noResult";
+import NoResult from "@/components/NoResult";
 import Map from "@/components/map/Map";
+import ModalMapa from "@/components/admin/fichas/ModalMapa";
+import { useDispatch } from "react-redux";
+import { updateValueMapa } from "@/redux/features/mapaModalSlice";
 
 
 const HistoryFichas = () => {
@@ -22,6 +25,8 @@ const HistoryFichas = () => {
   const currentFichas = Fichas.slice(indexOfFirstFicha, indexOfLastFicha);
   const [filteredFichas, setFilteredFichas] = useState(Fichas);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const dispatch = useDispatch();
 
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -41,6 +46,16 @@ const HistoryFichas = () => {
 
   const latitude = 13.7177027;
   const longitude = -84.7721508;
+
+  const handleOpenModalMapa =()=>{
+    dispatch(
+      updateValueMapa({
+       openM:true,
+       latitud:latitude,
+       longitud:longitude,
+      })
+    )
+  }
 
   return (
     <Box component="main">
@@ -67,18 +82,15 @@ const HistoryFichas = () => {
           {
             filteredFichas.length > 0 ?
             filteredFichas.slice(indexOfFirstFicha, indexOfLastFicha).map((fichas)=>(
-                       <CardFicha2 key={fichas.id} ficha={fichas}/>
+                       <CardFicha2 key={fichas.id} ficha={fichas} onClick={handleOpenModalMapa}/>
             )): <NoResult/>
           }
         </Box>
-        <Box sx={{ mt: '1rem', textAlign: 'center' }}>
+        <Box sx={{ mt: '1rem', textAlign: 'center',color:theme.palette.secondary.contrastText }}>
         <Pagination fichasPerPage={fichasPerPage} totalFichas={Fichas.length} paginate={paginate} />
       </Box>
-      <Box>
-      <h1>Mapa de Ejemplo</h1>
-      <Map latitude={latitude} longitude={longitude} />
       </Box>
-      </Box>
+      <ModalMapa description="Esta es la localizacion exacta donde se lleno la ficha"/>
     </Box>
   );
 };
