@@ -1,6 +1,7 @@
 "use client";
 import { Box, Typography, useTheme } from "@mui/material";
 import React from "react";
+import LineChartComponent from "../../charts/LinesChart";
 
 const FichasDetailData = () => {
   const theme = useTheme();
@@ -68,6 +69,9 @@ const FichasDetailData = () => {
             </Typography>
           </Box>
         </Box>
+      </Box>
+      <Box>
+        <LineChartComponent/>
       </Box>
     </Box>
   );

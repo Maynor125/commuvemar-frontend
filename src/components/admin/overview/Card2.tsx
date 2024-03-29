@@ -10,7 +10,7 @@ const Card2:React.FC<Card2Props> = ({customColor}) => {
   return (
     <Box
       sx={{
-        width: "46%",
+        width: "48%",
         background: customColor || theme.palette.secondary.contrastText,
         height: "5rem",
         borderRadius: "5px",

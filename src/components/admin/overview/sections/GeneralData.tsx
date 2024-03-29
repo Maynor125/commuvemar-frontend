@@ -5,9 +5,19 @@ import Card1 from "../Card1";
 import { Box, Typography, useTheme } from "@mui/material";
 import Card2 from "../Card2";
 
+import imgcar1 from "../../../../../public/images/admin/iconD5.svg";
+import imgcar2 from "../../../../../public/images/admin/iconD6.svg";
+import imgcar3 from "../../../../../public/images/admin/iconD2.svg";
+import imgcar4 from "../../../../../public/images/admin/iconD4.svg";
+
 const GeneralData = () => {
   const theme = useTheme();
-  const [isDateActive, setIsDateActive] = useState(true);
+
+  const [activeButton, setActiveButton] = useState("Week");
+
+  const handleButtonClick = (buttonName: string) => {
+    setActiveButton(buttonName);
+  };
   return (
     <div>
       <Box
@@ -25,32 +35,48 @@ const GeneralData = () => {
           Datos generales
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center", gap: ".8rem" }}>
-          <button className="btn-fecha">
+          <button
+            className="btn-fecha"
+            onClick={() => handleButtonClick("Week")}
+          >
             <Typography
               sx={{
-                color: isDateActive
-                  ? "#00A2DC"
-                  : theme.palette.secondary.contrastText,
+                color:
+                  activeButton === "Week"
+                    ? "#00A2DC"
+                    : theme.palette.secondary.contrastText,
                 fontSize: "14px",
               }}
             >
               Week
             </Typography>
           </button>
-          <button className="btn-fecha">
+          <button
+            className="btn-fecha"
+            onClick={() => handleButtonClick("Month")}
+          >
             <Typography
               sx={{
-                color: theme.palette.secondary.contrastText,
+                color:
+                  activeButton === "Month"
+                    ? "#00A2DC"
+                    : theme.palette.secondary.contrastText,
                 fontSize: "14px",
               }}
             >
               Month
             </Typography>
           </button>
-          <button className="btn-fecha">
+          <button
+            className="btn-fecha"
+            onClick={() => handleButtonClick("Year")}
+          >
             <Typography
               sx={{
-                color: theme.palette.secondary.contrastText,
+                color:
+                  activeButton === "Year"
+                    ? "#00A2DC"
+                    : theme.palette.secondary.contrastText,
                 fontSize: "14px",
               }}
             >
@@ -67,8 +93,8 @@ const GeneralData = () => {
           alignItems: "center",
         }}
       >
-        <Card2 customColor="#FFE6E6"/>
-        <Card2 customColor="#BEF9C1"/>
+        <Card2 customColor="#FFE6E6" />
+        <Card2 customColor="#BEF9C1" />
       </Box>
       <Box
         sx={{
@@ -78,10 +104,34 @@ const GeneralData = () => {
           alignItems: "center",
         }}
       >
-        <Card1 customColor="#CC0000" />
-        <Card1 customColor="#26A4DA" />
-        <Card1 customColor="#4FBD55" />
-        <Card1 customColor="#26A4DA" />
+        <Card1
+          title="Fichas aprovadas"
+          iconPath={imgcar1}
+          customColor="#303F9F"
+          value={8}
+          porcentaje="12"
+        />
+        <Card1
+          title="Nuevas fichas"
+          iconPath={imgcar3}
+          customColor="#26A4DA"
+          value={9}
+          porcentaje="10"
+        />
+        <Card1
+          title="Cambios"
+          iconPath={imgcar2}
+          customColor="#4FBD55"
+          value={12}
+          porcentaje="15"
+        />
+        <Card1
+          title="Nuevos usuarios"
+          iconPath={imgcar4}
+          customColor="#EF2515"
+          value={6}
+          porcentaje="8"
+        />
       </Box>
     </div>
   );
