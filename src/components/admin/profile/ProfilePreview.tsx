@@ -13,8 +13,6 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import Image from "next/image";
-import PerfilImg from "../../../../public/images/admin/pruebaPerfil.jpg";
 
 import Divider from "@mui/material/Divider";
 
