@@ -223,6 +223,15 @@ p {
   justify-content: center;
   align-items: center;
 }
+.btn-banner-ficha{
+  background-color: #5583EC;
+  border-color: #5583EC;
+}
+.btn-banner-ficha:hover{
+  background-color: none;
+  color: #5583EC; 
+  border-color: #5583EC;
+}
 /*--------------------------------------------*/
 
 .header-grid{
