@@ -1,3 +1,6 @@
+.service{
+    transition: all .4s;
+}
 .service-container
 {
     margin-top: 4rem;

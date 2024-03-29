@@ -11,6 +11,7 @@ import MessageGlobal from "@/components/message/MessageGlobal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { clearValueProductor } from "@/redux/features/productorsSlice";
+import BotonFlotante from "@/components/BotonFlotante";
 
 const Productors = () => {
   const [productors, setProductors] = useState<Productors[]>([]);
@@ -166,6 +167,7 @@ const Productors = () => {
           ))}
         </Box>
       </Box>
+      <BotonFlotante/>
     </Box>
   );
 };

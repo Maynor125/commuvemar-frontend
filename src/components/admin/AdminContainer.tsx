@@ -16,6 +16,8 @@ const AdminContainer = ({ children }: { children: React.ReactNode }) => {
         gridTemplateColumns: { xs: "1fr", sm: "1fr", md: "210px 1fr", lg: "210px 1fr", xl: "210px 1fr" },
         height: "100vh",
         width: "100%",
+        transition:'all',
+        transitionDuration:'.4s'
       }}
     >
       <Box component="div" sx={{

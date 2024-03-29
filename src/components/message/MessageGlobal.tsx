@@ -7,8 +7,11 @@ const MessageGlobal: React.FC<CustomMessageProps> = ({
   message,
   type,
   show,
+  action
 }) => {
-  if (!show) return null;
+  useEffect(() => {
+    setOpen(show);
+  }, [show]);
 
   const [open, setOpen] = React.useState(true);
 
@@ -32,7 +35,7 @@ const MessageGlobal: React.FC<CustomMessageProps> = ({
           variant="filled"
           sx={{ width: "100%",color:'white' }}
         >
-          {message}
+          {message} se {action} !
         </Alert>
       </Snackbar>
   );

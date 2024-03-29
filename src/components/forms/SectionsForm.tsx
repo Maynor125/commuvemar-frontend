@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, IconButton, TextField, Tooltip } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { Section } from "@/types/section";
 import { SectionsSchema } from "@/validations/sectionsSchema";
 import { useForm, Resolver, FieldErrors } from "react-hook-form";
@@ -11,9 +11,10 @@ import { createSection, updateSection } from "@/utils/sections";
 
 import TourRoundedIcon from "@mui/icons-material/TourRounded";
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
+import MessageGlobal from "../message/MessageGlobal";
 
 interface GeneralActionProps {
-  onClick: () => void;
+  onClick: ()=> void;
   title: string;
   isEdit: boolean;
   idSection?: number;
@@ -61,14 +62,19 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
     register,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm<Section>({
     resolver: resolver,
   });
-  console.log("el id que me pasan es: ", idSection);
-  console.log("el nombre que me pasan es: ", nombreSection);
-  console.log("la  desc que me pasan es: ", descripcionSection);
 
+  useEffect(() => {
+    if (!isEdit) {
+      // Restablecer los valores de los campos al estado inicial al cargar el formulario
+      reset();
+    }
+  }, [isEdit, reset]);
+ 
   const onSubmit = (data: Section) => {
     console.log("Formulario de secciones enviado:", data);
 
@@ -85,14 +91,18 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
       createSections(data.nombre, data.descripcion);
     }
     // Limpiar los valores de los campos
+    reset();
     setValue("nombre", "");
-    setValue("descripcion", "");
-    onClick();
+    setValue("descripcion", "");    
   };
 
   const createSections = async (nombre: string, descripcion: string) => {
     try {
       const response = await createSection(nombre, descripcion);
+      if(!response.error)
+      {
+        onClick();
+      } 
     } catch (error) {
       console.error(error);
     }
@@ -105,6 +115,9 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
   ) => {
     try {
       const response = await updateSection(id, nombre, descripcion);
+      if(!response.error){
+        onClick();
+      }
     } catch (error) {
       console.error(error);
     }
@@ -149,7 +162,7 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
           InputLabelProps={{ shrink: !!descripcionSection || undefined }}
         />
         <Tooltip title={title}>
-          <button onClick={onClick} className="btn-save" type="submit">
+          <button className="btn-save" type="submit">
             Guardar
             <SaveRoundedIcon />
           </button>

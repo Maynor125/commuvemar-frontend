@@ -115,6 +115,7 @@ p {
   width: var(--container-width-pantallaGrande);
   max-width: 1920px;
   margin-inline: auto;
+  transition: all .4s;
 }
 
 .grid {
@@ -149,6 +150,12 @@ p {
   border: 1px solid #E6E8EC;
   border-radius: 5px;
 }
+.bordes{
+  border-top: 1px solid #cbcbcc;
+}
+.bordesb{
+  border-bottom: 1px solid #cbcbcc;
+}
 
 /* Estilos para el tema oscuro */
 [data-theme="dark"] .box-with-shadow {
@@ -162,6 +169,13 @@ p {
 }
 [data-theme="dark"] body{
   background: #0F0F15;
+}
+[data-theme="dark"] .bordes{
+  border-top-color: var(--color-title-1);
+  border-bottom-color: var(--color-title-1);
+}
+[data-theme="dark"] .bordesb{
+  border-bottom-color: var(--color-title-1);
 }
 
 /*Estilos para el apartado de secciones*/
@@ -183,6 +197,21 @@ p {
   background: none;
   border-color: #4FBD55;
   color: #4FBD55;
+}
+.btn-save-contrast{
+  background-color: #168CC8;
+  border: 1px solid #168CC8;
+}
+.btn-save-contrast:hover{
+  border-color: #168CC8;
+  background: #168CC8;
+  color: #168CC8;
+  color: #fff;
+}
+.btn-save-contrast-2{
+  background: none;
+  border: 1px solid #168CC8;
+  color: #168CC8;
 }
 .btn-addseccion{
   cursor: pointer;

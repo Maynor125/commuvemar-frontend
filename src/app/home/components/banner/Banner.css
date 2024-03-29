@@ -11,9 +11,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: all .4s;
 }
 .banner-container{
-    
     text-align: center;
 }
 .banner-container h2{

@@ -49,18 +49,18 @@ const Login = () => {
               <LoginForm />
             </div>
             <div className="etiqueta">
-              <p>Puedes registrarte con</p>
+              <Typography sx={{color:theme.palette.secondary.contrastText}}>Puedes registrarte con</Typography>
               <div className="divider-container">
                 <hr  className="divider" />
               </div>
             </div>
             <div className="auth-more">
               <div className="cont-btns-more">
-                <button className=" boton icon-btn face-btn" >
+                <button style={{color:theme.palette.secondary.light}} className=" boton icon-btn face-btn" >
                   <Image className="icon" alt="face-icon" src={FacebookIcon} />
                   Facebook
                 </button>
-                <button className="boton icon-btn goo-btn">
+                <button style={{color:theme.palette.secondary.light}}  className="boton icon-btn goo-btn">
                   <Image className="icon" alt="google-icon" src={GoogleIcon} />
                   Google
                 </button>
@@ -77,9 +77,9 @@ const Login = () => {
             />
             <div className="container-morf">
               <div className="slider-object">
-                <h2>
+                <Typography className="slider-object-text" variant="h5">
                   Start your journey by one click, explore beautiful world!
-                </h2>
+                </Typography>
                 <div className="img-container">
                   <Image
                     className="imagen-productor"

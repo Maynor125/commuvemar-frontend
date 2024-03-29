@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic'
 import { Links_home } from './home/data'
 import { About, Banner, Contact, Footer, Service, Welcome } from './home/components'
 import { Box, useTheme } from '@mui/material'
+import BotonFlotante from '@/components/BotonFlotante'
 const Navbar= dynamic(()=> import('./home/components/navbar/Navbar'), { ssr: false })
 
 
@@ -20,6 +21,7 @@ export default function Home() {
       <Service/>
       <Contact/>
       <Footer/>
+      <BotonFlotante/>
     </Box>
   )
 }

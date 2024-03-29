@@ -15,6 +15,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import UserCard from "@/components/admin/workers/WorkerCard";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
+import BotonFlotante from "@/components/BotonFlotante";
 
 const Inspectors = () => {
   const theme = useTheme();
@@ -185,6 +186,7 @@ const Inspectors = () => {
           />
         ))}
       </Box>
+     <BotonFlotante/> 
     </Box>
   );
 };

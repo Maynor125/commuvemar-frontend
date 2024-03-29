@@ -17,7 +17,7 @@ import { Box, Divider, Typography, useTheme } from "@mui/material";
 const Footer = () => {
   const theme = useTheme();
   return (
-    <Box component='footer' sx={{bgcolor:theme.palette.background.default}}>
+    <Box component='footer' sx={{bgcolor:theme.palette.background.default}} className="footer">
       <div className="container footer-container">
         <Divider/>
         <div className="cont-footer-central">

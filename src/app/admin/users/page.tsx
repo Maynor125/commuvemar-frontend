@@ -15,63 +15,6 @@ const page = () => {
 
   const [isAgregate, setIsAgregate] = useState(false);
   const texto = isAgregate ? "Cancelar" : "Agregar";
-  const dispatch = useDispatch();
-  const userState = useSelector((state: RootState) => state.user);
-  const [validadorEdit,setValidadorEdit] = useState(false);
-  const [validadorDelete,setValidadorDelete] = useState(false);
-
-  const [users,setUsers] = useState<User[]>([]);
-
-  useEffect(()=>{
-    getAllUser();
-  },[]);
-
-  useEffect(()=>{
-    if(userState.isEdit){
-      setValidadorEdit(true);
-    }
-    else{
-      setValidadorEdit(false);
-    }
-
-    if(userState.isDelete){
-      setValidadorDelete(true);
-    }
-    else{
-      setValidadorDelete(false);
-    }
-  },[userState.isEdit,userState.isDelete])
-
-  const getAllUser = async ()=>{
-    try {
-      const response = await getAllUsers();
-      console.log(response);
-      if(response.data !== undefined){
-        setUsers(response.data);
-      }
-      return response;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  const [showMessage, setShowMessage] = React.useState(false);
-  const [message, setMessage] = React.useState("");
-  const handleSave =()=>{
-    if(validadorEdit){
-      setMessage("El usuario se edito");
-    }
-    if(validadorDelete){
-      setMessage("El usuario se elimino");
-    }
-    if(!validadorDelete && !validadorEdit){
-      setMessage("El usuario se creo");
-    }
-    setShowMessage(true);
-    setTimeout(() => setShowMessage(false), 4000);
-    getAllUser();
-  }
-  
   return (
     <Box component="main">
       <Box

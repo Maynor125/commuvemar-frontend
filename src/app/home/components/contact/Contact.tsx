@@ -15,7 +15,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 const Contact = () => {
   const theme = useTheme()
   return (
-    <Box bgcolor={theme.palette.background.default} id="contact" className="contact">
+    <Box component="section" bgcolor={theme.palette.background.default} id="contact" className="contact">
       <div className="container contact-container">
         <div className="box-with-shadow  contact-form">
           <div className="contact-form-part1">
