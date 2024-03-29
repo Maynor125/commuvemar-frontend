@@ -14,7 +14,7 @@ import { Productors } from "@/types/productors";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { clearValueFincas } from "@/redux/features/fincaSlice";
-
+  
 interface GeneralActionProps {
   onClick: () => void;
   nombre: string;

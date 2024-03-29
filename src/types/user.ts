@@ -1,7 +1,7 @@
 export interface User {
     id:number;
     email:string;
-    rol:string;
+    role:string;
     hash:string;
     IDTrabajador:number;
     trabajador:string;
