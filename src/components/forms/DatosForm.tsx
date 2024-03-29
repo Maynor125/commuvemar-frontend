@@ -5,7 +5,7 @@ import { DatosSchema } from "@/validations/datoSchema";
 import { datoInterface } from "@/types/dato";
 import { ZodError } from "zod";
 import { useForm, Resolver, FieldErrors } from "react-hook-form";
-import { createDato, updateDato } from "@/utils/datoSection";
+import { createDato, updateDato } from "@/services/datoSection";
 
 interface GeneralActionProps {
   onClick: () => void;

@@ -18,7 +18,7 @@ import Farm from "../../../../public/images/admin/farmicon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { updateValueFincas,clearValueFincas } from "@/redux/features/fincaSlice";
-import { deleteFincas } from "@/utils/finca";
+import { deleteFincas } from "@/services/finca";
 
 interface Props {
   nombre: string;

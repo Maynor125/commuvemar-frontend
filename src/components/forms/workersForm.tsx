@@ -3,7 +3,7 @@ import { ZodError } from "zod";
 import { useForm, Resolver, FieldErrors } from "react-hook-form";
 import { Workers } from "@/types/inspectors";
 import { WorkerSchema } from "@/validations/workerSchema";
-import { createWorkers, updateWorkers } from "@/utils/workers";
+import { createWorkers, updateWorkers } from "@/services/workers";
 import { Box, TextField, Tooltip } from "@mui/material";
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 import { useDispatch, useSelector } from "react-redux";

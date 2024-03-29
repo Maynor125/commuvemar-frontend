@@ -15,9 +15,9 @@ import { ZodError } from "zod";
 import { useForm, Resolver, FieldErrors } from "react-hook-form";
 import { User } from "@/types/user";
 import { UserSchema } from "@/validations/userSchema";
-import { createUsers, getAllUsers, updateUsers } from "@/utils/userW";
+import { createUsers, getAllUsers, updateUsers } from "@/services/userW";
 import { Workers } from "@/types/inspectors";
-import { getWorkers } from "@/utils/workers";
+import { getWorkers } from "@/services/workers";
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";

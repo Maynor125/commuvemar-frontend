@@ -8,7 +8,7 @@ import AdminImg from "../../../../public/images/admin/useradminicon.png"
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 
-import { deleteUsers } from "@/utils/userW";
+import { deleteUsers } from "@/services/userW";
 
 import { updateValueUser } from "@/redux/features/userSlice";
 import {
@@ -22,7 +22,7 @@ import {
   useTheme,
 } from "@mui/material";
 import Image from "next/image";
-import { getWorkersId } from "@/utils/workers";
+import { getWorkersId } from "@/services/workers";
 
 interface UserCardProps {
   id: number;

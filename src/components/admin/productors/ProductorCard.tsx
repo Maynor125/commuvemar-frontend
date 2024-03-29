@@ -17,7 +17,7 @@ import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { updateValueProductor } from "@/redux/features/productorsSlice";
-import { deleteProductors } from "@/utils/productors";
+import { deleteProductors } from "@/services/productors";
 
 interface Props {
   id: number;

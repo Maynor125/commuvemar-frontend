@@ -9,7 +9,7 @@ import {
   deleteSection,
   getSections,
   updateSection,
-} from "@/utils/sections";
+} from "@/services/sections";
 import {
   Box,
   Button,

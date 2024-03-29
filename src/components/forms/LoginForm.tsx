@@ -23,7 +23,7 @@ import { ZodError } from "zod";
 import { useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { login } from "@/utils/login";
+import { login } from "@/services/login";
 
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";

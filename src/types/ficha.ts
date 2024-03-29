@@ -1,9 +1,12 @@
 export interface Ficha {
-    id:number;
+    id?:number;
     nombre:string;
     fecha:string;
     email:string;
     finca:string;
-    poductor:string;
-    location:[]
+    productor:string;
+    location: {
+        latitud: string;
+        longitud: string;
+      };
 }

@@ -7,7 +7,7 @@ import { SectionsSchema } from "@/validations/sectionsSchema";
 import { useForm, Resolver, FieldErrors } from "react-hook-form";
 import { useRef, useState } from "react";
 import { ZodError } from "zod";
-import { createSection, updateSection } from "@/utils/sections";
+import { createSection, updateSection } from "@/services/sections";
 
 import TourRoundedIcon from "@mui/icons-material/TourRounded";
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";

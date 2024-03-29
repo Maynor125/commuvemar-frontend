@@ -17,8 +17,8 @@ import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import DatosForm from "@/components/forms/DatosForm";
-import { deleteDato, getDatosSection } from "@/utils/datoSection";
-import { getSectionsId } from "@/utils/sections";
+import { deleteDato, getDatosSection } from "@/services/datoSection";
+import { getSectionsId } from "@/services/sections";
 
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
 import MessageGlobal from "@/components/message/MessageGlobal";

@@ -5,7 +5,7 @@ import UserForm from "@/components/forms/UserForm";
 import MessageGlobal from "@/components/message/MessageGlobal";
 import { RootState } from "@/redux/store/store";
 import { User } from "@/types/user";
-import { getAllUsers } from "@/utils/userW";
+import { getAllUsers } from "@/services/userW";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

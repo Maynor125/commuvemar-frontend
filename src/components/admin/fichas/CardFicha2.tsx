@@ -51,7 +51,7 @@ const CardFicha2: FC<Props> = ({onClick,ficha}) => {
         </div>
         <div className="productor">
           <Typography color={theme.palette.secondary.contrastText} sx={{fontSize:'14px'}}>Productor</Typography>
-          <Typography color={theme.palette.secondary.light} sx={{fontSize:'14px',fontWeight:'600'}}>{ficha.poductor}</Typography>
+          <Typography color={theme.palette.secondary.light} sx={{fontSize:'14px',fontWeight:'600'}}>{ficha.productor}</Typography>
         </div>
       </div>
       <div className="footerCard">

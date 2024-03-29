@@ -2,7 +2,7 @@
 
 import { Box, Divider, Grid, useTheme } from "@mui/material";
 import SideBar from "./sidebar/SideBar";
-import { PathsSideBar } from "@/data/admin/sideInfo";
+import { PathsSideBar } from "@/routes/sideInfo";
 
 const AdminContainer = ({ children }: { children: React.ReactNode }) => {
   const theme = useTheme();
