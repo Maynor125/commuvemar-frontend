@@ -37,7 +37,7 @@
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.8.0",
     "react-redux": "^9.1.0",
-    "recharts": "^2.12.2",
+    "recharts": "^2.12.3",
     "styled-components": "^5.3.10",
     "typescript": "5.0.4",
     "zod": "^3.22.4"
