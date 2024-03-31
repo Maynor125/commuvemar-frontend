@@ -13,6 +13,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import BannerFicha from "@/components/admin/fichas/BannerFicha";
 import html2pdf from "html2pdf.js";
 import PrimeraSeccion from "@/components/admin/fichas/sections/PrimeraSeccion";
+import SegundaSeccion from "@/components/admin/fichas/sections/SegundaSeccion";
 
 const Ficha = ({ params }: any) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -159,8 +160,9 @@ const Ficha = ({ params }: any) => {
             Ficha de inspeccion interna - Cacao organico
           </Typography>
         </Box>
-        <Box sx={{ marginTop: "2rem" }}>
+        <Box sx={{ marginTop: "2rem",display:'flex',flexDirection:'column',gap:'2rem' }}>
           <PrimeraSeccion />
+          <SegundaSeccion/>
         </Box>
       </Box>
     </Box>
