@@ -14,6 +14,9 @@ import BannerFicha from "@/components/admin/fichas/BannerFicha";
 import html2pdf from "html2pdf.js";
 import PrimeraSeccion from "@/components/admin/fichas/sections/PrimeraSeccion";
 import SegundaSeccion from "@/components/admin/fichas/sections/SegundaSeccion";
+import TerceraSeccion from "@/components/admin/fichas/sections/TerceraSeccion";
+import CuartaSeccion from "@/components/admin/fichas/sections/CuartaSeccion";
+import QuintaSeccion from "@/components/admin/fichas/sections/QuintaSeccion";
 
 const Ficha = ({ params }: any) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -163,6 +166,9 @@ const Ficha = ({ params }: any) => {
         <Box sx={{ marginTop: "2rem",display:'flex',flexDirection:'column',gap:'2rem' }}>
           <PrimeraSeccion />
           <SegundaSeccion/>
+          <TerceraSeccion/>
+          <CuartaSeccion/>
+          <QuintaSeccion/>
         </Box>
       </Box>
     </Box>
