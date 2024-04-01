@@ -19,6 +19,7 @@ const SideBar: React.FC<SidebarProps> = ({ paths }) => {
     theme.breakpoints.down("md")
   );
 
+
   return (
     <Box
       component="aside"
@@ -40,16 +41,21 @@ const SideBar: React.FC<SidebarProps> = ({ paths }) => {
           sx={{ display: "flex", flexDirection: "column", gap: ".8rem" }}
         >
           {paths.map((item) => {
+              const isActive =
+              pathname === item.path ||
+              (pathname.startsWith(item.path + '/') &&
+                item.path !== '/admin' &&
+                pathname.replace(item.path + '/', '').split('/').length === 1);
             return (
               <Box component="li" key={item.id}>
                 <Link
-                  className={`link ${pathname === item.path && "link-active"}`}
+                  className={`link ${isActive && "link-active"}`}
                   href={item.path}
                   color={theme.palette.secondary.dark}
                 >
                   <Typography
                     color={
-                      pathname === item.path
+                      isActive
                         ? theme.palette.grey[200]
                         : theme.palette.secondary.dark
                     }
@@ -60,7 +66,7 @@ const SideBar: React.FC<SidebarProps> = ({ paths }) => {
                     sx={{ marginLeft: ".7rem" }}
                     variant="body1"
                     color={
-                      pathname === item.path
+                      isActive
                         ? theme.palette.grey[200]
                         : theme.palette.secondary.dark
                     }

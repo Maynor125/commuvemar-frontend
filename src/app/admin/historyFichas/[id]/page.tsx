@@ -166,6 +166,7 @@ const Ficha = ({ params }: any) => {
           borderRadius: "8px",
           marginBottom: "1.5rem",
           padding: "1.5rem",
+          transition:'all .4s'
         }}
       >
         <Box sx={{ marginTop: "2rem", textAlign: "center" }}>
