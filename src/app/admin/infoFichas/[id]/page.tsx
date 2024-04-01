@@ -22,6 +22,7 @@ import { getSectionsId } from "@/services/sections";
 
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
 import MessageGlobal from "@/components/message/MessageGlobal";
+import { useRouter } from "next/navigation";
 
 const page = ({ params }: any) => {
   const theme = useTheme();
@@ -200,6 +201,11 @@ const page = ({ params }: any) => {
   const [descripcionDato, setDescripcionDato] = useState("");
   const [isAgregate, setIsAgregate] = useState(false);
   const texto = isAgregate ? "Cancelar" : "Agregar";
+
+  const router = useRouter();
+  const onVolver =()=>{
+    router.push('/admin/infoFichas')
+  }
   return (
     <Box component={"main"}>
       <Box
@@ -223,7 +229,7 @@ const page = ({ params }: any) => {
             {sectionData?.nombre}
           </Typography>
           <Tooltip title="Regresar">
-            <IconButton>
+            <IconButton onClick={onVolver}>
               <KeyboardBackspaceRoundedIcon />
             </IconButton>
           </Tooltip>

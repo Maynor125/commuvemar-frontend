@@ -232,6 +232,15 @@ p {
   color: #5583EC; 
   border-color: #5583EC;
 }
+.btn-banner-ficha-volver{
+ background-color: #858586; 
+ border-color: #858586;
+}
+.btn-banner-ficha-volver:hover{
+  background-color: none;
+  color: #858586; 
+  border-color: #858586;
+}
 /*--------------------------------------------*/
 
 .header-grid{
