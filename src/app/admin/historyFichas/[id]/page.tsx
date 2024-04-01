@@ -17,6 +17,11 @@ import SegundaSeccion from "@/components/admin/fichas/sections/SegundaSeccion";
 import TerceraSeccion from "@/components/admin/fichas/sections/TerceraSeccion";
 import CuartaSeccion from "@/components/admin/fichas/sections/CuartaSeccion";
 import QuintaSeccion from "@/components/admin/fichas/sections/QuintaSeccion";
+import SextaSeccion from "@/components/admin/fichas/sections/SextaSeccion";
+import SeptimaSeccion from "@/components/admin/fichas/sections/SeptimaSeccion";
+import OctavaSeccion from "@/components/admin/fichas/sections/OctavaSeccion";
+import NovenaSeccion from "@/components/admin/fichas/sections/NovenaSeccion";
+import BotonFlotante from "@/components/BotonFlotante";
 
 const Ficha = ({ params }: any) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -165,12 +170,18 @@ const Ficha = ({ params }: any) => {
         </Box>
         <Box sx={{ marginTop: "2rem",display:'flex',flexDirection:'column',gap:'2rem' }}>
           <PrimeraSeccion />
-          <SegundaSeccion/>
+          <SegundaSeccion titulo="Registros Administrativos"/>
           <TerceraSeccion/>
           <CuartaSeccion/>
           <QuintaSeccion/>
+          <SextaSeccion/>
+          <SeptimaSeccion/>
+          <SegundaSeccion titulo="Riesgos de Contaminación en la Finca"/>
+          <OctavaSeccion/>
+          <NovenaSeccion/>
         </Box>
       </Box>
+      <BotonFlotante/>
     </Box>
   );
 };

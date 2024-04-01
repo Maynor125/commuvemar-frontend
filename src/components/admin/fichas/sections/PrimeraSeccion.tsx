@@ -9,27 +9,9 @@ import {
   useTheme,
 } from "@mui/material";
 import React, { FC } from "react";
+import { ReadOnlyTextField } from "../ReadOnlyInput";
 
-interface FormControl{
-  label: string;
-  value: string;
-}
 
-const ReadOnlyTextField:FC<FormControl> =({ label, value}) =>{
-  return (
-    <Box sx={{ width: "100%" }}>
-      <FormLabel sx={{ marginBottom: ".5rem" }}>{label}</FormLabel>
-      <TextField
-        value={value}
-        InputProps={{
-          readOnly: true, // Esto deshabilita la entrada de texto
-        }}
-        variant="outlined"
-        fullWidth
-      />
-    </Box>
-  );
-}
 
 const PrimeraSeccion = () => {
   const handleChange = (event:any) => {
