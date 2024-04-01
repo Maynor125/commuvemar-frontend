@@ -22,6 +22,11 @@ import SeptimaSeccion from "@/components/admin/fichas/sections/SeptimaSeccion";
 import OctavaSeccion from "@/components/admin/fichas/sections/OctavaSeccion";
 import NovenaSeccion from "@/components/admin/fichas/sections/NovenaSeccion";
 import BotonFlotante from "@/components/BotonFlotante";
+import DecimaSeccion from "@/components/admin/fichas/sections/DecimaSeccion";
+import UnDecimaSeccion from "@/components/admin/fichas/sections/UnDecimaSeccion";
+import Declaracion from "@/components/admin/fichas/sections/Declaracion";
+import DictamenFinal from "@/components/admin/fichas/sections/DictamenFinal";
+import DecisionComite from "@/components/admin/fichas/sections/DecisionComite";
 
 const Ficha = ({ params }: any) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -170,15 +175,21 @@ const Ficha = ({ params }: any) => {
         </Box>
         <Box sx={{ marginTop: "2rem",display:'flex',flexDirection:'column',gap:'2rem' }}>
           <PrimeraSeccion />
-          <SegundaSeccion titulo="Registros Administrativos"/>
+          <SegundaSeccion traeCantidad={true} titulo="Registros Administrativos"/>
           <TerceraSeccion/>
           <CuartaSeccion/>
           <QuintaSeccion/>
           <SextaSeccion/>
           <SeptimaSeccion/>
-          <SegundaSeccion titulo="Riesgos de Contaminación en la Finca"/>
+          <SegundaSeccion traeCantidad={true} titulo="Riesgos de Contaminación en la Finca"/>
           <OctavaSeccion/>
           <NovenaSeccion/>
+          <DecimaSeccion/>
+          <UnDecimaSeccion/>
+          <SegundaSeccion traeCantidad={false} titulo="Capacitacion"/> 
+          <Declaracion/>
+          <DictamenFinal/>
+          <DecisionComite/>
         </Box>
       </Box>
       <BotonFlotante/>

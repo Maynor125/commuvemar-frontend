@@ -4,11 +4,14 @@ import Datatable from '../../datatable/Datatable';
 
 interface Props {
  titulo: string;
+ traeCantidad:boolean;
 }
 
-const SegundaSeccion:FC<Props> = ({titulo}) => {
+const SegundaSeccion:FC<Props> = ({titulo,traeCantidad}) => {
     const theme = useTheme();
     const [dataRows, setDataRows] = useState<any[]>([]);
+    const ObservacionField = traeCantidad ? 'cantidad / observacion' : 'observacion'
+    const ObservacionName = traeCantidad ? 'Cantidad / Observacion' : 'Observacion'
     const columns = [
         {
             field:'descripcion',
@@ -22,8 +25,8 @@ const SegundaSeccion:FC<Props> = ({titulo}) => {
             width:120
         },
         {
-            field:'cantidad / obserovacion',
-            headerName:'Cantidad / Observacion',
+            field:ObservacionField,
+            headerName:ObservacionName,
             headerClassName:'header-grid',
             width:400
         }, 
