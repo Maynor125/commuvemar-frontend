@@ -84,7 +84,7 @@ const Productors = () => {
     <Box component="main">
       <Box
         sx={{
-          paddingY: "1.5rem",
+          paddingY: "2rem",
         }}
       >
         <Box

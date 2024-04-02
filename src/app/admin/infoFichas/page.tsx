@@ -127,7 +127,7 @@ const InformationFichas = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginY: "1rem",
+          marginY: "2rem",
         }}
       >
         <Typography

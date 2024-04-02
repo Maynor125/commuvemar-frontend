@@ -119,7 +119,7 @@ const UserCard: React.FC<UserCardProps> = ({
 
 
   return (
-    <Card variant="outlined">
+    <Card variant="outlined" sx={{transition:'all .4s'}}>
       <CardContent>
         <Box
           sx={{

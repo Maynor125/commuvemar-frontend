@@ -12,14 +12,67 @@ import { useDispatch, useSelector } from "react-redux";
 
 const page = () => {
   const theme = useTheme();
-
   const [isAgregate, setIsAgregate] = useState(false);
   const texto = isAgregate ? "Cancelar" : "Agregar";
+  const userState = useSelector((state: RootState) => state.user);
+
+  const [users,setUsers] = useState<User[]>([]);
+
+  //Para el mensaje de guardado.
+  const [showMessage, setShowMessage] = React.useState(false);
+  const [message, setMessage] = React.useState("");
+
+  const getAllUser = async ()=>{
+    try {
+      const response = await getAllUsers();
+      console.log(response);
+      if(response.data !== undefined)
+      {
+        setUsers(response.data);
+      }
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(()=>{
+    getAllUser();
+  })
+
+  const handleSave = () => {
+    if (userState.isEdit) {
+      setMessage("La finca se edito!");
+    }
+    if (userState.isDelete) {
+      setMessage("La finca se elimino!");
+    } else {
+      setMessage("La finca se creo!");
+    }
+
+    setShowMessage(true);
+    setTimeout(() => setShowMessage(false), 3000);
+    getAllUser();
+    //setTimeout(() => setShowMessage(false), 3000);
+  };
+
+  const [edit,setEdit] = useState(false);
+  const [deleteU,setDeleteU] = useState(false);
+
+  useEffect(()=>{
+    if(userState.isDelete){
+      setDeleteU(true);
+    }
+    else if(userState.isEdit){
+      setEdit(true);
+    }
+  },[userState])
+
   return (
     <Box component="main">
       <Box
         sx={{
-          paddingY: "1.5rem",
+          paddingY: "2rem",
         }}
       >
         <Box
@@ -61,7 +114,8 @@ const page = () => {
         <MessageGlobal 
         show={showMessage}
         message={message}
-        type={userState.isEdit ? "info" : validadorDelete ? "error" : "success"}/>
+        type={edit ? "info" : deleteU ? "error" : "success"}
+        action={edit ? "Edito" : deleteU ? "Elimino": "Creo"}/>
         <Box
           sx={{
             marginTop: "1rem",
@@ -77,6 +131,7 @@ const page = () => {
           hash="5454677447"
           IDTrabajador={5}
           trabajador="Maynor"
+          onClick={handleSave}
            />
            {users.map((item)=>(
               <UserCard 

@@ -107,13 +107,12 @@ const Inspectors = () => {
   };
 
   return (
-    <Box>
+    <Box sx={{paddingY:'2rem'}}>
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginTop: "1rem",
         }}
       >
         <Typography
