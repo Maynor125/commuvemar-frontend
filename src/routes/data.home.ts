@@ -27,37 +27,37 @@ export interface Link_home{
 export const Services = [
     {
         id:1,
-        icon: require('../../../../public/images/home/cards/1.png'),
+        icon: require('../../public/images/home/cards/1.png'),
         title:'Venta de cacao',
         text:'Choose your doctor from thousands of specialist, general, and trusted hospitals'
     },
     {
         id:2,
-        icon: require('../../../../public/images/home/cards/2.png'),
+        icon: require('../../public/images/home/cards/2.png'),
         title:'Compra de cacao',
         text:'Choose your doctor from thousands of specialist, general, and trusted hospitals'
     },
     {
         id:3,
-        icon: require('../../../../public/images/home/cards/3.png'),
+        icon: require('../../public/images/home/cards/3.png'),
         title:'Procesamiento',
         text:'Choose your doctor from thousands of specialist, general, and trusted hospitals'
     },
     {
         id:4,
-        icon: require('../../../../public/images/home/cards/4.png'),
+        icon: require('../../public/images/home/cards/4.png'),
         title:'Inspecciones',
         text:'Choose your doctor from thousands of specialist, general, and trusted hospitals'
     },
     {
         id:5,
-        icon: require('../../../../public/images/home/cards/5.png'),
+        icon: require('../../public/images/home/cards/5.png'),
         title:'Acopio de cacao',
         text:'Choose your doctor from thousands of specialist, general, and trusted hospitals'
     },
     {
         id:6,
-        icon: require('../../../../public/images/home/cards/6.png'),
+        icon: require('../../public/images/home/cards/6.png'),
         title:'Asistencia tecnica',
         text:'Choose your doctor from thousands of specialist, general, and trusted hospitals'
     },

@@ -6,7 +6,7 @@ import ProtectedPage from "@/middleware/ProtectedPage";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import type { Productors } from "@/types/productors";
-import { getProductors } from "@/utils/productors";
+import { getProductors } from "@/services/productors";
 import MessageGlobal from "@/components/message/MessageGlobal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
@@ -84,7 +84,7 @@ const Productors = () => {
     <Box component="main">
       <Box
         sx={{
-          paddingY: "1.5rem",
+          paddingY: "2rem",
         }}
       >
         <Box

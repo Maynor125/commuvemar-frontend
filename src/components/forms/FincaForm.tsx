@@ -5,11 +5,11 @@ import { ZodError } from "zod";
 import { useForm, Resolver, FieldErrors } from "react-hook-form";
 import { Fincas } from "@/types/fincas";
 import { FincaSchema } from "@/validations/fincaSchema";
-import { createFincas, updateFincas } from "@/utils/finca";
+import { createFincas, updateFincas } from "@/services/finca";
 import { Box, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField, Tooltip } from "@mui/material";
 
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
-import { getProductors } from "@/utils/productors";
+import { getProductors } from "@/services/productors";
 import { Productors } from "@/types/productors";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";

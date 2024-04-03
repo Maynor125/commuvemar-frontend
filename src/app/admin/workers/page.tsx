@@ -4,7 +4,7 @@ import Avatars from "@/components/admin/avatar/Avatar";
 import WorkersForm from "@/components/forms/workersForm";
 import MessageGlobal from "@/components/message/MessageGlobal";
 import { Workers } from "@/types/inspectors";
-import { deleteWorkers, getWorkers } from "@/utils/workers";
+import { deleteWorkers, getWorkers } from "@/services/workers";
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
@@ -107,13 +107,12 @@ const Inspectors = () => {
   };
 
   return (
-    <Box>
+    <Box sx={{paddingY:'2rem'}}>
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginTop: "1rem",
         }}
       >
         <Typography

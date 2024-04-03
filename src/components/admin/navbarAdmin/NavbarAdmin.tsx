@@ -8,7 +8,7 @@ import imgPreview from "../../../../public/images/assets/userPicture.jpg";
 import ProfilePreview from "../profile/ProfilePreview";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import SideBar from "../sidebar/SideBar";
-import { PathsSideBar } from "@/data/admin/sideInfo";
+import { PathsSideBar } from "@/routes/sideInfo";
 
 const NavbarAdmin: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>("");

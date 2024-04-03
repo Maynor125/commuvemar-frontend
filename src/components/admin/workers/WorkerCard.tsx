@@ -19,7 +19,7 @@ import Adminimg from "../../../../public/images/admin/adminicon.png";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
-import { deleteWorkers } from "@/utils/workers";
+import { deleteWorkers } from "@/services/workers";
 import { updateValueWorker } from "@/redux/features/workerSlice";
 
 interface UserCardProps {

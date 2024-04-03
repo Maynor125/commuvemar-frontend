@@ -16,9 +16,9 @@ interface ColumnDef {
 interface DataTableProps {
   rows: any[];
   columns: ColumnDef[];
-  onEdit: (id: any) => void;
-  onDelete: (id: any) => void;
-  filterText: string;
+  onEdit?: (id: any) => void;
+  onDelete?: (id: any) => void;
+  filterText?: string;
 }
 
 const Datatable: React.FC<DataTableProps> = ({
@@ -40,7 +40,7 @@ const Datatable: React.FC<DataTableProps> = ({
       <DataGrid
         sx={{ width: "99.5%", height: "100%", marginBottom: "1rem"}}
         rows={rows.filter((row) =>
-          row.titulo.toLowerCase().includes(filterText.toLowerCase())
+          row.titulo.toLowerCase().includes(filterText?.toLowerCase())
         )}
         columns={columns.map((column) => {
           if (column.editable) {

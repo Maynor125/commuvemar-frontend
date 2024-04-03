@@ -17,7 +17,7 @@ import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { updateValueProductor } from "@/redux/features/productorsSlice";
-import { deleteProductors } from "@/utils/productors";
+import { deleteProductors } from "@/services/productors";
 
 interface Props {
   id: number;
@@ -168,7 +168,13 @@ const ProductorCard: React.FC<Props> = ({
             </Button>
             <Button
               variant="contained"
-              color="error"
+              sx={{
+                color: "#fff",
+                backgroundColor: "#D43333",
+                "&:hover": {
+                  backgroundColor:  "#a62a2a", // Cambia el color de fondo al pasar el cursor
+                },
+              }}
               onClick={()=>handleDelete(id)}
             >
               <DeleteRoundedIcon

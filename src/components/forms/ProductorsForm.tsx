@@ -15,7 +15,7 @@ import { useForm, Resolver, FieldErrors } from "react-hook-form";
 import { ZodError } from "zod";
 
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
-import { createProductors, updateProductors } from "@/utils/productors";
+import { createProductors, updateProductors } from "@/services/productors";
 import LocalizationProviderWrapper from "../admin/dateProvider";
 
 import { Dayjs } from "dayjs";

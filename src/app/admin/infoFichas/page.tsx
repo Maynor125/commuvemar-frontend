@@ -9,7 +9,7 @@ import {
   deleteSection,
   getSections,
   updateSection,
-} from "@/utils/sections";
+} from "@/services/sections";
 import {
   Box,
   Button,
@@ -127,7 +127,7 @@ const InformationFichas = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginY: "1rem",
+          marginY: "2rem",
         }}
       >
         <Typography

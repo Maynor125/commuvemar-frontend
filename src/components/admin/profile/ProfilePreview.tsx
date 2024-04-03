@@ -21,7 +21,7 @@ import AutorenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
-import { getUser } from "@/utils/user";
+import { getUser } from "@/services/user";
 import { Workers } from "@/types/inspectors";
 import { useRouter } from "next/navigation";
 import { logout } from "@/redux/features/authSlice";
