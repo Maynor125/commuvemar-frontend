@@ -7,6 +7,8 @@ import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 import AgricultureOutlinedIcon from '@mui/icons-material/AgricultureOutlined';
+import EngineeringOutlinedIcon from '@mui/icons-material/EngineeringOutlined';
+
 
 export const PathsSideBar = [
     {
@@ -43,7 +45,7 @@ export const PathsSideBar = [
         id:6,
         name:'Workers',
         path:'/admin/workers',
-        icon:PermIdentityOutlinedIcon,
+        icon:EngineeringOutlinedIcon,
     },
     {
         id:7,
@@ -57,4 +59,10 @@ export const PathsSideBar = [
         path:'/admin/productors',
         icon:StarBorderRoundedIcon,
     },
+    {
+        id:9,
+        name:'Users',
+        path:'/admin/users',
+        icon:PermIdentityOutlinedIcon,
+    }
 ]

@@ -168,7 +168,13 @@ const ProductorCard: React.FC<Props> = ({
             </Button>
             <Button
               variant="contained"
-              color="error"
+              sx={{
+                color: "#fff",
+                backgroundColor: "#D43333",
+                "&:hover": {
+                  backgroundColor:  "#a62a2a", // Cambia el color de fondo al pasar el cursor
+                },
+              }}
               onClick={()=>handleDelete(id)}
             >
               <DeleteRoundedIcon

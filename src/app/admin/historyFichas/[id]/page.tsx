@@ -119,8 +119,14 @@ const Ficha = ({ params }: any) => {
           </Button>
           <Button
             onClick={downloadPDF}
-            sx={{ textTransform: "none" }}
-            color="error"
+            sx={{
+              textTransform: "none",
+              color: "#fff",
+              backgroundColor: "#D43333",
+              "&:hover": {
+                backgroundColor:  "#a62a2a", // Cambia el color de fondo al pasar el cursor
+              },
+            }}
             variant="contained"
           >
             <svg
