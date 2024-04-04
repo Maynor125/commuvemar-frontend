@@ -82,7 +82,7 @@ const InspectorsData = () => {
             transition
             disablePortal
             placement="bottom-end"
-            sx={{ zIndex: 1, marginTop:24,marginLeft:'77%'}}
+            sx={{ zIndex: 1, marginTop:38,marginLeft:'22rem'}}
           >
             {({ TransitionProps }) => (
               <Grow

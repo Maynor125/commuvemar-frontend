@@ -26,7 +26,7 @@ const ListActivity = () => {
     setAge(event.target.value);
   };
   return (
-    <Box>
+    <Box sx={{padding:'1rem',height:'95vh',overflowY:'auto'}}>
       <Box
         sx={{
           display: "flex",
@@ -38,25 +38,27 @@ const ListActivity = () => {
           Fichas ingresadas
         </Typography>
         <FormControl sx={{ minWidth: 120 }} size="small">
-          <InputLabel id="demo-select-small-label">Age</InputLabel>
+          <InputLabel id="demo-select-small-label">Time</InputLabel>
           <Select
             labelId="demo-select-small-label"
             id="demo-select-small"
             value={age}
-            label="Age"
+            label="Week"
             onChange={handleChange}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={10}>Week</MenuItem>
+            <MenuItem value={10}>Month</MenuItem>
+            <MenuItem value={20}>3 Month</MenuItem>
+            <MenuItem value={30}>6 Month</MenuItem>
           </Select>
         </FormControl>
       </Box>
       <Divider sx={{ marginTop:'1rem' }} />
       <Box>
+        <ListActivityItem isRevised={true}/>
+        <ListActivityItem isRevised={false}/>
+        <ListActivityItem isRevised={true}/>
+        <ListActivityItem isRevised={false}/>
         <ListActivityItem isRevised={true}/>
         <ListActivityItem isRevised={false}/>
         <ListActivityItem isRevised={true}/>

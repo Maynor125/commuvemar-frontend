@@ -1,7 +1,7 @@
 "use client";
 
-import { Box, Typography, useTheme } from "@mui/material";
-import React, { FC } from "react";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import React, { FC, useState } from "react";
 import { SVGProps } from "react";
 
 interface CardProps {
@@ -26,14 +26,29 @@ const CardUltimate: FC<CardProps> = ({
   const theme = useTheme();
   const fontColor1 = theme.palette.secondary.light;
   const fontColor2 = theme.palette.secondary.contrastText;
+  const isSmallerThan1025 = useMediaQuery("(max-width: 600px)");
+
+  const [hovered, setHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
+
   return (
     <Box
       className="borde-card"
       sx={{
-        width: "15rem",
+        width: '100%',
         height: "9rem",
         padding: "1.5rem",
+        cursor: "pointer",
       }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <Box
         sx={{
@@ -60,6 +75,8 @@ const CardUltimate: FC<CardProps> = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            transition: "transform 0.2s ease",
+            transform: hovered ? "rotate(3deg)" : "rotate(0)",
           }}
         >
          {iconPath}

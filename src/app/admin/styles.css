@@ -17,3 +17,7 @@
     width: 11rem;
     height: 11rem;
 }
+.imgPhone{
+    mask-image: linear-gradient(#c5cac7 25%,transparent);
+    margin: 0 auto;
+}
