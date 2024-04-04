@@ -130,7 +130,7 @@ const InspectorsData = () => {
           }}
         >
           <Box>
-            <Box sx={{ display: "flex", alignItems: "center", gap: ".3rem" }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: ".3rem",marginTop:'1rem' }}>
               <Box
                 sx={{
                   width: "9px",
