@@ -61,10 +61,9 @@ const InformationFichas = () => {
     } else {
       setMessage("la Seccion se ");
     }
-
+    getAllSection();
     setShowMessage(true);
     setTimeout(() => setShowMessage(false), 4000);
-    getAllSection();
     setNombreSeccion('');
     setDescSeccion('');
   };
@@ -90,7 +89,9 @@ const InformationFichas = () => {
   const deleteSections = async (id: number) => {
     try {
       const response = await deleteSection(id);
-      getAllSection();
+      if(response){
+        handleSave();
+      }
     } catch (error) {
       console.error(error);
     }
@@ -100,7 +101,6 @@ const InformationFichas = () => {
     setIsDelete(true);
     setID(id);
     deleteSections(id);
-    handleSave();
     setIsDelete(false);
   };
 
@@ -111,8 +111,6 @@ const InformationFichas = () => {
     setDescSeccion(descripcion);
     setEdit(false);
   };
-
-
 
   return (
     <Box
@@ -187,51 +185,6 @@ const InformationFichas = () => {
           marginTop: "1rem",
         }}
       >
-        <Fade in={true} timeout={500}>
-          <Box
-            sx={{
-              width: "100%",
-              padding: ".7rem",
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-            className="borde-card card"
-          >
-            <Box>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  color: theme.palette.secondary.light,
-                  fontWeight: 600,
-                }}
-              >
-                Seccion de prueba
-              </Typography>
-              <Typography
-                sx={{
-                  color: theme.palette.secondary.contrastText,
-                }}
-              >
-                Esta es una targeta de prueba para poder darle los estilos
-                correctos
-              </Typography>
-            </Box>
-            {/* Aquí puedes agregar más detalles según tus necesidades */}
-            <Box sx={{}}>
-              <Link href="/admin">
-                <BtnAction
-                bgColor="#168CC8"
-                  tooltipTitle="Visitar seccion"
-                  icon={ForwardRoundedIcon}
-                  onClick={handleEliminarClick}
-                />
-              </Link>
-
-              <BtnAction bgColor="#FFCD43" tooltipTitle="Editar" icon={EditRoundedIcon} />
-              <BtnAction bgColor="#D43333" tooltipTitle="Eliminar" icon={DeleteRoundedIcon} />
-            </Box>
-          </Box>
-        </Fade>
         {hayDatos ? (
           section.map((item) => (
             <Fade in={true} key={item.id} timeout={500}>

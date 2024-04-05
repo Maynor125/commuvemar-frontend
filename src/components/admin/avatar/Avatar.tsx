@@ -61,7 +61,7 @@ const Avatars: React.FC<avatarProps> = ({ alt, active, urlImg }) => {
             color: theme.palette.secondary.light,
           }}
           alt={alt}
-          src="/public/images/admin/pruebaPerfil.jpg"
+          src="public/images/admin/pruebaPerfil.jpg"
         />
       </StyledBadge>
     </Stack>

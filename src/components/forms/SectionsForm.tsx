@@ -99,6 +99,7 @@ const SectionsForm: React.FC<GeneralActionProps> = ({
   const createSections = async (nombre: string, descripcion: string) => {
     try {
       const response = await createSection(nombre, descripcion);
+      console.log(response);
       if(!response.error)
       {
         onClick();

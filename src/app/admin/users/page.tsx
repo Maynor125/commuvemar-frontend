@@ -16,29 +16,28 @@ const page = () => {
   const texto = isAgregate ? "Cancelar" : "Agregar";
   const userState = useSelector((state: RootState) => state.user);
 
-  const [users,setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
 
   //Para el mensaje de guardado.
   const [showMessage, setShowMessage] = React.useState(false);
   const [message, setMessage] = React.useState("");
 
-  const getAllUser = async ()=>{
+  const getAllUser = async () => {
     try {
       const response = await getAllUsers();
       console.log(response);
-      if(response.data !== undefined)
-      {
+      if (response.data !== undefined) {
         setUsers(response.data);
       }
       return response;
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     getAllUser();
-  })
+  });
 
   const handleSave = () => {
     if (userState.isEdit) {
@@ -56,17 +55,16 @@ const page = () => {
     //setTimeout(() => setShowMessage(false), 3000);
   };
 
-  const [edit,setEdit] = useState(false);
-  const [deleteU,setDeleteU] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [deleteU, setDeleteU] = useState(false);
 
-  useEffect(()=>{
-    if(userState.isDelete){
+  useEffect(() => {
+    if (userState.isDelete) {
       setDeleteU(true);
-    }
-    else if(userState.isEdit){
+    } else if (userState.isEdit) {
       setEdit(true);
     }
-  },[userState])
+  }, [userState]);
 
   return (
     <Box component="main">
@@ -109,32 +107,33 @@ const page = () => {
             marginTop: "1rem",
           }}
         >
-          <UserForm onClick={handleSave}/>
+          <UserForm onClick={handleSave} />
         </Box>
-        <MessageGlobal 
-        show={showMessage}
-        message={message}
-        type={edit ? "info" : deleteU ? "error" : "success"}
-        action={edit ? "Edito" : deleteU ? "Elimino": "Creo"}/>
+        <MessageGlobal
+          show={showMessage}
+          message={message}
+          type={edit ? "info" : deleteU ? "error" : "success"}
+          action={edit ? "Edito" : deleteU ? "Elimino" : "Creo"}
+        />
         <Box
           sx={{
             marginTop: "1rem",
             display: "flex",
             flexDirection: "column",
-            gap:"1rem"
+            gap: "1rem",
           }}
         >
-          <UserCard 
-          id={20}
-          email="maynoldemar@gmail.com"
-          rol="Usuario"
-          hash="5454677447"
-          IDTrabajador={5}
-          trabajador="Maynor"
-          onClick={handleSave}
-           />
-           {users.map((item)=>(
-              <UserCard 
+          <UserCard
+            id={20}
+            email="maynoldemar@gmail.com"
+            rol="Usuario"
+            hash="5454677447"
+            IDTrabajador={5}
+            trabajador="Maynor"
+            onClick={handleSave}
+          />
+          {users.map((item) => (
+            <UserCard
               id={item.id}
               email={item.email}
               rol={item.role}
@@ -142,9 +141,8 @@ const page = () => {
               IDTrabajador={item.IDTrabajador}
               trabajador={item.trabajador}
               onClick={handleSave}
-              />
-           ))
-           }
+            />
+          ))}
         </Box>
       </Box>
     </Box>
