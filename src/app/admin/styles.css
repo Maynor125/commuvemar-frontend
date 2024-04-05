@@ -2,6 +2,10 @@
     height: 47vh;
     padding: 1.2rem .7rem;
 }
+.cont-target2{
+    height: 50vh;
+    padding: 1.2rem .7rem;
+}
 .btn-fecha{
     background: none;
     cursor: pointer;

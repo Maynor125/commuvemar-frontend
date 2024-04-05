@@ -21,26 +21,26 @@ const Reports = () => {
           <Grid container spacing={1.5}>
             {/* Primera columna */}
             <Grid item sm={4} xs={12}>
-              <div className="borde-card cont-target">
+              <div className="borde-card cont-target2">
                 <EfectivityData/>
               </div>
             </Grid>
 
             {/* Segunda columna */}
             <Grid item sm={8} xs={12}>
-              <div className="borde-card cont-target">
+              <div className="borde-card cont-target2">
                 <FichasDetailData/>
               </div>
             </Grid>
 
             <Grid item sm={8} xs={12}>
-              <div className="borde-card cont-target">
+              <div className="borde-card cont-target2">
                 <BarSection/>
               </div>
             </Grid>
 
             <Grid item sm={4} xs={12}>
-              <div className="borde-card cont-target">
+              <div className="borde-card cont-target2">
                 <CircleSection/>
               </div>
             </Grid>
