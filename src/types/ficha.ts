@@ -9,4 +9,5 @@ export interface Ficha {
         latitud: string;
         longitud: string;
       };
+    analizada?:boolean;
 }
