@@ -34,6 +34,7 @@ import NoData from "@/components/error/NoData";
 
 import MessageGlobal from "@/components/message/MessageGlobal";
 import BotonFlotante from "@/components/BotonFlotante";
+import Loading from "@/components/loading/Loading";
 
 const InformationFichas = () => {
   const [section, setSection] = useState<Section[]>([]);
@@ -247,7 +248,7 @@ const InformationFichas = () => {
             </Fade>
           ))
         ) : (
-          <NoData />
+          <Loading/>
         )}
       </Box>
       <BotonFlotante/>
