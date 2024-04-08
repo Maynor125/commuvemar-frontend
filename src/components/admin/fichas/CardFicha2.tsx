@@ -10,8 +10,9 @@ import React, { FC } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Ficha } from "../../../types/ficha";
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
+import { updateValueFichas } from "@/redux/features/fichaSlice";
 
 interface Props {
   onClick: () => void;
@@ -22,19 +23,48 @@ const CardFicha2: FC<Props> = ({ onClick, ficha }) => {
   const theme = useTheme();
   const router = useRouter();
   const fichasState = useSelector((state: RootState) => state.fichas);
+  const dispatch = useDispatch();
+
+  const handlePasarValores = () => {
+    dispatch(
+      updateValueFichas({
+        id: ficha.id,
+        nombre: ficha.nombre,
+        email: ficha.email,
+        finca: ficha.finca,
+        productor: ficha.productor,
+        location:{
+          longitud: ficha.location.longitud,
+          latitud: ficha.location.latitud,
+        },
+        analizada: ficha.analizada
+      })
+    )
+  }
 
   const handleOpenFicha = () => {
     router.push(`/admin/historyFichas/${ficha.id}`);
+    handlePasarValores();
   };
 
   return (
     <div
-      className={`cardFicha ${fichasState.AlanizadaFichas && ficha.analizada && "cardFichaActive"} `}
+      className={`cardFicha ${
+        fichasState.AlanizadaFichas && ficha.analizada && "cardFichaActive"
+      } `}
       style={{ background: theme.palette.background.default }}
     >
       <div className="cabecera">
         <Avatar
-          sx={{ width: "4.5rem", height: "4.5rem", bgcolor: fichasState.AlanizadaFichas ? ficha.analizada ? "#4FBD55": "#4cb9d4" : "#4cb9d4" }}
+          sx={{
+            width: "4.5rem",
+            height: "4.5rem",
+            bgcolor: fichasState.AlanizadaFichas
+              ? ficha.analizada
+                ? "#4FBD55"
+                : "#4cb9d4"
+              : "#4cb9d4",
+          }}
           alt={ficha.nombre}
           src="/static/images/avatar/1.jpg"
         />

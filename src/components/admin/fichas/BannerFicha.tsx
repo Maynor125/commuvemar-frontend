@@ -2,19 +2,31 @@ import { Box, Typography, useMediaQuery } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import ImageB from "../../../../public/images/admin/iconbannerfichas.png";
+import ImageBC from "../../../../public/images/admin/iconbannercheck.png"
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
 
 const BannerFicha = () => {
   const isSmallerThan1025 = useMediaQuery("(max-width: 750px)");
   const router = useRouter();
+  const fichasState = useSelector((state: RootState) => state.fichas);
 
   const onVolver = () =>{
     router.push('/admin/historyFichas');
   }
 
-  const handleNavigate = () => {
-    router.push('/admin/analysisFichas');
-  }
+
+  const scrollToBottom = () => {
+    const handleScrollToBottom = () => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: "smooth" // Animación de desplazamiento suave
+      });
+    };
+  
+    return handleScrollToBottom;
+  };
   return (
     <Box
       sx={{
@@ -38,11 +50,11 @@ const BannerFicha = () => {
         </Typography>
         <Box sx={{ display: "flex", gap: "1rem" }}>
           <button
-          onClick={handleNavigate}
+            onClick={scrollToBottom}
             style={{ marginTop: "1rem" }}
-            className="btn-save btn-banner-ficha"
+            className={`btn-save ${fichasState.AlanizadaFichas && fichasState.analizada ? '' : 'btn-banner-ficha'}`}
           >
-            Analiza tu ficha
+            {fichasState.AlanizadaFichas && fichasState.analizada ? 'Revisa la desicion' :  'Analiza tu ficha'}
           </button>
           <button
           onClick={onVolver}
@@ -58,7 +70,7 @@ const BannerFicha = () => {
           style={{ marginRight: "1rem" }}
           width={300}
           height={300}
-          src={ImageB}
+          src={fichasState.AlanizadaFichas && fichasState.analizada ? ImageBC : ImageB}
           alt="Imagen del banner"
         />
       )}
