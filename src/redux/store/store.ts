@@ -8,6 +8,7 @@ import workerReducer from '../features/workerSlice'
 import userReducer from '../features/userSlice'
 import mapaReducer from '../features/mapaModalSlice'
 import fichasReducer from '../features/fichaSlice'
+import sectionReducer from '../features/sectionSlice'
 
 import { TypedUseSelectorHook,useSelector } from "react-redux";
 
@@ -21,6 +22,7 @@ export const store = configureStore({
        user:userReducer,
        mapa:mapaReducer,
        fichas:fichasReducer,
+       section:sectionReducer
     },
 })
 

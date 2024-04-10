@@ -1,44 +1,38 @@
 "use client";
 
-import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-
 import React, { useEffect, useState } from "react";
 import {
-  createSection,
+
   deleteSection,
   getSections,
-  updateSection,
+
 } from "@/services/sections";
 import {
   Box,
   Button,
   Fade,
-  IconButton,
-  Tooltip,
   Typography,
-  dialogClasses,
   useTheme,
 } from "@mui/material";
 import { Section } from "@/types/section";
 
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
-import TourRoundedIcon from "@mui/icons-material/TourRounded";
 import ForwardRoundedIcon from "@mui/icons-material/ForwardRounded";
 
 import BtnAction from "@/components/admin/section/btnAction";
 import Link from "next/link";
 import SectionsForm from "@/components/forms/SectionsForm";
-import NoData from "@/components/error/NoData";
-
 import MessageGlobal from "@/components/message/MessageGlobal";
 import BotonFlotante from "@/components/BotonFlotante";
 import Loading from "@/components/loading/Loading";
+import { useDispatch } from "react-redux";
+import { updateValueSection } from "@/redux/features/sectionSlice";
 
 const InformationFichas = () => {
   const [section, setSection] = useState<Section[]>([]);
   const theme = useTheme();
+  const dispatch = useDispatch();
 
   const [showMessage, setShowMessage] = React.useState(false);
   const [message, setMessage] = React.useState("");
@@ -51,6 +45,9 @@ const InformationFichas = () => {
   const [isAgregate, setIsAgregate] = useState(false);
   const [hayDatos, setHayDatos] = useState(false);
   const texto = isAgregate ? "Cancelar" : "Agregar";
+
+  
+
 
   const handleSave = () => {
     // Perform save action
@@ -112,6 +109,16 @@ const InformationFichas = () => {
     setDescSeccion(descripcion);
     setEdit(false);
   };
+
+  const handlePasarInfo =(id:number,nombre:string,descripcion:string)=>{
+   dispatch(
+    updateValueSection({
+      id:id,
+      nombre:nombre,
+      descripcion:descripcion
+    })
+   )
+  }
 
   return (
     <Box
@@ -222,10 +229,10 @@ const InformationFichas = () => {
                 <Box>
                   <Link href={`/admin/infoFichas/${item.id}`}>
                     <BtnAction
-                    bgColor="#168CC8"
+                      bgColor="#168CC8"
                       tooltipTitle="Visitar"
                       icon={ForwardRoundedIcon}
-                     
+                      onClick={()=>handlePasarInfo(item.id,item.nombre,item.descripcion)}
                     />
                   </Link>
 

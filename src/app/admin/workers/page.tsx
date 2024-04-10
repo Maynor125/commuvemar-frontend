@@ -70,6 +70,7 @@ const Inspectors = () => {
       const response = await getWorkers();
       if (response.data !== undefined) {
         setWorkers(response.data);
+        console.log(response.data);
       }
       return response;
     } catch (error) {

@@ -122,7 +122,7 @@ const UserCard: React.FC<UserCardProps> = ({
 
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} sm={2}>
-            <Avatars alt={firstName} />
+            <Avatars alt={firstName} urlImg={avatarUrl}/>
           </Grid>
           <Grid item xs={12} sm={5}>
             <Typography

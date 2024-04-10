@@ -23,6 +23,8 @@ import { getSectionsId } from "@/services/sections";
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
 import MessageGlobal from "@/components/message/MessageGlobal";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
 
 const page = ({ params }: any) => {
   const theme = useTheme();
@@ -31,6 +33,8 @@ const page = ({ params }: any) => {
   //Para el mensaje de guardado.
   const [showMessage, setShowMessage] = React.useState(false);
   const [message, setMessage] = React.useState("");
+
+  const sectionState = useSelector((state: RootState) => state.section);
 
   const allGetData = async (id: number) => {
     try {
@@ -65,27 +69,6 @@ const page = ({ params }: any) => {
     updateTable();
     //setTimeout(() => setShowMessage(false), 3000);
   };
-
-  //Extraer los datos de la seccion en la que nos encontramos.
-  const getOneSection = async () => {
-    try {
-      const response = await getSectionsId(params.id);
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const [sectionData, setSectionData] = useState<any>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getOneSection();
-      setSectionData(data);
-    };
-    fetchData();
-  }, []);
 
   //Mostrar todos los datos que pertenecen a la seccion en la que nos encontramos
   const [dataRows, setDataRows] = useState<any[]>([]);
@@ -226,7 +209,7 @@ const page = ({ params }: any) => {
             }}
             variant="h4"
           >
-            {sectionData?.nombre}
+            {sectionState.nombre}
           </Typography>
           <Tooltip title="Regresar">
             <IconButton onClick={onVolver}>
@@ -240,7 +223,7 @@ const page = ({ params }: any) => {
             color: theme.palette.secondary.contrastText,
           }}
         >
-          {sectionData?.descripcion}
+          {sectionState.descripcion}
         </Typography>
       </Box>
       <Box
@@ -315,6 +298,7 @@ const page = ({ params }: any) => {
         show={showMessage}
         message={message}
         type={edit ? "info" : isDelete ? "error" : "success"}
+        action={edit ? "Edito" : isDelete ? "Elimino": "Creo"}
       />
       <Box
         sx={{
@@ -328,6 +312,7 @@ const page = ({ params }: any) => {
           filterText={filterText}
           onDelete={handleDelete}
           onEdit={handleEdit}
+          filterFn={(row) => row.titulo.toLowerCase().includes(filterText?.toLowerCase())}
         />
       </Box>
     </Box>
