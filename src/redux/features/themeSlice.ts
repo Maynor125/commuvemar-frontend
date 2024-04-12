@@ -1,8 +1,11 @@
 "use client";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+let storedDarkMode;
 
+if (typeof window !== "undefined") {
+  storedDarkMode = localStorage.getItem('darkMode');
+}
 
-const storedDarkMode = localStorage.getItem('darkMode');
 const initialState = {
   darkMode: storedDarkMode ? JSON.parse(storedDarkMode) : false,
 };
@@ -14,7 +17,10 @@ export const themeSlice = createSlice({
     toogleTheme: (state, action: PayloadAction<boolean>) => {
       state.darkMode = action.payload;
        // Al cambiar el tema, también actualiza localStorage
-       localStorage.setItem('darkMode', JSON.stringify(state.darkMode));
+       if (typeof window !== "undefined") {
+               localStorage.setItem('darkMode', JSON.stringify(state.darkMode));
+       }
+
     },
   },
 });

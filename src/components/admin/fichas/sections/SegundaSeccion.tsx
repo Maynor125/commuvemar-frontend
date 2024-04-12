@@ -5,12 +5,19 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { getDatosSection } from "@/services/datoSection";
 
+interface Row {
+  descripcion: string;
+  realizacion: string;
+  cantidad_observacion: string;
+}
+
 interface Props {
   titulo: string;
   traeCantidad: boolean;
+  datos:Row[];
 }
 
-const SegundaSeccion: FC<Props> = ({ titulo, traeCantidad }) => {
+const SegundaSeccion: FC<Props> = ({ titulo, traeCantidad,datos }) => {
   const theme = useTheme();
   const [dataRows, setDataRows] = useState<any[]>([]);
   const fichasState = useSelector((state: RootState) => state.fichas);
@@ -47,42 +54,22 @@ const SegundaSeccion: FC<Props> = ({ titulo, traeCantidad }) => {
     },
   ];
 
-  const allGetData = async (id: number) => {
-    try {
-      const response = await getDatosSection(id);
-      console.log("datos de esta seccion", response.data);
-
-      // Verificar si response.data es undefined
-      if (response.data === undefined) {
-        return []; // Devolver un array vacío si no hay datos
-      } else {
-        return response.data;
-      }
-    } catch (error) {
-      console.error(error);
-      return []; // En caso de error, devolver un array vacío para evitar errores de tipo
-    }
-  };
 
   //Mostrar todos los datos que pertenecen a la seccion en la que nos encontramos
+  const [descripciones, setDescripciones] = useState<Row[]>([]);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await allGetData(5);
-      setDataRows(data);
-      const titulos = data.map((obj: any) => ({
-        descripcion: obj.titulo,
+    if (datos) {
+      const titulos = datos.map((obj) => ({
+        descripcion: obj.descripcion,
         realizacion: "",
         cantidad_observacion: "",
       }));
       setDescripciones(titulos);
-    };
-    fetchData();
-  }, [dataRows]);
+    }
+  }, [datos]);
 
-  const [descripciones, setDescripciones] = useState<
-    { descripcion: string; realizacion: string; cantidad_observacion: string }[]
-  >([]);
-  console.log(descripciones);
+
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>

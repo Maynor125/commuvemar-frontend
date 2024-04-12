@@ -8,7 +8,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import BannerFicha from "@/components/admin/fichas/BannerFicha";
 import html2pdf from "html2pdf.js";
@@ -29,6 +29,9 @@ import DictamenFinal from "@/components/admin/fichas/sections/DictamenFinal";
 import DecisionComite from "@/components/admin/fichas/sections/DecisionComite";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
+import { getDatosSection } from "@/services/datoSection";
+
+interface PropsTable{ descripcion: string; realizacion: string; cantidad_observacion: string }
 
 const Ficha = ({ params }: any) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -50,6 +53,76 @@ const Ficha = ({ params }: any) => {
   const theme = useTheme();
   const fichasState = useSelector((state: RootState) => state.fichas);
   
+  //Extaer los datos para la primera tabla.
+  const [datosTabla1, setDatosTabla1] = useState<
+    PropsTable[]
+  >([]);
+
+  const getDataSection = async (id: number) => {
+    try {
+      const response = await getDatosSection(id);
+
+      // Verificar si response.data es undefined
+      if (response.data === undefined) {
+        return []; // Devolver un array vacío si no hay datos
+      } else {
+        return response.data;
+      }
+    } catch (error) {
+      console.error(error);
+      return []; // En caso de error, devolver un array vacío para evitar errores de tipo
+    }
+  };
+
+   //Extaer los datos para la septima tabla.
+   const [datosTabla7, setDatosTabla7] = useState<
+   PropsTable[]
+ >([]);
+   //Extaer los datos para la duodecima tabla.
+   const [datosTabla12, setDatosTabla12] = useState<
+   PropsTable[]
+ >([]);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getDataSection(5);
+      const datosSection1 = data.map((obj: any) => ({
+        descripcion: obj.titulo,
+        realizacion: "",
+        cantidad_observacion: "",
+      }));
+      setDatosTabla1(datosSection1);
+    };
+    fetchData();
+  }, [datosTabla1,getDataSection]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getDataSection(11);
+      const datosSection7 = data.map((obj: any) => ({
+        descripcion: obj.titulo,
+        realizacion: "",
+        cantidad_observacion: "",
+      }));
+      setDatosTabla7(datosSection7);
+    };
+    fetchData();
+  }, [datosTabla7,getDataSection]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getDataSection(16);
+      const datosSection12 = data.map((obj: any) => ({
+        descripcion: obj.titulo,
+        realizacion: "",
+        cantidad_observacion: "",
+      }));
+      setDatosTabla12(datosSection12);
+    };
+    fetchData();
+  }, [datosTabla12,getDataSection]);
+
 
   return (
     <Box>
@@ -258,6 +331,7 @@ const Ficha = ({ params }: any) => {
           <SegundaSeccion
             traeCantidad={true}
             titulo="Registros Administrativos"
+            datos={datosTabla1}
           />
           <TerceraSeccion />
           <CuartaSeccion />
@@ -267,12 +341,13 @@ const Ficha = ({ params }: any) => {
           <SegundaSeccion
             traeCantidad={true}
             titulo="Riesgos de Contaminación en la Finca"
+            datos={datosTabla7}
           />
           <OctavaSeccion />
           <NovenaSeccion />
           <DecimaSeccion />
           <UnDecimaSeccion />
-          <SegundaSeccion traeCantidad={false} titulo="Capacitacion" />
+          <SegundaSeccion traeCantidad={false} titulo="Capacitacion" datos={datosTabla12}/>
           <Declaracion />
           <DictamenFinal />
           <DecisionComite />
