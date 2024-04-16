@@ -22,9 +22,6 @@ const SegundaSeccion: FC<Props> = ({ titulo, traeCantidad,datos }) => {
   const [dataRows, setDataRows] = useState<any[]>([]);
   const fichasState = useSelector((state: RootState) => state.fichas);
 
-  const ObservacionField = traeCantidad
-    ? "cantidad_observacion"
-    : "observacion";
   const ObservacionName = traeCantidad
     ? "Cantidad / Observacion"
     : "Observacion";
@@ -45,7 +42,7 @@ const SegundaSeccion: FC<Props> = ({ titulo, traeCantidad,datos }) => {
       width: 120,
     },
     {
-      field: ObservacionField,
+      field: "cantidad_observacion",
       headerName: ObservacionName,
       headerClassName: fichasState.AlanizadaFichas
         ? "header-grid1"
@@ -62,8 +59,8 @@ const SegundaSeccion: FC<Props> = ({ titulo, traeCantidad,datos }) => {
     if (datos) {
       const titulos = datos.map((obj) => ({
         descripcion: obj.descripcion,
-        realizacion: "",
-        cantidad_observacion: "",
+        realizacion: obj.realizacion,
+        cantidad_observacion: obj.cantidad_observacion,
       }));
       setDescripciones(titulos);
     }

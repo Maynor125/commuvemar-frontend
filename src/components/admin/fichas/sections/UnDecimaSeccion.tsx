@@ -30,7 +30,7 @@ const UnDecimaSeccion = () => {
     const allGetData = async (id: number) => {
         try {
           const response = await getDatosSection(id);
-          console.log("datos de esta seccion", response.data);
+          //console.log("datos de esta seccion", response.data);
     
           // Verificar si response.data es undefined
           if (response.data === undefined) {

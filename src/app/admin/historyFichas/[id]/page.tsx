@@ -60,7 +60,7 @@ const Ficha = ({ params }: any) => {
   const getFicha= async () => {
     try {
       const response = await getFichasID(params.id);
-      console.log("Las Info de esta ficha",response.data);
+      //console.log("Las Info de esta ficha",response.data);
 
        // Verificar si response.data es undefined
        if (response.data === undefined) {
@@ -74,12 +74,37 @@ const Ficha = ({ params }: any) => {
       return [];
     }
   }
+  useEffect(() => {
+    getFicha();
+    if (Array.isArray(infoFicha)) {
+      infoFicha.map((obj: any) => (
+        obj.analizada === true && setIsFichaActive(true)
+      ));
+    }
+  }, [infoFicha]);
+
+  const [infoDatos,setInfoDatos] = useState<infoDatoInterface[]>([]);
   useEffect(()=>{
-   getFicha();
-   infoFicha.map((obj:any)=>(
-    obj.analizada === true && setIsFichaActive(true)
-   ))
-  },[infoFicha]);
+    const getInfoDatosFicha = async () => {
+      try {
+        const response = await getInfoDatoFicha(params.id);
+        console.log("Las respuesta de esta ficha",response.data);
+  
+         // Verificar si response.data es undefined
+         if (response.data === undefined) {
+          return []; // Devolver un array vacío si no hay datos
+        } else {
+          setInfoDatos(response.data);
+          return response.data;
+        }
+      } catch (error) {
+        console.error(error);
+        return [];
+      }
+    }
+    getInfoDatosFicha();
+    console.log("Los datos de esta ficha son",infoDatos)
+  },[]);
 
 
   //-----------------------------------------------------------------
@@ -118,26 +143,47 @@ const Ficha = ({ params }: any) => {
 
 
   useEffect(() => {
+    let infoDatosLoaded = false;
+    
     const fetchData = async () => {
+      if (!infoDatosLoaded) return;
+
       const data = await getDataSection(5);
-      const datosSection1 = data.map((obj: any) => ({
+      const datosSection1 = data.map((obj: any) => {
+        // Buscar el objeto correspondiente en infoDatos basado en el campo IDDato
+      const infoDato = infoDatos.find((info: any) => Number(info.IDDato) === Number(obj.id))
+      return{
         descripcion: obj.titulo,
-        realizacion: "",
-        cantidad_observacion: "",
-      }));
+        realizacion: infoDato ? infoDato.informacion : "",
+        cantidad_observacion: infoDato ? infoDato.descripcion : "",
+      }
+      });
       setDatosTabla1(datosSection1);
     };
+     // Establecer infoDatosLoaded en true una vez que infoDatos tenga datos
+   if (infoDatos.length > 0) {
+    infoDatosLoaded = true;
+  }
+
+  // Ejecutar fetchData si infoDatos ha sido cargado
+  if (infoDatosLoaded) {
     fetchData();
-  }, [datosTabla1,getDataSection]);
+    //console.log("datos de la primera seccion", datosTabla1)
+  }
+  }, [datosTabla1,getDataSection,infoDatos]);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getDataSection(11);
-      const datosSection7 = data.map((obj: any) => ({
-        descripcion: obj.titulo,
-        realizacion: "",
-        cantidad_observacion: "",
-      }));
+      const datosSection7 = data.map((obj: any) => {
+        // Buscar el objeto correspondiente en infoDatos basado en el campo IDDato
+      const infoDato = infoDatos.find((info: any) => Number(info.IDDato) === Number(obj.id))
+        return{
+          descripcion: obj.titulo,
+        realizacion: infoDato ? infoDato.informacion : "",
+        cantidad_observacion: infoDato ? infoDato.descripcion : "",
+        }
+      });
       setDatosTabla7(datosSection7);
     };
     fetchData();
@@ -146,37 +192,21 @@ const Ficha = ({ params }: any) => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getDataSection(16);
-      const datosSection12 = data.map((obj: any) => ({
-        descripcion: obj.titulo,
-        realizacion: "",
-        cantidad_observacion: "",
-      }));
+      const datosSection12 = data.map((obj: any) => {
+         // Buscar el objeto correspondiente en infoDatos basado en el campo IDDato
+      const infoDato = infoDatos.find((info: any) => Number(info.IDDato) === Number(obj.id))
+      return {
+                descripcion: obj.titulo,
+        realizacion: infoDato ? infoDato.informacion : "",
+        cantidad_observacion: infoDato ? infoDato.descripcion : "",
+      }
+      });
       setDatosTabla12(datosSection12);
     };
     fetchData();
   }, [datosTabla12,getDataSection]);
 
-  const [infoDatos,setInfoDatos] = useState<infoDatoInterface[]>([]);
-  useEffect(()=>{
-    const getInfoDatosFicha = async () => {
-      try {
-        const response = await getInfoDatoFicha(params.id);
-        console.log("Las respuesta de esta ficha",response.data);
   
-         // Verificar si response.data es undefined
-         if (response.data === undefined) {
-          return []; // Devolver un array vacío si no hay datos
-        } else {
-          setInfoDatos(response.data);
-          return response.data;
-        }
-      } catch (error) {
-        console.error(error);
-        return [];
-      }
-    }
-    getInfoDatosFicha();
-  },[]);
 
   //Funcion para analizar la ficha.
   const AnalizarFicha = ()=>{
