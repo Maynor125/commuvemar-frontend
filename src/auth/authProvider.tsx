@@ -12,10 +12,14 @@ import jwt from "jsonwebtoken";
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();
-  const storedToken = localStorage.getItem("token");
+  let storedToken:any;
   const router = useRouter();
+  if (typeof window !== "undefined") { // Check if the code is running on the client-side
+    storedToken = localStorage.getItem("token");
+  }
 
   useEffect(() => {
+    
     if (storedToken) {
       const tokenData = jwt.decode(storedToken) as { [key: string]: any };
 

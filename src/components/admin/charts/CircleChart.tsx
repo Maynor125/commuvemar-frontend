@@ -24,27 +24,24 @@ const CircleEfectivityChart: React.FC<Props> = ({ percentage }) => {
   ]; // Colores para las secciones de la rueda
 
   return (
-    <ResponsiveContainer width={200} height={200}>
-      <PieChart>
-        <Pie
-          data={data}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          outerRadius={100}
-          fill="#8884d8"
-          dataKey="value"
-          startAngle={90}
-          endAngle={450}
-          
-        >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Tooltip />
-      </PieChart>
-    </ResponsiveContainer>
+    <PieChart width={300} height={230}>
+      <Pie
+        data={data}
+        cx="50%"
+        cy="50%"
+        labelLine={false}
+        outerRadius={100}
+        fill="#8884d8"
+        dataKey="value"
+        startAngle={90}
+        endAngle={450}
+      >
+        {data.map((entry, index) => (
+          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+        ))}
+      </Pie>
+      <Tooltip />
+    </PieChart>
   );
 };
 

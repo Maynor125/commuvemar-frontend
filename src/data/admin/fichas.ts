@@ -9,7 +9,8 @@ export const Fichas = [
         location:{
             latitud:' 13.7177027',
             longitud:' -84.7721508'
-        }
+        },
+        analizada:true,
     },
     {
         id:2,
@@ -21,7 +22,8 @@ export const Fichas = [
         location:{
             latitud:' 13.7177027',
             longitud:' -84.7721508'
-        }
+        },
+        analizada:false,
     },
     {
         id:3,
@@ -33,7 +35,8 @@ export const Fichas = [
         location:{
             latitud:' 13.7177027',
             longitud:' -84.7721508'
-        }
+        },
+        analizada:false,
     },
     {
         id:4,
@@ -45,7 +48,8 @@ export const Fichas = [
         location:{
             latitud:' 13.7177027',
             longitud:' -84.7721508'
-        }
+        },
+        analizada:true,
     },
     {
         id:5,
@@ -57,7 +61,8 @@ export const Fichas = [
         location:{
             latitud:' 13.7177027',
             longitud:' -84.7721508'
-        }
+        },
+        analizada:true,
     },
     {
         idID:6,
@@ -69,7 +74,8 @@ export const Fichas = [
         location:{
             latitud:' 13.7177027',
             longitud:' -84.7721508'
-        }
+        },
+        analizada:true,
     },
     {
         id:7,
@@ -81,7 +87,8 @@ export const Fichas = [
         location:{
             latitud:' 13.7177027',
             longitud:' -84.7721508'
-        }
+        },
+        analizada:false,
     },
     {
         id:8,
@@ -93,6 +100,7 @@ export const Fichas = [
         location:{
             latitud:' 13.7177027',
             longitud:' -84.7721508'
-        }
+        },
+        analizada:false,
     },
 ]

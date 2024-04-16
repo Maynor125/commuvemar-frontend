@@ -1,43 +1,38 @@
 "use client";
 
-import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-
 import React, { useEffect, useState } from "react";
 import {
-  createSection,
+
   deleteSection,
   getSections,
-  updateSection,
+
 } from "@/services/sections";
 import {
   Box,
   Button,
   Fade,
-  IconButton,
-  Tooltip,
   Typography,
-  dialogClasses,
   useTheme,
 } from "@mui/material";
 import { Section } from "@/types/section";
 
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
-import TourRoundedIcon from "@mui/icons-material/TourRounded";
 import ForwardRoundedIcon from "@mui/icons-material/ForwardRounded";
 
 import BtnAction from "@/components/admin/section/btnAction";
 import Link from "next/link";
 import SectionsForm from "@/components/forms/SectionsForm";
-import NoData from "@/components/error/NoData";
-
 import MessageGlobal from "@/components/message/MessageGlobal";
 import BotonFlotante from "@/components/BotonFlotante";
+import Loading from "@/components/loading/Loading";
+import { useDispatch } from "react-redux";
+import { updateValueSection } from "@/redux/features/sectionSlice";
 
 const InformationFichas = () => {
   const [section, setSection] = useState<Section[]>([]);
   const theme = useTheme();
+  const dispatch = useDispatch();
 
   const [showMessage, setShowMessage] = React.useState(false);
   const [message, setMessage] = React.useState("");
@@ -51,6 +46,9 @@ const InformationFichas = () => {
   const [hayDatos, setHayDatos] = useState(false);
   const texto = isAgregate ? "Cancelar" : "Agregar";
 
+  
+
+
   const handleSave = () => {
     // Perform save action
     if (edit) {
@@ -61,10 +59,9 @@ const InformationFichas = () => {
     } else {
       setMessage("la Seccion se ");
     }
-
+    getAllSection();
     setShowMessage(true);
     setTimeout(() => setShowMessage(false), 4000);
-    getAllSection();
     setNombreSeccion('');
     setDescSeccion('');
   };
@@ -90,7 +87,9 @@ const InformationFichas = () => {
   const deleteSections = async (id: number) => {
     try {
       const response = await deleteSection(id);
-      getAllSection();
+      if(response){
+        handleSave();
+      }
     } catch (error) {
       console.error(error);
     }
@@ -100,7 +99,6 @@ const InformationFichas = () => {
     setIsDelete(true);
     setID(id);
     deleteSections(id);
-    handleSave();
     setIsDelete(false);
   };
 
@@ -112,7 +110,15 @@ const InformationFichas = () => {
     setEdit(false);
   };
 
-
+  const handlePasarInfo =(id:number,nombre:string,descripcion:string)=>{
+   dispatch(
+    updateValueSection({
+      id:id,
+      nombre:nombre,
+      descripcion:descripcion
+    })
+   )
+  }
 
   return (
     <Box
@@ -187,51 +193,6 @@ const InformationFichas = () => {
           marginTop: "1rem",
         }}
       >
-        <Fade in={true} timeout={500}>
-          <Box
-            sx={{
-              width: "100%",
-              padding: ".7rem",
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-            className="borde-card card"
-          >
-            <Box>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  color: theme.palette.secondary.light,
-                  fontWeight: 600,
-                }}
-              >
-                Seccion de prueba
-              </Typography>
-              <Typography
-                sx={{
-                  color: theme.palette.secondary.contrastText,
-                }}
-              >
-                Esta es una targeta de prueba para poder darle los estilos
-                correctos
-              </Typography>
-            </Box>
-            {/* Aquí puedes agregar más detalles según tus necesidades */}
-            <Box sx={{}}>
-              <Link href="/admin">
-                <BtnAction
-                bgColor="#168CC8"
-                  tooltipTitle="Visitar seccion"
-                  icon={ForwardRoundedIcon}
-                  onClick={handleEliminarClick}
-                />
-              </Link>
-
-              <BtnAction bgColor="#FFCD43" tooltipTitle="Editar" icon={EditRoundedIcon} />
-              <BtnAction bgColor="#D43333" tooltipTitle="Eliminar" icon={DeleteRoundedIcon} />
-            </Box>
-          </Box>
-        </Fade>
         {hayDatos ? (
           section.map((item) => (
             <Fade in={true} key={item.id} timeout={500}>
@@ -268,10 +229,10 @@ const InformationFichas = () => {
                 <Box>
                   <Link href={`/admin/infoFichas/${item.id}`}>
                     <BtnAction
-                    bgColor="#168CC8"
+                      bgColor="#168CC8"
                       tooltipTitle="Visitar"
                       icon={ForwardRoundedIcon}
-                     
+                      onClick={()=>handlePasarInfo(item.id,item.nombre,item.descripcion)}
                     />
                   </Link>
 
@@ -294,7 +255,7 @@ const InformationFichas = () => {
             </Fade>
           ))
         ) : (
-          <NoData />
+          <Loading/>
         )}
       </Box>
       <BotonFlotante/>

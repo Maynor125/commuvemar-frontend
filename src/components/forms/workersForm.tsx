@@ -33,31 +33,24 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
   const workerState = useSelector((state: RootState) => state.worker);
   //Logica para guardar la url de la img.
   const [image, setImage] = React.useState<File| null>(null);
-  const [imageUrl, setImageUrl] = React.useState<string | undefined>(urlImg);
+  const [imageUrl, setImageUrl] = React.useState<string | undefined | ArrayBuffer | null >(urlImg);
 
-  const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onImageChange = async(event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files?.[0]) {
-      const file = event.target.files[0];
-      console.log(file);
-      setImage(file);
-
+            
+      const file =  event.target.files[0];
+      
       let reader = new FileReader();
+      reader.readAsDataURL(file)
       reader.onload = function(event){
         let arrayBuffer = event.target?.result;
-        console.log("El buffer es:",arrayBuffer);
+        setImageUrl(event.target?.result)
+        console.log("El buffer es:",arrayBuffer);   
       }
-
-      reader.readAsArrayBuffer(file);
-    }
+      //reader.readAsArrayBuffer(file);
+    
   };
-
-  React.useEffect(() => {
-    return () => {
-      if (image) {
-        URL.revokeObjectURL(imageUrl!);
-      }
-    };
-  }, [image]);
+}
 
   //--------------------------------------------------------------------
   const resolver: Resolver<Workers, FieldErrors<Workers>> = async (data) => {
@@ -119,7 +112,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
         data.nombre,
         data.apellido,
         data.numeroTelefono,
-        image,
+        imageUrl,
       );
     }
     // Limpiar los valores de los campos
@@ -132,7 +125,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
     nombre: string,
     apellido: string,
     numeroTelefono: string,
-    urlImg: any
+    urlImg: ArrayBuffer
   ) => {
     try {
       const response = await createWorkers(
