@@ -30,6 +30,10 @@ import DecisionComite from "@/components/admin/fichas/sections/DecisionComite";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { getDatosSection } from "@/services/datoSection";
+import { infoDatoInterface } from "@/types/informacionDato";
+import { getInfoDatoFicha } from "@/services/informacionDato";
+import { getFichasID } from "@/services/fichas";
+import { Ficha } from "@/types/ficha";
 
 interface PropsTable{ descripcion: string; realizacion: string; cantidad_observacion: string }
 
@@ -50,6 +54,35 @@ const Ficha = ({ params }: any) => {
     }
   }, []);
 
+  //Verificar el estado de la ficha.
+  const [isFichaActive,setIsFichaActive] = useState(false);
+  const [infoFicha,setInfoFicha] = useState<Ficha[]>([])
+  const getFicha= async () => {
+    try {
+      const response = await getFichasID(params.id);
+      console.log("Las Info de esta ficha",response.data);
+
+       // Verificar si response.data es undefined
+       if (response.data === undefined) {
+        return []; // Devolver un array vacío si no hay datos
+      } else {
+        setInfoFicha(response.data);
+        return response.data;
+      }
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  }
+  useEffect(()=>{
+   getFicha();
+   infoFicha.map((obj:any)=>(
+    obj.analizada === true && setIsFichaActive(true)
+   ))
+  },[infoFicha]);
+
+
+  //-----------------------------------------------------------------
   const theme = useTheme();
   const fichasState = useSelector((state: RootState) => state.fichas);
   
@@ -123,6 +156,32 @@ const Ficha = ({ params }: any) => {
     fetchData();
   }, [datosTabla12,getDataSection]);
 
+  const [infoDatos,setInfoDatos] = useState<infoDatoInterface[]>([]);
+  useEffect(()=>{
+    const getInfoDatosFicha = async () => {
+      try {
+        const response = await getInfoDatoFicha(params.id);
+        console.log("Las respuesta de esta ficha",response.data);
+  
+         // Verificar si response.data es undefined
+         if (response.data === undefined) {
+          return []; // Devolver un array vacío si no hay datos
+        } else {
+          setInfoDatos(response.data);
+          return response.data;
+        }
+      } catch (error) {
+        console.error(error);
+        return [];
+      }
+    }
+    getInfoDatosFicha();
+  },[]);
+
+  //Funcion para analizar la ficha.
+  const AnalizarFicha = ()=>{
+    getFicha();
+  }
 
   return (
     <Box>
@@ -149,6 +208,7 @@ const Ficha = ({ params }: any) => {
         />
         <Box sx={{ display: "flex", gap: "1rem" }}>
           <Button
+          onClick={AnalizarFicha}
           disabled={fichasState.AlanizadaFichas && fichasState.analizada}
             sx={{
               textTransform: "none",
