@@ -27,13 +27,14 @@ import UnDecimaSeccion from "@/components/admin/fichas/sections/UnDecimaSeccion"
 import Declaracion from "@/components/admin/fichas/sections/Declaracion";
 import DictamenFinal from "@/components/admin/fichas/sections/DictamenFinal";
 import DecisionComite from "@/components/admin/fichas/sections/DecisionComite";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { getDatosSection } from "@/services/datoSection";
 import { infoDatoInterface } from "@/types/informacionDato";
 import { getInfoDatoFicha } from "@/services/informacionDato";
 import { getFichasID } from "@/services/fichas";
 import { Ficha } from "@/types/ficha";
+import { setInfoDato } from "@/redux/features/infoDatoSlice";
 
 interface PropsTable{ descripcion: string; realizacion: string; cantidad_observacion: string }
 
@@ -57,6 +58,8 @@ const Ficha = ({ params }: any) => {
   //Verificar el estado de la ficha.
   const [isFichaActive,setIsFichaActive] = useState(false);
   const [infoFicha,setInfoFicha] = useState<Ficha[]>([])
+  const dispatch = useDispatch();
+
   const getFicha= async () => {
     try {
       const response = await getFichasID(params.id);
@@ -95,6 +98,7 @@ const Ficha = ({ params }: any) => {
           return []; // Devolver un array vacío si no hay datos
         } else {
           setInfoDatos(response.data);
+          dispatch(setInfoDato(response.data))
           return response.data;
         }
       } catch (error) {

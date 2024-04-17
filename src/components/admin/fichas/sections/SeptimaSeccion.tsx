@@ -2,10 +2,13 @@ import { Box, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Datatable from "../../datatable/Datatable";
 import { getDatosSection } from "@/services/datoSection";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
 
 const SeptimaSeccion = () => {
   const theme = useTheme();
   const [dataRows, setDataRows] = useState<any[]>([]);
+  const infoDatosState = useSelector((state: RootState) => state.infoDatos);
 
   const allGetData = async (id: number) => {
     try {
@@ -32,11 +35,15 @@ const SeptimaSeccion = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await allGetData(10);
-      const titulos = data.map((obj: any) => ({
-        practica: obj.titulo,
-        realizacion: "",
-        cantidad_observacion: "",
-      }));
+      const titulos = data.map((obj: any) => {
+        const infoDato = infoDatosState.data.find((info: any) => Number(info.IDDato) === Number(obj.id))
+        return{
+                  practica: obj.titulo,
+        realizacion: infoDato ? infoDato.informacion : "",
+        cantidad_observacion: infoDato ? infoDato.descripcion : "",
+        }
+
+      });
       setDatos(titulos);
     };
     fetchData();
@@ -56,7 +63,7 @@ const SeptimaSeccion = () => {
       width: 332,
     },
     {
-      field: "cantidad_obserovacion",
+      field: "cantidad_observacion",
       headerName: "Cantidad / Observacion",
       headerClassName: "header-grid",
       width: 332,

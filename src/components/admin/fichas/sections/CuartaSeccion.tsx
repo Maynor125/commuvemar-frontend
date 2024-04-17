@@ -2,10 +2,13 @@ import { Box, Typography, useTheme } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import Datatable from '../../datatable/Datatable';
 import { getDatosSection } from '@/services/datoSection';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store/store';
 
 const CuartaSeccion = () => {
     const theme = useTheme();
     const [dataRows, setDataRows] = useState<any[]>([]);
+    const infoDatosState = useSelector((state: RootState) => state.infoDatos);
 
     const allGetData = async (id: number) => {
       try {
@@ -32,12 +35,14 @@ const CuartaSeccion = () => {
     const fetchData = async () => {
       const data = await allGetData(7);
       setDataRows(data);
-      const titulos = data.map((obj: any) => ({
-        plagasEnfermedadaes: obj.titulo,
-        percepcionIntensidad: "",
-       
-      }));
-      setDatos(titulos);
+      const datos = data.map((obj: any) => {
+        const infoDato = infoDatosState.data.find((info: any) => Number(info.IDDato) === Number(obj.id))
+        return{
+                  plagasEnfermedadaes: obj.titulo,
+        percepcionIntensidad: infoDato ? infoDato.informacion : "",
+        }
+      });
+      setDatos(datos);
     };
     fetchData();
   }, [dataRows]);
