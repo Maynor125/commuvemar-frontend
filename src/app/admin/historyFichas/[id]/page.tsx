@@ -211,6 +211,8 @@ const Ficha = ({ params }: any) => {
   }, [datosTabla12,getDataSection]);
 
   
+  
+
 
   //Funcion para analizar la ficha.
   const AnalizarFicha = ()=>{

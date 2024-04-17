@@ -47,26 +47,26 @@ const SeptimaSeccion = () => {
       setDatos(titulos);
     };
     fetchData();
-  }, [dataRows]);
+  }, [datos,infoDatosState]);
 
   const columns = [
     {
       field: "practica",
       headerName: "Practica",
       headerClassName: "header-grid",
-      width: 332,
+      width: 333,
     },
     {
       field: "realizacion",
       headerName: "Realizacion",
       headerClassName: "header-grid",
-      width: 332,
+      width: 333,
     },
     {
       field: "cantidad_observacion",
       headerName: "Cantidad / Observacion",
       headerClassName: "header-grid",
-      width: 332,
+      width: 333,
     },
   ];
   return (

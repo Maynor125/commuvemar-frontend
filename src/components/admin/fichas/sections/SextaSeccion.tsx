@@ -3,11 +3,24 @@ import React, { useEffect, useState } from 'react'
 import Datatable from '../../datatable/Datatable';
 import { ReadOnlyTextField } from '../ReadOnlyInput';
 import { getDatosSection } from '@/services/datoSection';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store/store';
+
+interface PropsTable{
+  nombreAbono:string;
+  cantidadAplicada:string;
+  origen:string;
+  mesAplicado:string;
+  cualCultivo:string;
+}
 
 const SextaSeccion = () => {
     const theme = useTheme();
     const [dataRows, setDataRows] = useState<any[]>([]);
     const [dataColums, setDataColums] = useState<any[]>([]);
+    const infoDatosState = useSelector((state: RootState) => state.infoDatos);
+    const [valorTextF1,setValorTextF1] = useState('');
+    const [valorTextF2,setValorTextF2] = useState('');
 
     const allGetData = async (id: number) => {
         try {
@@ -30,12 +43,40 @@ const SextaSeccion = () => {
         const fetchData = async () => {
             const data = await allGetData(9);
             setDataColums(data);
-            const titulos = data.map((obj: any) => ({
-                descripcion: obj.titulo,
-            }))
+
+            // Encontrar el elemento en infoDatosState.data con IDDato igual a 31
+    const elemento = infoDatosState.data.find((item: any) => item.IDDato === 31);
+
+    if (elemento) {
+      // Asignar las propiedades informacion y descripcion a los estados correspondientes
+      setValorTextF1(elemento.informacion);
+      setValorTextF2(elemento.descripcion);
+    }
+
+            const Datos = infoDatosState.data.map((obj: any) => {
+              const primerC = infoDatosState.data.find((info:any)=>
+                Number(info.IDDato) === Number(dataRows[0]?.id))
+                const segundaC = infoDatosState.data.find((info:any)=>
+                Number(info.IDDato) === Number(dataColums[1]?.id))
+                const terceraC = infoDatosState.data.find((info:any)=>
+                Number(info.IDDato) === Number(dataColums[2]?.id))
+                const cuartaC = infoDatosState.data.find((info:any)=>
+                Number(info.IDDato) === Number(dataColums[3]?.id))
+                const quintaC = infoDatosState.data.find((info:any)=>
+                Number(info.IDDato) === Number(dataColums[4]?.id))
+                if(!primerC && !segundaC && !terceraC && !cuartaC && !quintaC) return null 
+              return{
+                                nombreAbono: primerC?.informacion,
+                                cantidadAplicada: segundaC?.informacion,
+                                origen:terceraC?.informacion,
+                                mesAplicado:cuartaC?.informacion,
+                                cualCultivo: quintaC?.informacion
+              }
+            }).filter(Boolean) as PropsTable[];
+            setDataRows(Datos);
         }
         fetchData()
-      },[dataRows]);
+      },[dataRows,infoDatosState]);
 
     const columns = [
         {
@@ -72,7 +113,7 @@ const SextaSeccion = () => {
   return (
     <Box sx={{display:'flex',flexDirection:'column',gap:'1rem'}}>
     <Typography variant="h6" color={theme.palette.secondary.light}>Aplicación de Fertilizantes Edáficos y Foliares</Typography>
-    <Datatable columns={columns} rows={dataRows} getRowId={(row)=>row.nombreAbono}/>
+    <Datatable columns={columns} rows={dataRows} getRowId={(row)=>row.nombreAbono || Math.random()}/>
     <Box sx={{marginTop:'1rem'}}>
       <Typography color={theme.palette.secondary.light}>
       Tiene fertilizantes orgánicos almacenados Actualmente en la Finca
@@ -80,11 +121,11 @@ const SextaSeccion = () => {
       <Box sx={{display:'flex',gap:'1rem',marginTop:'.3rem'}}>
       <ReadOnlyTextField
           label="Origen"
-          value=""
+          value={valorTextF1}
         />
       <ReadOnlyTextField
           label="Cantidad"
-          value=""
+          value={valorTextF2}
         />
       </Box>
     </Box>

@@ -7,10 +7,10 @@ import { RootState } from "@/redux/store/store";
 
 
 interface PropsTable{
-  nombreParcela: string | undefined;
-  areaEnMz: string | undefined;
-  cultivo: string | undefined;
-  insumosUtilizados: string | undefined;
+  nombreParcela: string ;
+  areaEnMz: string;
+  cultivo: string ;
+  insumosUtilizados: string;
 }
 
 const TerceraSeccion = () => {
@@ -44,25 +44,25 @@ const TerceraSeccion = () => {
       
       const Datos = infoDatosState.data.map((obj: any) => {
         const primerC = infoDatosState.data.find((info:any)=>
-        Number(info.IDDato) === Number(dataRows[0].id))
+        Number(info.IDDato) === Number(dataRows[0]?.id))
         const segundaC = infoDatosState.data.find((info:any)=>
-        Number(info.IDDato) === Number(dataRows[1].id))
+        Number(info.IDDato) === Number(dataRows[1]?.id))
         const terceraC = infoDatosState.data.find((info:any)=>
-        Number(info.IDDato) === Number(dataRows[2].id))
+        Number(info.IDDato) === Number(dataRows[2]?.id))
         const cuartaC = infoDatosState.data.find((info:any)=>
-        Number(info.IDDato) === Number(dataRows[3].id))
-        if(!primerC && !segundaC && !terceraC && !cuartaC) return [] 
+        Number(info.IDDato) === Number(dataRows[3]?.id))
+        if(!primerC && !segundaC && !terceraC && !cuartaC) return null 
         return {
-          nombreParcela: primerC ? primerC.informacion : undefined,
-          areaEnMz: segundaC ? segundaC.informacion :undefined,
-          cultivo: terceraC ? terceraC.informacion : undefined,
-          insumosUtilizados: cuartaC ? cuartaC.informacion : undefined,
+          nombreParcela: primerC ? primerC.informacion : '',
+          areaEnMz: segundaC ? segundaC.informacion :'',
+          cultivo: terceraC ? terceraC.informacion : '',
+          insumosUtilizados: cuartaC ? cuartaC.informacion : '',
         };
-      });
-      Datos !== undefined && Datos.length > 0 && setDataColums(Datos);
+      }).filter(Boolean) as PropsTable[];
+      setDataColums(Datos);
     };
     fetchData();
-  }, [dataRows]);
+  }, [dataColums,infoDatosState]);
 
   const columns = [
     {

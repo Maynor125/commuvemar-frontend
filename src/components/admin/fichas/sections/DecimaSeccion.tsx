@@ -47,7 +47,7 @@ const DecimaSeccion = () => {
       setDatos(titulos);
     };
     fetchData();
-  }, [dataRows]);
+  }, [dataRows,infoDatosState]);
 
   const columns = [
     {
