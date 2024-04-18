@@ -78,7 +78,7 @@ const OctavaSeccion = () => {
           setDataRows(Datos);
       }
       fetchData()
-    },[dataColums,dataRows]);
+    },[dataColums,dataRows,infoDatosState]);
 
     const columns = [
         {

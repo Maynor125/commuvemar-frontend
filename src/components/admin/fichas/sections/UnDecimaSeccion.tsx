@@ -69,7 +69,7 @@ const UnDecimaSeccion = () => {
       setDatos(titulos);
     };
     fetchData();
-  }, [dataRows]);
+  }, [datos,infoDatosState]);
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
