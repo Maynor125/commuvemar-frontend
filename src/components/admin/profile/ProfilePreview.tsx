@@ -28,10 +28,8 @@ import { logout } from "@/redux/features/authSlice";
 import CustomDialog from "../ModalAlert";
 
 interface ProfileViewerProps {
-  avatarSrc: string;
-  email: string;
-  nombre: string;
-  apellido: string;
+  avatarSrc?: string;
+  email?: string;
 }
 
 const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
@@ -77,7 +75,7 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
     try {
       const response = await getUser(id);
       console.log("Info del usuario", response);
-      if (response.data !== undefined) {
+      if (response.data !== undefined || response.data !== null) {
         setUserInfo(response.data);
       }
     } catch (error) {

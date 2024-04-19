@@ -59,7 +59,6 @@ const Ficha = ({ params }: any) => {
   const [isFichaActive,setIsFichaActive] = useState(false);
   const [infoFicha,setInfoFicha] = useState<Ficha[]>([])
   const dispatch = useDispatch();
-
   const getFicha= async () => {
     try {
       const response = await getFichasID(params.id);
@@ -88,6 +87,7 @@ const Ficha = ({ params }: any) => {
 
   const [infoDatos,setInfoDatos] = useState<infoDatoInterface[]>([]);
   useEffect(()=>{
+    
     const getInfoDatosFicha = async () => {
       try {
         const response = await getInfoDatoFicha(params.id);
@@ -108,7 +108,7 @@ const Ficha = ({ params }: any) => {
     }
     getInfoDatosFicha();
     console.log("Los datos de esta ficha son",infoDatos)
-  },[]);
+  },[infoDatos]);
 
 
   //-----------------------------------------------------------------

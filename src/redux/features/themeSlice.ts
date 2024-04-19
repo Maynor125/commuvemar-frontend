@@ -2,9 +2,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 let storedDarkMode;
 
-if (typeof window !== "undefined") {
-  storedDarkMode = localStorage.getItem('darkMode');
-}
+
+storedDarkMode = localStorage.getItem('darkMode');
+
 
 const initialState = {
   darkMode: storedDarkMode ? JSON.parse(storedDarkMode) : false,

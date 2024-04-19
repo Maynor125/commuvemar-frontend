@@ -12,16 +12,18 @@ import { useSelector } from "react-redux";
 const NovenaSeccion = () => {
   const theme = useTheme();
   const infoDatosState = useSelector((state: RootState) => state.infoDatos);
-  const [valorTextF1,setValorTextF1] = useState('');
+  const [valorTextF1, setValorTextF1] = useState("");
 
-  useEffect(()=>{
+  useEffect(() => {
     // Encontrar el elemento en infoDatosState.data con IDDato igual a 57
-    const elemento = infoDatosState.data.find((item: any) => item.IDDato === 57);
+    const elemento = infoDatosState.data.find(
+      (item: any) => item.IDDato === 57
+    );
 
     if (elemento) {
       setValorTextF1(elemento.informacion);
     }
-  },[infoDatosState]);
+  }, [infoDatosState]);
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -37,7 +39,11 @@ const NovenaSeccion = () => {
           control={<Checkbox checked={valorTextF1 === "Si"} readOnly />}
           label="Si"
         />
-        <FormControlLabel checked={valorTextF1 === "No"} control={<Checkbox />} label="No" />
+        <FormControlLabel
+          checked={valorTextF1 === "No"}
+          control={<Checkbox />}
+          label="No"
+        />
       </Box>
     </Box>
   );

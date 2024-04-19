@@ -3,27 +3,25 @@ import {
   Box,
   Checkbox,
   FormControlLabel,
-  FormLabel,
-  TextField,
   Typography,
   useTheme,
 } from "@mui/material";
 import React, { FC } from "react";
 import { ReadOnlyTextField } from "../ReadOnlyInput";
 
-
-
 const PrimeraSeccion = () => {
-  const handleChange = (event:any) => {
+  const handleChange = (event: any) => {
     // Si el checkbox está marcado y se intenta desmarcar, lo volvemos a marcar
     if (event.target.checked === false) {
       event.preventDefault(); // Evitamos que el cambio de estado se propague
     }
-  }
+  };
   const theme = useTheme();
   return (
-    <Box sx={{display:'flex',flexDirection:'column',gap:'1rem'}}>
-      <Typography variant="h6" color={theme.palette.secondary.light}>Datos Generales</Typography>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+      <Typography variant="h6" color={theme.palette.secondary.light}>
+        Datos Generales
+      </Typography>
       <Box>
         <ReadOnlyTextField label="Productor" value="Juan Perez" />
       </Box>
@@ -70,19 +68,24 @@ const PrimeraSeccion = () => {
           label="Estimado en cosecha"
           value="610 - 120498 - 110F"
         />
-        <Box sx={{width:'50%'}}>
-          <Typography color={theme.palette.secondary.contrastText}>Estado de certificacion</Typography>
-          <FormControlLabel sx={{color:theme.palette.secondary.contrastText}} control={<Checkbox  onChange={handleChange} defaultChecked readOnly />} label="T1" />
+        <Box sx={{ width: "50%" }}>
+          <Typography color={theme.palette.secondary.contrastText}>
+            Estado de certificacion
+          </Typography>
+          <FormControlLabel
+            sx={{ color: theme.palette.secondary.contrastText }}
+            control={
+              <Checkbox onChange={handleChange} defaultChecked readOnly />
+            }
+            label="T1"
+          />
           <FormControlLabel disabled control={<Checkbox />} label="T2" />
           <FormControlLabel disabled control={<Checkbox />} label="T3" />
           <FormControlLabel disabled control={<Checkbox />} label="Organico" />
         </Box>
       </Box>
       <Box>
-      <ReadOnlyTextField
-          label="Inspector"
-          value="Juan Perez"
-        />
+        <ReadOnlyTextField label="Inspector" value="Juan Perez" />
       </Box>
     </Box>
   );

@@ -2,12 +2,26 @@ import { Box, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Datatable from "../../datatable/Datatable";
 import { getDatosSection } from "@/services/datoSection";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
+
+interface Props {
+  productoAplicado: string;
+  origen: string;
+  productoU: string;
+  cantidadMz: string;
+  vecesAño: string;
+  cultivo: string;
+  plagaEnfermedad: string;
+}
 
 const QuintaSeccion = () => {
   const theme = useTheme();
   const [dataRows, setDataRows] = useState<any[]>([]);
+  const tokenState = useSelector((state: RootState) => state.auth);
 
   const allGetData = async (id: number) => {
+    if (!tokenState.logueado) return [];
     try {
       const response = await getDatosSection(id);
       //console.log("datos de esta seccion", response.data);
@@ -24,30 +38,22 @@ const QuintaSeccion = () => {
     }
   };
 
-  const [datos, setDatos] = useState<
-    { productoAplicado: string;
-         origen: string; 
-        productoU: string,
-        cantidadMz:string;
-        vecesAño:string;
-        cultivo:string;
-        plagaEnfermedad:string;
-     }[]
-  >([]);
+  const [datos, setDatos] = useState<Props[]>([]);
 
-   //Mostrar todos los datos que pertenecen a la seccion en la que nos encontramos
-   useEffect(() => {
+  //Mostrar todos los datos que pertenecen a la seccion en la que nos encontramos
+  useEffect(() => {
+    if (!tokenState.logueado) return;
     const fetchData = async () => {
       const data = await allGetData(8);
       setDataRows(data);
       const titulos = data.map((obj: any) => ({
         productoAplicado: obj.titulo,
-         origen: '',
-        productoU: '',
-        cantidadMz:'',
-        vecesAño:'',
-        cultivo:'',
-        plagaEnfermedad:'',
+        origen: "",
+        productoU: "",
+        cantidadMz: "",
+        vecesAño: "",
+        cultivo: "",
+        plagaEnfermedad: "",
       }));
       setDatos(titulos);
     };
@@ -103,7 +109,11 @@ const QuintaSeccion = () => {
       <Typography variant="h6" color={theme.palette.secondary.light}>
         Control de plagas y enfermedades
       </Typography>
-      <Datatable columns={columns} rows={datos} getRowId={(row)=>row.productoAplicado}/>
+      <Datatable
+        columns={columns}
+        rows={datos}
+        getRowId={(row) => row.productoAplicado}
+      />
     </Box>
   );
 };

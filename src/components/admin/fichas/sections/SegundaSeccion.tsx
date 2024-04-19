@@ -14,10 +14,10 @@ interface Row {
 interface Props {
   titulo: string;
   traeCantidad: boolean;
-  datos:Row[];
+  datos: Row[];
 }
 
-const SegundaSeccion: FC<Props> = ({ titulo, traeCantidad,datos }) => {
+const SegundaSeccion: FC<Props> = ({ titulo, traeCantidad, datos }) => {
   const theme = useTheme();
   const [dataRows, setDataRows] = useState<any[]>([]);
   const fichasState = useSelector((state: RootState) => state.fichas);
@@ -51,7 +51,6 @@ const SegundaSeccion: FC<Props> = ({ titulo, traeCantidad,datos }) => {
     },
   ];
 
-
   //Mostrar todos los datos que pertenecen a la seccion en la que nos encontramos
   const [descripciones, setDescripciones] = useState<Row[]>([]);
 
@@ -66,14 +65,16 @@ const SegundaSeccion: FC<Props> = ({ titulo, traeCantidad,datos }) => {
     }
   }, [datos]);
 
-
-
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
       <Typography variant="h6" color={theme.palette.secondary.light}>
         {titulo}
       </Typography>
-      <Datatable columns={columns} rows={descripciones} getRowId={(row)=>row.descripcion}/>
+      <Datatable
+        columns={columns}
+        rows={descripciones}
+        getRowId={(row) => row.descripcion}
+      />
     </Box>
   );
 };

@@ -4,22 +4,24 @@ import Datatable from "../../datatable/Datatable";
 import { getDatosSection } from "@/services/datoSection";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
+import { datoInterface } from "@/types/dato";
 
-
-interface PropsTable{
-  nombreParcela: string ;
+interface PropsTable {
+  nombreParcela: string;
   areaEnMz: string;
-  cultivo: string ;
+  cultivo: string;
   insumosUtilizados: string;
 }
 
 const TerceraSeccion = () => {
   const theme = useTheme();
-  const [dataRows, setDataRows] = useState<any[]>([]);
+  const [dataRows, setDataRows] = useState<datoInterface[]>([]);
   const [dataColums, setDataColums] = useState<PropsTable[]>([]);
   const infoDatosState = useSelector((state: RootState) => state.infoDatos);
+  const tokenState = useSelector((state: RootState) => state.auth);
 
   const allGetData = async (id: number) => {
+    if (!tokenState.logueado) return;
     try {
       const response = await getDatosSection(id);
       //console.log("datos de esta seccion", response.data);
@@ -37,32 +39,39 @@ const TerceraSeccion = () => {
   };
 
   useEffect(() => {
+    if (!tokenState.logueado) return;
     //console.log('los datos de esta ficha de forma global',infoDatosState.data);
     const fetchData = async () => {
       const data = await allGetData(6);
-      setDataRows(data);
-      
-      const Datos = infoDatosState.data.map((obj: any) => {
-        const primerC = infoDatosState.data.find((info:any)=>
-        Number(info.IDDato) === Number(dataRows[0]?.id))
-        const segundaC = infoDatosState.data.find((info:any)=>
-        Number(info.IDDato) === Number(dataRows[1]?.id))
-        const terceraC = infoDatosState.data.find((info:any)=>
-        Number(info.IDDato) === Number(dataRows[2]?.id))
-        const cuartaC = infoDatosState.data.find((info:any)=>
-        Number(info.IDDato) === Number(dataRows[3]?.id))
-        if(!primerC && !segundaC && !terceraC && !cuartaC) return null 
-        return {
-          nombreParcela: primerC ? primerC.informacion : '',
-          areaEnMz: segundaC ? segundaC.informacion :'',
-          cultivo: terceraC ? terceraC.informacion : '',
-          insumosUtilizados: cuartaC ? cuartaC.informacion : '',
-        };
-      }).filter(Boolean) as PropsTable[];
+      if (data) setDataRows(data);
+
+      const Datos = infoDatosState.data
+        .map((obj: any) => {
+          const primerC = infoDatosState.data.find(
+            (info: any) => Number(info.IDDato) === Number(dataRows[0]?.id)
+          );
+          const segundaC = infoDatosState.data.find(
+            (info: any) => Number(info.IDDato) === Number(dataRows[1]?.id)
+          );
+          const terceraC = infoDatosState.data.find(
+            (info: any) => Number(info.IDDato) === Number(dataRows[2]?.id)
+          );
+          const cuartaC = infoDatosState.data.find(
+            (info: any) => Number(info.IDDato) === Number(dataRows[3]?.id)
+          );
+          if (!primerC && !segundaC && !terceraC && !cuartaC) return null;
+          return {
+            nombreParcela: primerC ? primerC.informacion : "",
+            areaEnMz: segundaC ? segundaC.informacion : "",
+            cultivo: terceraC ? terceraC.informacion : "",
+            insumosUtilizados: cuartaC ? cuartaC.informacion : "",
+          };
+        })
+        .filter(Boolean) as PropsTable[];
       setDataColums(Datos);
     };
     fetchData();
-  }, [dataColums,infoDatosState]);
+  }, [dataColums, infoDatosState]);
 
   const columns = [
     {
@@ -96,7 +105,11 @@ const TerceraSeccion = () => {
       <Typography variant="h6" color={theme.palette.secondary.light}>
         Informacion de parcelas
       </Typography>
-      <Datatable columns={columns} rows={dataColums} getRowId={(row) => row?.nombreParcela || Math.random()}/>
+      <Datatable
+        columns={columns}
+        rows={dataColums}
+        getRowId={(row) => row?.nombreParcela || Math.random()}
+      />
     </Box>
   );
 };
