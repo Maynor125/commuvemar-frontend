@@ -5,6 +5,7 @@ export interface Ficha {
   nombre: string;
   fecha: string;
   email: string;
+  urlmagen:string;
   finca: string;
   productor: string;
   location: {

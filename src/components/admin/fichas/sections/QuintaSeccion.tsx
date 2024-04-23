@@ -18,6 +18,7 @@ interface Props {
 const QuintaSeccion = () => {
   const theme = useTheme();
   const [dataRows, setDataRows] = useState<any[]>([]);
+  const infoDatosState = useSelector((state: RootState) => state.infoDatos);
   const tokenState = useSelector((state: RootState) => state.auth);
 
   const allGetData = async (id: number) => {
@@ -46,16 +47,39 @@ const QuintaSeccion = () => {
     const fetchData = async () => {
       const data = await allGetData(8);
       setDataRows(data);
-      const titulos = data.map((obj: any) => ({
-        productoAplicado: obj.titulo,
-        origen: "",
-        productoU: "",
-        cantidadMz: "",
-        vecesAño: "",
-        cultivo: "",
-        plagaEnfermedad: "",
-      }));
-      setDatos(titulos);
+      const Datos = data.map((obj: any) => {
+        const arrayData = infoDatosState.data.find(
+          (info: any) => Number(info.IDDato) === Number(obj.id)
+        );
+        return {
+          productoAplicado: obj.titulo,
+          origen:
+            Array.isArray(arrayData) && arrayData.length > 0
+              ? arrayData[0].informacion
+              : "",
+          productoU:
+            Array.isArray(arrayData) && arrayData.length > 1
+              ? arrayData[1].informacion
+              : "",
+          cantidadMz:
+            Array.isArray(arrayData) && arrayData.length > 2
+              ? arrayData[2].informacion
+              : "",
+          vecesAño:
+            Array.isArray(arrayData) && arrayData.length > 3
+              ? arrayData[3].informacion
+              : "",
+          cultivo:
+            Array.isArray(arrayData) && arrayData.length > 4
+              ? arrayData[4].informacion
+              : "",
+          plagaEnfermedad:
+            Array.isArray(arrayData) && arrayData.length > 5
+              ? arrayData[5].informacion
+              : "",
+        };
+      });
+      setDatos(Datos);
     };
     fetchData();
   }, [dataRows]);

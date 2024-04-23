@@ -46,7 +46,7 @@ const PrimeraSeccion:FC<Props> = ({id}) => {
       }
     }
     getInfoDatosHeaderFicha();
-  },[infoDatos,id]);
+  },[infoDatos]);
 
   const firstFichaHeader = infoDatos[0];
   const theme = useTheme();
