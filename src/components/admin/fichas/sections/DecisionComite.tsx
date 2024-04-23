@@ -106,7 +106,7 @@ const DecisionComite = () => {
                   onChange={() => selecciondeDato(72)}
                 />
               }
-              label="Aprobado sin condiciones "
+              label={<span style={{ color: theme.palette.secondary.contrastText }}>Aprobado sin condiciones</span>}
             />
             <FormControlLabel
               control={
@@ -115,7 +115,11 @@ const DecisionComite = () => {
                   onChange={() => selecciondeDato(73)}
                 />
               }
-              label="Aprobado con condiciones "
+              label={
+                <span style={{ color: theme.palette.secondary.contrastText }}>
+                  Aprobado con condiciones
+                </span>
+              }
             />
             <FormControlLabel
               control={
@@ -124,18 +128,25 @@ const DecisionComite = () => {
                   onChange={() => selecciondeDato(74)}
                 />
               }
-              label="Sancionado"
+              label={<span style={{ color: theme.palette.secondary.contrastText }}>Sancionado</span>}
             />
           </Box>
         )}
-
-        <InfoDatosForm
-          IDFicha={1}
-          IDDato={datoSeleccionado}
-          onClick={onSubmit}
-        />
+        {!hayDesicion && (
+          <Box>
+            <InfoDatosForm
+              IDFicha={1}
+              IDDato={datoSeleccionado}
+              onClick={onSubmit}
+            />
+          </Box>
+        )}
       </Box>
-      <Datatable columns={columns} rows={dataRows} getRowId={()=>Math.random()}/>
+      <Datatable
+        columns={columns}
+        rows={dataRows}
+        getRowId={() => Math.random()}
+      />
       <Box
         sx={{
           display: "flex",

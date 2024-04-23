@@ -12,7 +12,7 @@ const CuartaSeccion = () => {
   const tokenState = useSelector((state: RootState) => state.auth);
 
   const allGetData = async (id: number) => {
-    //if (!tokenState.logueado) return [];
+    if (!tokenState.logueado) return [];
     try {
       const response = await getDatosSection(id);
       //console.log("datos de esta seccion", response.data);
@@ -34,7 +34,7 @@ const CuartaSeccion = () => {
   >([]);
   //Mostrar todos los datos que pertenecen a la seccion en la que nos encontramos
   useEffect(() => {
-    //if (!tokenState.logueado) return;
+    if (!tokenState.logueado) return;
     const fetchData = async () => {
       const data = await allGetData(7);
       setDataRows(data);

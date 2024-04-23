@@ -66,7 +66,7 @@ const CardFicha2: FC<Props> = ({ onClick, ficha }) => {
               : "#4cb9d4",
           }}
           alt={ficha.nombre}
-          src="/static/images/avatar/1.jpg"
+          src=""
         />
         <IconButton sx={{ width: "2.6rem", height: "2.6rem" }}>
           <MoreVertIcon />

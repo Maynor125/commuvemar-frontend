@@ -59,10 +59,11 @@ const Ficha = ({ params }: any) => {
   const [isFichaActive,setIsFichaActive] = useState(false);
   const [infoFicha,setInfoFicha] = useState<Ficha[]>([])
   const dispatch = useDispatch();
+  const tokenState = useSelector((state: RootState) => state.auth);
+
   const getFicha= async () => {
     try {
       const response = await getFichasID(params.id);
-      //console.log("Las Info de esta ficha",response.data);
 
        // Verificar si response.data es undefined
        if (response.data === undefined) {
@@ -77,6 +78,7 @@ const Ficha = ({ params }: any) => {
     }
   }
   useEffect(() => {
+    if (!tokenState.logueado) return;
     getFicha();
     if (Array.isArray(infoFicha)) {
       infoFicha.map((obj: any) => (
@@ -87,11 +89,10 @@ const Ficha = ({ params }: any) => {
 
   const [infoDatos,setInfoDatos] = useState<infoDatoInterface[]>([]);
   useEffect(()=>{
-    
     const getInfoDatosFicha = async () => {
+      if (!tokenState.logueado) return [];
       try {
         const response = await getInfoDatoFicha(params.id);
-        console.log("Las respuesta de esta ficha",response.data);
   
          // Verificar si response.data es undefined
          if (response.data === undefined) {
@@ -150,6 +151,7 @@ const Ficha = ({ params }: any) => {
     let infoDatosLoaded = false;
     
     const fetchData = async () => {
+      if (!tokenState.logueado) return [];
       if (!infoDatosLoaded) return;
 
       const data = await getDataSection(5);
@@ -178,6 +180,7 @@ const Ficha = ({ params }: any) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!tokenState.logueado) return [];
       const data = await getDataSection(11);
       const datosSection7 = data.map((obj: any) => {
         // Buscar el objeto correspondiente en infoDatos basado en el campo IDDato
@@ -195,6 +198,7 @@ const Ficha = ({ params }: any) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!tokenState.logueado) return [];
       const data = await getDataSection(16);
       const datosSection12 = data.map((obj: any) => {
          // Buscar el objeto correspondiente en infoDatos basado en el campo IDDato
@@ -423,7 +427,7 @@ const Ficha = ({ params }: any) => {
             gap: "2rem",
           }}
         >
-          <PrimeraSeccion />
+          <PrimeraSeccion id={params.id}/>
           <SegundaSeccion
             traeCantidad={true}
             titulo="Registros Administrativos"

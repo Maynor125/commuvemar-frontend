@@ -81,15 +81,15 @@ const InfoDatosForm: React.FC<GeneralActionProps> = ({
 
   const onSubmit = (data: infoDatoInterface) => {
     if (IDDato !== null) {
-      createInfoDatos(data.informacion, data.descripcion, IDDato, IDFicha);
+      createInfoDatos(data.informacion, '', IDDato, IDFicha);
     }
   };
 
   return (
-    <form className="borde-card" onSubmit={handleSubmit(onSubmit)}>
+    <form style={{padding: "1rem",display: "flex", flexDirection:'column',
+    gap: "1rem",}} className="borde-card" onSubmit={handleSubmit(onSubmit)}>
       <Box
         sx={{
-          padding: "1rem",
           width: "100%",
           display: "flex",
           gap: "1rem",
@@ -104,28 +104,24 @@ const InfoDatosForm: React.FC<GeneralActionProps> = ({
       >
         <TextField
           id="titulo"
-          label="Ingresa el texto"
+          label="Ingresa el veredicto final"
           variant="outlined"
+          multiline
+          rows={4}
+          disabled={!IDDato || IDDato < 1}
           {...register("informacion")}
           error={!!errors.informacion}
           helperText={errors?.informacion?.message}
           sx={{flex:1}}
         />
-        <TextField
-          id="titulo"
-          label="Ingresa el texto"
-          variant="outlined"
-          {...register("descripcion")}
-          error={!!errors.descripcion}
-          helperText={errors?.descripcion?.message}
-          sx={{flex:1}}
-        />
       </Box>
       <Tooltip title={/*title*/ "Guardar Dato"}>
-        <button onClick={onClick} className="btn-save" type="submit">
+      <span>
+         <button disabled={!IDDato || IDDato < 1} style={{flex:1,width:'100%'}} onClick={onClick} className="btn-save" type="submit">
           Guardar
           <SaveRoundedIcon />
         </button>
+      </span>
       </Tooltip>
     </form>
   );
