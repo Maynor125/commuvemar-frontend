@@ -13,12 +13,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { getHeaderFicha } from "@/services/fichas";
 
-interface Props{
-  id:number;
+interface Props {
+  id: number;
+  idTrabajador: number;
 }
 
-const PrimeraSeccion:FC<Props> = ({id}) => {
-
+const PrimeraSeccion: FC<Props> = ({ id, idTrabajador }) => {
   const tokenState = useSelector((state: RootState) => state.auth);
 
   const handleChange = (event: any) => {
@@ -28,8 +28,8 @@ const PrimeraSeccion:FC<Props> = ({id}) => {
     }
   };
 
-  const [infoDatos,setInfoDatos] = useState<FichaHeader[]>([]);
-  useEffect(()=>{
+  const [infoDatos, setInfoDatos] = useState<FichaHeader[]>([]);
+  useEffect(() => {
     const getInfoDatosHeaderFicha = async () => {
       if (!tokenState.logueado) return [];
       try {
@@ -37,16 +37,16 @@ const PrimeraSeccion:FC<Props> = ({id}) => {
         if (response.data === undefined) {
           return []; // Devolver un array vacío si no hay datos
         } else {
-          console.log("datos de cabecera",response.data);
+          console.log("datos de cabecera", response.data);
           setInfoDatos(response.data);
         }
       } catch (error) {
         console.error(error);
         return [];
       }
-    }
+    };
     getInfoDatosHeaderFicha();
-  },[infoDatos]);
+  }, [id, tokenState]);
 
   const firstFichaHeader = infoDatos[0];
   const theme = useTheme();
@@ -56,50 +56,65 @@ const PrimeraSeccion:FC<Props> = ({id}) => {
         Datos Generales
       </Typography>
       <Box>
-        <ReadOnlyTextField label="Productor" value={firstFichaHeader?.productor || ''} />
+        <ReadOnlyTextField
+          label="Productor"
+          value={firstFichaHeader?.productor || ""}
+        />
       </Box>
       <Box sx={{ display: "flex", gap: "1rem" }}>
         <ReadOnlyTextField
           label="Numero de cedula"
-          value={firstFichaHeader?.cedula || ''}
+          value={firstFichaHeader?.cedula || ""}
         />
-        <ReadOnlyTextField label="Numero de telefono" value={firstFichaHeader?.telefono || ''} />
+        <ReadOnlyTextField
+          label="Numero de telefono"
+          value={firstFichaHeader?.telefono || ""}
+        />
       </Box>
       <Box sx={{ display: "flex", gap: "1rem" }}>
-        <ReadOnlyTextField label="Comunidad" value={firstFichaHeader?.comunidad || ''} />
-        <ReadOnlyTextField label="Nombre de la finca" value={firstFichaHeader?.finca || ''} />
+        <ReadOnlyTextField
+          label="Comunidad"
+          value={firstFichaHeader?.comunidad || ""}
+        />
+        <ReadOnlyTextField
+          label="Nombre de la finca"
+          value={firstFichaHeader?.finca || ""}
+        />
       </Box>
       <Box sx={{ display: "flex", gap: "1rem" }}>
         <ReadOnlyTextField
           label="Fecha de inspeccion"
-          value={firstFichaHeader?.fechaInspeccion || ''}
+          value={firstFichaHeader?.fechaInspeccion || ""}
         />
-        <ReadOnlyTextField label="Codigo del productor" value={String(firstFichaHeader?.codProductor) || ''}/>
+        <ReadOnlyTextField
+          label="Codigo del productor"
+          value={String(firstFichaHeader?.codProductor) || ""}
+        />
       </Box>
       <Box sx={{ display: "flex", gap: "1rem" }}>
         <ReadOnlyTextField
           label="Area de cacao en produccion"
-          value={firstFichaHeader?.areaProduccion || ''}
+          value={firstFichaHeader?.areaProduccion || ""}
         />
         <ReadOnlyTextField
           label="Area de cacao en desarrollo"
-          value={firstFichaHeader?.areaDesarrollo || ''}
+          value={firstFichaHeader?.areaDesarrollo || ""}
         />
       </Box>
       <Box sx={{ display: "flex", gap: "1rem" }}>
         <ReadOnlyTextField
           label="Fecha de ingreso al programa de certificacion"
-          value={firstFichaHeader?.ingresoCertificacion || ''}
+          value={firstFichaHeader?.ingresoCertificacion || ""}
         />
         <ReadOnlyTextField
           label="Producción Último ciclo (Qq baba) 2022-2023"
-          value={firstFichaHeader?.produccionultimoCiclo || ''}
+          value={firstFichaHeader?.produccionultimoCiclo || ""}
         />
       </Box>
       <Box sx={{ display: "flex", gap: "1rem", alignItems: "center" }}>
         <ReadOnlyTextField
           label="Estimado en cosecha"
-          value={firstFichaHeader?.estimadoCosecha || ''}
+          value={firstFichaHeader?.estimadoCosecha || ""}
         />
         <Box sx={{ width: "50%" }}>
           <Typography color={theme.palette.secondary.contrastText}>
@@ -108,17 +123,36 @@ const PrimeraSeccion:FC<Props> = ({id}) => {
           <FormControlLabel
             sx={{ color: theme.palette.secondary.contrastText }}
             control={
-              <Checkbox onChange={handleChange} checked={firstFichaHeader?.estadoCertificacion === 1} readOnly />
+              <Checkbox
+                onChange={handleChange}
+                checked={firstFichaHeader?.estadoCertificacion === 1}
+                readOnly
+              />
             }
             label="T1"
           />
-          <FormControlLabel checked={firstFichaHeader?.estadoCertificacion === 2} control={<Checkbox />} label="T2" />
-          <FormControlLabel checked={firstFichaHeader?.estadoCertificacion === 3} control={<Checkbox />} label="T3" />
-          <FormControlLabel checked={firstFichaHeader?.estadoCertificacion === 4}  control={<Checkbox />} label="Organico" />
+          <FormControlLabel
+            checked={firstFichaHeader?.estadoCertificacion === 2}
+            control={<Checkbox />}
+            label="T2"
+          />
+          <FormControlLabel
+            checked={firstFichaHeader?.estadoCertificacion === 3}
+            control={<Checkbox />}
+            label="T3"
+          />
+          <FormControlLabel
+            checked={firstFichaHeader?.estadoCertificacion === 4}
+            control={<Checkbox />}
+            label="Organico"
+          />
         </Box>
       </Box>
       <Box>
-        <ReadOnlyTextField label="Inspector" value="Juan Perez" />
+        <ReadOnlyTextField
+          label="Inspector"
+          value={firstFichaHeader?.inspector || ""}
+        />
       </Box>
     </Box>
   );
