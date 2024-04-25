@@ -1,9 +1,15 @@
 import apiManager from "@/services/apiManager";
 import { Workers } from "@/types/inspectors";
+import { Productors } from "@/types/productors";
 import { MemoryStoredFile } from "nestjs-form-data";
 
 interface ApiResponse {
   data?: Workers[] | undefined;
+  error?: string;
+}
+
+interface ApiResponse2 {
+  data?: Productors[] | undefined;
   error?: string;
 }
 
@@ -28,6 +34,16 @@ export const getWorkersId = async (id: number): Promise<ApiResponse> => {
   }
 };
 
+export const getProductorsWorker = async (id: number): Promise<ApiResponse2> => {
+  try {
+    const response = await apiManager.get<Productors[]>(`trabajador/getproductor/${id}`);
+    return { data: response.data };
+  } catch (error:any) {
+    // Devolver una acción indicando fallo
+    return { error: error.response?.data.message || "Error desconocido" };
+  }
+}
+
 export const createWorkers = async (
   nombre: string,
   apellido: string,
@@ -48,6 +64,18 @@ export const createWorkers = async (
     return { error: error.response?.data.message || "Error desconocido" };
   }
 };
+
+export const createWorkerProductor = async(trabajador:number,productor:number)=>{
+  try {
+    const response = await apiManager.post("/trabajador/asignacionproductor",{
+      trabajador,
+      productor,
+    });
+    return response.data;
+  } catch (error:any) {
+    return { error: error.response?.data.message || "Error desconocido" };
+  }
+}
 
 export const updateWorkers = async (
   id: number,

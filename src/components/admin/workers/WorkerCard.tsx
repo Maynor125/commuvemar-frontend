@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Card,
   CardContent,
@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import Avatars from "../avatar/Avatar";
 
 import Workerimg from "../../../../public/images/admin/workericon.png";
@@ -21,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { deleteWorkers } from "@/services/workers";
 import { updateValueWorker } from "@/redux/features/workerSlice";
+import ModalProductoresAsignados from "./ModalProductoresAsignados";
 
 interface UserCardProps {
   id: number;
@@ -86,6 +88,39 @@ const UserCard: React.FC<UserCardProps> = ({
     );
   };
 
+  const [openP, setOpenP] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setOpenP(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const [openM, setOpenM] = React.useState(false);
+  const handleOpen = () => {
+    dispatch(updateValueWorker({
+      id:id,
+      open:true,
+    }))
+  };
+  const handleClose = () => {
+    dispatch(updateValueWorker({
+      id:0,
+      open:false,
+    }))
+  };
+
   return (
     <Card variant="outlined">
       <CardContent>
@@ -141,6 +176,23 @@ const UserCard: React.FC<UserCardProps> = ({
             </Typography>
           </Grid>
           <Grid item xs={12} sm={2}>
+          <Tooltip title="Asignar Productores">
+              <IconButton
+                aria-label="Asignar"
+                onClick={() => {handleOpen()}}
+              >
+                <PushPinOutlinedIcon
+                  sx={{
+                    color: "#ffc",
+                    backgroundColor: "#168CC8",
+                    width: "1.9rem",
+                    height: "1.9rem",
+                    padding: ".3rem",
+                    borderRadius: "4px",
+                  }}
+                />
+              </IconButton>
+            </Tooltip>
             <Tooltip title="Editar Trabajador">
               <IconButton
                 aria-label="Editar"
@@ -180,6 +232,7 @@ const UserCard: React.FC<UserCardProps> = ({
           </Grid>
         </Grid>
       </CardContent>
+      <ModalProductoresAsignados id={id} onClose={handleClose} open={openM}/>
     </Card>
   );
 };
