@@ -97,11 +97,21 @@ export const updateWorkers = async (
   }
 };
 
-export const deleteWorkers = async (
+export const deleteWorkers= async (
   id: number
 ): Promise<ApiResponse | void> => {
   try {
     await apiManager.delete(`/trabajador/${id}`);
+  } catch (error: any) {
+    return { error: error.response?.data.message || "Error desconocido" };
+  }
+};
+
+export const deleteWorkerProductor  = async (
+  id: number
+): Promise<ApiResponse | void> => {
+  try {
+    await apiManager.delete(`/trabajador/asignacionproductor/${id}`);
   } catch (error: any) {
     return { error: error.response?.data.message || "Error desconocido" };
   }
