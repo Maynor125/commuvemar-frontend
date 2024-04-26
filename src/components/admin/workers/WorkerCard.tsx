@@ -111,6 +111,7 @@ const UserCard: React.FC<UserCardProps> = ({
   const handleOpen = () => {
     dispatch(updateValueWorker({
       id:id,
+      nombre:firstName,
       open:true,
     }))
   };
@@ -232,7 +233,7 @@ const UserCard: React.FC<UserCardProps> = ({
           </Grid>
         </Grid>
       </CardContent>
-      <ModalProductoresAsignados id={id} onClose={handleClose} open={openM}/>
+      
     </Card>
   );
 };
