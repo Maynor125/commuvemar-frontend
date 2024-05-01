@@ -93,7 +93,7 @@ const ModalProductoresAsignados: FC<CustomDialogProps> = ({
   const handleQuit = async (id: number) => {
     setEliminar(true);
     try {
-      await deleteWorkerProductor(id);
+      await deleteWorkerProductor([id]);
     } catch (error) {
       console.error(error);
     }
@@ -219,7 +219,7 @@ const ModalProductoresAsignados: FC<CustomDialogProps> = ({
                       <Tooltip title="Quitar asignacion">
                         <IconButton
                           aria-label="Quitar asignacion"
-                          onClick={() => handleQuit}
+                          onClick={() => handleQuit(item.id)}
                         >
                           <BlockOutlinedIcon
                             sx={{

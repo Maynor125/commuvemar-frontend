@@ -108,10 +108,10 @@ export const deleteWorkers= async (
 };
 
 export const deleteWorkerProductor  = async (
-  id: number
+  id: number[]
 ): Promise<ApiResponse | void> => {
   try {
-    await apiManager.delete(`/trabajador/asignacionproductor/${id}`);
+    await apiManager.delete('/trabajador/asignacionproductor', { data: { id } });
   } catch (error: any) {
     return { error: error.response?.data.message || "Error desconocido" };
   }

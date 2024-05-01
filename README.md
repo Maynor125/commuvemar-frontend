@@ -1,4 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Aplicacion Frontend Cooperativa COOMUVEMAR.
 
@@ -6,7 +5,23 @@ En el desarrollo de la aplicación web se usará TypeScript que es un lenguaje d
 
 ## Para empezar.
 
-First, run the development server:
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+Primero tienes que clonar el repositorio.
+```
+git clone https://github.com/Maynor125/commuvemar-frontend.git
+```
+
+Luego instala las dependencias.
+```bash
+npm install --save
+# or
+yarn install --save
+# or
+pnpm install --save
+```
+
+Luego inicia el servidor de desarrollo:
 
 ```bash
 npm run dev
@@ -15,26 +30,36 @@ yarn dev
 # or
 pnpm dev
 ```
+Listo ya puedes usar la aplicacion.
+![Landing page](./public/images/imagen.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![Login](./public/images/login.png)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Caracteristicas
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
+1. **Landing Page**: Página de entrada del sitio web, que proporciona informacion de la cooperativa.
+2. **Autenticación**: Sistema de autenticación de usuarios.
+3. **Dashboard**: Panel de control con resumen de información relevante.
+4. **Administración de la ficha de inspección**: Herramienta para gestionar y editar las fichas de inspección.
+5. **Historial de las fichas levantadas**: Registro de todas las fichas de inspección anteriores.
+6. **Administración de productores**: Gestión de los datos de los productores.
+7. **Administración de inspectores**: Gestión de los datos de los inspectores.
+8. **Asignación de productores a visitar**: Funcionalidad para asignar productores a los inspectores para su visita.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Licencia
 
-To learn more about Next.js, take a look at the following resources:
+Este proyecto está bajo la [Licencia GPL (GNU General Public License)](https://www.gnu.org/licenses/gpl-3.0.html).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contribuir
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+¡Gracias por querer contribuir en este proyecto! Aquí tienes cómo puedes hacerlo:
 
-## Deploy on Vercel
+1. Forkea y clona el repositorio.
+2. Crea una rama para tu contribución.
+3. Haz tus cambios y haz commit.
+4. Haz push a tu rama y envía un pull request.
+5. Si tienes preguntas o sugerencias, abre un issue.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+¡Esperamos tus contribuciones!
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
