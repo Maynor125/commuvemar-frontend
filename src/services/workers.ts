@@ -65,11 +65,12 @@ export const createWorkers = async (
   }
 };
 
-export const createWorkerProductor = async(trabajador:number,productor:number)=>{
+export const createWorkerProductor = async(productor:number,trabajador:number)=>{
   try {
     const response = await apiManager.post("/trabajador/asignacionproductor",{
-      trabajador,
-      productor,
+      IDProductor: productor,
+      IDTrabajador: trabajador,
+      estadoInspeccion:"",
     });
     return response.data;
   } catch (error:any) {

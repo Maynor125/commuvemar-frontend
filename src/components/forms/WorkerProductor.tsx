@@ -15,6 +15,7 @@ import { ZodError } from "zod";
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 import { Productors } from "@/types/productors";
 import { getProductors } from "@/services/productors";
+import { createWorkerProductor } from "@/services/workers";
 
 interface GeneralActionProps {
   onClick: () => void;
@@ -87,16 +88,18 @@ const WorkerProductor: FC<GeneralActionProps> = ({ onClick, idWorker }) => {
   const [idProductors, setIdProductors] = useState(0);
 
   const onSubmit = (data: ProductorWorker) => {
-    createWorkerProductor(idWorker, data.IDProductor);
+    console.log('el id',idWorker)
+    console.log(data)
+    createWorkerProductors(data.IDProductor,idWorker);
     setValue("IDProductor", 0);
   };
 
-  const createWorkerProductor = async (
-    trabajador: number,
-    inspector: number
+  const createWorkerProductors = async (
+    productor: number,
+    trabajador: number
   ) => {
     try {
-      const response = await createWorkerProductor(trabajador, inspector);
+      const response = await createWorkerProductor(productor, trabajador);
       if (response !== undefined) {
         onClick();
       }
@@ -106,7 +109,11 @@ const WorkerProductor: FC<GeneralActionProps> = ({ onClick, idWorker }) => {
   };
 
   return (
-    <form style={{width:'40rem'}} className="borde-card" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      style={{ width: "40rem" }}
+      className="borde-card"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <Box
         sx={{
           padding: "1rem",
