@@ -16,6 +16,7 @@ import UserCard from "@/components/admin/workers/WorkerCard";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import BotonFlotante from "@/components/BotonFlotante";
+import ModalProductoresAsignados from "@/components/admin/workers/ModalProductoresAsignados";
 
 const Inspectors = () => {
   const theme = useTheme();
@@ -186,6 +187,7 @@ const Inspectors = () => {
           />
         ))}
       </Box>
+    <ModalProductoresAsignados />
      <BotonFlotante/> 
     </Box>
   );

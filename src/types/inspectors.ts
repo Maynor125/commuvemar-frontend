@@ -5,3 +5,8 @@ export interface Workers {
     numeroTelefono:string,
     urlImg:string,
 }
+
+export interface ProductorWorker {
+  IDProductor:number,
+  IDTrabajado:number,
+}

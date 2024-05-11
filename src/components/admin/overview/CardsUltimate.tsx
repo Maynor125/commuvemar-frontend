@@ -37,7 +37,7 @@ const CardsUltimate = () => {
           </svg>
         }
         backgroundColor="#EAD6FD"
-        title="Fichas aprovadas"
+        title="Fichas aprobadas"
         value="8"
         customColor="#7c3aed"
         lastText="Yesterday"

@@ -84,7 +84,7 @@ const FincaForm: React.FC<GeneralActionProps> = ({
    const [age, setAge] = useState();
    const handleChange = (event:any) => {
      setAge(event.target.value);
-     setValorIdActivo(true);
+     setValorIdActivo(true);  
    };
 
   const onSubmit = (data: Fincas) => {

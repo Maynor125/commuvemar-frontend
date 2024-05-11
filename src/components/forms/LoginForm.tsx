@@ -165,12 +165,12 @@ const LoginForm = () => {
           <FormHelperText sx={{ color: "#D43333" }}>
             {errors.password.message}
           </FormHelperText>
-          /*<p className="msj-error">
+          /*<p className="msj-error"> 
           {errors.password.message}
         </p>*/
         )}
       </FormControl>
-      <button type="submit" className="boton btn-login">
+      <button style={{flex:1}}  type="submit" className="boton btn-login">
         Login
       </button>
       {error !== null && (

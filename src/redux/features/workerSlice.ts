@@ -8,6 +8,7 @@ interface WorkerInterface {
   apellido: string;
   numeroTelefono: string;
   urlImg: string;
+  open:boolean;
 }
 
 const initialState: WorkerInterface={
@@ -18,6 +19,7 @@ const initialState: WorkerInterface={
     apellido: "",
     numeroTelefono: "",
     urlImg: "",
+    open:false,
 }
 
 const workerSlice = createSlice({

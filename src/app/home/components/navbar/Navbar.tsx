@@ -104,7 +104,7 @@ function Navbar({ pathNames }: Props) {
                 <Typography sx={{color:theme.palette.secondary.contrastText}}>Dark mode</Typography>
                 <ToogleButton />
               </div>
-              <Link className="boton-base btn-login" href="/login">
+              <Link className="boton-base btn-loginn" href="/login">
                 Login
               </Link>
             </div>
@@ -126,8 +126,11 @@ function Navbar({ pathNames }: Props) {
 
 //=============== Activar enlaces ===============
 
-var sections = document.querySelectorAll<HTMLDivElement>('section[id]');
-
+if (typeof window !== 'undefined') {
+  // Este código se ejecutará solo en el lado del cliente
+  var sections = document.querySelectorAll<HTMLDivElement>('section[id]');
+  // Resto de tu código
+}
 const scrollActive = () =>{
   	const scrollY = window.pageYOffset
 
@@ -145,6 +148,8 @@ const scrollActive = () =>{
 		}                                                    
 	})
 }
-window.addEventListener("scroll", scrollActive)
+if (typeof window !== 'undefined') {
+  window.addEventListener("scroll", scrollActive);
+}
 
 export default Navbar;
