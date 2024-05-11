@@ -4,7 +4,6 @@ import SearchInput from "@/components/SearchInput";
 import { Box, Drawer, IconButton, useTheme } from "@mui/material";
 import ToogleButton from "@/components/theme/ToogleButton";
 import Notification from "../notification/Notification";
-import imgPreview from "../../../../public/images/assets/userPicture.jpg";
 import ProfilePreview from "../profile/ProfilePreview";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import SideBar from "../sidebar/SideBar";

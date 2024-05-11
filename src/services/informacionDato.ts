@@ -26,3 +26,19 @@ export const getInfoDatoFicha = async(id:number):Promise<ApiResponse>=>{
     }
 }
 
+export const createInfoDato = async(informacion:string,
+    descripcion:string,
+    IDDato:number,
+    IDFicha:number,):Promise<ApiResponse> =>{
+  try {
+    const response = await apiManager.post("/informaciondato",{
+      informacion,
+      descripcion,
+      IDDato,
+      IDFicha
+    })
+    return response.data;
+  } catch (error:any) {
+    return { error: error.response?.data.message || "Error desconocido" };
+  }
+}

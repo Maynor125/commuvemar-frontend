@@ -2,12 +2,17 @@ import { Box, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Datatable from "../../datatable/Datatable";
 import { getDatosSection } from "@/services/datoSection";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
 
 const SeptimaSeccion = () => {
   const theme = useTheme();
   const [dataRows, setDataRows] = useState<any[]>([]);
+  const infoDatosState = useSelector((state: RootState) => state.infoDatos);
+  const tokenState = useSelector((state: RootState) => state.auth);
 
   const allGetData = async (id: number) => {
+    if (!tokenState.logueado) return [];
     try {
       const response = await getDatosSection(id);
       //console.log("datos de esta seccion", response.data);
@@ -30,36 +35,42 @@ const SeptimaSeccion = () => {
 
   //Mostrar todos los datos que pertenecen a la seccion en la que nos encontramos
   useEffect(() => {
+    if (!tokenState.logueado) return;
     const fetchData = async () => {
       const data = await allGetData(10);
-      const titulos = data.map((obj: any) => ({
-        practica: obj.titulo,
-        realizacion: "",
-        cantidad_observacion: "",
-      }));
+      const titulos = data.map((obj: any) => {
+        const infoDato = infoDatosState.data.find(
+          (info: any) => Number(info.IDDato) === Number(obj.id)
+        );
+        return {
+          practica: obj.titulo,
+          realizacion: infoDato ? infoDato.informacion : "",
+          cantidad_observacion: infoDato ? infoDato.descripcion : "",
+        };
+      });
       setDatos(titulos);
     };
     fetchData();
-  }, [dataRows]);
+  }, [datos, infoDatosState]);
 
   const columns = [
     {
       field: "practica",
       headerName: "Practica",
       headerClassName: "header-grid",
-      width: 332,
+      width: 333,
     },
     {
       field: "realizacion",
       headerName: "Realizacion",
       headerClassName: "header-grid",
-      width: 332,
+      width: 333,
     },
     {
-      field: "cantidad_obserovacion",
+      field: "cantidad_observacion",
       headerName: "Cantidad / Observacion",
       headerClassName: "header-grid",
-      width: 332,
+      width: 333,
     },
   ];
   return (

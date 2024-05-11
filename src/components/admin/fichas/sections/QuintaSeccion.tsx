@@ -2,12 +2,27 @@ import { Box, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Datatable from "../../datatable/Datatable";
 import { getDatosSection } from "@/services/datoSection";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
+
+interface Props {
+  productoAplicado: string;
+  origen: string;
+  productoU: string;
+  cantidadMz: string;
+  vecesAño: string;
+  cultivo: string;
+  plagaEnfermedad: string;
+}
 
 const QuintaSeccion = () => {
   const theme = useTheme();
   const [dataRows, setDataRows] = useState<any[]>([]);
+  const infoDatosState = useSelector((state: RootState) => state.infoDatos);
+  const tokenState = useSelector((state: RootState) => state.auth);
 
   const allGetData = async (id: number) => {
+    if (!tokenState.logueado) return [];
     try {
       const response = await getDatosSection(id);
       //console.log("datos de esta seccion", response.data);
@@ -24,32 +39,47 @@ const QuintaSeccion = () => {
     }
   };
 
-  const [datos, setDatos] = useState<
-    { productoAplicado: string;
-         origen: string; 
-        productoU: string,
-        cantidadMz:string;
-        vecesAño:string;
-        cultivo:string;
-        plagaEnfermedad:string;
-     }[]
-  >([]);
+  const [datos, setDatos] = useState<Props[]>([]);
 
-   //Mostrar todos los datos que pertenecen a la seccion en la que nos encontramos
-   useEffect(() => {
+  //Mostrar todos los datos que pertenecen a la seccion en la que nos encontramos
+  useEffect(() => {
+    if (!tokenState.logueado) return;
     const fetchData = async () => {
       const data = await allGetData(8);
       setDataRows(data);
-      const titulos = data.map((obj: any) => ({
-        productoAplicado: obj.titulo,
-         origen: '',
-        productoU: '',
-        cantidadMz:'',
-        vecesAño:'',
-        cultivo:'',
-        plagaEnfermedad:'',
-      }));
-      setDatos(titulos);
+      const Datos = data.map((obj: any) => {
+        const arrayData = infoDatosState.data.find(
+          (info: any) => Number(info.IDDato) === Number(obj.id)
+        );
+        return {
+          productoAplicado: obj.titulo,
+          origen:
+            Array.isArray(arrayData) && arrayData.length > 0
+              ? arrayData[0].informacion
+              : "",
+          productoU:
+            Array.isArray(arrayData) && arrayData.length > 1
+              ? arrayData[1].informacion
+              : "",
+          cantidadMz:
+            Array.isArray(arrayData) && arrayData.length > 2
+              ? arrayData[2].informacion
+              : "",
+          vecesAño:
+            Array.isArray(arrayData) && arrayData.length > 3
+              ? arrayData[3].informacion
+              : "",
+          cultivo:
+            Array.isArray(arrayData) && arrayData.length > 4
+              ? arrayData[4].informacion
+              : "",
+          plagaEnfermedad:
+            Array.isArray(arrayData) && arrayData.length > 5
+              ? arrayData[5].informacion
+              : "",
+        };
+      });
+      setDatos(Datos);
     };
     fetchData();
   }, [dataRows]);
@@ -103,7 +133,11 @@ const QuintaSeccion = () => {
       <Typography variant="h6" color={theme.palette.secondary.light}>
         Control de plagas y enfermedades
       </Typography>
-      <Datatable columns={columns} rows={datos} getRowId={(row)=>row.productoAplicado}/>
+      <Datatable
+        columns={columns}
+        rows={datos}
+        getRowId={(row) => row.productoAplicado}
+      />
     </Box>
   );
 };

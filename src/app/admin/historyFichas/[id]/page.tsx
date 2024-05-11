@@ -8,7 +8,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { use, useCallback, useEffect, useRef, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import BannerFicha from "@/components/admin/fichas/BannerFicha";
 import html2pdf from "html2pdf.js";
@@ -27,15 +27,20 @@ import UnDecimaSeccion from "@/components/admin/fichas/sections/UnDecimaSeccion"
 import Declaracion from "@/components/admin/fichas/sections/Declaracion";
 import DictamenFinal from "@/components/admin/fichas/sections/DictamenFinal";
 import DecisionComite from "@/components/admin/fichas/sections/DecisionComite";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import { getDatosSection } from "@/services/datoSection";
 import { infoDatoInterface } from "@/types/informacionDato";
 import { getInfoDatoFicha } from "@/services/informacionDato";
 import { getFichasID } from "@/services/fichas";
 import { Ficha } from "@/types/ficha";
+import { setInfoDato } from "@/redux/features/infoDatoSlice";
 
-interface PropsTable{ descripcion: string; realizacion: string; cantidad_observacion: string }
+interface PropsTable {
+  descripcion: string;
+  realizacion: string;
+  cantidad_observacion: string;
+}
 
 const Ficha = ({ params }: any) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -55,15 +60,17 @@ const Ficha = ({ params }: any) => {
   }, []);
 
   //Verificar el estado de la ficha.
-  const [isFichaActive,setIsFichaActive] = useState(false);
-  const [infoFicha,setInfoFicha] = useState<Ficha[]>([])
-  const getFicha= async () => {
+  const [isFichaActive, setIsFichaActive] = useState(false);
+  const [infoFicha, setInfoFicha] = useState<Ficha[]>([]);
+  const dispatch = useDispatch();
+  const tokenState = useSelector((state: RootState) => state.auth);
+
+  const getFicha = async () => {
     try {
       const response = await getFichasID(params.id);
-      //console.log("Las Info de esta ficha",response.data);
 
-       // Verificar si response.data es undefined
-       if (response.data === undefined) {
+      // Verificar si response.data es undefined
+      if (response.data === undefined) {
         return []; // Devolver un array vacío si no hay datos
       } else {
         setInfoFicha(response.data);
@@ -73,48 +80,49 @@ const Ficha = ({ params }: any) => {
       console.error(error);
       return [];
     }
-  }
+  };
+
+  const [idInspector, setIDInspector] = useState();
   useEffect(() => {
+    if (!tokenState.logueado) return;
     getFicha();
     if (Array.isArray(infoFicha)) {
-      infoFicha.map((obj: any) => (
-        obj.analizada === true && setIsFichaActive(true)
-      ));
+      infoFicha.map(
+        (obj: any) => obj.analizada === true && setIsFichaActive(true)
+      );
     }
   }, [infoFicha]);
 
-  const [infoDatos,setInfoDatos] = useState<infoDatoInterface[]>([]);
-  useEffect(()=>{
+  const [infoDatos, setInfoDatos] = useState<infoDatoInterface[]>([]);
+  useEffect(() => {
     const getInfoDatosFicha = async () => {
+      if (!tokenState.logueado) return [];
       try {
         const response = await getInfoDatoFicha(params.id);
-        console.log("Las respuesta de esta ficha",response.data);
-  
-         // Verificar si response.data es undefined
-         if (response.data === undefined) {
+
+        // Verificar si response.data es undefined
+        if (response.data === undefined) {
           return []; // Devolver un array vacío si no hay datos
         } else {
           setInfoDatos(response.data);
+          dispatch(setInfoDato(response.data));
           return response.data;
         }
       } catch (error) {
         console.error(error);
         return [];
       }
-    }
+    };
     getInfoDatosFicha();
-    console.log("Los datos de esta ficha son",infoDatos)
-  },[]);
-
+    console.log("Los datos de esta ficha son", infoDatos);
+  }, [infoDatos]);
 
   //-----------------------------------------------------------------
   const theme = useTheme();
   const fichasState = useSelector((state: RootState) => state.fichas);
-  
+
   //Extaer los datos para la primera tabla.
-  const [datosTabla1, setDatosTabla1] = useState<
-    PropsTable[]
-  >([]);
+  const [datosTabla1, setDatosTabla1] = useState<PropsTable[]>([]);
 
   const getDataSection = async (id: number) => {
     try {
@@ -132,86 +140,88 @@ const Ficha = ({ params }: any) => {
     }
   };
 
-   //Extaer los datos para la septima tabla.
-   const [datosTabla7, setDatosTabla7] = useState<
-   PropsTable[]
- >([]);
-   //Extaer los datos para la duodecima tabla.
-   const [datosTabla12, setDatosTabla12] = useState<
-   PropsTable[]
- >([]);
-
+  //Extaer los datos para la septima tabla.
+  const [datosTabla7, setDatosTabla7] = useState<PropsTable[]>([]);
+  //Extaer los datos para la duodecima tabla.
+  const [datosTabla12, setDatosTabla12] = useState<PropsTable[]>([]);
 
   useEffect(() => {
     let infoDatosLoaded = false;
-    
+
     const fetchData = async () => {
+      if (!tokenState.logueado) return [];
       if (!infoDatosLoaded) return;
 
       const data = await getDataSection(5);
       const datosSection1 = data.map((obj: any) => {
         // Buscar el objeto correspondiente en infoDatos basado en el campo IDDato
-      const infoDato = infoDatos.find((info: any) => Number(info.IDDato) === Number(obj.id))
-      return{
-        descripcion: obj.titulo,
-        realizacion: infoDato ? infoDato.informacion : "",
-        cantidad_observacion: infoDato ? infoDato.descripcion : "",
-      }
+        const infoDato = infoDatos.find(
+          (info: any) => Number(info.IDDato) === Number(obj.id)
+        );
+        return {
+          descripcion: obj.titulo,
+          realizacion: infoDato ? infoDato.informacion : "",
+          cantidad_observacion: infoDato ? infoDato.descripcion : "",
+        };
       });
       setDatosTabla1(datosSection1);
     };
-     // Establecer infoDatosLoaded en true una vez que infoDatos tenga datos
-   if (infoDatos.length > 0) {
-    infoDatosLoaded = true;
-  }
+    // Establecer infoDatosLoaded en true una vez que infoDatos tenga datos
+    if (infoDatos.length > 0) {
+      infoDatosLoaded = true;
+    }
 
-  // Ejecutar fetchData si infoDatos ha sido cargado
-  if (infoDatosLoaded) {
-    fetchData();
-    //console.log("datos de la primera seccion", datosTabla1)
-  }
-  }, [datosTabla1,getDataSection,infoDatos]);
+    // Ejecutar fetchData si infoDatos ha sido cargado
+    if (infoDatosLoaded) {
+      fetchData();
+      //console.log("datos de la primera seccion", datosTabla1)
+    }
+  }, [datosTabla1, getDataSection, infoDatos]);
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!tokenState.logueado) return [];
       const data = await getDataSection(11);
       const datosSection7 = data.map((obj: any) => {
         // Buscar el objeto correspondiente en infoDatos basado en el campo IDDato
-      const infoDato = infoDatos.find((info: any) => Number(info.IDDato) === Number(obj.id))
-        return{
+        const infoDato = infoDatos.find(
+          (info: any) => Number(info.IDDato) === Number(obj.id)
+        );
+        return {
           descripcion: obj.titulo,
-        realizacion: infoDato ? infoDato.informacion : "",
-        cantidad_observacion: infoDato ? infoDato.descripcion : "",
-        }
+          realizacion: infoDato ? infoDato.informacion : "",
+          cantidad_observacion: infoDato ? infoDato.descripcion : "",
+        };
       });
       setDatosTabla7(datosSection7);
     };
     fetchData();
-  }, [datosTabla7,getDataSection]);
+  }, [datosTabla7, getDataSection]);
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!tokenState.logueado) return [];
       const data = await getDataSection(16);
       const datosSection12 = data.map((obj: any) => {
-         // Buscar el objeto correspondiente en infoDatos basado en el campo IDDato
-      const infoDato = infoDatos.find((info: any) => Number(info.IDDato) === Number(obj.id))
-      return {
-                descripcion: obj.titulo,
-        realizacion: infoDato ? infoDato.informacion : "",
-        cantidad_observacion: infoDato ? infoDato.descripcion : "",
-      }
+        // Buscar el objeto correspondiente en infoDatos basado en el campo IDDato
+        const infoDato = infoDatos.find(
+          (info: any) => Number(info.IDDato) === Number(obj.id)
+        );
+        return {
+          descripcion: obj.titulo,
+          realizacion: infoDato ? infoDato.informacion : "",
+          cantidad_observacion: infoDato ? infoDato.descripcion : "",
+        };
       });
       setDatosTabla12(datosSection12);
     };
     fetchData();
-  }, [datosTabla12,getDataSection]);
-
-  
+  }, [datosTabla12, getDataSection]);
 
   //Funcion para analizar la ficha.
-  const AnalizarFicha = ()=>{
+  const AnalizarFicha = () => {
     getFicha();
-  }
+  };
 
   return (
     <Box>
@@ -238,8 +248,8 @@ const Ficha = ({ params }: any) => {
         />
         <Box sx={{ display: "flex", gap: "1rem" }}>
           <Button
-          onClick={AnalizarFicha}
-          disabled={fichasState.AlanizadaFichas && fichasState.analizada}
+            onClick={AnalizarFicha}
+            disabled={fichasState.AlanizadaFichas && fichasState.analizada}
             sx={{
               textTransform: "none",
               color: "#fff",
@@ -255,7 +265,11 @@ const Ficha = ({ params }: any) => {
               viewBox="0 0 24 24"
               width="22"
               height="22"
-              color= {fichasState.AlanizadaFichas && fichasState.analizada ? "#B1A3BB" : "#ffffff"}
+              color={
+                fichasState.AlanizadaFichas && fichasState.analizada
+                  ? "#B1A3BB"
+                  : "#ffffff"
+              }
               fill="none"
               style={{ marginRight: "5px" }}
             >
@@ -417,7 +431,7 @@ const Ficha = ({ params }: any) => {
             gap: "2rem",
           }}
         >
-          <PrimeraSeccion />
+          <PrimeraSeccion id={params.id} />
           <SegundaSeccion
             traeCantidad={true}
             titulo="Registros Administrativos"
@@ -437,7 +451,11 @@ const Ficha = ({ params }: any) => {
           <NovenaSeccion />
           <DecimaSeccion />
           <UnDecimaSeccion />
-          <SegundaSeccion traeCantidad={false} titulo="Capacitacion" datos={datosTabla12}/>
+          <SegundaSeccion
+            traeCantidad={false}
+            titulo="Capacitacion"
+            datos={datosTabla12}
+          />
           <Declaracion />
           <DictamenFinal />
           <DecisionComite />
