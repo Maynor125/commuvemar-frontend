@@ -36,7 +36,7 @@ const ModalProductoresAsignados: FC<CustomDialogProps> = ({
   id,
   open,
   onClose,
-  nombre
+  nombre,
 }) => {
   const [abrete, setAbrete] = useState(false);
   const theme = useTheme();
@@ -94,6 +94,7 @@ const ModalProductoresAsignados: FC<CustomDialogProps> = ({
     setEliminar(true);
     try {
       await deleteWorkerProductor([id]);
+      handleSave();
     } catch (error) {
       console.error(error);
     }

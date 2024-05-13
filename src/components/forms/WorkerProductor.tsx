@@ -108,6 +108,8 @@ const WorkerProductor: FC<GeneralActionProps> = ({ onClick, idWorker }) => {
     }
   };
 
+  
+
   return (
     <form
       style={{ width: "40rem" }}
