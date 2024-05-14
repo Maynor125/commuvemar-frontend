@@ -170,12 +170,6 @@ const Inspectors = () => {
           marginBottom: "1rem",
         }}
       >
-        <UserCard
-          firstName="May"
-          lastName="Gutierrez"
-          fullName="May Ivar Gutierrez"
-          phoneNumber="763553553"
-        />
         {workers.map((item) => (
           <UserCard
             id={item.id}

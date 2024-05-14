@@ -1,8 +1,120 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CardUltimate from "@/components/admin/overview/CardUltimate";
 import { Box, Grid } from "@mui/material";
+import { Ficha } from '@/types/ficha';
+import { getAllFichas } from '@/services/fichas';
+import { User } from '@/types/user';
+import { getAllUsers } from '@/services/userW';
 
 const CardsUltimate = () => {
+  const [fichas,setFichas] = useState<Ficha[]>([]);
+  const [fichasUltimoMes, setFichasUltimoMes] = useState<Ficha[]>([]);
+const [porcentajeUltimaSemana, setPorcentajeUltimaSemana] = useState<number>(0);
+const [ultimasFichasTotales,setUltimasFichasTotales] = useState<number>(0);
+const [porcentajeUltimaSemanaIngreso, setPorcentajeUltimaSemanaIngreso] = useState<number>(0);
+const [usuariosMesActual, setUsuariosMesActual] = useState<number>(0);
+const [porcentajeUltimaSemanaUsuarios, setPorcentajeUltimaSemanaUsuarios] = useState<number>(0);
+
+
+//---------------------------------------------------------
+const [users, setUsers] = useState<User[]>([]);
+
+
+  const getAllFicha = async() =>{
+    try {
+      const response = await getAllFichas();
+      if(response.data !== undefined){
+        setFichas(response.data);
+        console.log(response.data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const getAllUser = async () => {
+    try {
+      const response = await getAllUsers();
+      console.log(response);
+      if (response.data !== undefined) {
+        setUsers(response.data);
+      }
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(()=>{
+   getAllFicha();
+   getAllUser();
+  },[]);
+
+
+  // Informacion para la primera carta.
+  useEffect(() => {
+    // Filtrar fichas modificadas en el último mes y analizadas
+    const hoy = new Date();
+    const haceUnMes = new Date();
+    haceUnMes.setMonth(hoy.getMonth() - 1);
+    const fichasModificadasUltimoMes = fichas.filter(ficha =>
+      ficha.updatedAt && new Date(ficha.updatedAt) > haceUnMes && ficha.analizada === true
+    );
+    setFichasUltimoMes(fichasModificadasUltimoMes);
+  
+    // Calcular el porcentaje de fichas analizadas en la última semana
+    const haceUnaSemana = new Date();
+    haceUnaSemana.setDate(hoy.getDate() - 7);
+    const fichasAnalizadasUltimaSemana = fichas.filter(ficha =>
+      ficha.updatedAt && new Date(ficha.updatedAt) > haceUnaSemana && ficha.analizada === true
+    );
+    const porcentaje = (fichasAnalizadasUltimaSemana.length / fichas.length) * 100;
+    setPorcentajeUltimaSemana(porcentaje);
+  }, [fichas]);
+
+  
+  // Informacion para la segunda carta.
+  useEffect(() => {
+    // Ordenar las fichas por fecha de creación (createdAt) de manera descendente
+    const fichasOrdenadas = fichas.slice().sort((a, b) => {
+      if (a.createdAt && b.createdAt) {
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+      }
+      return 0;
+    });
+
+    // Obtener las últimas fichas ingresadas
+    const hoy = new Date();
+    const haceUnaSemana = new Date();
+    haceUnaSemana.setDate(hoy.getDate() - 7);
+    const fichasIngresadasUltimaSemana = fichasOrdenadas.filter(ficha =>
+      ficha.createdAt && new Date(ficha.createdAt) > haceUnaSemana
+    );
+    setUltimasFichasTotales(fichasOrdenadas.length);
+    setPorcentajeUltimaSemanaIngreso((fichasIngresadasUltimaSemana.length / fichasOrdenadas.length) * 100);
+  }, [fichas]);
+
+  //Informacion para la tercera carta.
+  useEffect(() => {
+    // Calcular la cantidad de usuarios registrados en el mes actual
+    const hoy = new Date();
+    const inicioMes = new Date(hoy.getFullYear(), hoy.getMonth(), 1); // Primer día del mes actual
+    const usuariosDelMes = users.filter(user =>
+      user.createAt && new Date(user.createAt) >= inicioMes
+    );
+    setUsuariosMesActual(usuariosDelMes.length);
+  
+    // Calcular el porcentaje de usuarios registrados en la última semana
+    const haceUnaSemana = new Date();
+    haceUnaSemana.setDate(hoy.getDate() - 7);
+    const usuariosRegistradosUltimaSemana = users.filter(user =>
+      user.createAt && new Date(user.createAt) >= haceUnaSemana
+    );
+    const porcentaje = (usuariosRegistradosUltimaSemana.length / users.length) * 100;
+    setPorcentajeUltimaSemanaUsuarios(porcentaje);
+  }, [users]);
+  
+
   return (
     <Box>
     <Grid container

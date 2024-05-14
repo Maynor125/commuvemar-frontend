@@ -105,7 +105,7 @@ const GeneralData = () => {
         }}
       >
         <Card1
-          title="Fichas aprovadas"
+          title="Fichas aprobadas"
           iconPath={imgcar1}
           customColor="#303F9F"
           value={8}

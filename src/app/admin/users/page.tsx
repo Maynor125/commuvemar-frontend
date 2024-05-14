@@ -123,15 +123,6 @@ const page = () => {
             gap: "1rem",
           }}
         >
-          <UserCard
-            id={20}
-            email="maynoldemar@gmail.com"
-            rol="Usuario"
-            hash="5454677447"
-            IDTrabajador={5}
-            trabajador="Maynor"
-            onClick={handleSave}
-          />
           {users.map((item) => (
             <UserCard
               id={item.id}
