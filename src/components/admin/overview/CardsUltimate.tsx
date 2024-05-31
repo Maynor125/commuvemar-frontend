@@ -5,9 +5,13 @@ import { Ficha } from '@/types/ficha';
 import { getAllFichas } from '@/services/fichas';
 import { User } from '@/types/user';
 import { getAllUsers } from '@/services/userW';
+import { getProductors } from '@/services/productors';
+import { Productors } from '@/types/productors';
 
 const CardsUltimate = () => {
   const [fichas,setFichas] = useState<Ficha[]>([]);
+  const [productors, setProductors] = useState<Productors[]>([]);
+  const [cantidadProductors,setCantidadProductors] = useState(0);
   const [fichasUltimoMes, setFichasUltimoMes] = useState<Ficha[]>([]);
 const [porcentajeUltimaSemana, setPorcentajeUltimaSemana] = useState<number>(0);
 const [ultimasFichasTotales,setUltimasFichasTotales] = useState<number>(0);
@@ -45,10 +49,28 @@ const [users, setUsers] = useState<User[]>([]);
     }
   };
 
+  const getAllProductors = async () => {
+    try {
+      const response = await getProductors();
+      console.log(response.data);
+      if (response.data !== undefined) {
+        setProductors(response.data);
+      }
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(()=>{
    getAllFicha();
    getAllUser();
+   getAllProductors();
   },[]);
+
+  useEffect(()=>{
+    setCantidadProductors(productors.length);
+  })
 
 
   // Informacion para la primera carta.
@@ -254,8 +276,8 @@ const [users, setUsers] = useState<User[]>([]);
             />
           </svg>
         }
-        title="Cambios"
-        value="10"
+        title="Productores"
+        value={String(cantidadProductors)}
         backgroundColor="#BEF9C1"
         customColor="#4FBD55"
         span="30% +"
