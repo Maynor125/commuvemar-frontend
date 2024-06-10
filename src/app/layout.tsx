@@ -4,6 +4,7 @@ import { Open_Sans } from "next/font/google";
 
 import ReduxProvider from "@/redux/Provider";
 import AuthProvider from "@/auth/authProvider";
+import { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +15,12 @@ export const open_Sans = Open_Sans({
   weight: ["400", "500", "700"],
 });
 
-export const metadata = {
+export const metadata:Metadata = {
   title: "Commuvemar",
   description: "Cooperativa multisectorial veintinueve de maarzo.",
+  icons:{
+    icon:'/favicon-v2.ico'
+  }
 };
 
 export default function RootLayout({

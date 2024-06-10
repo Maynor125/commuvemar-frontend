@@ -38,6 +38,7 @@ const BarChartR = () => {
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
+      //la libreria usa defaultprops y marca una advertencia en la consola del navegador.
       <XAxis dataKey="name" />
       <YAxis />
       <Tooltip />
