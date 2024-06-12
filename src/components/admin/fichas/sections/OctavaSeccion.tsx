@@ -29,6 +29,7 @@ const OctavaSeccion = () => {
   const [valorTextF1, setValorTextF1] = useState("");
   const [valorTextF2, setValorTextF2] = useState("");
   const [valorTextF3, setValorTextF3] = useState("");
+  const fichaState = useSelector((state: RootState) => state.fichasA.fichaAnalizada);
 
   const allGetData = async (id: number) => {
     if (!tokenState.logueado) return [];
@@ -103,25 +104,33 @@ const OctavaSeccion = () => {
     {
       field: "frecuenciaCorte",
       headerName: dataColums[0]?.titulo,
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+        ? "header-grid1"
+        : "header-grid",
       width: 250,
     },
     {
       field: "herramientasUsadas",
       headerName: dataColums[1]?.titulo,
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+        ? "header-grid1"
+        : "header-grid",
       width: 250,
     },
     {
       field: "materialEnvase",
       headerName: dataColums[2]?.titulo,
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+        ? "header-grid1"
+        : "header-grid",
       width: 295,
     },
     {
       field: "precio",
       headerName: dataColums[3]?.titulo,
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+        ? "header-grid1"
+        : "header-grid",
       width: 200,
     },
   ];

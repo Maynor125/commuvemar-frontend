@@ -10,6 +10,7 @@ import mapaReducer from '../features/mapaModalSlice'
 import fichasReducer from '../features/fichaSlice'
 import sectionReducer from '../features/sectionSlice'
 import infoDatosReducer from '../features/infoDatoSlice'
+import fichaAReducer from '../features/fichaASlice'
 
 import { TypedUseSelectorHook,useSelector } from "react-redux";
 
@@ -25,6 +26,7 @@ export const store = configureStore({
        fichas:fichasReducer,
        section:sectionReducer,
        infoDatos:infoDatosReducer,
+       fichasA:fichaAReducer,
     },
 })
 

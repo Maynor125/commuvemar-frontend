@@ -35,6 +35,7 @@ import { getInfoDatoFicha } from "@/services/informacionDato";
 import { getFichasID } from "@/services/fichas";
 import { Ficha } from "@/types/ficha";
 import { setInfoDato } from "@/redux/features/infoDatoSlice";
+import { setFichaAnalizada } from "@/redux/features/fichaASlice";
 
 interface PropsTable {
   descripcion: string;
@@ -93,6 +94,15 @@ const Ficha = ({ params }: any) => {
     }
   }, [infoFicha]);
 
+  useEffect(()=>{
+   if(isFichaActive){
+    dispatch(setFichaAnalizada(true));
+   }
+   else{
+    dispatch(setFichaAnalizada(false));
+   }
+  },[infoFicha])
+
   const [infoDatos, setInfoDatos] = useState<infoDatoInterface[]>([]);
   useEffect(() => {
     const getInfoDatosFicha = async () => {
@@ -119,7 +129,7 @@ const Ficha = ({ params }: any) => {
 
   //-----------------------------------------------------------------
   const theme = useTheme();
-  const fichasState = useSelector((state: RootState) => state.fichas);
+  const fichasState = useSelector((state: RootState) => state.fichasA.fichaAnalizada);
 
   //Extaer los datos para la primera tabla.
   const [datosTabla1, setDatosTabla1] = useState<PropsTable[]>([]);
@@ -249,7 +259,7 @@ const Ficha = ({ params }: any) => {
         <Box sx={{ display: "flex", gap: "1rem" }}>
           <Button
             onClick={AnalizarFicha}
-            disabled={fichasState.AlanizadaFichas && fichasState.analizada}
+            disabled={fichasState}
             sx={{
               textTransform: "none",
               color: "#fff",
@@ -266,7 +276,7 @@ const Ficha = ({ params }: any) => {
               width="22"
               height="22"
               color={
-                fichasState.AlanizadaFichas && fichasState.analizada
+                fichasState
                   ? "#B1A3BB"
                   : "#ffffff"
               }
