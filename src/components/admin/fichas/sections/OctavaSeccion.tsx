@@ -144,7 +144,7 @@ const OctavaSeccion = () => {
         rows={dataRows}
         getRowId={(row) => row.frecuenciaCorte || Math.random()}
       />
-      <Box sx={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+      <Box>
         <Box sx={{ width: "50rem" }}>
           <Typography color={theme.palette.secondary.contrastText}>
             Mano de obra

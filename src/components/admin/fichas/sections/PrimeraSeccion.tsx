@@ -15,10 +15,9 @@ import { getHeaderFicha } from "@/services/fichas";
 
 interface Props {
   id: number;
-  idTrabajador: number;
 }
 
-const PrimeraSeccion: FC<Props> = ({ id, idTrabajador }) => {
+const PrimeraSeccion: FC<Props> = ({ id }) => {
   const tokenState = useSelector((state: RootState) => state.auth);
 
   const handleChange = (event: any) => {
@@ -51,17 +50,28 @@ const PrimeraSeccion: FC<Props> = ({ id, idTrabajador }) => {
   const firstFichaHeader = infoDatos[0];
   const theme = useTheme();
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <Box sx={{display: "flex", flexDirection: "column", gap: "1rem" }}>
       <Typography variant="h6" color={theme.palette.secondary.light}>
         Datos Generales
       </Typography>
-      <Box>
+      <Box sx={{width:'100%'}}>
         <ReadOnlyTextField
           label="Productor"
           value={firstFichaHeader?.productor || ""}
         />
       </Box>
-      <Box sx={{ display: "flex", gap: "1rem" }}>
+      <Box sx={{
+            width: "100%",
+            display: "flex",
+            gap: "1rem",
+            alignItems: "center",
+            justifyContent: "space-between",
+
+            "@media (max-width: 1000px)": {
+              flexDirection: "column",
+              alignItems: "stretch", // Alinear los elementos al principio y al final
+            },
+          }}>
         <ReadOnlyTextField
           label="Numero de cedula"
           value={firstFichaHeader?.cedula || ""}
@@ -71,7 +81,18 @@ const PrimeraSeccion: FC<Props> = ({ id, idTrabajador }) => {
           value={firstFichaHeader?.telefono || ""}
         />
       </Box>
-      <Box sx={{ display: "flex", gap: "1rem" }}>
+      <Box sx={{
+            width: "100%",
+            display: "flex",
+            gap: "1rem",
+            alignItems: "center",
+            justifyContent: "space-between",
+
+            "@media (max-width: 1000px)": {
+              flexDirection: "column",
+              alignItems: "stretch", // Alinear los elementos al principio y al final
+            },
+          }}>
         <ReadOnlyTextField
           label="Comunidad"
           value={firstFichaHeader?.comunidad || ""}
@@ -81,7 +102,18 @@ const PrimeraSeccion: FC<Props> = ({ id, idTrabajador }) => {
           value={firstFichaHeader?.finca || ""}
         />
       </Box>
-      <Box sx={{ display: "flex", gap: "1rem" }}>
+      <Box sx={{
+            width: "100%",
+            display: "flex",
+            gap: "1rem",
+            alignItems: "center",
+            justifyContent: "space-between",
+
+            "@media (max-width: 1000px)": {
+              flexDirection: "column",
+              alignItems: "stretch", // Alinear los elementos al principio y al final
+            },
+          }}>
         <ReadOnlyTextField
           label="Fecha de inspeccion"
           value={firstFichaHeader?.fechaInspeccion || ""}
@@ -91,7 +123,18 @@ const PrimeraSeccion: FC<Props> = ({ id, idTrabajador }) => {
           value={String(firstFichaHeader?.codProductor) || ""}
         />
       </Box>
-      <Box sx={{ display: "flex", gap: "1rem" }}>
+      <Box sx={{
+            width: "100%",
+            display: "flex",
+            gap: "1rem",
+            alignItems: "center",
+            justifyContent: "space-between",
+
+            "@media (max-width: 1000px)": {
+              flexDirection: "column",
+              alignItems: "stretch", // Alinear los elementos al principio y al final
+            },
+          }}>
         <ReadOnlyTextField
           label="Area de cacao en produccion"
           value={firstFichaHeader?.areaProduccion || ""}
@@ -101,7 +144,18 @@ const PrimeraSeccion: FC<Props> = ({ id, idTrabajador }) => {
           value={firstFichaHeader?.areaDesarrollo || ""}
         />
       </Box>
-      <Box sx={{ display: "flex", gap: "1rem" }}>
+      <Box sx={{
+            width: "100%",
+            display: "flex",
+            gap: "1rem",
+            alignItems: "center",
+            justifyContent: "space-between",
+
+            "@media (max-width: 1000px)": {
+              flexDirection: "column",
+              alignItems: "stretch", // Alinear los elementos al principio y al final
+            },
+          }}>
         <ReadOnlyTextField
           label="Fecha de ingreso al programa de certificacion"
           value={firstFichaHeader?.ingresoCertificacion || ""}
@@ -111,7 +165,18 @@ const PrimeraSeccion: FC<Props> = ({ id, idTrabajador }) => {
           value={firstFichaHeader?.produccionultimoCiclo || ""}
         />
       </Box>
-      <Box sx={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+      <Box sx={{
+            width: "100%",
+            display: "flex",
+            gap: "1rem",
+            alignItems: "center",
+            justifyContent: "space-between",
+
+            "@media (max-width: 1000px)": {
+              flexDirection: "column",
+              alignItems: "stretch", // Alinear los elementos al principio y al final
+            },
+          }}>
         <ReadOnlyTextField
           label="Estimado en cosecha"
           value={firstFichaHeader?.estimadoCosecha || ""}

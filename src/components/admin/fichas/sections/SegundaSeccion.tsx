@@ -66,7 +66,7 @@ const SegundaSeccion: FC<Props> = ({ titulo, traeCantidad, datos }) => {
   }, [datos]);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <Box sx={{  display: "flex", flexDirection: "column", gap: "1rem" }}>
       <Typography variant="h6" color={theme.palette.secondary.light}>
         {titulo}
       </Typography>

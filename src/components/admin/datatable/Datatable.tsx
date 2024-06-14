@@ -112,18 +112,42 @@ const Datatable: React.FC<DataTableProps> = ({
   return (
     <Box
       sx={{
-        width: "100%",
+        width: '99.6%',  
         height: "100%",
+          overflow:'auto'
       }}
     >
       <DataGrid
-        sx={{ width: "99.5%", height: "100%", marginBottom: "1rem" }}
+        sx={{
+          width: "100%",
+          '--DataGrid-overlayHeight': '300px',
+          tableLayout: "fixed",
+          "& th, & td": {
+            padding: 10,
+            border: "1px solid #ddd",
+          },
+          "& th": {
+            backgroundColor: "#f0f0f0",
+          },
+          "@media (max-width: 768px)": {
+            fontSize: 14,
+            "& th, & td": {
+              padding: 5,
+            },
+          },
+          "@media (max-width: 480px)": {
+            fontSize: 12,
+            "& th, & td": {
+              padding: 2,
+            },
+          },
+        }}
         rows={filterFn ? rows.filter(filterFn) : rows}
         columns={columns.map((column) => {
           if (column.editable) {
             return {
               ...column,
-              flex: 1,
+              flex: column.flex || 1
             };
           } else if (column.field === "descripcion") {
             return {
@@ -136,7 +160,6 @@ const Datatable: React.FC<DataTableProps> = ({
         autoHeight
         getRowId={getRowId}
         slots={{ noRowsOverlay: CustomNoRowsOverlay }}
-        sx={{ '--DataGrid-overlayHeight': '300px' }}
       />
     </Box>
   );

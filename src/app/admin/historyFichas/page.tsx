@@ -57,6 +57,9 @@ const HistoryFichas = () => {
     if(fichasState.AlanizadaFichas){
       results = results.filter((ficha) => ficha.analizada)
     }
+    else{
+      results = results.filter((ficha) => !ficha.analizada);
+    }
     setFilteredFichas(results);
     setCurrentPage(1);
   }, [searchQuery,fichasState]);

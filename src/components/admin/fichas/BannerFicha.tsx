@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 
 const BannerFicha = () => {
-  const isSmallerThan1025 = useMediaQuery("(max-width: 750px)");
+  const isSmallerThan1025 = useMediaQuery("(max-width: 800px)");
   const router = useRouter();
   const fichasState = useSelector((state: RootState) => state.fichasA.fichaAnalizada);
 

@@ -3,6 +3,7 @@
 import {
   Box,
   Button,
+  Divider,
   InputAdornment,
   TextField,
   Typography,
@@ -33,9 +34,11 @@ import { getDatosSection } from "@/services/datoSection";
 import { infoDatoInterface } from "@/types/informacionDato";
 import { getInfoDatoFicha } from "@/services/informacionDato";
 import { getFichasID } from "@/services/fichas";
-import { Ficha } from "@/types/ficha";
+import type { Ficha } from "@/types/ficha";
 import { setInfoDato } from "@/redux/features/infoDatoSlice";
 import { setFichaAnalizada } from "@/redux/features/fichaASlice";
+import Image from "next/image";
+import Logo from "../../../../../public/images/logo.png";
 
 interface PropsTable {
   descripcion: string;
@@ -48,10 +51,10 @@ const Ficha = ({ params }: any) => {
 
   const downloadPDF = useCallback(() => {
     const opt = {
-      margin: 1,
+      margin: 0.2,
       filename: `Ficha de inspeccion interna (${params.id}).pdf`,
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
+      image: { type: "jpeg", quality: 0.99 },
+      html2canvas: { scale: 3 },
       jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
     };
 
@@ -94,14 +97,13 @@ const Ficha = ({ params }: any) => {
     }
   }, [infoFicha]);
 
-  useEffect(()=>{
-   if(isFichaActive){
-    dispatch(setFichaAnalizada(true));
-   }
-   else{
-    dispatch(setFichaAnalizada(false));
-   }
-  },[infoFicha])
+  useEffect(() => {
+    if (isFichaActive) {
+      dispatch(setFichaAnalizada(true));
+    } else {
+      dispatch(setFichaAnalizada(false));
+    }
+  }, [infoFicha]);
 
   const [infoDatos, setInfoDatos] = useState<infoDatoInterface[]>([]);
   useEffect(() => {
@@ -129,7 +131,9 @@ const Ficha = ({ params }: any) => {
 
   //-----------------------------------------------------------------
   const theme = useTheme();
-  const fichasState = useSelector((state: RootState) => state.fichasA.fichaAnalizada);
+  const fichasState = useSelector(
+    (state: RootState) => state.fichasA.fichaAnalizada
+  );
 
   //Extaer los datos para la primera tabla.
   const [datosTabla1, setDatosTabla1] = useState<PropsTable[]>([]);
@@ -234,10 +238,11 @@ const Ficha = ({ params }: any) => {
   };
 
   return (
-    <Box>
+    <Box sx={{ width: "100%" }}>
       <BannerFicha />
       <Box
         sx={{
+          width: "100%",
           marginY: "2rem",
           display: "flex",
           justifyContent: "space-between",
@@ -275,11 +280,7 @@ const Ficha = ({ params }: any) => {
               viewBox="0 0 24 24"
               width="22"
               height="22"
-              color={
-                fichasState
-                  ? "#B1A3BB"
-                  : "#ffffff"
-              }
+              color={fichasState ? "#B1A3BB" : "#ffffff"}
               fill="none"
               style={{ marginRight: "5px" }}
             >
@@ -420,6 +421,7 @@ const Ficha = ({ params }: any) => {
       <Box
         ref={containerRef}
         sx={{
+          width: "100%",
           background: theme.palette.background.paper,
           minHeight: "90vh",
           borderRadius: "8px",
@@ -429,9 +431,52 @@ const Ficha = ({ params }: any) => {
         }}
       >
         <Box sx={{ marginTop: "2rem", textAlign: "center" }}>
-          <Typography variant="h6" color={theme.palette.secondary.light}>
+          <Image
+            className="logo"
+            alt="Logo de la cooperativa coomuvemar"
+            src={Logo}
+          />
+          <Box>
+            <Typography sx={{ color: theme.palette.secondary.light }}>
+              COOPERATIVA MULTISECTORIAL VEINTINUEVE DE MARZO R.L{" "}
+            </Typography>
+            <Typography sx={{ color: theme.palette.secondary.contrastText }}>
+              Dirección: Comunidad Limón # 2, Siuna RACCN Contiguo a la escuela
+              primaria Divino Niño
+            </Typography>
+            <Typography sx={{ color: theme.palette.secondary.contrastText }}>
+              Teléfono: 89880777 * 76629783 / RUC: J0410000039210 - Email:
+              coomuvemar.limon@yahoo.com
+            </Typography>
+            <Divider />
+          </Box>
+          <Typography
+            sx={{ marginTop: 2 }}
+            variant="h6"
+            color={theme.palette.secondary.light}
+          >
             Ficha de inspeccion interna - Cacao organico
           </Typography>
+          <Box
+            sx={{
+              content: '""',
+              display: "block",
+              width: "100%",
+              height: "2px",
+              backgroundColor: theme.palette.secondary.light,
+              marginTop: "4px",
+            }}
+          />
+          <Box
+            sx={{
+              content: '""',
+              display: "block",
+              width: "100%",
+              height: "2px",
+              backgroundColor: theme.palette.secondary.light,
+              marginTop: "4px",
+            }}
+          />
         </Box>
         <Box
           sx={{
