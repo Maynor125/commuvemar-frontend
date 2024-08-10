@@ -4,13 +4,12 @@ import axios from "axios";
 
  
 const apiManager = axios.create({
-    baseURL:"https://l4m6zmns-4000.use2.devtunnels.ms",
+    baseURL:"https://3dmtrxqd-4000.use.devtunnels.ms",
     headers: {
         'Content-Type': 'application/json',
         'mode': 'no-cors'
     }
 })
-
 
 apiManager.interceptors.request.use((config) => {
     const token = selectToken(store.getState());
