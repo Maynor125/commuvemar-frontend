@@ -26,7 +26,7 @@ interface Props {
   numeroCedula: string;
   numeroTelefono: string;
   fechaEntradaPrograma: Date;
-  estado: number;
+  estadoProgramaC: number;
   onClick: () => void;
 }
 
@@ -37,7 +37,7 @@ const ProductorCard: React.FC<Props> = ({
   numeroCedula,
   numeroTelefono,
   fechaEntradaPrograma,
-  estado,
+  estadoProgramaC,
   onClick,
 
 }) => {
@@ -106,7 +106,7 @@ const ProductorCard: React.FC<Props> = ({
                 variant="h6"
                 component="h2"
               >
-                Lana R
+                {nombre} {apellido}
               </Typography>
               <Tooltip sx={{ cursor: "pointer" }} title="Productor">
                 <Box>
@@ -145,7 +145,7 @@ const ProductorCard: React.FC<Props> = ({
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="body1">Estado del productor: {estado}</Typography>
+            <Typography variant="body1">Estado del productor: {estadoProgramaC}</Typography>
           </Grid>
 
           <Grid sx={{ gap: "1rem" }} item xs={12}>
@@ -160,7 +160,7 @@ const ProductorCard: React.FC<Props> = ({
                 numeroCedula,
                 numeroTelefono,
                 fechaEntradaPrograma=fechaEntradaPrograma,
-                estado
+                estadoProgramaC
               )}
             >
               <EditRoundedIcon sx={{ fontSize: "20px", marginRight: "5px" }} />

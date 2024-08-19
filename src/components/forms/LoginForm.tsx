@@ -29,10 +29,12 @@ import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 const LoginForm = () => {
   //Manejo del estado para mostrar la contraseña.
   const [showPassword, setShowPassword] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const router = useRouter();
 
@@ -100,9 +102,11 @@ const LoginForm = () => {
       setTimeout(() => {
         if (response.error) {
           setError(response.error);
+          setSuccessMessage(null);
           setLoading(false);
         } else {
           setError(null);
+          setSuccessMessage("Logueo exitoso");
           setLoading(false);
           router?.push("/admin");
         }
@@ -192,6 +196,24 @@ const LoginForm = () => {
             {error}
           </Typography>
       
+      )}
+      {successMessage && (
+        <Typography
+          sx={{
+            width: "100%",
+            color: "green",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: ".4rem",
+            textAlign: "center",
+            margin: "0 auto",
+            fontSize: "14px",
+          }}
+        >
+          <CheckCircleOutlineIcon/>
+          {successMessage}
+        </Typography>
       )}
       {loading && (
         <Backdrop

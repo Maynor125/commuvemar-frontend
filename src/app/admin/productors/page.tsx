@@ -152,7 +152,7 @@ const Productors = () => {
             numeroCedula={item.numeroCedula}
             numeroTelefono={item.numeroTelefono}
             fechaEntradaPrograma={item.fechaIngresoPrograma}
-            estado={item.estado} 
+            estadoProgramaC={item.estadoProgramaC} 
             id={item.id}
             onClick={handleSave}/>
           ))}

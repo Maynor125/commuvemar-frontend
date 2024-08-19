@@ -181,9 +181,12 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
         numeroCedula,
         numeroTelefono,
         fechaIngresoPrograma,
-        Number(estado)
+        String(estado)
       );
-      if (response) {
+      if (response.error) {
+        // Mostrar el mensaje de error al usuario
+        console.error("Error al crear el productor:", response.error);
+      } else{
         onClick();
       }
     } catch (error) {
