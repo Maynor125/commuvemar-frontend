@@ -48,7 +48,7 @@ export const createWorkers = async (
   nombre: string,
   apellido: string,
   numeroTelefono: string,
-  urlImg: ArrayBuffer
+  urlImg: ArrayBuffer | null | string | undefined
 ) => {
   try {
     console.log("La imagen es: ", urlImg);

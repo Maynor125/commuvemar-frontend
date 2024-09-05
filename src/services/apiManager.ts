@@ -4,7 +4,7 @@ import axios from "axios";
 
  
 const apiManager = axios.create({
-    baseURL:"https://3dmtrxqd-4000.use.devtunnels.ms",
+    baseURL:"https://coomuvemar-backend-8d235bf9e499.herokuapp.com/",
     headers: {
         'Content-Type': 'application/json',
         'mode': 'no-cors'

@@ -119,7 +119,6 @@ const UserForm: React.FC<GeneralActionProps> = ({ onClick }) => {
   const [valueRol, setValueRol] = useState(
     userState.isEdit ? userState.role : ""
   );
-  console.log("El trabajador es", IDTrabajador);
   const handleChangeSelectRol = (event: SelectChangeEvent<string>) => {
     setValueRol(event.target.value as string);
   };

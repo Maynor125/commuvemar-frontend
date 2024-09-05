@@ -100,7 +100,7 @@ const FincaForm: React.FC<GeneralActionProps> = ({
           data.areaCacaoProduccion,
           data.areaCacaoDesarrollo,
           data.produccionUltimoSiclo,
-          valorIdActivo ? idProductors : fincaState.IDProductor,
+          valorIdActivo ? idProductors ?? 0 : fincaState.IDProductor ?? 0,
         );
       }
     } else {

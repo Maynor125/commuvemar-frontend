@@ -149,18 +149,17 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
           );
         }
       }
+
+        // Limpiar los valores de los campos
+        setValue("nombre", "");
+        setValue("apellido", "");
+        setValue("numeroCedula", "");
+        setValue("numeroTelefono", "");
+        setValue("estadoProgramaC", 0);
     } catch (error) {
       console.error(error);
     }
-
     if (fechaIngresoPrograma) {
-      // Limpiar los valores de los campos
-      setValue("nombre", "");
-      setValue("apellido", "");
-      setValue("numeroCedula", "");
-      setValue("numeroTelefono", "");
-      setValue("estado", 0);
-
       // esto limpiara los campos del estado global.
       dispatch(clearValueProductor());
     }
@@ -394,21 +393,21 @@ const ProductorsForm: React.FC<GeneralActionProps> = ({
                 id="estado"
                 value={valueEstado}
                 label="Estado"
-                {...register("estado", { required: true })}
-                error={!!errors.estado}
+                {...register("estadoProgramaC", { required: true })}
+                error={!!errors.estadoProgramaC}
                 onChange={handleChangeSelect}
               >
                 <MenuItem value={"1"}>1</MenuItem>
                 <MenuItem value={"2"}>2</MenuItem>
                 <MenuItem value={"3"}>3</MenuItem>
               </Select>
-              {errors?.estado && (
+              {errors?.estadoProgramaC && (
                 <FormHelperText
                   sx={{
                     color: "red",
                   }}
                 >
-                  {errors.estado.message}
+                  {errors.estadoProgramaC.message}
                 </FormHelperText>
               )}
             </FormControl>

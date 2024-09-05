@@ -25,7 +25,6 @@ const page = () => {
   const getAllUser = async () => {
     try {
       const response = await getAllUsers();
-      console.log(response);
       if (response.data !== undefined) {
         setUsers(response.data);
       }
@@ -125,6 +124,7 @@ const page = () => {
         >
           {users.map((item) => (
             <UserCard
+            key={item.id}
               id={item.id}
               email={item.email}
               rol={item.role}
