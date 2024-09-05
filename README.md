@@ -1,6 +1,9 @@
 
 ## Aplicacion Frontend Cooperativa COOMUVEMAR.
 
+[![Build Status](https://app.travis-ci.com/margothgarth/coomuvemar-frontend.svg?token=s6eusv4wkqTwzJuqUuQx)](https://app.travis-ci.com/margothgarth/coomuvemar-frontend)
+
+
 En el desarrollo de la aplicación web se usará TypeScript que es un lenguaje de programación fuertemente tipado que se basa en JavaScript, lo que le brinda mejores herramientas a cualquier escala. se hará uso de NextJS v13, un Framework de JavaScript hecho para construir aplicaciones React renderizadas del lado del servidor, este es de código abierto y facilita enormemente la creación de aplicaciones web, para la creación de las interfaces se utilizará Material UI que es una librería de componentes de ReactJS que brinda una serie de componentes visuales para que el desarrollo sea más rápido y sencillo.
 
 ## Para empezar.
