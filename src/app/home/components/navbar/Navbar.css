@@ -2,18 +2,22 @@
 {
     width: 100%;
     height: 5rem;
-    background: var( --firts-color-white);
     display: grid;
     place-items: center;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 99;
-    transition: var(--transition);
-    background: #FDFDFD;
+    transition: all .4s;
 }
-.nav-link.active-link{
-    color: var(--firts-color-red);  
+.active-link{
+    color: red;   
+}
+.nav-link.dark-mode{
+    display: block;
+    color: #e0341a;
+    height: auto;
+    width: auto;
 }
 .sticky
 {
@@ -48,7 +52,7 @@
     margin-left: 4.5rem;
 }
 .nav-link{
-    color: var( --color-text-1);
+    
     font-weight: var(--font-medium);
     font-family: var(--fuente-opensang);
     transition: var(--transition);
@@ -84,23 +88,23 @@
 }
 .dark-mode{
     display: flex;
+    align-items: center;
 }
 .dark-mode p{
     display: none;
-    color: var(--firts-color-white);
-    font-family: var(--fuente-opensang);
-}
-.icono-dark-mode{
-    font-size: 1.4rem;
-    cursor: pointer;
-}
-.btn-login{
-    background: var( --firts-color-skybleu);
-    padding: .6rem 2.5rem;
-    border-radius: 2rem;
-    color: var(--firts-color-white);
+    font-family: var(--fuente-opensang); 
 }
 
+.btn-loginn{
+    background: var( --firts-color-skybleu);
+    padding: .6rem 2.5rem;
+    border-radius: 5px;
+    color: var(--firts-color-white);
+    transition: var(--transition);
+}
+.btn-login:hover{
+    color: #e9e7e7;
+}
 
 @media screen and (max-width:1024px) {
     .header{
@@ -145,12 +149,10 @@
     }
     .contenedor-nav
     {
-        margin-top: 1px;
         position: relative;
         height: 100%;
         width: 100%;
         flex-direction: column;
-        background: var(--color-text-1);
         justify-content: center;
         float: right;
         right: 0;
@@ -191,7 +193,6 @@
         margin-left: 0;
         width: 100%;
         align-items: baseline;
-        border-top: 1px solid var( --color-title-1);
         padding: 1.5rem 0;
         justify-content: space-between;
     }
@@ -209,29 +210,22 @@
     .part-1{
         display: flex;
         width: 100%;
-        border-top: 1px solid var( --color-title-1);
         flex-direction: column;
         justify-content: center;
         margin-bottom: 3rem;
-        border-bottom: 1px solid var( --color-title-1);
         padding-bottom: 2rem;
     }
     .dark-mode{
         width: 100%;
         padding: 1.5rem  ;
         justify-content: space-between;
-        border-bottom: 1px solid var( --color-title-1);
         margin: 0 2rem;
+        padding-right: 2.9rem;
     }
     .dark-mode p{
         display: block;
-        
     }
-    .icono-dark-mode{
-       
-        color: var(--firts-color-white);
-        margin-right: 2rem;
-    }
+
     .btn-login{
         width: 15rem;
         padding: .6rem 0;

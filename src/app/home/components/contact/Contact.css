@@ -1,10 +1,11 @@
 .contact{
-
+transition: all .4s;
 }
 .contact-container{
-    margin-top: 5rem;
+    padding-top: 5rem;
     height: 100%;
-    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    
 }
 .contact-form{
     width: 90%;
@@ -14,7 +15,6 @@
    grid-template-columns: 1fr 1fr;
    justify-content: space-between;
    gap: 5rem;
-   box-shadow: 0 0 2px rgba(0,0,0, .20);
    border-radius: 8px;
    margin: 0 auto;
    padding: 2.5rem;
@@ -30,12 +30,24 @@
 }
 .btn-enviar
 {
-    background: var( --firts-color-skybleu);
+    background: none;
     padding: .6rem 2.5rem;
-    border-radius: 2rem;
+    border-radius: 5px;
     color: var(--firts-color-white);
     margin-top: 1.5rem;
     cursor: pointer;
+    width: 90%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition);
+    color: var( --firts-color-skybleu);
+    border: 2px solid var( --firts-color-skybleu);;
+}
+.btn-enviar:hover{
+ background: var( --firts-color-skybleu);
+ color: #fff;
 }
 .texto-c h3{
    color: var(--firts-color-skybleu);

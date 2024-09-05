@@ -1,0 +1,27 @@
+.cont-target{
+    height: 47vh;
+    padding: 1.2rem .7rem;
+}
+.cont-target2{
+    height: 50vh;
+    padding: 1.2rem .7rem;
+}
+.btn-fecha{
+    background: none;
+    cursor: pointer;
+}
+.fecha-activa{
+    color:#00A2DC;
+}
+.iconocard{
+    width: 2.5rem;
+    height: 2.5rem;
+}
+.imglustracion{
+    width: 11rem;
+    height: 11rem;
+}
+.imgPhone{
+    mask-image: linear-gradient(#c5cac7 25%,transparent);
+    margin: 0 auto;
+}

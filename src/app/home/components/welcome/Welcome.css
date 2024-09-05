@@ -6,6 +6,7 @@
     place-items: center;
     margin: 0 auto;
     margin-top: 4rem;
+    transition: all .4s;
 }
 .welcome-header-container
 {
@@ -32,7 +33,7 @@
 .welcome-hader-left p{
     margin: 1rem 0 3rem;
     font-size: var(--normal-font-size);
-    color: var(--color-title-1);
+    
 }
 
 /* botones */
@@ -45,7 +46,7 @@
 .boton-welcome-header{
     background: var( --firts-color-skybleu);
     padding: .6rem 2.5rem;
-    border-radius: 2rem;
+    border-radius: 5px;
 }
 .btn-welcome-header-1
 {

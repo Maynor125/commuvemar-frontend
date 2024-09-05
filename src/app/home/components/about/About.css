@@ -3,6 +3,7 @@
     height: 95%;
     padding: 6rem 0 4rem;
     overflow-x: hidden;
+    transition: all .4s;
 }
 .about-container
 {
@@ -23,20 +24,19 @@
     font-size: var(--h2-font-size);
     font-weight: var(--font-semi-bold);
 }
-.about-container-left>p{
-    margin: 1rem 0 2.5rem;
+.about-container-left-text{
+    margin: 1.5rem 0 2.5rem;
     font-size: var(--normal-font-size);
-    color: var(--color-title-1);
+    
 }
 .targeta-about{
     transition: var(--transition);
-    box-shadow: 0 0 3px rgba(0,0,0, .15);
     border-radius: 6px;
     padding: .2rem .6rem;
     margin: 1rem 0;
     cursor: pointer;
 }
-.targeta-about:hover{
+.targeta-abou:hover{
     background: #F9FAFB;
 }
 .targeta-about:hover .icono{
@@ -55,7 +55,7 @@
     color: var(--firts-color-skybleu);
     transition: var(--transition);
     padding: .6rem 2.5rem;
-    border-radius: 2rem;
+    border-radius: 5px;
     margin-top: 2rem;
     width: 10rem;
 }
@@ -91,14 +91,13 @@
     transform: translateY(-3.7rem);
     margin-left: 16%;
     margin-right: 16%;
-    background: var(--firts-color-white);
     padding: 1rem;
     width: 17rem;
     text-align: center;
     border-radius: 8px;
-    box-shadow: 0 0 3px rgba(0,0,0, .20);
+  
 }
-.mensaje-flotante p
+.mensaje-flotante-text
 {
     margin-top: 8px;
     font-size: var(--small-font-size);

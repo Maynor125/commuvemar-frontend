@@ -1,16 +1,19 @@
+'use client'
 import Image from 'next/image'
 import styles from './page.module.css'
 import dynamic from 'next/dynamic' 
 
 import { Links_home } from './home/data'
 import { About, Banner, Contact, Footer, Service, Welcome } from './home/components'
+import { Box, useTheme } from '@mui/material'
+import BotonFlotante from '@/components/BotonFlotante'
 const Navbar= dynamic(()=> import('./home/components/navbar/Navbar'), { ssr: false })
-import { Toaster } from 'react-hot-toast'
+
 
 export default function Home() { 
+  const theme = useTheme()
   return (
-    <>
-      <Toaster position='bottom-right' />
+    <Box component='main' bgcolor={theme.palette.background.default}>
       <Navbar pathNames={[Links_home.HOME,Links_home.ABOUT,Links_home.SERVICE,Links_home.CONTACT]}/>
       <Welcome/>
       <Banner/>
@@ -18,6 +21,7 @@ export default function Home() {
       <Service/>
       <Contact/>
       <Footer/>
-    </>
+      <BotonFlotante/>
+    </Box>
   )
 }

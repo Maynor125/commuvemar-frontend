@@ -1,0 +1,185 @@
+"filename", "language", "TypeScript", "Markdown", "TypeScript JSX", "JSON with Comments", "XML", "JSON", "CSS", "Properties", "JavaScript", "comment", "blank", "total"
+"c:\Users\admin\Desktop\commuvemar-frontend\.env", "Properties", 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2
+"c:\Users\admin\Desktop\commuvemar-frontend\README.md", "Markdown", 0, 24, 0, 0, 0, 0, 0, 0, 0, 0, 17, 41
+"c:\Users\admin\Desktop\commuvemar-frontend\next.config.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 6, 1, 2, 9
+"c:\Users\admin\Desktop\commuvemar-frontend\package-lock.json", "JSON", 0, 0, 0, 0, 0, 3573, 0, 0, 0, 0, 1, 3574
+"c:\Users\admin\Desktop\commuvemar-frontend\package.json", "JSON", 0, 0, 0, 0, 0, 55, 0, 0, 0, 0, 1, 56
+"c:\Users\admin\Desktop\commuvemar-frontend\public\images\admin\IconD6.svg", "XML", 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1
+"c:\Users\admin\Desktop\commuvemar-frontend\public\images\admin\Iconcard1.svg", "XML", 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1, 5
+"c:\Users\admin\Desktop\commuvemar-frontend\public\images\admin\iconD2.svg", "XML", 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1
+"c:\Users\admin\Desktop\commuvemar-frontend\public\images\admin\iconD4.svg", "XML", 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1
+"c:\Users\admin\Desktop\commuvemar-frontend\public\images\admin\iconD5.svg", "XML", 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1
+"c:\Users\admin\Desktop\commuvemar-frontend\public\images\home\contact.svg", "XML", 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\admin\fincas\page.tsx", "TypeScript JSX", 0, 0, 148, 0, 0, 0, 0, 0, 0, 2, 13, 163
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\admin\globals.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\admin\historyFichas\Style.css", "CSS", 0, 0, 0, 0, 0, 0, 131, 0, 0, 0, 12, 143
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\admin\historyFichas\[id]\page.tsx", "TypeScript JSX", 0, 0, 408, 0, 0, 0, 0, 0, 0, 16, 28, 452
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\admin\historyFichas\page.tsx", "TypeScript JSX", 0, 0, 178, 0, 0, 0, 0, 0, 0, 0, 13, 191
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\admin\infoFichas\[id]\page.tsx", "TypeScript JSX", 0, 0, 292, 0, 0, 0, 0, 0, 0, 9, 22, 323
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\admin\infoFichas\page.tsx", "TypeScript JSX", 0, 0, 241, 0, 0, 0, 0, 0, 0, 2, 24, 267
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\admin\layout.tsx", "TypeScript JSX", 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 4, 21
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\admin\page.tsx", "TypeScript JSX", 0, 0, 78, 0, 0, 0, 0, 0, 0, 3, 8, 89
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\admin\productors\page.tsx", "TypeScript JSX", 0, 0, 157, 0, 0, 0, 0, 0, 0, 1, 18, 176
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\admin\reports\page.tsx", "TypeScript JSX", 0, 0, 44, 0, 0, 0, 0, 0, 0, 3, 8, 55
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\admin\settings\page.tsx", "TypeScript JSX", 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 3, 13
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\admin\styles.css", "CSS", 0, 0, 0, 0, 0, 0, 27, 0, 0, 0, 0, 27
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\admin\users\page.tsx", "TypeScript JSX", 0, 0, 138, 0, 0, 0, 0, 0, 0, 2, 13, 153
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\admin\workers\page.tsx", "TypeScript JSX", 0, 0, 173, 0, 0, 0, 0, 0, 0, 1, 21, 195
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\api\location\route.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\api\posts\route.ts", "TypeScript", 83, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 89
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\globals.css", "CSS", 0, 0, 0, 0, 0, 0, 216, 0, 0, 20, 29, 265
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\components\about\About.css", "CSS", 0, 0, 0, 0, 0, 0, 158, 0, 0, 0, 4, 162
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\components\about\About.tsx", "TypeScript JSX", 0, 0, 101, 0, 0, 0, 0, 0, 0, 0, 6, 107
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\components\banner\Banner.css", "CSS", 0, 0, 0, 0, 0, 0, 61, 0, 0, 0, 0, 61
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\components\banner\Banner.tsx", "TypeScript JSX", 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 4, 18
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\components\contact\Contact.css", "CSS", 0, 0, 0, 0, 0, 0, 98, 0, 0, 0, 3, 101
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\components\contact\Contact.tsx", "TypeScript JSX", 0, 0, 53, 0, 0, 0, 0, 0, 0, 0, 7, 60
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\components\footer\Footer.css", "CSS", 0, 0, 0, 0, 0, 0, 172, 0, 0, 0, 6, 178
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\components\footer\Footer.tsx", "TypeScript JSX", 0, 0, 65, 0, 0, 0, 0, 0, 0, 0, 6, 71
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\components\index.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 8
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\components\navbar\Navbar.css", "CSS", 0, 0, 0, 0, 0, 0, 227, 0, 0, 0, 12, 239
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\components\navbar\Navbar.tsx", "TypeScript JSX", 0, 0, 124, 0, 0, 0, 0, 0, 0, 5, 22, 151
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\components\services\Service.css", "CSS", 0, 0, 0, 0, 0, 0, 66, 0, 0, 1, 3, 70
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\components\services\Service.tsx", "TypeScript JSX", 0, 0, 50, 0, 0, 0, 0, 0, 0, 0, 3, 53
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\components\welcome\Welcome.css", "CSS", 0, 0, 0, 0, 0, 0, 85, 0, 0, 1, 6, 92
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\components\welcome\Welcome.tsx", "TypeScript JSX", 0, 0, 29, 0, 0, 0, 0, 0, 0, 0, 3, 32
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\home\data\index.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\layout.tsx", "TypeScript JSX", 0, 0, 30, 0, 0, 0, 0, 0, 0, 1, 6, 37
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\login\index.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\login\login.css", "CSS", 0, 0, 0, 0, 0, 0, 206, 0, 0, 0, 18, 224
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\login\page.tsx", "TypeScript JSX", 0, 0, 91, 0, 0, 0, 0, 0, 0, 0, 9, 100
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\not-found.tsx", "TypeScript JSX", 0, 0, 55, 0, 0, 0, 0, 0, 0, 0, 4, 59
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\page.module.css", "CSS", 0, 0, 0, 0, 0, 0, 14, 0, 0, 1, 0, 15
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\page.tsx", "TypeScript JSX", 0, 0, 24, 0, 0, 0, 0, 0, 0, 0, 4, 28
+"c:\Users\admin\Desktop\commuvemar-frontend\src\app\prueba.json", "JSON", 0, 0, 0, 0, 0, 170, 0, 0, 0, 0, 0, 170
+"c:\Users\admin\Desktop\commuvemar-frontend\src\auth\authProvider.tsx", "TypeScript JSX", 0, 0, 56, 0, 0, 0, 0, 0, 0, 3, 10, 69
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\BotonFlotante.tsx", "TypeScript JSX", 0, 0, 52, 0, 0, 0, 0, 0, 0, 0, 11, 63
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\Card.tsx", "TypeScript JSX", 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 3, 23
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\GlobalContainer.tsx", "TypeScript JSX", 0, 0, 6, 0, 0, 0, 0, 0, 0, 15, 6, 27
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\Logo.tsx", "TypeScript JSX", 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 4, 22
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\NoResult.tsx", "TypeScript JSX", 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\SearchInput.tsx", "TypeScript JSX", 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 5, 30
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\AdminContainer.tsx", "TypeScript JSX", 0, 0, 45, 0, 0, 0, 0, 0, 0, 0, 4, 49
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\ModalAlert.tsx", "TypeScript JSX", 0, 0, 97, 0, 0, 0, 0, 0, 0, 1, 6, 104
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\avatar\Avatar.tsx", "TypeScript JSX", 0, 0, 65, 0, 0, 0, 0, 0, 0, 0, 7, 72
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\charts\BarChart.tsx", "TypeScript JSX", 0, 0, 48, 0, 0, 0, 0, 0, 0, 0, 3, 51
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\charts\CircleChart.tsx", "TypeScript JSX", 0, 0, 41, 0, 0, 0, 0, 0, 0, 0, 8, 49
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\charts\CircleChart2.tsx", "TypeScript JSX", 0, 0, 29, 0, 0, 0, 0, 0, 0, 0, 5, 34
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\charts\HalfCircleChart.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\charts\LinesChart.tsx", "TypeScript JSX", 0, 0, 44, 0, 0, 0, 0, 0, 0, 0, 4, 48
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\datatable\Datatable.tsx", "TypeScript JSX", 0, 0, 135, 0, 0, 0, 0, 0, 0, 0, 11, 146
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\dateProvider.tsx", "TypeScript JSX", 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 3, 17
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\BannerFicha.tsx", "TypeScript JSX", 0, 0, 75, 0, 0, 0, 0, 0, 0, 0, 7, 82
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\CardFicha2.tsx", "TypeScript JSX", 0, 0, 216, 0, 0, 0, 0, 0, 0, 0, 7, 223
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\CardFichas.tsx", "TypeScript JSX", 0, 0, 115, 0, 0, 0, 0, 0, 0, 0, 5, 120
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\ModalMapa.tsx", "TypeScript JSX", 0, 0, 87, 0, 0, 0, 0, 0, 0, 1, 10, 98
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\ReadOnlyInput.tsx", "TypeScript JSX", 0, 0, 21, 0, 0, 0, 0, 0, 0, 0, 2, 23
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\sections\CuartaSeccion.tsx", "TypeScript JSX", 0, 0, 57, 0, 0, 0, 0, 0, 0, 3, 8, 68
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\sections\DecimaSeccion.tsx", "TypeScript JSX", 0, 0, 63, 0, 0, 0, 0, 0, 0, 3, 8, 74
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\sections\DecisionComite.tsx", "TypeScript JSX", 0, 0, 54, 0, 0, 0, 0, 0, 0, 0, 5, 59
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\sections\Declaracion.tsx", "TypeScript JSX", 0, 0, 30, 0, 0, 0, 0, 0, 0, 0, 2, 32
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\sections\DictamenFinal.tsx", "TypeScript JSX", 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 2, 20
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\sections\NovenaSeccion.tsx", "TypeScript JSX", 0, 0, 30, 0, 0, 0, 0, 0, 0, 0, 3, 33
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\sections\OctavaSeccion.tsx", "TypeScript JSX", 0, 0, 81, 0, 0, 0, 0, 0, 0, 2, 7, 90
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\sections\PrimeraSeccion.tsx", "TypeScript JSX", 0, 0, 86, 0, 0, 0, 0, 0, 0, 1, 5, 92
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\sections\QuintaSeccion.tsx", "TypeScript JSX", 0, 0, 101, 0, 0, 0, 0, 0, 0, 3, 8, 112
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\sections\SegundaSeccion.tsx", "TypeScript JSX", 0, 0, 69, 0, 0, 0, 0, 0, 0, 1, 12, 82
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\sections\SeptimaSeccion.tsx", "TypeScript JSX", 0, 0, 69, 0, 0, 0, 0, 0, 0, 3, 8, 80
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\sections\SextaSeccion.tsx", "TypeScript JSX", 0, 0, 87, 0, 0, 0, 0, 0, 0, 2, 6, 95
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\sections\TerceraSeccion.tsx", "TypeScript JSX", 0, 0, 65, 0, 0, 0, 0, 0, 0, 2, 7, 74
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fichas\sections\UnDecimaSeccion.tsx", "TypeScript JSX", 0, 0, 64, 0, 0, 0, 0, 0, 0, 3, 7, 74
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\fincas\FincasCard.tsx", "TypeScript JSX", 0, 0, 181, 0, 0, 0, 0, 0, 0, 1, 13, 195
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\navbarAdmin\NavbarAdmin.tsx", "TypeScript JSX", 0, 0, 80, 0, 0, 0, 0, 0, 0, 3, 10, 93
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\notification\Notification.tsx", "TypeScript JSX", 0, 0, 153, 0, 0, 0, 0, 0, 0, 0, 8, 161
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\overview\Card1.tsx", "TypeScript JSX", 0, 0, 49, 0, 0, 0, 0, 0, 0, 0, 5, 54
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\overview\Card2.tsx", "TypeScript JSX", 0, 0, 43, 0, 0, 0, 0, 0, 0, 0, 4, 47
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\overview\CardUltimate.tsx", "TypeScript JSX", 0, 0, 84, 0, 0, 0, 0, 0, 0, 0, 9, 93
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\overview\CardsUltimate.tsx", "TypeScript JSX", 0, 0, 201, 0, 0, 0, 0, 0, 0, 0, 3, 204
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\overview\ListActivity.tsx", "TypeScript JSX", 0, 0, 65, 0, 0, 0, 0, 0, 0, 0, 6, 71
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\overview\ListActivityItem.tsx", "TypeScript JSX", 0, 0, 114, 0, 0, 0, 0, 0, 0, 0, 4, 118
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\overview\Welcome.tsx", "TypeScript JSX", 0, 0, 33, 0, 0, 0, 0, 0, 0, 0, 10, 43
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\overview\sections\EfectivityData.tsx", "TypeScript JSX", 0, 0, 46, 0, 0, 0, 0, 0, 0, 0, 4, 50
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\overview\sections\FichasDetailData.tsx", "TypeScript JSX", 0, 0, 78, 0, 0, 0, 0, 0, 0, 0, 3, 81
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\overview\sections\GeneralData.tsx", "TypeScript JSX", 0, 0, 134, 0, 0, 0, 0, 0, 0, 0, 7, 141
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\overview\sections\InspectorsData.tsx", "TypeScript JSX", 0, 0, 212, 0, 0, 0, 0, 0, 0, 0, 11, 223
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\pagination\Pagination.tsx", "TypeScript JSX", 0, 0, 69, 0, 0, 0, 0, 0, 0, 1, 8, 78
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\productors\ProductorCard.tsx", "TypeScript JSX", 0, 0, 178, 0, 0, 0, 0, 0, 0, 2, 13, 193
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\profile\ProfilePreview.tsx", "TypeScript JSX", 0, 0, 287, 0, 0, 0, 0, 0, 0, 0, 20, 307
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\reports\BarSection.tsx", "TypeScript JSX", 0, 0, 31, 0, 0, 0, 0, 0, 0, 0, 2, 33
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\reports\CircleSection.tsx", "TypeScript JSX", 0, 0, 36, 0, 0, 0, 0, 0, 0, 0, 3, 39
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\section\btnAction.tsx", "TypeScript JSX", 0, 0, 44, 0, 0, 0, 0, 0, 0, 1, 4, 49
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\section\btnFuntion.tsx", "TypeScript JSX", 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 4, 11
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\sidebar\SideBar.tsx", "TypeScript JSX", 0, 0, 78, 0, 0, 0, 0, 0, 0, 0, 9, 87
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\sidebar\sidebar.css", "CSS", 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 1, 17
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\user\UserCard.tsx", "TypeScript JSX", 0, 0, 203, 0, 0, 0, 0, 0, 0, 0, 20, 223
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\workers\ModalProductoresAsignados.tsx", "TypeScript JSX", 0, 0, 240, 0, 0, 0, 0, 0, 0, 2, 10, 252
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\admin\workers\WorkerCard.tsx", "TypeScript JSX", 0, 0, 226, 0, 0, 0, 0, 0, 0, 0, 15, 241
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\components.css", "CSS", 0, 0, 0, 0, 0, 0, 7, 0, 0, 3, 1, 11
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\error\NoData.tsx", "TypeScript JSX", 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\forms\DatosForm.tsx", "TypeScript JSX", 0, 0, 132, 0, 0, 0, 0, 0, 0, 19, 11, 162
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\forms\EmailForm.tsx", "TypeScript JSX", 0, 0, 142, 0, 0, 0, 0, 0, 0, 12, 16, 170
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\forms\FincaForm.tsx", "TypeScript JSX", 0, 0, 311, 0, 0, 0, 0, 0, 0, 10, 25, 346
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\forms\LoginForm.tsx", "TypeScript JSX", 0, 0, 167, 0, 0, 0, 0, 0, 0, 14, 28, 209
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\forms\ProductorsForm.tsx", "TypeScript JSX", 0, 0, 366, 0, 0, 0, 0, 0, 0, 23, 37, 426
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\forms\SectionsForm.tsx", "TypeScript JSX", 0, 0, 152, 0, 0, 0, 0, 0, 0, 9, 16, 177
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\forms\UserForm.tsx", "TypeScript JSX", 0, 0, 280, 0, 0, 0, 0, 0, 0, 6, 25, 311
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\forms\WorkerProductor.tsx", "TypeScript JSX", 0, 0, 146, 0, 0, 0, 0, 0, 0, 6, 14, 166
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\forms\workersForm.tsx", "TypeScript JSX", 0, 0, 220, 0, 0, 0, 0, 0, 0, 22, 18, 260
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\index.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\loading\Loading.tsx", "TypeScript JSX", 0, 0, 26, 0, 0, 0, 0, 0, 0, 0, 3, 29
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\loading\style.css", "CSS", 0, 0, 0, 0, 0, 0, 158, 0, 0, 0, 39, 197
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\map\Map.tsx", "TypeScript JSX", 0, 0, 33, 0, 0, 0, 0, 0, 0, 1, 6, 40
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\message\MessageGlobal.tsx", "TypeScript JSX", 0, 0, 36, 0, 0, 0, 0, 0, 0, 0, 9, 45
+"c:\Users\admin\Desktop\commuvemar-frontend\src\components\theme\ToogleButton.tsx", "TypeScript JSX", 0, 0, 37, 0, 0, 0, 0, 0, 0, 2, 6, 45
+"c:\Users\admin\Desktop\commuvemar-frontend\src\data\admin\fichas.ts", "TypeScript", 106, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 106
+"c:\Users\admin\Desktop\commuvemar-frontend\src\hooks\useLocalStorage.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 18
+"c:\Users\admin\Desktop\commuvemar-frontend\src\middleware\ProtectedPage.tsx", "TypeScript JSX", 0, 0, 21, 0, 0, 0, 0, 0, 0, 2, 4, 27
+"c:\Users\admin\Desktop\commuvemar-frontend\src\redux\Provider.tsx", "TypeScript JSX", 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 5, 17
+"c:\Users\admin\Desktop\commuvemar-frontend\src\redux\features\authSlice.ts", "TypeScript", 37, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 43
+"c:\Users\admin\Desktop\commuvemar-frontend\src\redux\features\fichaSlice.ts", "TypeScript", 43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 47
+"c:\Users\admin\Desktop\commuvemar-frontend\src\redux\features\fincaSlice.ts", "TypeScript", 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 44
+"c:\Users\admin\Desktop\commuvemar-frontend\src\redux\features\mapaModalSlice.ts", "TypeScript", 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 31
+"c:\Users\admin\Desktop\commuvemar-frontend\src\redux\features\productorsSlice.ts", "TypeScript", 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 45
+"c:\Users\admin\Desktop\commuvemar-frontend\src\redux\features\sectionSlice.ts", "TypeScript", 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 29
+"c:\Users\admin\Desktop\commuvemar-frontend\src\redux\features\themeSlice.ts", "TypeScript", 24, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6, 31
+"c:\Users\admin\Desktop\commuvemar-frontend\src\redux\features\userSlice.ts", "TypeScript", 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 39
+"c:\Users\admin\Desktop\commuvemar-frontend\src\redux\features\workerSlice.ts", "TypeScript", 38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 42
+"c:\Users\admin\Desktop\commuvemar-frontend\src\redux\store\store.ts", "TypeScript", 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 31
+"c:\Users\admin\Desktop\commuvemar-frontend\src\routes\data.home.ts", "TypeScript", 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 64
+"c:\Users\admin\Desktop\commuvemar-frontend\src\routes\sideInfo.ts", "TypeScript", 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 60
+"c:\Users\admin\Desktop\commuvemar-frontend\src\services\apiManager.ts", "TypeScript", 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 24
+"c:\Users\admin\Desktop\commuvemar-frontend\src\services\datoSection.ts", "TypeScript", 57, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7, 65
+"c:\Users\admin\Desktop\commuvemar-frontend\src\services\fichas.ts", "TypeScript", 29, 0, 0, 0, 0, 0, 0, 0, 0, 2, 5, 36
+"c:\Users\admin\Desktop\commuvemar-frontend\src\services\finca.ts", "TypeScript", 67, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6, 74
+"c:\Users\admin\Desktop\commuvemar-frontend\src\services\informacionDato.ts", "TypeScript", 22, 0, 0, 0, 0, 0, 0, 0, 0, 2, 5, 29
+"c:\Users\admin\Desktop\commuvemar-frontend\src\services\login.ts", "TypeScript", 25, 0, 0, 0, 0, 0, 0, 0, 0, 3, 6, 34
+"c:\Users\admin\Desktop\commuvemar-frontend\src\services\productors.ts", "TypeScript", 77, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 83
+"c:\Users\admin\Desktop\commuvemar-frontend\src\services\sections.ts", "TypeScript", 61, 0, 0, 0, 0, 0, 0, 0, 0, 2, 9, 72
+"c:\Users\admin\Desktop\commuvemar-frontend\src\services\user.ts", "TypeScript", 14, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6, 21
+"c:\Users\admin\Desktop\commuvemar-frontend\src\services\userW.ts", "TypeScript", 61, 0, 0, 0, 0, 0, 0, 0, 0, 1, 8, 70
+"c:\Users\admin\Desktop\commuvemar-frontend\src\services\workers.ts", "TypeScript", 104, 0, 0, 0, 0, 0, 0, 0, 0, 3, 12, 119
+"c:\Users\admin\Desktop\commuvemar-frontend\src\theme\ThemeProvider.tsx", "TypeScript JSX", 0, 0, 21, 0, 0, 0, 0, 0, 0, 3, 5, 29
+"c:\Users\admin\Desktop\commuvemar-frontend\src\theme\index.ts", "TypeScript", 115, 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 122
+"c:\Users\admin\Desktop\commuvemar-frontend\src\types\dato.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6
+"c:\Users\admin\Desktop\commuvemar-frontend\src\types\email.ts", "TypeScript", 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5
+"c:\Users\admin\Desktop\commuvemar-frontend\src\types\ficha.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13
+"c:\Users\admin\Desktop\commuvemar-frontend\src\types\fincas.ts", "TypeScript", 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 11
+"c:\Users\admin\Desktop\commuvemar-frontend\src\types\informacionDato.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7
+"c:\Users\admin\Desktop\commuvemar-frontend\src\types\inspectors.ts", "TypeScript", 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 12
+"c:\Users\admin\Desktop\commuvemar-frontend\src\types\login.ts", "TypeScript", 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5
+"c:\Users\admin\Desktop\commuvemar-frontend\src\types\message.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6
+"c:\Users\admin\Desktop\commuvemar-frontend\src\types\productors.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9
+"c:\Users\admin\Desktop\commuvemar-frontend\src\types\section.ts", "TypeScript", 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6
+"c:\Users\admin\Desktop\commuvemar-frontend\src\types\sidebar.ts", "TypeScript", 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8
+"c:\Users\admin\Desktop\commuvemar-frontend\src\types\user.ts", "TypeScript", 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8
+"c:\Users\admin\Desktop\commuvemar-frontend\src\validations\datoSchema.ts", "TypeScript", 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 24
+"c:\Users\admin\Desktop\commuvemar-frontend\src\validations\emailSchema.ts", "TypeScript", 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 33
+"c:\Users\admin\Desktop\commuvemar-frontend\src\validations\fincaSchema.ts", "TypeScript", 49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 51
+"c:\Users\admin\Desktop\commuvemar-frontend\src\validations\loginSchema.ts", "TypeScript", 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 14
+"c:\Users\admin\Desktop\commuvemar-frontend\src\validations\productorsSchema.ts", "TypeScript", 49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 50
+"c:\Users\admin\Desktop\commuvemar-frontend\src\validations\sectionsSchema.ts", "TypeScript", 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 24
+"c:\Users\admin\Desktop\commuvemar-frontend\src\validations\userSchema.ts", "TypeScript", 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 22
+"c:\Users\admin\Desktop\commuvemar-frontend\src\validations\workerProductor.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7
+"c:\Users\admin\Desktop\commuvemar-frontend\src\validations\workerSchema.ts", "TypeScript", 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 42
+"c:\Users\admin\Desktop\commuvemar-frontend\tsconfig.json", "JSON with Comments", 0, 0, 0, 28, 0, 0, 0, 0, 0, 0, 1, 29
+"Total", "-", 1659, 24, 9611, 28, 9, 3798, 1642, 2, 6, 276, 1220, 18275

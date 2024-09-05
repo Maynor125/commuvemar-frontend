@@ -1,28 +1,79 @@
 "use client";
 
-import { useState } from "react";
-import Logo from "../../../../../public/images/home/logo.png";
+import React, { useState, useEffect } from "react";
+import Logo from "../../../../../public/images/logo.png";
 import Image from "next/image";
 import { Link_home } from "../../data";
-import Link from "next/link";
+
 import "./Navbar.css";
 
 /* Iconos a usar en el navbar */
-import { FiMoon } from "react-icons/fi";
-import { FaBars } from "react-icons/fa";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import ToogleButton from "../../../../components/theme/ToogleButton";
+import {
+  Box,
+  Divider,
+  IconButton,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import AppBar from "@mui/material/AppBar";
+import { useAppSelector } from "@/redux/store/store";
+import { selectDarkMode } from "@/redux/features/themeSlice";
+import Link from "next/link";
+
 
 interface Props {
-  pathNames: Link_home[];
+  pathNames: Link_home[]; 
 }
 
 function Navbar({ pathNames }: Props) {
   const [isNavShowing, setIsNavShowing] = useState<boolean>(false);
+  const theme = useTheme();
+  const [isSticky, setIsSticky] = useState<boolean>(false);
+
+  //Codigo para manejar los links activos.
+  const darkMode = useAppSelector(selectDarkMode);
+  const esOscuro = darkMode ? true : false;
+
+  const isSmallerThan1025 = useMediaQuery("(max-width: 1024px)");
+
+   // Manejar el cambio de scroll
+   useEffect(() => {
+    const scrollHeader = () => {
+      if (window.scrollY >= 50) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+    window.addEventListener('scroll', scrollHeader);
+    return () => {
+      window.removeEventListener('scroll', scrollHeader);
+    };
+  }, []);
+
+  const [activeLink, setActiveLink] = useState<string>('');
+  // Manejar la activación de enlaces
+  const scrollActive = () => {
+ 
+};
+
+
 
   return (
-    <nav id="hea"className="header">
+    <Box
+      component="nav"
+      id="hea"
+      className="header"
+      sx={{ bgcolor: theme.palette.background.default, boxShadow: "none" }}
+    >
       <div className="container nav-container">
         <div className="imagen">
-          <Image src={Logo} className="logo" alt="Logotipo" />
+          <Link href="/">
+            <Image src={Logo} className="logo" alt="Logotipo" />
+          </Link>
         </div>
         <div className={`fondo ${isNavShowing ? "fondo-a" : "fondo-i"}`}></div>
         <div
@@ -30,9 +81,9 @@ function Navbar({ pathNames }: Props) {
             isNavShowing ? "nav-part2-active" : "nav-part2-desactive"
           }`}
         >
-          <div
+          <Box component='div' sx={{ bgcolor: isSmallerThan1025 ? theme.palette.background.paper:''}}
             className={`contenedor-nav ${
-              isNavShowing ? "contenedor-nav-active" : "contenedor-nav-inactive"
+              isNavShowing ? "contenedor-nav-active" : "contenedor-nav-inactive"  
             }`}
           >
             <ul className="nav-list">
@@ -42,49 +93,44 @@ function Navbar({ pathNames }: Props) {
                   key={pathName.path}
                   href={pathName.path}
                 >
-                  {pathName.name}
+                  <Typography color={theme.palette.secondary.main}>
+                    {pathName.name}
+                  </Typography>
                 </Link>
               ))}
             </ul>
-            <div className="part-1">
-              <div className="dark-mode">
-                <p>Dark mode</p>
-                <FiMoon className="icono-dark-mode" />
+            <div className={`part-1 ${isSmallerThan1025 ? 'bordes':''}`}>
+              <div className={`dark-mode ${isSmallerThan1025 ? 'bordesb':''}` }>
+                <Typography sx={{color:theme.palette.secondary.contrastText}}>Dark mode</Typography>
+                <ToogleButton />
               </div>
-              <Link className="boton-base btn-login" href="/login">
+              <Link className="boton-base btn-loginn" href="/login">
                 Login
               </Link>
             </div>
-          </div>
+          </Box>
         </div>
-        <button
-          className="btn-nav-toogle"
-          onClick={() => setIsNavShowing((prev) => !prev)}
-        >
-          <FaBars className="menu-icon" />
-        </button>
+        {isSmallerThan1025 && (
+          <IconButton
+            className="btn-nav-toogle"
+            onClick={() => setIsNavShowing((prev) => !prev)}
+            sx={{ color: theme.palette.secondary.dark }}
+          >
+            <MenuRoundedIcon className="menu-icon" />
+          </IconButton>
+        )}
       </div>
-    </nav>
+    </Box>
   );
 }
 
-/* barra pegajosa */
-function scrollHeader() {
-  const header = document.getElementById("hea")!;
- 
-    if (scrollY >= 50) {
-      header.classList.add("sticky");
-    } else {
-      header.classList.remove("sticky");
-    } 
-}
-window.addEventListener("scroll", scrollHeader);
-
-
 //=============== Activar enlaces ===============
 
-var sections = document.querySelectorAll<HTMLDivElement>('section[id]');
-
+if (typeof window !== 'undefined') {
+  // Este código se ejecutará solo en el lado del cliente
+  var sections = document.querySelectorAll<HTMLDivElement>('section[id]');
+  // Resto de tu código
+}
 const scrollActive = () =>{
   	const scrollY = window.pageYOffset
 
@@ -102,6 +148,8 @@ const scrollActive = () =>{
 		}                                                    
 	})
 }
-window.addEventListener("scroll", scrollActive) 
+if (typeof window !== 'undefined') {
+  window.addEventListener("scroll", scrollActive);
+}
 
 export default Navbar;
