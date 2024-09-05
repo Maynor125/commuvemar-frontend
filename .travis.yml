@@ -39,7 +39,7 @@ jobs:
         - npm run build
       after_script:
         - echo "after_script script phase"
-        - npm run generate-report
+        #- npm run generate-report
 
     # - stage: deploy
     #   before_deploy:
