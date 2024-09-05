@@ -1,11 +1,5 @@
 "use client";
 
-export const metadata = {
-  title: "Commuvemar | login",
-  description: "Cooperativa multisectorial veintinueve de marzo.",
-};
-
-
 import "./login.css";
 
 import Logo from "../../../public/images/logo.png";
