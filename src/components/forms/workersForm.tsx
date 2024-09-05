@@ -125,7 +125,7 @@ const WorkersForm: React.FC<GeneralActionProps> = ({
     nombre: string,
     apellido: string,
     numeroTelefono: string,
-    urlImg: ArrayBuffer
+    urlImg: ArrayBuffer | null | string | undefined
   ) => {
     try {
       const response = await createWorkers(

@@ -2,12 +2,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 let storedDarkMode;
 
-
-storedDarkMode = localStorage.getItem('darkMode');
-
-
 const initialState = {
-  darkMode: storedDarkMode ? JSON.parse(storedDarkMode) : false,
+  darkMode:false,
 };
 
 export const themeSlice = createSlice({
@@ -20,11 +16,13 @@ export const themeSlice = createSlice({
        if (typeof window !== "undefined") {
                localStorage.setItem('darkMode', JSON.stringify(state.darkMode));
        }
-
+    },
+    setInitialDarkMode: (state, action: PayloadAction<boolean>) => {
+      state.darkMode = action.payload;
     },
   },
 });
 
-export const { toogleTheme } = themeSlice.actions;
+export const { toogleTheme,setInitialDarkMode } = themeSlice.actions;
 export const selectDarkMode = (state:any) => state.theme.darkMode;
 export default themeSlice.reducer;

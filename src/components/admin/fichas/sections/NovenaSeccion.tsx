@@ -13,6 +13,7 @@ const NovenaSeccion = () => {
   const theme = useTheme();
   const infoDatosState = useSelector((state: RootState) => state.infoDatos);
   const [valorTextF1, setValorTextF1] = useState("");
+  const fichasState = useSelector((state: RootState) => state.fichas);
 
   useEffect(() => {
     // Encontrar el elemento en infoDatosState.data con IDDato igual a 57

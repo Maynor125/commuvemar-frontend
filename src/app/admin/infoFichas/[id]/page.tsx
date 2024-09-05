@@ -94,17 +94,20 @@ const page = ({ params }: any) => {
       headerName: "ID",
       headerClassName: "header-grid",
       width: 80,
+      resizable: true
     },
     {
       field: "titulo",
       headerName: "Titulo",
       width: 300,
       headerClassName: "header-grid",
+      resizable: true
     },
     {
       field: "descripcion",
       headerName: "Descripción",
       headerClassName: "header-grid",
+      resizable: false
     },
     {
       field: "actions",
@@ -304,6 +307,7 @@ const page = ({ params }: any) => {
         sx={{
           marginTop: "1rem",
           width: "100%",
+          marginBottom: "1rem",
         }}
       >
         <Datatable

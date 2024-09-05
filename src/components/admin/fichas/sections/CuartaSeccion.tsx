@@ -10,6 +10,7 @@ const CuartaSeccion = () => {
   const [dataRows, setDataRows] = useState<any[]>([]);
   const infoDatosState = useSelector((state: RootState) => state.infoDatos);
   const tokenState = useSelector((state: RootState) => state.auth);
+  const fichaState = useSelector((state: RootState) => state.fichasA.fichaAnalizada);
 
   const allGetData = async (id: number) => {
     if (!tokenState.logueado) return [];
@@ -56,13 +57,17 @@ const CuartaSeccion = () => {
     {
       field: "plagasEnfermedadaes",
       headerName: "Plagas y enfermedades",
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+        ? "header-grid1"
+        : "header-grid",
       width: 250,
     },
     {
       field: "percepcionIntensidad",
       headerName: "Percepción de la intensidad de ataque",
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+        ? "header-grid1"
+        : "header-grid",
       width: 746,
     },
   ];

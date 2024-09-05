@@ -3,7 +3,7 @@ export interface Workers {
     nombre:string,
     apellido:string,
     numeroTelefono:string,
-    urlImg:string,
+    urlImg:ArrayBuffer | null | undefined | string,
 }
 
 export interface ProductorWorker {

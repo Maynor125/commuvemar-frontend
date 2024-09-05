@@ -20,6 +20,8 @@ const QuintaSeccion = () => {
   const [dataRows, setDataRows] = useState<any[]>([]);
   const infoDatosState = useSelector((state: RootState) => state.infoDatos);
   const tokenState = useSelector((state: RootState) => state.auth);
+  const fichaState = useSelector((state: RootState) => state.fichasA.fichaAnalizada);
+
 
   const allGetData = async (id: number) => {
     if (!tokenState.logueado) return [];
@@ -88,43 +90,57 @@ const QuintaSeccion = () => {
     {
       field: "productoAplicado",
       headerName: "Producto Aplicado",
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+      ? "header-grid1"
+      : "header-grid",
       width: 142,
     },
     {
       field: "origen",
       headerName: "Origen",
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+      ? "header-grid1"
+      : "header-grid",
       width: 142,
     },
     {
       field: "productoU",
       headerName: "ProductoUtilizado",
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+      ? "header-grid1"
+      : "header-grid",
       width: 142,
     },
     {
       field: "cantidadMz",
       headerName: "Cantidad/Mz (Dosis)",
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+      ? "header-grid1"
+      : "header-grid",
       width: 142,
     },
     {
       field: "vecesAño",
       headerName: "Veces por año",
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+      ? "header-grid1"
+      : "header-grid",
       width: 142,
     },
     {
       field: "cultivo",
       headerName: "En que cultivo se utilizo",
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+      ? "header-grid1"
+      : "header-grid",
       width: 142,
     },
     {
       field: "plagaEnfermedad",
       headerName: "Para que plaga o enfermedad",
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+      ? "header-grid1"
+      : "header-grid",
       width: 144,
     },
   ];

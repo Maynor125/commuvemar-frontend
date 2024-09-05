@@ -5,5 +5,5 @@ export interface Productors {
     numeroCedula:string;
     numeroTelefono:string;
     fechaIngresoPrograma:Date;
-    estado:number;
+    estadoProgramaC:number;
 }

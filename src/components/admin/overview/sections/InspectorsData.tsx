@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Image from "next/image";
@@ -19,6 +19,7 @@ import {
   Paper,
   MenuItem,
 } from "@mui/material";
+import { getInspectorsDashboard } from "@/services/dashboard";
 
 const InspectorsData = () => {
   const theme = useTheme();
@@ -26,10 +27,24 @@ const InspectorsData = () => {
 
   const [selectedMonth, setSelectedMonth] = useState(dayjs().month());
   const [selectedDate, setSelectedDate] = useState(dayjs());
+  const [startDate, setStartDate] = useState(dayjs().startOf('month'));
+  const [endDate, setEndDate] = useState(dayjs().endOf('month'));
+
+  const getData =async(fechaInicio:Date,fechaFinal:Date)=>{
+    try {
+     const response = await getInspectorsDashboard(fechaInicio,fechaFinal);
+     console.log('La gran respuesta',response)
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   const handleMonthChange = (newDate:any) => {
     setSelectedMonth(newDate.month());
     setSelectedDate(newDate);
+    setStartDate(newDate.startOf('month'));
+    setEndDate(newDate.endOf('month'));
+    getData(newDate.startOf('month'),newDate.endOf('month'))
   };
 
   const [pickerOpen, setPickerOpen] = useState(false);

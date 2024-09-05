@@ -20,7 +20,7 @@ interface Props {
 const SegundaSeccion: FC<Props> = ({ titulo, traeCantidad, datos }) => {
   const theme = useTheme();
   const [dataRows, setDataRows] = useState<any[]>([]);
-  const fichasState = useSelector((state: RootState) => state.fichas);
+  const fichasState = useSelector((state: RootState) => state.fichasA.fichaAnalizada);
 
   const ObservacionName = traeCantidad
     ? "Cantidad / Observacion"
@@ -29,14 +29,14 @@ const SegundaSeccion: FC<Props> = ({ titulo, traeCantidad, datos }) => {
     {
       field: "descripcion",
       headerName: "Descripcion",
-      headerClassName: fichasState.AlanizadaFichas
+      headerClassName: fichasState
         ? "header-grid1"
         : "header-grid",
     },
     {
       field: "realizacion",
       headerName: "Realizacion",
-      headerClassName: fichasState.AlanizadaFichas
+      headerClassName: fichasState
         ? "header-grid1"
         : "header-grid",
       width: 120,
@@ -44,7 +44,7 @@ const SegundaSeccion: FC<Props> = ({ titulo, traeCantidad, datos }) => {
     {
       field: "cantidad_observacion",
       headerName: ObservacionName,
-      headerClassName: fichasState.AlanizadaFichas
+      headerClassName: fichasState
         ? "header-grid1"
         : "header-grid",
       width: 400,
@@ -66,7 +66,7 @@ const SegundaSeccion: FC<Props> = ({ titulo, traeCantidad, datos }) => {
   }, [datos]);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <Box sx={{  display: "flex", flexDirection: "column", gap: "1rem" }}>
       <Typography variant="h6" color={theme.palette.secondary.light}>
         {titulo}
       </Typography>

@@ -128,15 +128,6 @@ const Fincas = () => {
           gap:'.5rem',
           marginTop: "1rem",
         }}>
-          <FincasCard 
-          productor="Juan Perez"
-          areaCacaoDesarrollo="20 mz"
-          areaCacaoProduccion="10 mz"
-          comunidad="El limon"
-          nombre="La perrona"
-          produccionUltimoSiclo="200 qq"
-          IDProductor={2}
-          idFinca={8}/>
           {
             fincas.map((item)=>(
               <FincasCard 

@@ -25,7 +25,6 @@ const page = () => {
   const getAllUser = async () => {
     try {
       const response = await getAllUsers();
-      console.log(response);
       if (response.data !== undefined) {
         setUsers(response.data);
       }
@@ -123,17 +122,9 @@ const page = () => {
             gap: "1rem",
           }}
         >
-          <UserCard
-            id={20}
-            email="maynoldemar@gmail.com"
-            rol="Usuario"
-            hash="5454677447"
-            IDTrabajador={5}
-            trabajador="Maynor"
-            onClick={handleSave}
-          />
           {users.map((item) => (
             <UserCard
+            key={item.id}
               id={item.id}
               email={item.email}
               rol={item.role}

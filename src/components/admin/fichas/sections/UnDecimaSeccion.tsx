@@ -10,24 +10,31 @@ const UnDecimaSeccion = () => {
   const [dataRows, setDataRows] = useState<any[]>([]);
   const infoDatosState = useSelector((state: RootState) => state.infoDatos);
   const tokenState = useSelector((state: RootState) => state.auth);
+  const fichasState = useSelector((state: RootState) => state.fichasA.fichaAnalizada);
 
   const columns = [
     {
       field: "aspecto",
       headerName: "Aspecto",
-      headerClassName: "header-grid",
+      headerClassName: fichasState
+      ? "header-grid1"
+      : "header-grid",
       width: 600,
     },
     {
       field: "respuesta",
       headerName: "Respuesta",
-      headerClassName: "header-grid",
+      headerClassName: fichasState
+      ? "header-grid1"
+      : "header-grid",
       width: 95,
     },
     {
       field: "observacion",
       headerName: "Observacion",
-      headerClassName: "header-grid",
+      headerClassName: fichasState
+      ? "header-grid1"
+      : "header-grid",
       width: 300,
     },
   ];

@@ -22,6 +22,7 @@ const SextaSeccion = () => {
   const [valorTextF1, setValorTextF1] = useState("");
   const [valorTextF2, setValorTextF2] = useState("");
   const tokenState = useSelector((state: RootState) => state.auth);
+  const fichaState = useSelector((state: RootState) => state.fichasA.fichaAnalizada);
 
   const allGetData = async (id: number) => {
     if (!tokenState.logueado) return [];
@@ -95,31 +96,41 @@ const SextaSeccion = () => {
     {
       field: "nombreAbono",
       headerName: dataColums[0]?.titulo,
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+        ? "header-grid1"
+        : "header-grid",
       width: 200,
     },
     {
       field: "cantidadAplicada",
       headerName: dataColums[1]?.titulo,
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+        ? "header-grid1"
+        : "header-grid",
       width: 200,
     },
     {
       field: "origen",
       headerName: dataColums[2]?.titulo,
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+        ? "header-grid1"
+        : "header-grid",
       width: 200,
     },
     {
       field: "mesAplicado",
       headerName: dataColums[3]?.titulo,
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+        ? "header-grid1"
+        : "header-grid",
       width: 199,
     },
     {
       field: "cualCultivo",
       headerName: dataColums[4]?.titulo,
-      headerClassName: "header-grid",
+      headerClassName: fichaState
+        ? "header-grid1"
+        : "header-grid",
       width: 197,
     },
   ];

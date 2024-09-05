@@ -45,3 +45,4 @@ const fichasSlice = createSlice({
 
 export const {updateValueFichas,clearValueFichas} = fichasSlice.actions;
 export default fichasSlice.reducer;
+

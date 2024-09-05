@@ -31,7 +31,7 @@ export const createProductors = async (
   numeroCedula: string,
   numeroTelefono: string,
   fechaIngresoPrograma: Date,
-  estado: number
+  estadoProgramaC: string
 ): Promise<ApiResponse> => {
   try {
     const response = await apiManager.post("/productores", {
@@ -40,7 +40,7 @@ export const createProductors = async (
       numeroCedula,
       numeroTelefono,
       fechaIngresoPrograma,
-      estado,
+      estadoProgramaC,
     });
     return response.data;
   } catch (error: any) {

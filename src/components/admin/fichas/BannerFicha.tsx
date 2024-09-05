@@ -8,9 +8,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 
 const BannerFicha = () => {
-  const isSmallerThan1025 = useMediaQuery("(max-width: 750px)");
+  const isSmallerThan1025 = useMediaQuery("(max-width: 800px)");
   const router = useRouter();
-  const fichasState = useSelector((state: RootState) => state.fichas);
+  const fichasState = useSelector((state: RootState) => state.fichasA.fichaAnalizada);
 
   const onVolver = () =>{
     router.push('/admin/historyFichas');
@@ -19,13 +19,21 @@ const BannerFicha = () => {
 
   const scrollToBottom = () => {
     const handleScrollToBottom = () => {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
+      if(fichasState){
+        window.scrollTo({
+        top: document.documentElement.scrollHeight - window.innerHeight - 600,
         behavior: "smooth" // Animación de desplazamiento suave
       });
+      } else {
+        window.scrollTo({
+          top: window.scrollY + 430, // Desliza 100 píxeles hacia abajo
+          behavior: 'smooth' // Animación de desplazamiento suave
+        });
+      }
+      
     };
   
-    return handleScrollToBottom;
+    handleScrollToBottom();
   };
   return (
     <Box
@@ -52,9 +60,9 @@ const BannerFicha = () => {
           <button
             onClick={scrollToBottom}
             style={{ marginTop: "1rem" }}
-            className={`btn-save ${fichasState.AlanizadaFichas && fichasState.analizada ? '' : 'btn-banner-ficha'}`}
+            className={`btn-save ${fichasState ? '' : 'btn-banner-ficha'}`}
           >
-            {fichasState.AlanizadaFichas && fichasState.analizada ? 'Revisa la desicion' :  'Analiza tu ficha'}
+            {fichasState? 'Revisa la desicion' :  'Analiza tu ficha'}
           </button>
           <button
           onClick={onVolver}
@@ -70,7 +78,7 @@ const BannerFicha = () => {
           style={{ marginRight: "1rem" }}
           width={300}
           height={300}
-          src={fichasState.AlanizadaFichas && fichasState.analizada ? ImageBC : ImageB}
+          src={fichasState ? ImageBC : ImageB}
           alt="Imagen del banner"
         />
       )}

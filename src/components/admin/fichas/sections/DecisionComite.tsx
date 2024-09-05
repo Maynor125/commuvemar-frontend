@@ -74,19 +74,19 @@ const DecisionComite = () => {
     {
       field: "aprobadoSinC",
       headerName: "Aprobado sin condiciones",
-      headerClassName: "header-grid",
+      headerClassName: hayDesicion ? "header-grid1" : "header-grid",
       width: 332,
     },
     {
       field: "aprobadoConC",
       headerName: "Aprobado con condiciones",
-      headerClassName: "header-grid",
+      headerClassName: hayDesicion ? "header-grid1" : "header-grid",
       width: 332,
     },
     {
       field: "sancionado",
       headerName: "Sancionado",
-      headerClassName: "header-grid",
+      headerClassName: hayDesicion ? "header-grid1" : "header-grid",
       width: 332,
     },
   ];

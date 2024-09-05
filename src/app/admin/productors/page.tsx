@@ -145,15 +145,6 @@ const Productors = () => {
             gap:"1rem"
           }}
         >
-          <ProductorCard 
-          nombre="Sydney" 
-          apellido="Pascal"
-          id={12}
-          estado={2}
-          numeroCedula="120-662772-278"
-          numeroTelefono="89567546"
-          
-           />
           {productors.map((item) => (
             <ProductorCard 
             nombre={item.nombre}
@@ -161,7 +152,7 @@ const Productors = () => {
             numeroCedula={item.numeroCedula}
             numeroTelefono={item.numeroTelefono}
             fechaEntradaPrograma={item.fechaIngresoPrograma}
-            estado={item.estado} 
+            estadoProgramaC={item.estadoProgramaC} 
             id={item.id}
             onClick={handleSave}/>
           ))}

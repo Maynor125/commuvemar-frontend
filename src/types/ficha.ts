@@ -13,6 +13,8 @@ export interface Ficha {
     longitud: string;
   };
   analizada?: boolean;
+  createdAt?:Date;
+  updatedAt?:Date;
 }
 
 export interface FichaHeader {

@@ -5,4 +5,6 @@ export interface User {
     hash:string;
     IDTrabajador:number;
     trabajador:string;
+    createAt:Date;
+    updatedAt:Date;
 }
