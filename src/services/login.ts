@@ -8,7 +8,7 @@ export const login = async (
   dispatch: AppDispatch,
   email: string,
   password: string
-): Promise<{ error?: string }> => {
+): Promise<{ error?: string } | { type: string }> => {
   try {
     const response = await apiManager.post("/auth/signin", {
       email,

@@ -46,7 +46,7 @@ interface PropsTable {
   cantidad_observacion: string;
 }
 
-const Ficha = ({ params }: any) => {
+const Page = ({ params }: any) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const downloadPDF = useCallback(() => {
@@ -57,11 +57,13 @@ const Ficha = ({ params }: any) => {
       html2canvas: { scale: 3 },
       jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
     };
-
-    if (containerRef.current) {
-      html2pdf().set(opt).from(containerRef.current).save();
+  
+    if (containerRef.current) { //@ts-ignore
+      html2pdf(containerRef.current, opt).then((pdf:any) => { 
+        pdf.save(); // Llama al método save en el objeto jsPDF
+      });
     }
-  }, []);
+  }, [containerRef, params.id]);
 
   //Verificar el estado de la ficha.
   const [isFichaActive, setIsFichaActive] = useState(false);
@@ -521,4 +523,4 @@ const Ficha = ({ params }: any) => {
   );
 };
 
-export default Ficha;
+export default Page;

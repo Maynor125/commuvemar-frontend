@@ -81,7 +81,7 @@ const LoginForm = () => {
 
   // ...
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null | undefined>(null);
   console.log("el error es:", error);
 
   const {
@@ -100,7 +100,7 @@ const LoginForm = () => {
       const response = await login(dispatch, email, password); // Asegúrate de pasar dispatch como el primer argumento
   
       setTimeout(() => {
-        if (response.error) {
+        if ('error' in response) {
           setError(response.error);
           setSuccessMessage(null);
           setLoading(false);

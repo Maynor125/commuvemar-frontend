@@ -13,7 +13,7 @@ import { RootState } from "@/redux/store/store";
 import { clearValueProductor } from "@/redux/features/productorsSlice";
 import BotonFlotante from "@/components/BotonFlotante";
 
-const Productors = () => {
+const Page = () => {
   const [productors, setProductors] = useState<Productors[]>([]);
 
   const theme = useTheme();
@@ -134,6 +134,7 @@ const Productors = () => {
           />
         </Box>
         <MessageGlobal 
+        action=""
         show={showMessage}
         message={message}
         type={productorState.isEdit ? "info" : validadorDelete ? "error" : "success"}/>
@@ -163,4 +164,4 @@ const Productors = () => {
   );
 };
 
-export default Productors;
+export default Page;

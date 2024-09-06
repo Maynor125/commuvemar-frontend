@@ -27,8 +27,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateValueMapa } from "@/redux/features/mapaModalSlice";
 import { RootState } from "@/redux/store/store";
 import { updateValueFichas } from "@/redux/features/fichaSlice";
+import { Ficha } from "@/types/ficha";
 
-const HistoryFichas = () => {
+const Page = () => {
+
   const theme = useTheme();
   const [currentPage, setCurrentPage] = useState(1);
   const [fichasPerPage] = useState(6);
@@ -190,4 +192,4 @@ const HistoryFichas = () => {
   );
 };
 
-export default HistoryFichas;
+export default Page;
