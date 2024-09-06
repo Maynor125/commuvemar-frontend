@@ -75,8 +75,8 @@ const UserCard: React.FC<UserCardProps> = ({
         const response = await getUserName(IDTrabajador);
         if (response) {
           
-          setWorkerName(response.nombre); 
-          setWorkerApellido(response.apellido);
+          setWorkerName(response?.[0].nombre); 
+          setWorkerApellido(response?.[0].apellido);
         }
       } catch (error) {
         console.error(error);

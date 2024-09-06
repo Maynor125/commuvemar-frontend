@@ -70,12 +70,12 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
     setOpenM(false);
   };
 
-  const [userInfo, setUserInfo] = useState<Workers | null>(null);
+  const [userInfo, setUserInfo] = useState<Workers[] | null>(null);
   const getInfoUser = async (id: number) => {
     try {
       const response = await getUser(id);
       console.log("Info del usuario", response);
-      if (response.data !== undefined || response.data !== null) {
+      if (response.data) {
         setUserInfo(response.data);
       }
     } catch (error) {
@@ -191,7 +191,7 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
                   fontSize: "1.1rem",
                 }}
               >
-                {userInfo?.nombre} {userInfo?.apellido}
+                {userInfo?.[0]?.nombre} {userInfo?.[0]?.apellido}
               </Typography>
               <Typography
                 sx={{

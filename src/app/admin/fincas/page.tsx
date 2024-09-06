@@ -3,12 +3,12 @@
 import FincasCard from "@/components/admin/fincas/FincasCard";
 import BotonFlotante from "@/components/BotonFlotante";
 import FincaForm from "@/components/forms/FincaForm";
-import { Fincas} from "@/types/fincas";
+import type { Fincas } from "@/types/fincas";
 import { deleteFincas, getFincas } from "@/services/finca";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
-const Fincas = () => {
+const Page = () => {
   const theme = useTheme();
   const [edit, setEdit] = useState(false);
   const [isAgregate, setIsAgregate] = useState(false);
@@ -150,4 +150,4 @@ const Fincas = () => {
   );
 };
 
-export default Fincas;
+export default Page;

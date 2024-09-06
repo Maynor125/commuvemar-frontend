@@ -156,6 +156,7 @@ const Inspectors = () => {
         </Box>
       )}
       <MessageGlobal
+      action=""
         show={showMessage}
         message={message}
         type={edit ? "info" : isDelete ? "error" : "success"}
@@ -176,7 +177,7 @@ const Inspectors = () => {
             firstName={item.nombre}
             lastName={item.apellido}
             phoneNumber={item.numeroTelefono}
-            avatarUrl={item.urlImg}
+            avatarUrl={typeof item.urlImg === 'string' ? item.urlImg : item.urlImg ? Buffer.from(item.urlImg).toString('utf8') : ''}
             onClick={()=>handleSave()}
           />
         ))}

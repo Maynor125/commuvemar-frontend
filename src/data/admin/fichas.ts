@@ -4,6 +4,7 @@ export const Fichas = [
         nombre:'Juan',
         fecha:'10 de julio de 2023',
         email:'juan@gmail.com',
+        urlmagen:'',
         finca:'La Valentina',
         productor:'Raul Perez',
         location:{
@@ -17,6 +18,7 @@ export const Fichas = [
         nombre:'Yari',
         fecha:'19 de enero de 2023',
         email:'Yari@gmail.com',
+        urlmagen:'',
         finca:'La Callaita',
         productor:'Pedro Castro',
         location:{
@@ -30,6 +32,7 @@ export const Fichas = [
         nombre:'Juan',
         fecha:'10 de julio de 2023',
         email:'juan@gmail.com',
+        urlmagen:'',
         finca:'La Valentina',
         productor:'Raul Perez',
         location:{
@@ -43,6 +46,7 @@ export const Fichas = [
         nombre:'Yari',
         fecha:'19 de enero de 2023',
         email:'Yari@gmail.com',
+        urlmagen:'',
         finca:'La Callaita',
         productor:'Pedro Castro',
         location:{
@@ -56,6 +60,7 @@ export const Fichas = [
         nombre:'Juan',
         fecha:'10 de julio de 2023',
         email:'juan@gmail.com',
+        urlmagen:'',
         finca:'La Valentina',
         productor:'Raul Perez',
         location:{
@@ -69,6 +74,7 @@ export const Fichas = [
         nombre:'Yari',
         fecha:'19 de enero de 2023',
         email:'Yari@gmail.com',
+        urlmagen:'',
         finca:'La Callaita',
         productor:'Pedro Castro',
         location:{
@@ -82,6 +88,7 @@ export const Fichas = [
         nombre:'Juan',
         fecha:'10 de julio de 2023',
         email:'juan@gmail.com',
+        urlmagen:'',
         finca:'La Valentina',
         productor:'Raul Perez',
         location:{
@@ -95,6 +102,7 @@ export const Fichas = [
         nombre:'Yari',
         fecha:'19 de enero de 2023',
         email:'Yari@gmail.com',
+        urlmagen:'',
         finca:'La Callaita',
         productor:'Pedro Castro',
         location:{

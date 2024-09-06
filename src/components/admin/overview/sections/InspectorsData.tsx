@@ -112,9 +112,9 @@ const InspectorsData = () => {
                           label="Select Month"
                           value={selectedDate}
                           onChange={handleMonthChange}
-                          renderInput={(params:any) => (
-                            <Typography {...params} sx={{ m: 0 }} />
-                          )}
+                          components={{
+                            OpenPickerIcon: () => <Typography sx={{ m: 0 }} />,
+                          }}
                           views={["month"]}
                           disableFuture
                         />

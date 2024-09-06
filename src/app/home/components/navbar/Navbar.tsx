@@ -54,14 +54,6 @@ function Navbar({ pathNames }: Props) {
     };
   }, []);
 
-  const [activeLink, setActiveLink] = useState<string>('');
-  // Manejar la activación de enlaces
-  const scrollActive = () => {
- 
-};
-
-
-
   return (
     <Box
       component="nav"
@@ -122,34 +114,6 @@ function Navbar({ pathNames }: Props) {
       </div>
     </Box>
   );
-}
-
-//=============== Activar enlaces ===============
-
-if (typeof window !== 'undefined') {
-  // Este código se ejecutará solo en el lado del cliente
-  var sections = document.querySelectorAll<HTMLDivElement>('section[id]');
-  // Resto de tu código
-}
-const scrollActive = () =>{
-  	const scrollY = window.pageYOffset
-
-	sections.forEach(current =>{
-		const sectionHeight = current.offsetHeight,
-			  sectionTop = current.offsetTop - 58, 
-			  sectionId = current.getAttribute('id'),
-			  sectionsClass = document.querySelector('.nav-list .nav-link[href*=' + sectionId + ']')!; 
-		if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
-          
-          sectionsClass.classList.add('active-link') 
-		}else{
-      
-			sectionsClass.classList.remove('active-link')    
-		}                                                    
-	})
-}
-if (typeof window !== 'undefined') {
-  window.addEventListener("scroll", scrollActive);
 }
 
 export default Navbar;
