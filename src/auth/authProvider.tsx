@@ -14,9 +14,11 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();
   let storedToken:any;
   const router = useRouter();
-  if (typeof window !== "undefined") { // Check if the code is running on the client-side
+  useEffect(()=>{
+      if (typeof window !== "undefined") { // Check if the code is running on the client-side
     storedToken = localStorage.getItem("token");
   }
+  })
 
   useEffect(() => {
     

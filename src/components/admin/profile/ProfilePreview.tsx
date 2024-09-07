@@ -112,7 +112,6 @@ const ProfilePreview: React.FC<ProfileViewerProps> = ({ avatarSrc }) => {
   };
 
   const [openM, setOpenM] = React.useState(false);
-  console.log("la vaina desde la principal", openM);
 
   const handleOpen = () => {
     setOpenM(!openM);

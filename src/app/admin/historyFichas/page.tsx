@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import CardFicha2 from "@/components/admin/fichas/CardFicha2";
 import ProtectedPage from "@/middleware/ProtectedPage";
@@ -14,7 +14,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Pagination from "@/components/admin/pagination/Pagination";
 import { Fichas } from "@/data/admin/fichas";
 import SearchIcon from "@mui/icons-material/Search";
@@ -66,10 +66,18 @@ const Page = () => {
     setCurrentPage(1);
   }, [searchQuery,fichasState]);
 
-  const latitude = 13.7177027;
-  const longitude = -84.7721508;
+  /*useEffect(() => {
+    const windowRef = useRef<Window | null>(null);
+
+    if (typeof window !== 'undefined') {
+      windowRef.current = window;
+    }
+  }, []);*/
 
   const handleOpenModalMapa = () => {
+
+    const latitude = 13.7177027;
+    const longitude = -84.7721508;
     dispatch(
       updateValueMapa({
         openM: true,
@@ -77,9 +85,10 @@ const Page = () => {
         longitud: longitude,
       })
     );
-  };
+  
+};
 
-  const changeFAanlisadas = () => {
+  const changeFAanlizadas = () => {
     setMostrarFAnalisadas(!mostrarFAnalisadas);
     dispatch(
       updateValueFichas({
@@ -125,7 +134,7 @@ const Page = () => {
               <div className="check">
                 <input
                   checked={fichasState.AlanizadaFichas}
-                  onChange={changeFAanlisadas}
+                  onChange={changeFAanlizadas}
                   id="check"
                   type="checkbox"
                 />
