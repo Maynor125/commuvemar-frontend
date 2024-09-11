@@ -1,3 +1,5 @@
+'useclient'
+
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import Image from "next/image";
 import React from "react";
@@ -16,25 +18,26 @@ const BannerFicha = () => {
     router.push('/admin/historyFichas');
   }
 
-
   const scrollToBottom = () => {
     const handleScrollToBottom = () => {
-      if(fichasState){
-        window.scrollTo({
-        top: document.documentElement.scrollHeight - window.innerHeight - 600,
-        behavior: "smooth" // Animación de desplazamiento suave
-      });
-      } else {
-        window.scrollTo({
-          top: window.scrollY + 430, // Desliza 100 píxeles hacia abajo
-          behavior: 'smooth' // Animación de desplazamiento suave
-        });
+      if (typeof window !== 'undefined') { // Check if we're on the client-side
+        if (fichasState) {
+          window.scrollTo({
+            top: document.documentElement.scrollHeight - window.innerHeight - 600,
+            behavior: "smooth" // Animación de desplazamiento suave
+          });
+        } else {
+          window.scrollTo({
+            top: window.scrollY + 430, // Desliza 100 píxeles hacia abajo
+            behavior: 'smooth' // Animación de desplazamiento suave
+          });
+        }
       }
-      
     };
-  
+    
     handleScrollToBottom();
   };
+
   return (
     <Box
       sx={{

@@ -1,3 +1,5 @@
+'use client'
+
 // components/Pagination.tsx
 import { useEffect } from "react";
 import {

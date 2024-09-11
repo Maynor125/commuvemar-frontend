@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import React, { useEffect, useState } from "react";
 import {
@@ -47,8 +47,6 @@ const InformationFichas = () => {
   const texto = isAgregate ? "Cancelar" : "Agregar";
 
   
-
-
   const handleSave = () => {
     // Perform save action
     if (edit) {

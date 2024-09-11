@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Box,
@@ -26,7 +26,7 @@ import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 
-const page = ({ params }: any) => {
+const Page = ({ params }: any) => {
   const theme = useTheme();
   const [filterText, setFilterText] = useState("");
 
@@ -323,4 +323,4 @@ const page = ({ params }: any) => {
   );
 };
 
-export default page;
+export default Page;
