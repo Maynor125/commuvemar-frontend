@@ -40,7 +40,8 @@ function Navbar({ pathNames }: Props) {
   const isSmallerThan1025 = useMediaQuery("(max-width: 1024px)");
 
    // Manejar el cambio de scroll
-   useEffect(() => {
+useEffect(() => {
+  if (typeof window !== 'undefined') { // Check if we're on the client-side
     const scrollHeader = () => {
       if (window.scrollY >= 50) {
         setIsSticky(true);
@@ -52,7 +53,8 @@ function Navbar({ pathNames }: Props) {
     return () => {
       window.removeEventListener('scroll', scrollHeader);
     };
-  }, []);
+  }
+}, []);
 
   return (
     <Box

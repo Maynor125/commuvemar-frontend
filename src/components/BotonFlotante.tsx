@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import React, { useEffect, useState } from "react";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
@@ -14,24 +14,27 @@ const BotonFlotante = () => {
   const authState = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setVisible(window.scrollY > 300); // Mostrar el botón después de desplazar 300px hacia abajo
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    if (typeof window !== 'undefined') { 
+      const handleScroll = () => {
+        setVisible(window.scrollY > 300); // Mostrar el botón después de desplazar 300px hacia abajo
+      };
+  
+      window.addEventListener("scroll", handleScroll);
+  
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
   }, []);
-
+  
   const handleClick = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (typeof window !== 'undefined') { // Check if we're on the client-side
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
-
   const isSmallerThan1025 = useMediaQuery("(max-width: 1024px)");
 
   return (

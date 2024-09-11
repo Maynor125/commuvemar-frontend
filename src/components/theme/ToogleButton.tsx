@@ -1,4 +1,5 @@
-"use client";
+'use client'
+
 import { useDispatch } from "react-redux";
 import { toogleTheme } from "@/redux/features/themeSlice";
 import { useState } from "react";

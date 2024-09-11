@@ -1,14 +1,11 @@
-"use client"
+'use client'
 
 import CardFicha2 from "@/components/admin/fichas/CardFicha2";
 import ProtectedPage from "@/middleware/ProtectedPage";
 import {
   Box,
   Divider,
-  IconButton,
   InputAdornment,
-  InputBase,
-  Paper,
   TextField,
   Tooltip,
   Typography,
@@ -21,22 +18,20 @@ import SearchIcon from "@mui/icons-material/Search";
 
 import "./Style.css";
 import NoResult from "@/components/NoResult";
-import Map from "@/components/map/Map";
 import ModalMapa from "@/components/admin/fichas/ModalMapa";
 import { useDispatch, useSelector } from "react-redux";
 import { updateValueMapa } from "@/redux/features/mapaModalSlice";
 import { RootState } from "@/redux/store/store";
 import { updateValueFichas } from "@/redux/features/fichaSlice";
-import { Ficha } from "@/types/ficha";
 
-const Page = () => {
+
+const HistoryFichas = () => {
 
   const theme = useTheme();
   const [currentPage, setCurrentPage] = useState(1);
   const [fichasPerPage] = useState(6);
   const indexOfLastFicha = currentPage * fichasPerPage;
   const indexOfFirstFicha = indexOfLastFicha - fichasPerPage;
-  const currentFichas = Fichas.slice(indexOfFirstFicha, indexOfLastFicha);
   const [filteredFichas, setFilteredFichas] = useState(Fichas);
   const [searchQuery, setSearchQuery] = useState("");
   const [mostrarFAnalisadas, setMostrarFAnalisadas] = useState(false);
@@ -65,14 +60,6 @@ const Page = () => {
     setFilteredFichas(results);
     setCurrentPage(1);
   }, [searchQuery,fichasState]);
-
-  /*useEffect(() => {
-    const windowRef = useRef<Window | null>(null);
-
-    if (typeof window !== 'undefined') {
-      windowRef.current = window;
-    }
-  }, []);*/
 
   const handleOpenModalMapa = () => {
 
@@ -201,4 +188,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default HistoryFichas;

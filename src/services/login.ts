@@ -12,7 +12,7 @@ export const login = async (
   try {
     const response = await apiManager.post("/auth/signin", {
       email,
-      password,
+      password,   
     });
     console.log(response.data);
     const token = response.data.access_token;
