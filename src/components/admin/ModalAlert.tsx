@@ -41,9 +41,6 @@ const CustomDialog: FC<CustomDialogProps> = ({
   }));
 
   const theme = useTheme();
-  useEffect(() => {
-    console.log("La vaina esta:", open);
-  }, [open]);
 
   return (
     <Dialog

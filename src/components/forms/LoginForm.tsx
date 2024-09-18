@@ -82,7 +82,6 @@ const LoginForm = () => {
   // ...
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null | undefined>(null);
-  console.log("el error es:", error);
 
   const {
     register,

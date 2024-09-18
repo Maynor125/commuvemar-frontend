@@ -71,7 +71,6 @@ const InformationFichas = () => {
   const getAllSection = async () => {
     try {
       const response = await getSections();
-      console.log(response.data);
       if (response.data !== undefined) {
         setSection(response.data);
         setHayDatos(true);

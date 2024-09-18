@@ -27,7 +27,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (tokenData && tokenData.exp) {
         const timesTamp = Math.floor(Date.now() / 1000);
-        console.log("la expiracion del token es", tokenData.exp);
 
         if (tokenData.exp < timesTamp) {
           // Token caducado, limpia el token del localStorage
@@ -40,7 +39,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           // Token válido, continúa con la aplicación.
           if (tokenData.sub) {
             const tokenIdUser = tokenData?.sub;
-            console.log("Este es el id de usuario", tokenIdUser);
             dispatch(
               setInfoUser({
                 token: String(tokenData),
@@ -49,7 +47,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 email: String(tokenData.email),
               })
             );
-            console.log("Estoy obteniedo bien el user")
           }
         }
       }
@@ -59,9 +56,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (storedToken) {
       dispatch(setCredentials(storedToken));
-      console.log("estas logeado papi");
     } else {
-      console.log("Busca como logearse");
     }
   }, [storedToken]);
   return <>{children}</>;
