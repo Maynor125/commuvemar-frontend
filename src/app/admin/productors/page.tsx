@@ -36,7 +36,6 @@ const Page = () => {
   const dispatch = useDispatch();
   const productorState = useSelector((state: RootState) => state.productor);
   const [validadorDelete,setValidadorDelete]=useState(false);
-  console.log(validadorDelete);
   const [validadorEdit,setValidadorEdit]=useState(false)
   
   useEffect(()=>{
@@ -69,7 +68,6 @@ const Page = () => {
   const getAllProductors = async () => {
     try {
       const response = await getProductors();
-      console.log(response.data);
       if (response.data !== undefined) {
         setProductors(response.data);
       }

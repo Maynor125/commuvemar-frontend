@@ -30,7 +30,6 @@ const Page = () => {
   const getAllFincas = async ()=>{
     try {
       const response = await getFincas();
-      console.log(response);
       if(response.data !== undefined)
       {
         setFincas(response.data);
